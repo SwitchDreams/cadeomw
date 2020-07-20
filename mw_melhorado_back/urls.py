@@ -21,7 +21,8 @@ from course import views as course_view
 
 router = routers.DefaultRouter()
 router.register(r'courses', course_view.CourseViewSet)
-
+router.register(r'department', course_view.DepartmentViewSet)
+router.register(r'subjects', course_view.SubjectViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
