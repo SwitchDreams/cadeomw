@@ -1,6 +1,14 @@
 from course.models import Course, Department, Subject
 from rest_framework import viewsets
+from course.parse_fluxo import parse_geral
+from django.http import JsonResponse
 from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer
+
+
+def update_fluxo(request):
+    filepath = "data/sigra/fluxos/fluxos_geral.txt"
+    parse_geral(filepath)
+    return JsonResponse({'Dale': 'bora'})
 
 
 class CourseViewSet(viewsets.ModelViewSet):
