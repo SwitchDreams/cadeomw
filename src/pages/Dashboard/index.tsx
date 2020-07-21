@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Header from '../../components/Header';
 
@@ -13,10 +12,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Header />
-      <Container>
-        Hello Front!
-        <Link to="/course">Ir para página do curso</Link>
-      </Container>
+      <Container>Hello Front!</Container>
     </>
   );
 };
