@@ -26,13 +26,24 @@ export const Menu = styled.div`
   flex-direction: row;
   position: absolute;
   right: 100px;
-  padding: 40px;
-  width: 500px;
+  padding: 35px;
+  width: 700px;
+
+  a {
+    text-decoration: none;
+    border-top: 2px solid rgba(0, 50, 60, 0.8);
+    width: 110px;
+    height: 50px;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const MenuText = styled.div`
   font-size: 18px;
   font-weight: bold;
   color: #217580;
-  margin-right: auto;
+  margin-top: 10px;
 `;

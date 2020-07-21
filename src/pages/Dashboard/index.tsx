@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Header from '../../components/Header';
+
 import { Container } from './styles';
 
 /*
@@ -9,10 +11,13 @@ import { Container } from './styles';
 
 const Dashboard: React.FC = () => {
   return (
-    <Container>
-      Hello Front!
-      <Link to="/course">Ir para página do curso</Link>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        Hello Front!
+        <Link to="/course">Ir para página do curso</Link>
+      </Container>
+    </>
   );
 };
 
