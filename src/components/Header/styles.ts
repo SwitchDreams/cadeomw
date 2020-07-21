@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const Faixa1 = styled.div`
-  background: #217580;
+  background: #240a59;
   height: 100px;
 
   img {

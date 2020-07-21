@@ -1,36 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  font-weight: bold;
-  background: #217580;
-  display: flex;
-`;
-
-export const TabContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 75px;
-  width: 50%;
-  align-items: center;
-
-  a {
-    margin: auto;
-    text-decoration: none;
-  }
-`;
-
-export const TabText = styled.p`
-  color: #fff;
-  font-size: 25px;
-  align-items: center;
-`;
-
 export const Flux = styled.div`
-  margin: 20px 550px;
+  margin: 100px 550px;
 `;
 
 export const PeriodContainer = styled.div`
   background: rgba(110, 238, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+
   height: 60px;
   padding-left: 40px;
   display: flex;
@@ -47,31 +25,32 @@ export const PeriodText = styled.div`
 
 export const ContentContainer = styled.div`
   margin-bottom: 35px;
-  -webkit-transition: all 2s ease;
-  -moz-transition: all 2s ease;
-  -o-transition: all 2s ease;
-  -ms-transition: all 2s ease;
-  transition: all 2s ease;
 `;
 
 export const Content = styled.p`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 25px;
 `;
 
 export const ContentText = styled.p`
   font-size: 18px;
   margin-left: 40px;
-  margin-top: 25px;
   height: 20px;
   width: 80%;
 `;
 
-export const ContentCredits = styled.p`
+export const ContentCreditsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+
   font-size: 18px;
   right: 10%;
-  margin-top: 25px;
   height: 20px;
   width: 20%;
+`;
+
+export const ContentCredits = styled.p`
+  margin-left: 10px;
 `;
