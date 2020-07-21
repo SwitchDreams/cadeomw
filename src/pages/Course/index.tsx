@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Header from '../../components/Header';
+
 import { Container } from './styles';
 
 /*
@@ -7,7 +9,12 @@ import { Container } from './styles';
 */
 
 const Course: React.FC = () => {
-  return <Container>Curso X</Container>;
+  return (
+    <>
+      <Header />
+      <Container>Curso X</Container>
+    </>
+  );
 };
 
 export default Course;
