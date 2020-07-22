@@ -1,5 +1,5 @@
 from course.models import Course, Department, Subject
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from course.parse_fluxo import parse_geral
 from django.http import JsonResponse
 from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer
@@ -17,6 +17,8 @@ class CourseViewSet(viewsets.ModelViewSet):
     """
     queryset = Course.objects.all().order_by('name')
     serializer_class = CourseSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):
