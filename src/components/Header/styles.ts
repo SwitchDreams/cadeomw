@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  flex: 1;
-`;
+export const Container = styled.div``;
 
 export const Faixa1 = styled.div`
-  background: #217580;
+  background: rgb(38, 0, 77);
   height: 100px;
 
   img {
     height: 110px;
-    margin: 50px 300px;
+    margin: 50px 0 0 300px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 `;
@@ -31,7 +29,7 @@ export const Menu = styled.div`
 
   a {
     text-decoration: none;
-    border-top: 2px solid rgba(0, 50, 60, 0.8);
+    border-top: 2px solid rgb(38, 0, 77, 0.5);
     width: 110px;
     height: 50px;
     margin-right: auto;
@@ -44,6 +42,6 @@ export const Menu = styled.div`
 export const MenuText = styled.div`
   font-size: 18px;
   font-weight: bold;
-  color: #217580;
+  color: rgb(38, 0, 77);
   margin-top: 10px;
 `;
