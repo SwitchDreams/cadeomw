@@ -17,7 +17,7 @@ class Course(models.Model):
     end_date = models.DateField(blank=True, null=True)
 
     def adicionar_disciplina(self, semester, code_subject, status):
-        course_subject = CourseSubject(course=self, subject_code=code_subject, semester=semester,
+        course_subject = CourseSubject(course=self, subject_id=code_subject, semester=semester,
                                        status=status)
         course_subject.save()
 
