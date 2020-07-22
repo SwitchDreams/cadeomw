@@ -3,6 +3,10 @@ import React, { useState, useCallback } from 'react';
 import Header from '../../components/Header';
 
 import {
+  Container,
+  TabContent,
+  TabText,
+  ContainerPage,
   PeriodContainer,
   PeriodText,
   Flux,
@@ -17,6 +21,11 @@ import {
   Página do curso - Bruna e Japa
 */
 
+interface Tab {
+  selected: boolean;
+  name: string;
+}
+
 interface Materias {
   name: string;
   creditos: number;
@@ -29,8 +38,28 @@ interface Period {
 }
 
 const Course: React.FC = () => {
+  const tabsInit = [
+    {
+      name: 'Informações Gerais',
+      selected: true,
+    },
+    {
+      name: 'Fluxo',
+      selected: false,
+    },
+    {
+      name: 'Grafo',
+      selected: false,
+    },
+  ];
+
   const [showPeriod, setShowPeriod] = useState(0);
   const [togglePeriod, setTogglePeriod] = useState(false);
+
+  const [tabs, setTabs] = useState<Tab[]>(tabsInit);
+  const [info, setInfo] = useState(false);
+  const [fluxo, setFluxo] = useState(false);
+  const [grafo, setGrafo] = useState(false);
 
   const handleTogglePeriod = useCallback(
     (period: number) => {
@@ -143,42 +172,83 @@ const Course: React.FC = () => {
     },
   ];
 
+  const handleSelectTab = useCallback(
+    (name: string) => {
+      const newTab = tabs.map(tab =>
+        tab.name === name
+          ? { name: tab.name, selected: true }
+          : { name: tab.name, selected: false },
+      );
+
+      setTabs(newTab);
+
+      if (name === 'Informações Gerais') {
+        setInfo(true);
+        setFluxo(false);
+        setGrafo(false);
+      } else if (name === 'Fluxo') {
+        setInfo(false);
+        setFluxo(true);
+        setGrafo(false);
+      } else {
+        setInfo(false);
+        setFluxo(false);
+        setGrafo(true);
+      }
+    },
+    [tabs],
+  );
+
   return (
     <>
       <Header />
+      <Container>
+        {tabs.map(tab => (
+          <TabContent
+            selected={tab.selected}
+            onClick={() => handleSelectTab(tab.name)}
+          >
+            <TabText selected={tab.selected}>{tab.name}</TabText>
+          </TabContent>
+        ))}
+      </Container>
 
-      <Flux>
-        {periods.map(period => {
-          let materias: Materias[] = [];
+      {info && <ContainerPage />}
+      {grafo && <ContainerPage />}
+      {fluxo && (
+        <Flux>
+          {periods.map(period => {
+            let materias: Materias[] = [];
 
-          if (showPeriod === period.id) {
-            materias = period.materias;
-          }
+            if (showPeriod === period.id) {
+              materias = period.materias;
+            }
 
-          return (
-            <>
-              <PeriodContainer onClick={() => handleTogglePeriod(period.id)}>
-                <PeriodText>Período:</PeriodText>
-                <PeriodText>{period.id}</PeriodText>
-                <PeriodText>Número de créditos:</PeriodText>
-                <PeriodText>{period.creditos}</PeriodText>
-              </PeriodContainer>
+            return (
+              <>
+                <PeriodContainer onClick={() => handleTogglePeriod(period.id)}>
+                  <PeriodText>Período:</PeriodText>
+                  <PeriodText>{period.id}</PeriodText>
+                  <PeriodText>Número de créditos:</PeriodText>
+                  <PeriodText>{period.creditos}</PeriodText>
+                </PeriodContainer>
 
-              {materias.map(materia => (
-                <ContentContainer>
-                  <Content>
-                    <ContentText>{materia.name}</ContentText>
-                    <ContentCreditsContainer>
-                      <ContentCredits>{materia.creditos}</ContentCredits>
-                      <ContentCredits>créditos</ContentCredits>
-                    </ContentCreditsContainer>
-                  </Content>
-                </ContentContainer>
-              ))}
-            </>
-          );
-        })}
-      </Flux>
+                {materias.map(materia => (
+                  <ContentContainer>
+                    <Content>
+                      <ContentText>{materia.name}</ContentText>
+                      <ContentCreditsContainer>
+                        <ContentCredits>{materia.creditos}</ContentCredits>
+                        <ContentCredits>créditos</ContentCredits>
+                      </ContentCreditsContainer>
+                    </Content>
+                  </ContentContainer>
+                ))}
+              </>
+            );
+          })}
+        </Flux>
+      )}
     </>
   );
 };

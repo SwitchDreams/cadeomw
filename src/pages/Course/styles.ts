@@ -1,4 +1,49 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface TabContentProps {
+  selected: boolean;
+}
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  background: rgb(38, 0, 77);
+  height: 100px;
+`;
+
+export const TabContent = styled.div<TabContentProps>`
+  background: rgb(38, 0, 77);
+
+  ${props =>
+    props.selected &&
+    css`
+      background: #fff;
+    `}
+  width: 250px;
+  margin: 45px 0 0 50px;
+  border-radius: 30px 30px 0 0;
+  box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: row;
+`;
+
+export const TabText = styled.p<TabContentProps>`
+  color: #fff;
+
+  ${props =>
+    props.selected &&
+    css`
+      color: #240a59;
+    `}
+
+  margin: auto;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+export const ContainerPage = styled.div``;
 
 export const Flux = styled.div`
   margin: 100px 550px;
