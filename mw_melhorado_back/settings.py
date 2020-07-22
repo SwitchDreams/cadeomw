@@ -17,7 +17,6 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ SECRET_KEY = '$ifqh#ng1-vxiz&wrzs&&n50pl!a9!1c3jxu*=xj&2ag&gva1*'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 REST_FRAMEWORK = {
@@ -49,7 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # WhiteNose for heroku
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNose for heroku
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -78,13 +76,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mw_melhorado_back.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-
+DATABASES = {'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'aula_trainee',
+    'USER': 'root',
+    'PASSWORD': 'abacate',
+    'HOST': 'localhost',
+    'PORT': '',
+}}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -104,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -118,7 +120,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -126,5 +127,3 @@ STATIC_URL = '/static/'
 
 # This should already be in your settings.py
 django_heroku.settings(locals())
-# This is new
-#del DATABASES['default']['OPTIONS']['sslmode']

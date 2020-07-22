@@ -42,11 +42,11 @@ class Subject(models.Model):
 
 class CourseSubject(models.Model):
     STATUS = (
-        ('OB', 'Obrigatória'),
-        ('OP', 'Optativa'),
-        ('OP', 'Módulo Livre'),
+        ('OBR', 'Obrigatória'),
+        ('OPT', 'Optativa'),
+        ('ML', 'Módulo Livre'),
     )
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     semester = models.PositiveSmallIntegerField()
-    status = models.CharField(max_length=2, choices=STATUS)
+    status = models.CharField(max_length=3, choices=STATUS)
