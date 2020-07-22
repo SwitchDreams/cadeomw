@@ -109,3 +109,11 @@ export const ContentCreditsContainer = styled.div`
 export const ContentCredits = styled.p`
   margin-left: 10px;
 `;
+
+export const InfoContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+
+`;

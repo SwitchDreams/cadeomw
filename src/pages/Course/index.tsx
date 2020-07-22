@@ -23,6 +23,7 @@ import {
   ContentCreditsContainer,
 } from './styles';
 
+
 /*
   Página do curso - Bruna e Japa
 */
@@ -210,7 +211,9 @@ const Course: React.FC = () => {
   return (
     <>
       <Header />
+
       <Container>
+
         {tabs.map(tab => (
           <TabContent
             selected={tab.selected}
@@ -219,6 +222,7 @@ const Course: React.FC = () => {
             <TabText selected={tab.selected}>{tab.name}</TabText>
           </TabContent>
         ))}
+
       </Container>
 
       {info && <ContainerPage />}
