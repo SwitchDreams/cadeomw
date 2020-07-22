@@ -1,11 +1,11 @@
-from course.models import Course, Department, Subject
+from course.models import Course, Department, Subject, CourseSubject
 from rest_framework import serializers
 
 
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Course
-        fields = ['code', 'name', 'issue_date', 'begin_date', 'end_date']
+        fields = ['code', 'name', 'issue_date', 'begin_date', 'end_date', 'flow']
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
