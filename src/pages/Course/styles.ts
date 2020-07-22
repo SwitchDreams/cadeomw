@@ -23,3 +23,11 @@ export const TabText = styled.p`
   font-size: 25px;
   margin-top: 10px;
 `;
+
+export const InfoContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+
+`;
