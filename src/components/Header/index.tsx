@@ -1,9 +1,18 @@
 import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
+import MenuIcon from '@material-ui/icons/Menu';
+
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Button,
+} from '@material-ui/core';
 import logoImg from '../../assets/unb.svg';
 
-import { Container, Faixa1, Faixa2, Menu, MenuText } from './styles';
+import { Container, Menu, MenuText } from './styles';
 
 /*
   Header - Componente geral
@@ -26,18 +35,21 @@ const Header: React.FC = () => {
 
   return (
     <Container>
-      <Faixa1>
-        <img src={logoImg} alt="UnB" />
-      </Faixa1>
-      <Faixa2>
-        <Menu>
-          {menuItems.map(menu => (
-            <Link to={menu.link} onClick={() => handleMenuChange(menu.name)}>
-              <MenuText>{menu.name}</MenuText>
-            </Link>
-          ))}
-        </Menu>
-      </Faixa2>
+      <AppBar
+        position="static"
+        style={{ background: 'rgb(38,0,77)', boxShadow: 'none' }}
+      >
+        <Toolbar>
+          <Typography variant="h6">MW-Melhorado</Typography>
+          <Menu>
+            {menuItems.map(menu => (
+              <Link to={menu.link} onClick={() => handleMenuChange(menu.name)}>
+                <MenuText>{menu.name}</MenuText>
+              </Link>
+            ))}
+          </Menu>
+        </Toolbar>
+      </AppBar>
     </Container>
   );
 };
