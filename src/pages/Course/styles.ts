@@ -1,8 +1,18 @@
 import styled, { css } from 'styled-components';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 interface TabContentProps {
   selected: boolean;
 }
+
+export const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      width: 900,
+    },
+    container: {},
+  }),
+);
 
 export const Container = styled.div`
   display: flex;

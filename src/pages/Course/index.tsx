@@ -1,8 +1,14 @@
 import React, { useState, useCallback } from 'react';
 
+import Switch from '@material-ui/core/Switch';
+import Paper from '@material-ui/core/Paper';
+import Collapse from '@material-ui/core/Collapse';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import Header from '../../components/Header';
 
 import {
+  useStyles,
   Container,
   TabContent,
   TabText,
@@ -41,11 +47,11 @@ const Course: React.FC = () => {
   const tabsInit = [
     {
       name: 'Informações Gerais',
-      selected: true,
+      selected: false,
     },
     {
       name: 'Fluxo',
-      selected: false,
+      selected: true,
     },
     {
       name: 'Grafo',
@@ -58,8 +64,10 @@ const Course: React.FC = () => {
 
   const [tabs, setTabs] = useState<Tab[]>(tabsInit);
   const [info, setInfo] = useState(false);
-  const [fluxo, setFluxo] = useState(false);
+  const [fluxo, setFluxo] = useState(true);
   const [grafo, setGrafo] = useState(false);
+
+  const classes = useStyles();
 
   const handleTogglePeriod = useCallback(
     (period: number) => {
@@ -215,6 +223,7 @@ const Course: React.FC = () => {
 
       {info && <ContainerPage />}
       {grafo && <ContainerPage />}
+
       {fluxo && (
         <Flux>
           {periods.map(period => {
@@ -226,24 +235,39 @@ const Course: React.FC = () => {
 
             return (
               <>
-                <PeriodContainer onClick={() => handleTogglePeriod(period.id)}>
-                  <PeriodText>Período:</PeriodText>
-                  <PeriodText>{period.id}</PeriodText>
-                  <PeriodText>Número de créditos:</PeriodText>
-                  <PeriodText>{period.creditos}</PeriodText>
-                </PeriodContainer>
-
-                {materias.map(materia => (
-                  <ContentContainer>
-                    <Content>
-                      <ContentText>{materia.name}</ContentText>
-                      <ContentCreditsContainer>
-                        <ContentCredits>{materia.creditos}</ContentCredits>
-                        <ContentCredits>créditos</ContentCredits>
-                      </ContentCreditsContainer>
-                    </Content>
-                  </ContentContainer>
-                ))}
+                <div className={classes.root}>
+                  <FormControlLabel
+                    style={{ width: 850 }}
+                    control={
+                      <PeriodContainer
+                        onClick={() => handleTogglePeriod(period.id)}
+                      >
+                        <PeriodText>Período:</PeriodText>
+                        <PeriodText>{period.id}</PeriodText>
+                        <PeriodText>Número de créditos:</PeriodText>
+                        <PeriodText>{period.creditos}</PeriodText>
+                      </PeriodContainer>
+                    }
+                    label=" "
+                  />
+                  <div className={classes.container}>
+                    <Collapse in={showPeriod === period.id}>
+                      {materias.map(materia => (
+                        <ContentContainer>
+                          <Content>
+                            <ContentText>{materia.name}</ContentText>
+                            <ContentCreditsContainer>
+                              <ContentCredits>
+                                {materia.creditos}
+                              </ContentCredits>
+                              <ContentCredits>créditos</ContentCredits>
+                            </ContentCreditsContainer>
+                          </Content>
+                        </ContentContainer>
+                      ))}
+                    </Collapse>
+                  </div>
+                </div>
               </>
             );
           })}
