@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  flex: 1;
-`;
+export const Container = styled.div``;
 
 export const Faixa1 = styled.div`
   background: rgb(38, 0, 77);
@@ -10,7 +8,7 @@ export const Faixa1 = styled.div`
 
   img {
     height: 110px;
-    margin: 50px 300px;
+    margin: 50px 0 0 300px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 `;

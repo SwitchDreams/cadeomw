@@ -16,7 +16,7 @@ export default createGlobalStyle`
 
   body, button, input {
     font-family: 'Montserrat', serif;
-    font-size: 34px;
+    font-size: 16px;
   }
 
   h1, h2, h3, h3, h4, h5, h6, strong {

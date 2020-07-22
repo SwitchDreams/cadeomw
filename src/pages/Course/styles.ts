@@ -8,11 +8,22 @@ interface TabContentProps {
 export const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 900,
+      width: 850,
     },
     container: {},
   }),
 );
+
+export const useStylesCard = makeStyles({
+  root: {},
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {},
+  pos: {},
+});
 
 export const Container = styled.div`
   display: flex;
@@ -29,6 +40,7 @@ export const TabContent = styled.div<TabContentProps>`
     css`
       background: #fff;
     `}
+
   width: 250px;
   margin: 45px 0 0 50px;
   border-radius: 30px 30px 0 0;
@@ -55,8 +67,22 @@ export const TabText = styled.p<TabContentProps>`
 
 export const ContainerPage = styled.div``;
 
+export const CardFluxContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const InfoContainerCard = styled.div`
+  min-width: 25%;
+  margin: 50px 30px 0 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const Flux = styled.div`
-  margin: 100px 550px;
+  width: 80%;
+  margin: 100px 0 100px 0;
 `;
 
 export const PeriodContainer = styled.div`
@@ -68,7 +94,7 @@ export const PeriodContainer = styled.div`
   padding-left: 40px;
   display: flex;
   margin-bottom: 10px;
-  flex: 1;
+  width: 95%;
   align-items: center;
   cursor: pointer;
 `;
@@ -84,7 +110,6 @@ export const ContentContainer = styled.div`
 
 export const Content = styled.p`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-top: 25px;
 `;
@@ -108,12 +133,4 @@ export const ContentCreditsContainer = styled.div`
 
 export const ContentCredits = styled.p`
   margin-left: 10px;
-`;
-
-export const InfoContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-
 `;
