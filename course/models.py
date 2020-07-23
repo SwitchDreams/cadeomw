@@ -24,7 +24,6 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
-    #
     def flow(self):
         """
         Retorna o fluxo das disciplinas dividido por semestre
@@ -32,8 +31,7 @@ class Course(models.Model):
         flow = {}
         course_subjects = self.course_subject.all()
         for subject in course_subjects:
-            subject_dict = {"subject_name": subject.subject.name, "status": subject.status,
-                            "credit": subject.subject.credit, "pass_percent": subject.subject.pass_percent()}
+            subject_dict = subject.to_json()
             if subject.semester in flow:
                 flow[subject.semester]["subjects"].append(subject_dict)
             else:
@@ -45,6 +43,13 @@ class Course(models.Model):
             flow_list.append(value)
         return flow_list
 
+    def hardest_subject(self):
+        """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
+        return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent())[0].to_json()
+
+    def easiest_subject(self):
+        """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
+        return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent())[-1].to_json()
 
 class Subject(models.Model):
     code = models.BigIntegerField(primary_key=True)
@@ -94,6 +99,11 @@ class CourseSubject(models.Model):
 
     def subject_name(self):
         return self.subject.name
+
+    def to_json(self):
+        return {"subject_name": self.subject.name, "status": self.status,
+                "credit": self.subject.credit,
+                "pass_percent": self.subject.pass_percent()}
 
 
 class SemesterGrade(models.Model):

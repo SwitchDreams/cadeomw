@@ -5,7 +5,13 @@ from rest_framework import serializers
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Course
-        fields = ['code', 'name', 'issue_date', 'begin_date', 'end_date', 'flow']
+        fields = ['code', 'name', 'issue_date']
+
+
+class CourseDetailsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['code', 'name', 'issue_date', 'begin_date', 'end_date', 'hardest_subject', 'easiest_subject','flow']
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
