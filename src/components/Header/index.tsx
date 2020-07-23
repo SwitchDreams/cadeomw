@@ -37,7 +37,7 @@ const Header: React.FC = () => {
     <Container>
       <AppBar
         position="static"
-        style={{ background: 'rgb(38,0,77)', boxShadow: 'none' }}
+        style={{ background: 'transparent', boxShadow: 'none' }}
       >
         <Toolbar>
           <Typography variant="h6">MW-Melhorado</Typography>
