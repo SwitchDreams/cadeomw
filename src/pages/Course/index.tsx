@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useRouteMatch } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,6 +15,8 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
+import api from '../../services/api';
 
 import {
   useStyles,
@@ -122,6 +125,15 @@ interface Period {
   materias: Materias[];
 }
 
+interface Course {
+  name: string;
+  flow: Period[];
+}
+
+interface URLParams {
+  course: string;
+}
+
 const Course: React.FC = () => {
   const tabsInit = [
     {
@@ -133,6 +145,9 @@ const Course: React.FC = () => {
       selected: false,
     },
   ];
+  const { params } = useRouteMatch<URLParams>();
+
+  const [course, setCourse] = useState<Course | null>(null);
 
   const [showPeriod, setShowPeriod] = useState(0);
   const [togglePeriod, setTogglePeriod] = useState(false);
@@ -142,6 +157,13 @@ const Course: React.FC = () => {
   const [grafo, setGrafo] = useState(false);
 
   const classes = useStyles();
+
+  useEffect(() => {
+    api.get(`courses`).then(response => {
+      setCourse(response.data);
+      console.log(course);
+    });
+  }, [params.course, course]);
 
   const handleTogglePeriod = useCallback(
     (period: number) => {

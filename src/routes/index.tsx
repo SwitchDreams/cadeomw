@@ -10,7 +10,7 @@ import ListCourses from '../pages/ListCourses';
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Dashboard} />
-    <Route path="/course" component={Course} />
+    <Route path="/courses" component={Course} />
     <Route path="/list-courses" component={ListCourses} />
   </Switch>
 );
