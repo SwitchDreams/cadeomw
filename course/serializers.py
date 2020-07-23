@@ -1,4 +1,4 @@
-from course.models import Course, Department, Subject, CourseSubject
+from course.models import Course, Department, Subject
 from rest_framework import serializers
 
 
@@ -17,4 +17,4 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
 class SubjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Subject
-        fields = ['code', 'department', 'name', 'credit']
+        fields = ['code', 'department', 'name', 'credit', 'pass_percent']
