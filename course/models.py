@@ -40,9 +40,10 @@ class Course(models.Model):
 
 class Subject(models.Model):
     code = models.BigIntegerField(primary_key=True)
-    department = models.CharField(max_length=4)
+    # TODO mudar departamento para ser model ao inves de string
     # Departamento é uma sigla no arquivo dos cursos
     # department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    department = models.CharField(max_length=4)
     name = models.CharField(max_length=50)
     credit = models.SmallIntegerField()
 
@@ -52,6 +53,24 @@ class Subject(models.Model):
     def adicionarPreRequisitos(self, argument):
         # TODO adicionar pre-requisito
         return ''
+
+    # Retorna a porcentagem de aprovados
+    def pass_percent(self):
+        # Coleta todas as menções
+        semester_grades = self.semester_grade.all()
+        qte_pass = qte_fail = 0.0
+        for semester_grade in semester_grades:
+            # Soma as menções de aprovação
+            qte_pass += semester_grade.ss + semester_grade.ms + semester_grade.mm + semester_grade.cc
+            # Soma as menções que indicam reprovação + trancamentos
+            qte_fail += semester_grade.ii + semester_grade.mi + semester_grade.sr + semester_grade.tj + semester_grade.tr
+
+        # Caso o total de menções seja 0, retorna 0
+        if qte_pass == qte_fail == 0:
+            return 0
+        # Retorna a porcentagem de aprovados arrendodas de duas casas decimais
+        else:
+            return round(qte_pass / (qte_pass + qte_fail), 2)
 
 
 class CourseSubject(models.Model):
@@ -67,3 +86,19 @@ class CourseSubject(models.Model):
 
     def subject_name(self):
         return self.subject.name
+
+
+class SemesterGrade(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='semester_grade')
+    # Semester (Ex: 2018/2)
+    semester = models.CharField(max_length=6)
+    room = models.CharField(max_length=3)
+    ss = models.PositiveSmallIntegerField()
+    ms = models.PositiveSmallIntegerField()
+    mm = models.PositiveSmallIntegerField()
+    mi = models.PositiveSmallIntegerField()
+    ii = models.PositiveSmallIntegerField()
+    sr = models.PositiveSmallIntegerField()
+    tr = models.PositiveSmallIntegerField()
+    tj = models.PositiveSmallIntegerField()
+    cc = models.PositiveSmallIntegerField()

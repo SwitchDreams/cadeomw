@@ -1,8 +1,14 @@
 from course.models import Course, Department, Subject
 from rest_framework import viewsets, filters
-from course.parse_fluxo import parse_geral
+from course.parses.parse_fluxo import parse_geral
+from course.parses.parse_mencao import update_mencao_database
 from django.http import JsonResponse
 from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer
+
+
+def update_mencao(request):
+    update_mencao_database()
+    return JsonResponse({'Dale': 'bora'})
 
 
 def update_fluxo(request):
