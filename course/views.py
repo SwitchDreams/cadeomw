@@ -41,3 +41,5 @@ class SubjectViewSet(viewsets.ModelViewSet):
     """
     queryset = Subject.objects.all().order_by('name')
     serializer_class = SubjectSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']

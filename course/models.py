@@ -24,18 +24,26 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
-    # Retorna o fluxo das disciplinas dividido por semestre
+    #
     def flow(self):
+        """
+        Retorna o fluxo das disciplinas dividido por semestre
+        """
         flow = {}
         course_subjects = self.course_subject.all()
         for subject in course_subjects:
             subject_dict = {"subject_name": subject.subject.name, "status": subject.status,
-                            "credit": subject.subject.credit}
+                            "credit": subject.subject.credit, "pass_percent": subject.subject.pass_percent()}
             if subject.semester in flow:
-                flow[subject.semester].append(subject_dict)
+                flow[subject.semester]["subjects"].append(subject_dict)
             else:
-                flow[subject.semester] = [subject_dict]
-        return flow
+                flow[subject.semester] = {"semester": subject.semester, "subjects": [subject_dict]}
+        flow_list = []
+        # Cast para um formato de lista
+        for key, value in flow.items():
+            print(value)
+            flow_list.append(value)
+        return flow_list
 
 
 class Subject(models.Model):
