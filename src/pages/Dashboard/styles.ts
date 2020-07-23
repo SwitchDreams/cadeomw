@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import unbLogo from '../../assets/icc.jpg';
+import unbLogo from '../../assets/giphy.gif';
 
 export const Container = styled.div`
   .curved {
