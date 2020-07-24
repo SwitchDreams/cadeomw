@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Courses } from './styles';
+import { Container, Courses, Form } from './styles';
 import { FiChevronRight } from 'react-icons/fi';
 
 /*
@@ -12,6 +12,12 @@ const ListCourses: React.FC = () => {
   return (
     <>
       <Header />
+      
+      <Form>
+        <input placeholder="Digite o nome do curso"></input>  
+        <button type="submit">Pesquisar</button>
+      </Form>
+
       <Courses>
         <a href="teste">
           <div>
