@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header';
-import { Container } from './styles';
+import { WavesContainer, LandingText, FirstTextContainer } from './styles';
 
 /*
 Página principal - Bahia
@@ -9,10 +9,20 @@ Página principal - Bahia
 const Dashboard: React.FC = () => {
   return (
     <>
-      <Container>
+      <WavesContainer>
         <div className="curved">
           <Header />
-          <div className="space" />
+
+          <LandingText>
+            <div className="space">
+              <h4>Where tf is MW?</h4>
+              <p>
+                Encontre num só lugar tudo o que você um dia soube onde
+                encontrar
+              </p>
+            </div>
+          </LandingText>
+
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319">
             <path
               fill="#fff"
@@ -21,7 +31,19 @@ const Dashboard: React.FC = () => {
             />
           </svg>
         </div>
-      </Container>
+      </WavesContainer>
+
+      <FirstTextContainer>
+        <div>
+          <h2>O que você vai encontrar aqui?</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In deserunt
+            ducimus qui labore architecto magni doloribus dolorum harum
+            reiciendis vero tenetur dolore laboriosam, sit debitis libero nam
+            similique sint vitae?
+          </p>
+        </div>
+      </FirstTextContainer>
     </>
   );
 };
