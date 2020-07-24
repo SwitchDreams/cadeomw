@@ -13,6 +13,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import List from '@material-ui/core/List';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
@@ -40,6 +41,9 @@ import {
   Credit,
   CreditText,
   InfoContainerCard,
+  CardSubjectsContainer,
+  SubjectCardStyle,
+  CardTitle,
 } from './styles';
 
 import Header from '../../components/Header';
@@ -134,6 +138,18 @@ interface Period {
 interface Course {
   name: string;
   flow: Period[];
+  hardest_subject: {
+    subject_name: string;
+    status: string;
+    credit: BigInteger;
+    pass_percent: number;
+  };
+  easiest_subject: {
+    subject_name: string;
+    status: string;
+    credit: BigInteger;
+    pass_percent: number;
+  };
 }
 
 interface URLParams {
@@ -153,6 +169,8 @@ const Course: React.FC = () => {
   ];
   // const { params } = useRouteMatch<URLParams>();
 
+  const classesCard = useStylesCard();
+
   const [course, setCourse] = useState<Course | null>(null);
   const [periods, setPeriods] = useState<Period[] | null>(null);
 
@@ -169,7 +187,39 @@ const Course: React.FC = () => {
     api
       .get(`https://mw-melhorado-app.herokuapp.com/courses/1741?format=json`)
       .then(response => {
-        setCourse(response.data);
+        let newCourse = response.data;
+        let statusHardest = newCourse.hardest_subject.status;
+        let statusEasiest = newCourse.easiest_subject.status;
+
+        if (statusHardest === 'OBR' || statusHardest === 'OBS') {
+          statusHardest = 'obrigatória';
+        } else if (statusHardest === 'OPT') {
+          statusHardest = 'optativa';
+        } else {
+          statusHardest = 'módulo livre';
+        }
+
+        if (statusEasiest === 'OBR' || statusEasiest === 'OBS') {
+          statusEasiest = 'obrigatória';
+        } else if (statusEasiest === 'OPT') {
+          statusEasiest = 'optativa';
+        } else {
+          statusEasiest = 'módulo livre';
+        }
+
+        newCourse = {
+          ...newCourse,
+          hardest_subject: {
+            ...newCourse.hardest_subject,
+            status: statusHardest,
+          },
+          easiest_subject: {
+            ...newCourse.easiest_subject,
+            status: statusEasiest,
+          },
+        };
+
+        setCourse(newCourse);
 
         const periodList = response.data.flow.map(
           (period: Period): Period => {
@@ -199,8 +249,6 @@ const Course: React.FC = () => {
               };
             });
 
-            console.log(newSubjects);
-
             return { ...period, credits: sumCredits, subjects: newSubjects };
           },
         );
@@ -208,7 +256,6 @@ const Course: React.FC = () => {
         setPeriods(periodList);
       });
   }, []);
-
 
   const handleTogglePeriod = useCallback(
     (period: number) => {
@@ -251,8 +298,6 @@ const Course: React.FC = () => {
 
   return (
     <>
-      <Header />
-
       <Container>
         {tabs.map(tab => (
           <TabContent
@@ -267,7 +312,7 @@ const Course: React.FC = () => {
 
       {grafo && <ContainerPage />}
 
-      {fluxo && (
+      {fluxo && course && (
         <>
           <CourseNameContainer>
             <CourseName>{course?.name}</CourseName>
@@ -336,6 +381,94 @@ const Course: React.FC = () => {
                   );
                 })}
             </Flux>
+
+            <CardSubjectsContainer>
+              <SubjectCardStyle>
+                <Card elevation={7} className={classesCard.bullet}>
+                  <CardContent>
+                    <CardTitle>Matéria Mais Difícil</CardTitle>
+                    <Divider />
+                    <List component="nav" aria-label="main mailbox folders">
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={course.hardest_subject.subject_name}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <BarChartIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`Porcentagem de aprovação: ${
+                            course.hardest_subject.pass_percent * 100
+                          }%`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={course.hardest_subject.status} />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <CollectionsBookmarkIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`${course.hardest_subject.credit} créditos`}
+                        />
+                      </ListItem>
+                    </List>
+                  </CardContent>
+                </Card>
+              </SubjectCardStyle>
+
+              <SubjectCardStyle>
+                <Card elevation={7} className={classesCard.bullet}>
+                  <CardContent>
+                    <CardTitle>Matéria Mais Fácil</CardTitle>
+                    <Divider />
+                    <List component="nav" aria-label="main mailbox folders">
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={course.easiest_subject.subject_name}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <BarChartIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`Porcentagem de aprovação: ${
+                            course.easiest_subject.pass_percent * 100
+                          }%`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={course.easiest_subject.status} />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <CollectionsBookmarkIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`${course.easiest_subject.credit} créditos`}
+                        />
+                      </ListItem>
+                    </List>
+                  </CardContent>
+                </Card>
+              </SubjectCardStyle>
+            </CardSubjectsContainer>
           </CardFluxContainer>
         </>
       )}
