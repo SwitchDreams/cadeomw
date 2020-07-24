@@ -32,6 +32,8 @@
         "prettier/prettier": "error",
         "react/jsx-wrap-multilines": "off",
         "react-hooks/rules-of-hooks": "error",
+        "camelcase": "off",
+        "react/jsx-curly-newline": "off",
         "react-hooks/exhaustive-deps": "warn",
         "react/jsx-props-no-spreading": "off",
         "react/prop-types": "off",

@@ -5,6 +5,10 @@ interface TabContentProps {
   selected: boolean;
 }
 
+interface ContentStatusProps {
+  status: boolean;
+}
+
 export const useStyles = makeStyles(() =>
   createStyles({
     root: {
@@ -24,6 +28,18 @@ export const useStylesCard = makeStyles({
   title: {},
   pos: {},
 });
+
+export const CourseNameContainer = styled.h1`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CourseName = styled.h1`
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 40px;
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -82,7 +98,7 @@ export const InfoContainerCard = styled.div`
 
 export const Flux = styled.div`
   width: 80%;
-  margin: 100px 0 100px 0;
+  margin: 50px 0 100px 0;
 `;
 
 export const PeriodContainer = styled.div`
@@ -116,9 +132,9 @@ export const Content = styled.p`
 
 export const ContentText = styled.p`
   font-size: 18px;
-  margin-left: 40px;
+  margin-left: 20px;
   height: 20px;
-  width: 80%;
+  width: 70%;
 `;
 
 export const ContentCreditsContainer = styled.div`
@@ -126,11 +142,34 @@ export const ContentCreditsContainer = styled.div`
   flex-direction: row;
 
   font-size: 18px;
-  right: 10%;
   height: 20px;
-  width: 20%;
+  width: 40%;
 `;
 
 export const ContentCredits = styled.p`
   margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Credit = styled.p`
+  margin-left: 0 5px 0 10px;
+`;
+
+export const CreditText = styled.p`
+  margin-left: 10px;
+`;
+
+export const ContentStatus = styled.p<ContentStatusProps>`
+  margin-right: 40px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #f90;
+  width: 25%;
+
+  ${props =>
+    props.status &&
+    css`
+      color: #080;
+    `}
 `;
