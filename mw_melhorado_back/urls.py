@@ -26,7 +26,5 @@ router.register(r'subjects', course_view.SubjectViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('update/fluxo', course_view.update_fluxo),
-    path('update/mencao', course_view.update_mencao),
     path('admin/', admin.site.urls),
 ]
