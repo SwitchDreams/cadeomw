@@ -19,6 +19,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import api from '../../services/api';
 
 import {
+  ContentStatus,
+  CourseNameContainer,
+  CourseName,
   useStyles,
   useStylesCard,
   Container,
@@ -34,6 +37,8 @@ import {
   ContentCredits,
   ContentCreditsContainer,
   CardFluxContainer,
+  Credit,
+  CreditText,
   InfoContainerCard,
 } from './styles';
 
@@ -115,14 +120,15 @@ interface Tab {
 }
 
 interface Materias {
-  name: string;
-  creditos: number;
+  subject_name: string;
+  credit: number;
+  status: string | undefined;
 }
 
 interface Period {
-  id: number;
-  creditos: number;
-  materias: Materias[];
+  semester: number;
+  credits: number | null;
+  subjects: Materias[];
 }
 
 interface Course {
@@ -145,9 +151,10 @@ const Course: React.FC = () => {
       selected: false,
     },
   ];
-  const { params } = useRouteMatch<URLParams>();
+  // const { params } = useRouteMatch<URLParams>();
 
   const [course, setCourse] = useState<Course | null>(null);
+  const [periods, setPeriods] = useState<Period[] | null>(null);
 
   const [showPeriod, setShowPeriod] = useState(0);
   const [togglePeriod, setTogglePeriod] = useState(false);
@@ -159,11 +166,48 @@ const Course: React.FC = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    api.get(`courses`).then(response => {
-      setCourse(response.data);
-      console.log(course);
-    });
-  }, [params.course, course]);
+    api
+      .get(`https://mw-melhorado-app.herokuapp.com/courses/1741?format=json`)
+      .then(response => {
+        setCourse(response.data);
+
+        const periodList = response.data.flow.map(
+          (period: Period): Period => {
+            let sumCredits = 0;
+
+            const newSubjects = period.subjects.map((subject: Materias) => {
+              sumCredits += subject.credit;
+
+              const newSubjectName =
+                subject.subject_name.charAt(0).toUpperCase() +
+                subject.subject_name.slice(1).toLowerCase();
+
+              let newStatus;
+
+              if (subject.status === 'OBR' || subject.status === 'OBS') {
+                newStatus = 'obrigatória';
+              } else if (subject.status === 'OPT') {
+                newStatus = 'optativa';
+              } else if (subject.status === 'ML') {
+                newStatus = 'módulo livre';
+              }
+
+              return {
+                credit: subject.credit,
+                subject_name: newSubjectName,
+                status: newStatus,
+              };
+            });
+
+            console.log(newSubjects);
+
+            return { ...period, credits: sumCredits, subjects: newSubjects };
+          },
+        );
+
+        setPeriods(periodList);
+      });
+  }, []);
 
   const handleTogglePeriod = useCallback(
     (period: number) => {
@@ -182,309 +226,6 @@ const Course: React.FC = () => {
     },
     [togglePeriod, showPeriod],
   );
-
-  const periods: Period[] = [
-    {
-      id: 1,
-      creditos: 24,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 2,
-      creditos: 20,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 3,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 4,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 5,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 6,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 7,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 8,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 9,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 10,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-  ];
 
   const handleSelectTab = useCallback(
     (name: string) => {
@@ -514,6 +255,7 @@ const Course: React.FC = () => {
       <Container>
         {tabs.map(tab => (
           <TabContent
+            key={tab.name}
             selected={tab.selected}
             onClick={() => handleSelectTab(tab.name)}
           >
@@ -525,60 +267,76 @@ const Course: React.FC = () => {
       {grafo && <ContainerPage />}
 
       {fluxo && (
-        <CardFluxContainer>
-          <InfoContainerCard>
-            <InformationCard />
-            <EstatisticsCard />
-          </InfoContainerCard>
+        <>
+          <CourseNameContainer>
+            <CourseName>{course?.name}</CourseName>
+          </CourseNameContainer>
 
-          <Flux>
-            {periods.map(period => {
-              let materias: Materias[] = [];
+          <CardFluxContainer>
+            <InfoContainerCard>
+              <InformationCard />
+              <EstatisticsCard />
+            </InfoContainerCard>
 
-              if (showPeriod === period.id) {
-                materias = period.materias;
-              }
+            <Flux>
+              {periods &&
+                periods.map(period => {
+                  let subjects: Materias[] = [];
 
-              return (
-                <>
-                  <div className={classes.root}>
-                    <FormControlLabel
-                      style={{ width: 850 }}
-                      control={
-                        <PeriodContainer
-                          onClick={() => handleTogglePeriod(period.id)}
-                        >
-                          <PeriodText>Período:</PeriodText>
-                          <PeriodText>{period.id}</PeriodText>
-                          <PeriodText>Número de créditos:</PeriodText>
-                          <PeriodText>{period.creditos}</PeriodText>
-                        </PeriodContainer>
-                      }
-                      label=" "
-                    />
-                    <div className={classes.container}>
-                      <Collapse in={showPeriod === period.id}>
-                        {materias.map(materia => (
-                          <ContentContainer>
-                            <Content>
-                              <ContentText>{materia.name}</ContentText>
-                              <ContentCreditsContainer>
-                                <ContentCredits>
-                                  {materia.creditos}
-                                </ContentCredits>
-                                <ContentCredits>créditos</ContentCredits>
-                              </ContentCreditsContainer>
-                            </Content>
-                          </ContentContainer>
-                        ))}
-                      </Collapse>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </Flux>
-        </CardFluxContainer>
+                  if (showPeriod === period.semester) {
+                    subjects = period.subjects;
+                  }
+
+                  return (
+                    <>
+                      <div className={classes.root} key={period.semester}>
+                        <FormControlLabel
+                          style={{ width: 850 }}
+                          control={
+                            <PeriodContainer
+                              onClick={() =>
+                                handleTogglePeriod(period.semester)
+                              }
+                            >
+                              <PeriodText>Período:</PeriodText>
+                              <PeriodText>{period.semester}</PeriodText>
+                              <PeriodText>Número de créditos:</PeriodText>
+                              <PeriodText>{period.credits}</PeriodText>
+                            </PeriodContainer>
+                          }
+                          label=" "
+                        />
+                        <div className={classes.container}>
+                          <Collapse in={showPeriod === period.semester}>
+                            {subjects.map(subject => (
+                              <ContentContainer key={subject.subject_name}>
+                                <Content>
+                                  <ContentText>
+                                    {subject.subject_name}
+                                  </ContentText>
+                                  <ContentCreditsContainer>
+                                    <ContentStatus
+                                      status={subject.status === 'obrigatória'}
+                                    >
+                                      {subject.status}
+                                    </ContentStatus>
+                                    <ContentCredits>
+                                      <Credit>{subject.credit}</Credit>
+                                      <CreditText>créditos</CreditText>
+                                    </ContentCredits>
+                                  </ContentCreditsContainer>
+                                </Content>
+                              </ContentContainer>
+                            ))}
+                          </Collapse>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+            </Flux>
+          </CardFluxContainer>
+        </>
       )}
     </>
   );
