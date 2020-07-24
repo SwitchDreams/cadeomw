@@ -1,6 +1,7 @@
-import React from 'react';
-import { Container, Courses, Form } from './styles';
+import React, { Component } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
+import { apiCourses } from '../../services/api'
+import { Container, Courses, Form } from './styles';
 
 /*
   Página de listagem de cursos - Waliff
@@ -9,6 +10,7 @@ import { FiChevronRight } from 'react-icons/fi';
 import Header from '../../components/Header';
 
 const ListCourses: React.FC = () => {
+
   return (
     <>
       <Header />
@@ -45,6 +47,11 @@ const ListCourses: React.FC = () => {
           </div>
           <FiChevronRight size={20} />
         </a>
+
+        <div className="actions">
+          <button>Anterior</button>
+          <button>Próximo</button>
+        </div>
         
       </Courses>
     </>

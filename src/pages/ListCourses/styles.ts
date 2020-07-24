@@ -82,4 +82,25 @@ export const Courses = styled.div`
             color: #cbcbd6;
         }
     }
+    .actions {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        
+        button{
+            padding: 10px;
+            border-radius: 5px;
+            border: 0;
+            background: #27004d;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            &:hover {
+                background: ${shade(0.2, '#27004d')};
+            }
+        }
+    }
 `;
