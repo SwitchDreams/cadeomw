@@ -2,14 +2,14 @@ from course.models import SemesterGrade
 import glob
 
 
-# Método para coletar todos arquivos de mencao e executar o meptodo parse_mencao
 def update_mencao_database():
+    """ Método para coletar todos arquivos de mencao e executar o meptodo parse_mencao """
     for file in glob.glob('data/sigra/mencoes/*.txt'):
         parse_mencao(file)
 
 
-# Método para fazer o parse e salvar no banco dados de um único arquivo de mencoes da unb
 def parse_mencao(filepath):
+    """ Método para fazer o parse e salvar no banco dados de um único arquivo de mencoes da unb """
     with open(filepath, 'r', encoding="ISO-8859-1") as file:
         linhas = file.readlines()
         notCriado = True
@@ -56,3 +56,9 @@ def parse_mencao(filepath):
                                                  )
                 except:
                     print("Disciplina não existe:" + codigoDisciplina)
+
+
+def run():
+    print("Ínico do parse dos arquivos das menções... ")
+    update_mencao_database()
+    print("Fim do parse dos arquivos das menções... ")

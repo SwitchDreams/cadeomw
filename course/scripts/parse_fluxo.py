@@ -2,20 +2,14 @@ from course.models import Course, Subject
 
 
 def format_datetime(datetime):
-    if datetime == None:
+    """ Transforma uma string de texto do padrão br (DD/MM/YYYY) -> (YYYY-MM-DD)"""
+    if datetime is None:
         return None
     date = datetime.split('/')
     if len(date) == 3:
         return date[2] + '-' + date[1] + '-' + date[0]
     else:
         return None
-
-
-def insereDisciplina(disciplina_insert, listaDisciplinas):
-    for disciplina in listaDisciplinas:
-        if disciplina.codigo == disciplina_insert.codigo:
-            return
-    listaDisciplinas.append(disciplina_insert)
 
 
 def parse_geral(filepath):
@@ -25,8 +19,7 @@ def parse_geral(filepath):
     :param filepath: str
         Filepath for file_object to be parsed
 
-    :return: tupla(listaDiscplina, listaCursos)
-        tupla com o dado tratado
+    :return: nothing
     """
     with open(filepath, 'r', encoding="ISO-8859-1") as file:
         listaCursos = []
@@ -133,19 +126,10 @@ def parse_geral(filepath):
                                 disciplina.adicionarPreRequisitos(listaPreRequisitos)
                                 listaPreRequisitos = []
 
-                # insereDisciplina(disciplina, listaDisciplina)
-                # listaDisciplina.append(disciplina)
-
     return (listaDisciplina, listaCursos)
 
 
-if __name__ == '__main__':
-    filepath = "../../data/sigra/fluxos/"
-    filename = "fluxos_geral.txt"
-    filepath = filepath + filename
-    disciplinas, cursos = parse_geral(filepath)
-
-    for disciplina in disciplinas:
-        print(disciplina)
-    for curso in cursos:
-        print(curso)
+def run():
+    print("Iniciando parse do fluxo geral...")
+    parse_geral("data/sigra/fluxos/fluxos_geral.txt")
+    print("Término do parse do fluxo geral...")
