@@ -159,7 +159,7 @@ const Course: React.FC = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    api.get(`courses`).then(response => {
+    api.get(`courses/1741/?format=json`).then(response => {
       setCourse(response.data);
       console.log(course);
     });
