@@ -43,6 +43,10 @@ class Course(models.Model):
             flow_list.append(value)
         return flow_list
 
+    def num_semester(self):
+        """ Retorna o número de semestres do curso baseado no fluxo """
+        return len(self.flow())
+
     def hardest_subject(self):
         """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
         return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent())[0].to_json()
@@ -50,6 +54,7 @@ class Course(models.Model):
     def easiest_subject(self):
         """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
         return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent())[-1].to_json()
+
 
 class Subject(models.Model):
     code = models.BigIntegerField(primary_key=True)

@@ -7,6 +7,9 @@ from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSe
 
 
 class SelectSerializerMixin(object):
+    """
+    Classe para permitir mais de um serializer por ViewSet
+    """
     serializer_class = None
     list_serializer_class = None
     retrieve_serializer_class = None
