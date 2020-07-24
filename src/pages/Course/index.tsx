@@ -209,6 +209,7 @@ const Course: React.FC = () => {
       });
   }, []);
 
+
   const handleTogglePeriod = useCallback(
     (period: number) => {
       if (togglePeriod === true) {
