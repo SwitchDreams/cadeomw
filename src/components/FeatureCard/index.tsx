@@ -1,20 +1,29 @@
 import React from 'react';
-import { Book } from '@material-ui/icons';
+import { SvgIconComponent } from '@material-ui/icons';
 import { FeatureCardContainer } from './styles';
 
-const FeatureCard: React.FC = () => {
+interface FeatureCardProps {
+  title: string;
+  text: string;
+  logoColor: string;
+  Logo: SvgIconComponent;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({
+  title,
+  text,
+  logoColor,
+  Logo,
+}: FeatureCardProps) => {
   return (
     <FeatureCardContainer>
       <div className="content-container">
         <div className="logo-container">
-          <Book style={{ fontSize: 50, color: '#f89a05' }} />
+          <Logo style={{ fontSize: 50, color: logoColor }} />
         </div>
         <div className="text-container">
-          <h3>Fully functional</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis
-            culpa expedita dignissimos.
-          </p>
+          <h3>{title}</h3>
+          <p>{text}</p>
         </div>
       </div>
     </FeatureCardContainer>
