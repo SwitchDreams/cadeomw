@@ -1,13 +1,15 @@
 import React from 'react';
+import { Book } from '@material-ui/icons';
+import { FeatureCardContainer } from './styles';
 
 const FeatureCard: React.FC = () => {
   return (
-    <div>
-      <div>
-        <div>
-          <img src="/img/featured_image_1.png" alt="" />
+    <FeatureCardContainer>
+      <div className="content-container">
+        <div className="logo-container">
+          <Book style={{ fontSize: 50, color: '#f89a05' }} />
         </div>
-        <div>
+        <div className="text-container">
           <h3>Fully functional</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis
@@ -15,7 +17,7 @@ const FeatureCard: React.FC = () => {
           </p>
         </div>
       </div>
-    </div>
+    </FeatureCardContainer>
   );
 };
 
