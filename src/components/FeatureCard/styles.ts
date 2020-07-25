@@ -7,8 +7,13 @@ export const FeatureCardContainer = styled.div`
   box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.3);
 
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   .content-container {
+    max-width: 70%;
+    max-height: 70%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
