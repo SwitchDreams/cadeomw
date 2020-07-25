@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { Book } from '@material-ui/icons';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 import {
@@ -61,16 +62,31 @@ const Dashboard: React.FC = () => {
             alignItems="center"
             spacing={3}
           >
-            <Grid item xs={4}>
-              <FeatureCard />
+            <Grid item xs={12} md={4} sm={12}>
+              <FeatureCard
+                title="Fully functional"
+                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+                Logo={Book}
+                logoColor="#cde432"
+              />
             </Grid>
 
-            <Grid item xs={4}>
-              <FeatureCard />
+            <Grid item xs={12} md={4} sm={12}>
+              <FeatureCard
+                title="Fully functional"
+                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+                Logo={Book}
+                logoColor="#cde432"
+              />
             </Grid>
 
-            <Grid item xs={4}>
-              <FeatureCard />
+            <Grid item xs={12} md={4} sm={12}>
+              <FeatureCard
+                title="Fully functional"
+                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+                Logo={Book}
+                logoColor="#cde432"
+              />
             </Grid>
           </Grid>
         </div>
