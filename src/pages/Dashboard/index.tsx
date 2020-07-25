@@ -1,6 +1,13 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
 import Header from '../../components/Header';
-import { WavesContainer, LandingText, FirstTextContainer } from './styles';
+import FeatureCard from '../../components/FeatureCard';
+import {
+  WavesContainer,
+  LandingText,
+  FirstTextContainer,
+  FeaturesContainer,
+} from './styles';
 
 /*
 Página principal - Bahia
@@ -15,7 +22,7 @@ const Dashboard: React.FC = () => {
 
           <LandingText>
             <div className="space">
-              <h4>Where tf is MW?</h4>
+              <h1>Where tf is MW?</h1>
               <p>
                 Encontre num só lugar tudo o que você um dia soube onde
                 encontrar
@@ -34,7 +41,7 @@ const Dashboard: React.FC = () => {
       </WavesContainer>
 
       <FirstTextContainer>
-        <div>
+        <div className="text-container">
           <h2>O que você vai encontrar aqui?</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. In deserunt
@@ -44,6 +51,30 @@ const Dashboard: React.FC = () => {
           </p>
         </div>
       </FirstTextContainer>
+
+      <FeaturesContainer>
+        <div className="center-features">
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={3}
+          >
+            <Grid item xs={4}>
+              <FeatureCard />
+            </Grid>
+
+            <Grid item xs={4}>
+              <FeatureCard />
+            </Grid>
+
+            <Grid item xs={4}>
+              <FeatureCard />
+            </Grid>
+          </Grid>
+        </div>
+      </FeaturesContainer>
     </>
   );
 };

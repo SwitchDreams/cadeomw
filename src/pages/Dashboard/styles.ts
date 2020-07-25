@@ -24,8 +24,9 @@ export const LandingText = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 
-    h4 {
+    h1 {
       font-size: 50px;
       font-weight: bold;
       text-transform: uppercase;
@@ -41,4 +42,52 @@ export const LandingText = styled.div`
   }
 `;
 
-export const FirstTextContainer = styled.div``;
+export const FirstTextContainer = styled.div`
+  color: black;
+  display: flex;
+  justify-content: center;
+
+  .text-container {
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    h2 {
+      font-size: 40px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      &::after {
+        content: '';
+        height: 3px;
+        width: 200px;
+        background-color: #7c4fe0;
+        display: block;
+        margin: 10px auto;
+      }
+    }
+
+    p {
+      padding-top: 30px;
+    }
+  }
+`;
+
+export const FeaturesContainer = styled.div`
+  margin: 100px 0;
+
+  display: flex;
+  justify-content: center;
+
+  .center-features {
+    max-width: 70%;
+  }
+
+  div.MuiGrid-root {
+    display: flex;
+    justify-content: center;
+  }
+`;
