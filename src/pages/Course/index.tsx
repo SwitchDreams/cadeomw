@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import BallotIcon from '@material-ui/icons/Ballot';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import PersonIcon from '@material-ui/icons/Person';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
@@ -17,6 +18,10 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Slide from '@material-ui/core/Slide';
+import Switch from '@material-ui/core/Switch';
+import IconButton from '@material-ui/core/IconButton';
+import Popover from '@material-ui/core/Popover';
 
 import api from '../../services/api';
 
@@ -116,55 +121,42 @@ const EstatisticsCard: React.FC = () => {
   );
 };
 
-export interface SubjectCardProps {
-  title: string;
-  subject_name: string;
-  pass_percent?: string;
-  status?: string;
-  credits?: string;
-}
-
-const SubjectCard: React.FC<SubjectCardProps> = ({
-  title,
-  subject_name,
-  pass_percent,
+const HandleShowSubjectCard: React.FC<ClickCards> = ({
+  subject,
   status,
   credits,
-}: SubjectCardProps) => {
+}) => {
   const classes = useStylesCard();
   return (
-    <Card elevation={7} className={classes.bullet}>
-      <CardContent>
-        <h3>{title}</h3>
-        <Divider />
-        <List component="nav" aria-label="main mailbox folders">
-          <ListItem>
-            <ListItemIcon>
-              <AssessmentIcon />
-            </ListItemIcon>
-            <ListItemText primary={subject_name} />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary={pass_percent} />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <AssessmentIcon />
-            </ListItemIcon>
-            <ListItemText primary={status} />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <CollectionsBookmarkIcon />
-            </ListItemIcon>
-            <ListItemText primary={credits} />
-          </ListItem>
-        </List>
-      </CardContent>
-    </Card>
+    <>
+      <Card elevation={7} className={classes.bullet}>
+        <CardContent>
+          <CardTitle>Matéria Selecionada</CardTitle>
+          <Divider />
+          <List component="nav" aria-label="main mailbox folders">
+            <ListItem>
+              <ListItemIcon>
+                <AssessmentIcon />
+              </ListItemIcon>
+              <ListItemText primary={subject || 'a definir'} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <AssessmentIcon />
+              </ListItemIcon>
+              <ListItemText primary={status || 'a definir'} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CollectionsBookmarkIcon />
+              </ListItemIcon>
+              <ListItemText primary={`${credits || 'a definir'} créditos`} />
+            </ListItem>
+          </List>
+        </CardContent>
+      </Card>
+    </>
+
   );
 };
 
@@ -174,8 +166,10 @@ interface Tab {
 }
 
 interface Materias {
-  name: string;
-  creditos: number;
+  subject_name: string;
+  credit: number;
+  status: string | undefined;
+  pass_percent: number;
 }
 
 interface Period {
@@ -199,6 +193,18 @@ interface Course {
     credit: BigInteger;
     pass_percent: string;
   };
+}
+
+interface ClickCards {
+  subject?: string;
+  status?: string;
+  credits?: number | BigInteger;
+}
+
+interface SelectCard {
+  subject: string;
+  credits: BigInteger;
+  status: string | undefined;
 }
 
 interface URLParams {
@@ -229,14 +235,113 @@ const Course: React.FC = () => {
 
   const classes = useStyles();
 
+  const [slide_card, setSlideCard] = useState<Materias | null>(null);
+  const [popcards, setPopCards] = useState<Materias | null>(null);
+  const [checked, setChecked] = React.useState(false);
+
   useEffect(() => {
     api
       .get(`https://mw-melhorado-app.herokuapp.com/courses/1741/?format=json `)
       .then(response => {
-        console.log(response.data);
-        setCourse(response.data);
+
+        let newCourse = response.data;
+        let statusHardest = newCourse.hardest_subject.status;
+        let statusEasiest = newCourse.easiest_subject.status;
+
+        if (statusHardest === 'OBR' || statusHardest === 'OBS') {
+          statusHardest = 'obrigatória';
+        } else if (statusHardest === 'OPT') {
+          statusHardest = 'optativa';
+        } else {
+          statusHardest = 'módulo livre';
+        }
+
+        if (statusEasiest === 'OBR' || statusEasiest === 'OBS') {
+          statusEasiest = 'obrigatória';
+        } else if (statusEasiest === 'OPT') {
+          statusEasiest = 'optativa';
+        } else {
+          statusEasiest = 'módulo livre';
+        }
+
+        newCourse = {
+          ...newCourse,
+          hardest_subject: {
+            ...newCourse.hardest_subject,
+            status: statusHardest,
+          },
+          easiest_subject: {
+            ...newCourse.easiest_subject,
+            status: statusEasiest,
+          },
+        };
+
+        setCourse(newCourse);
+
+        const periodList = response.data.flow.map(
+          (period: Period): Period => {
+            let sumCredits = 0;
+
+            const newSubjects = period.subjects.map((subject: Materias) => {
+              sumCredits += subject.credit;
+
+              const newSubjectName =
+                subject.subject_name.charAt(0).toUpperCase() +
+                subject.subject_name.slice(1).toLowerCase();
+
+              let newStatus;
+
+              if (subject.status === 'OBR' || subject.status === 'OBS') {
+                newStatus = 'obrigatória';
+              } else if (subject.status === 'OPT') {
+                newStatus = 'optativa';
+              } else if (subject.status === 'ML') {
+                newStatus = 'módulo livre';
+              }
+
+              return {
+                credit: subject.credit,
+                subject_name: newSubjectName,
+                status: newStatus,
+                pass_percent: subject.pass_percent,
+              };
+            });
+
+            return { ...period, credits: sumCredits, subjects: newSubjects };
+          },
+        );
+
+        setPeriods(periodList);
+
       });
   }, []);
+
+  const handleChange = (data: Materias) => {
+    setChecked(prev => !prev);
+    setChecked(true);
+    setSlideCard(data);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  interface HandleNameChangeInterface {
+    target: HTMLInputElement;
+  }
+
+  const handlePopoverOpen = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const HandleSetPopOver = (subject: Materias) => {
+    setPopCards(subject);
+    console.log(subject);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 
   const handleTogglePeriod = useCallback(
     (period: number) => {
@@ -255,309 +360,6 @@ const Course: React.FC = () => {
     },
     [togglePeriod, showPeriod],
   );
-
-  const periods: Period[] = [
-    {
-      id: 1,
-      creditos: 24,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 2,
-      creditos: 20,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 3,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 4,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 5,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 6,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 7,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 8,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 9,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-    {
-      id: 10,
-      creditos: 28,
-      materias: [
-        {
-          name: 'Física 1',
-          creditos: 4,
-        },
-        {
-          name: 'Cálculo 1',
-          creditos: 6,
-        },
-        {
-          name: 'Física Experimental 1',
-          creditos: 2,
-        },
-        {
-          name: 'Algoritmo e Programação de Computadores',
-          creditos: 6,
-        },
-        {
-          name: 'Introdução à Engenharia da Computação',
-          creditos: 2,
-        },
-        {
-          name: 'Introdução à Álgebra Linear',
-          creditos: 4,
-        },
-      ],
-    },
-  ];
 
   const handleSelectTab = useCallback(
     (name: string) => {
@@ -583,7 +385,6 @@ const Course: React.FC = () => {
   return (
     <>
       <Header />
-
       <Container>
         {tabs.map(tab => (
           <TabContent
@@ -597,80 +398,244 @@ const Course: React.FC = () => {
 
       {grafo && <ContainerPage />}
 
-      {fluxo && (
-        <CardFluxContainer>
-          <InfoContainerCard>
-            <InformationCard />
-            <EstatisticsCard />
-          </InfoContainerCard>
+      {fluxo && course && (
+        <>
+          <CourseNameContainer>
+            <CourseName>{course?.name}</CourseName>
+          </CourseNameContainer>
 
-          {course && (
-            <SubjectCardStyle>
-              <SubjectCard
-                title="Materia mais dificil"
-                subject_name={course.hardest_subject.subject_name}
-                pass_percent={course.hardest_subject.pass_percent}
-                status={course.hardest_subject.status}
-                credits={course.hardest_subject.credit.toString()}
-              />
-              <SubjectCard
-                title="Materia mais dificil"
-                subject_name={course.easiest_subject.subject_name}
-                pass_percent={course.easiest_subject.pass_percent}
-                status={course.easiest_subject.status}
-                credits={course.easiest_subject.credit.toString()}
-              />
-            </SubjectCardStyle>
-          )}
+          <CardFluxContainer>
+            <InfoContainerCard>
+              <InformationCard />
+              <EstatisticsCard />
+            </InfoContainerCard>
 
-          <Flux>
-            {periods.map(period => {
-              let materias: Materias[] = [];
+            <Flux>
+              {periods &&
+                periods.map(period => {
+                  let subjects: Materias[] = [];
 
-              if (showPeriod === period.id) {
-                materias = period.materias;
-              }
+                  if (showPeriod === period.semester) {
+                    subjects = period.subjects;
+                  }
 
-              return (
-                <>
-                  <div className={classes.root}>
-                    <FormControlLabel
-                      style={{ width: 850 }}
-                      control={
-                        <PeriodContainer
-                          onClick={() => handleTogglePeriod(period.id)}
-                        >
-                          <PeriodText>Período:</PeriodText>
-                          <PeriodText>{period.id}</PeriodText>
-                          <PeriodText>Número de créditos:</PeriodText>
-                          <PeriodText>{period.creditos}</PeriodText>
-                        </PeriodContainer>
-                      }
-                      label=" "
-                    />
-                    <div className={classes.container}>
-                      <Collapse in={showPeriod === period.id}>
-                        {materias.map(materia => (
-                          <ContentContainer>
-                            <Content>
-                              <ContentText>{materia.name}</ContentText>
-                              <ContentCreditsContainer>
-                                <ContentCredits>
-                                  {materia.creditos}
-                                </ContentCredits>
-                                <ContentCredits>créditos</ContentCredits>
-                              </ContentCreditsContainer>
-                            </Content>
-                          </ContentContainer>
-                        ))}
-                      </Collapse>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </Flux>
-        </CardFluxContainer>
+                  return (
+                    <>
+                      <div className={classes.root} key={period.semester}>
+                        <FormControlLabel
+                          style={{ width: 850 }}
+                          control={
+                            <PeriodContainer
+                              onClick={() =>
+                                handleTogglePeriod(period.semester)
+                              }
+                            >
+                              <PeriodText>Período:</PeriodText>
+                              <PeriodText>{period.semester}</PeriodText>
+                              <PeriodText>Número de créditos:</PeriodText>
+                              <PeriodText>{period.credits}</PeriodText>
+                            </PeriodContainer>
+                          }
+                          label=" "
+                        />
+                        <div className={classes.container}>
+                          <Collapse in={showPeriod === period.semester}>
+                            {subjects.map(subject => (
+                              <ContentContainer
+                                key={subject.subject_name}
+                                onClick={() => handleChange(subject)}
+                                onMouseEnter={() => HandleSetPopOver(subject)}
+                              >
+                                <Content>
+                                  <ContentText>
+                                    {subject.subject_name}
+                                  </ContentText>
+                                  <ContentCreditsContainer>
+                                    <ContentStatus
+                                      status={subject.status === 'obrigatória'}
+                                    >
+                                      {subject.status}
+                                    </ContentStatus>
+                                    <ContentCredits>
+                                      <Credit>{subject.credit}</Credit>
+                                      <CreditText>créditos</CreditText>
+                                    </ContentCredits>
+                                  </ContentCreditsContainer>
+
+                                  <Popover
+                                    id="mouse-over-popover"
+                                    open={open}
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                      vertical: 'bottom',
+                                      horizontal: 'left',
+                                    }}
+                                    transformOrigin={{
+                                      vertical: 'top',
+                                      horizontal: 'left',
+                                    }}
+                                    onClose={handlePopoverClose}
+                                    disableRestoreFocus
+                                  >
+                                    <HandleShowSubjectCard
+                                      subject={popcards?.subject_name}
+                                      status={popcards?.status}
+                                      credits={popcards?.credit}
+                                    />
+                                  </Popover>
+                                </Content>
+                              </ContentContainer>
+                            ))}
+                          </Collapse>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+            </Flux>
+
+            <CardSubjectsContainer>
+              <SubjectCardStyle>
+                <Card elevation={7} className={classesCard.bullet}>
+                  <CardContent>
+                    <CardTitle>Matéria Mais Difícil</CardTitle>
+                    <Divider />
+                    <List component="nav" aria-label="main mailbox folders">
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={course.hardest_subject.subject_name}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <BarChartIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`Porcentagem de aprovação: ${
+                            course.hardest_subject.pass_percent * 100
+                          }%`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={course.hardest_subject.status} />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <CollectionsBookmarkIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`${course.hardest_subject.credit} créditos`}
+                        />
+                      </ListItem>
+                    </List>
+                  </CardContent>
+                </Card>
+              </SubjectCardStyle>
+
+              <SubjectCardStyle>
+                <Card elevation={7} className={classesCard.bullet}>
+                  <CardContent>
+                    <CardTitle>Matéria Mais Fácil</CardTitle>
+                    <Divider />
+                    <List component="nav" aria-label="main mailbox folders">
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={course.easiest_subject.subject_name}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <BarChartIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`Porcentagem de aprovação: ${
+                            course.easiest_subject.pass_percent * 100
+                          }%`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <AssessmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={course.easiest_subject.status} />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemIcon>
+                          <CollectionsBookmarkIcon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`${course.easiest_subject.credit} créditos`}
+                        />
+                      </ListItem>
+                    </List>
+                  </CardContent>
+                </Card>
+              </SubjectCardStyle>
+
+              {slide_card && (
+                <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+                  <SubjectCardStyle>
+                    <Card elevation={7} className={classesCard.bullet}>
+                      <CardContent>
+                        <CardTitle>Matéria Selecionada</CardTitle>
+                        <Divider />
+                        <List component="nav" aria-label="main mailbox folders">
+                          <ListItem>
+                            <ListItemIcon>
+                              <AssessmentIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={slide_card.subject_name || 'a definir'}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <AssessmentIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={slide_card.status || 'a definir'}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <CollectionsBookmarkIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={`${
+                                slide_card.credit || 'a definir'
+                              } créditos`}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <AssessmentIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={
+                                `Porcentagem de aprovação: ${
+                                  slide_card.pass_percent * 100
+                                }%` || 'a definir'
+                              }
+                            />
+                          </ListItem>
+                        </List>
+                      </CardContent>
+                    </Card>
+                  </SubjectCardStyle>
+                </Slide>
+              )}
+            </CardSubjectsContainer>
+          </CardFluxContainer>
+        </>
       )}
     </>
   );
