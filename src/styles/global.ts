@@ -15,7 +15,7 @@ export default createGlobalStyle`
   }
 
   body, button, input {
-    font-family: 'Montserrat', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
   }
 
