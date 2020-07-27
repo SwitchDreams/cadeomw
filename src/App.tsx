@@ -4,14 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import GlobalStyles from './styles/global';
 
 import Routes from './routes';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes />
+    <>
+      <BrowserRouter>
+        <Routes />
 
-      <GlobalStyles />
-    </BrowserRouter>
+        <GlobalStyles />
+      </BrowserRouter>
+      <Footer />
+    </>
   );
 };
 
