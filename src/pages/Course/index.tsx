@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import BallotIcon from '@material-ui/icons/Ballot';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import PersonIcon from '@material-ui/icons/Person';
 import List from '@material-ui/core/List';
@@ -16,6 +17,10 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Slide from '@material-ui/core/Slide';
+import Switch from '@material-ui/core/Switch';
+import IconButton from '@material-ui/core/IconButton';
+import Popover from '@material-ui/core/Popover';
 
 import api from '../../services/api';
 
@@ -118,6 +123,44 @@ const EstatisticsCard: React.FC = () => {
   );
 };
 
+const HandleShowSubjectCard: React.FC<ClickCards> = ({
+  subject,
+  status,
+  credits,
+}) => {
+  const classes = useStylesCard();
+  return (
+    <>
+      <Card elevation={7} className={classes.bullet}>
+        <CardContent>
+          <CardTitle>Matéria Selecionada</CardTitle>
+          <Divider />
+          <List component="nav" aria-label="main mailbox folders">
+            <ListItem>
+              <ListItemIcon>
+                <AssessmentIcon />
+              </ListItemIcon>
+              <ListItemText primary={subject || 'a definir'} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <AssessmentIcon />
+              </ListItemIcon>
+              <ListItemText primary={status || 'a definir'} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CollectionsBookmarkIcon />
+              </ListItemIcon>
+              <ListItemText primary={`${credits || 'a definir'} créditos`} />
+            </ListItem>
+          </List>
+        </CardContent>
+      </Card>
+    </>
+  );
+};
+
 interface Tab {
   selected: boolean;
   name: string;
@@ -127,6 +170,7 @@ interface Materias {
   subject_name: string;
   credit: number;
   status: string | undefined;
+  pass_percent: number;
 }
 
 interface Period {
@@ -150,6 +194,18 @@ interface Course {
     credit: BigInteger;
     pass_percent: number;
   };
+}
+
+interface ClickCards {
+  subject?: string;
+  status?: string;
+  credits?: number | BigInteger;
+}
+
+interface SelectCard {
+  subject: string;
+  credits: BigInteger;
+  status: string | undefined;
 }
 
 interface URLParams {
@@ -182,6 +238,10 @@ const Course: React.FC = () => {
   const [grafo, setGrafo] = useState(false);
 
   const classes = useStyles();
+
+  const [slide_card, setSlideCard] = useState<Materias | null>(null);
+  const [popcards, setPopCards] = useState<Materias | null>(null);
+  const [checked, setChecked] = React.useState(false);
 
   useEffect(() => {
     api
@@ -246,6 +306,7 @@ const Course: React.FC = () => {
                 credit: subject.credit,
                 subject_name: newSubjectName,
                 status: newStatus,
+                pass_percent: subject.pass_percent,
               };
             });
 
@@ -256,6 +317,33 @@ const Course: React.FC = () => {
         setPeriods(periodList);
       });
   }, []);
+
+  const handleChange = (data: Materias) => {
+    setChecked(prev => !prev);
+    setChecked(true);
+    setSlideCard(data);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  interface HandleNameChangeInterface {
+    target: HTMLInputElement;
+  }
+
+  const handlePopoverOpen = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const HandleSetPopOver = (subject: Materias) => {
+    setPopCards(subject);
+    console.log(subject);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 
   const handleTogglePeriod = useCallback(
     (period: number) => {
@@ -298,6 +386,7 @@ const Course: React.FC = () => {
 
   return (
     <>
+      <Header />
       <Container>
         {tabs.map(tab => (
           <TabContent
@@ -355,7 +444,11 @@ const Course: React.FC = () => {
                         <div className={classes.container}>
                           <Collapse in={showPeriod === period.semester}>
                             {subjects.map(subject => (
-                              <ContentContainer key={subject.subject_name}>
+                              <ContentContainer
+                                key={subject.subject_name}
+                                onClick={() => handleChange(subject)}
+                                onMouseEnter={() => HandleSetPopOver(subject)}
+                              >
                                 <Content>
                                   <ContentText>
                                     {subject.subject_name}
@@ -371,6 +464,28 @@ const Course: React.FC = () => {
                                       <CreditText>créditos</CreditText>
                                     </ContentCredits>
                                   </ContentCreditsContainer>
+
+                                  <Popover
+                                    id="mouse-over-popover"
+                                    open={open}
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                      vertical: 'bottom',
+                                      horizontal: 'left',
+                                    }}
+                                    transformOrigin={{
+                                      vertical: 'top',
+                                      horizontal: 'left',
+                                    }}
+                                    onClose={handlePopoverClose}
+                                    disableRestoreFocus
+                                  >
+                                    <HandleShowSubjectCard
+                                      subject={popcards?.subject_name}
+                                      status={popcards?.status}
+                                      credits={popcards?.credit}
+                                    />
+                                  </Popover>
                                 </Content>
                               </ContentContainer>
                             ))}
@@ -468,6 +583,59 @@ const Course: React.FC = () => {
                   </CardContent>
                 </Card>
               </SubjectCardStyle>
+
+              {slide_card && (
+                <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+                  <SubjectCardStyle>
+                    <Card elevation={7} className={classesCard.bullet}>
+                      <CardContent>
+                        <CardTitle>Matéria Selecionada</CardTitle>
+                        <Divider />
+                        <List component="nav" aria-label="main mailbox folders">
+                          <ListItem>
+                            <ListItemIcon>
+                              <AssessmentIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={slide_card.subject_name || 'a definir'}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <AssessmentIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={slide_card.status || 'a definir'}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <CollectionsBookmarkIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={`${
+                                slide_card.credit || 'a definir'
+                              } créditos`}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <AssessmentIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={
+                                `Porcentagem de aprovação: ${
+                                  slide_card.pass_percent * 100
+                                }%` || 'a definir'
+                              }
+                            />
+                          </ListItem>
+                        </List>
+                      </CardContent>
+                    </Card>
+                  </SubjectCardStyle>
+                </Slide>
+              )}
             </CardSubjectsContainer>
           </CardFluxContainer>
         </>

@@ -124,13 +124,21 @@ export const PeriodText = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  margin-bottom: 35px;
+  height: 45px;
+  width: 90%;
+  border-radius: 10px;
+  margin: 10px 0 10px 0;
+
+  &:hover {
+    background: #eee;
+  }
 `;
 
 export const Content = styled.p`
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-top: 25px;
+  padding: 8px;
 `;
 
 export const ContentText = styled.p`
@@ -160,7 +168,7 @@ export const Credit = styled.p`
 `;
 
 export const CreditText = styled.p`
-  margin-left: 10px;
+  margin-left: 5px;
 `;
 
 export const ContentStatus = styled.p<ContentStatusProps>`
