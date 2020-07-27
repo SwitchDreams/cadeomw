@@ -2,34 +2,16 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 
-export const Faixa1 = styled.div`
-  background: rgb(38, 0, 77);
-  height: 100px;
-
-  img {
-    height: 110px;
-    margin: 50px 0 0 300px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-`;
-
-export const Faixa2 = styled.div`
-  background: #f2f2f2;
-  height: 100px;
-  display: flex;
-`;
-
 export const Menu = styled.div`
   display: flex;
   flex-direction: row;
   position: absolute;
-  right: 100px;
+  right: 0;
   padding: 35px;
   width: 700px;
 
   a {
     text-decoration: none;
-    border-top: 2px solid rgb(38, 0, 77, 0.5);
     width: 110px;
     height: 50px;
     margin-right: auto;
@@ -42,6 +24,6 @@ export const Menu = styled.div`
 export const MenuText = styled.div`
   font-size: 18px;
   font-weight: bold;
-  color: rgb(38, 0, 77);
+  color: #fff;
   margin-top: 10px;
 `;

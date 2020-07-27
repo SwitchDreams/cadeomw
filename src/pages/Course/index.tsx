@@ -11,10 +11,11 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import BallotIcon from '@material-ui/icons/Ballot';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import PersonIcon from '@material-ui/icons/Person';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Slide from '@material-ui/core/Slide';
@@ -25,9 +26,6 @@ import Popover from '@material-ui/core/Popover';
 import api from '../../services/api';
 
 import {
-  ContentStatus,
-  CourseNameContainer,
-  CourseName,
   useStyles,
   useStylesCard,
   Container,
@@ -43,12 +41,8 @@ import {
   ContentCredits,
   ContentCreditsContainer,
   CardFluxContainer,
-  Credit,
-  CreditText,
   InfoContainerCard,
-  CardSubjectsContainer,
   SubjectCardStyle,
-  CardTitle,
 } from './styles';
 
 import Header from '../../components/Header';
@@ -62,6 +56,8 @@ const InformationCard: React.FC = () => {
   return (
     <Card elevation={7} className={classes.bullet}>
       <CardContent>
+        <h3>Informações gerais</h3>
+        <Divider />
         <List component="nav" aria-label="main mailbox folders">
           <ListItem button>
             <ListItemIcon>
@@ -92,6 +88,8 @@ const EstatisticsCard: React.FC = () => {
   return (
     <Card elevation={7} className={classes.bullet}>
       <CardContent>
+        <h3>Estatísticas</h3>
+        <Divider />
         <List component="nav" aria-label="main mailbox folders">
           <ListItem button>
             <ListItemIcon>
@@ -158,6 +156,7 @@ const HandleShowSubjectCard: React.FC<ClickCards> = ({
         </CardContent>
       </Card>
     </>
+
   );
 };
 
@@ -174,9 +173,9 @@ interface Materias {
 }
 
 interface Period {
-  semester: number;
-  credits: number | null;
-  subjects: Materias[];
+  id: number;
+  creditos: number;
+  materias: Materias[];
 }
 
 interface Course {
@@ -186,13 +185,13 @@ interface Course {
     subject_name: string;
     status: string;
     credit: BigInteger;
-    pass_percent: number;
+    pass_percent: string;
   };
   easiest_subject: {
     subject_name: string;
     status: string;
     credit: BigInteger;
-    pass_percent: number;
+    pass_percent: string;
   };
 }
 
@@ -223,12 +222,9 @@ const Course: React.FC = () => {
       selected: false,
     },
   ];
-  // const { params } = useRouteMatch<URLParams>();
-
-  const classesCard = useStylesCard();
+  const { params } = useRouteMatch<URLParams>();
 
   const [course, setCourse] = useState<Course | null>(null);
-  const [periods, setPeriods] = useState<Period[] | null>(null);
 
   const [showPeriod, setShowPeriod] = useState(0);
   const [togglePeriod, setTogglePeriod] = useState(false);
@@ -245,8 +241,9 @@ const Course: React.FC = () => {
 
   useEffect(() => {
     api
-      .get(`https://mw-melhorado-app.herokuapp.com/courses/1741?format=json`)
+      .get(`https://mw-melhorado-app.herokuapp.com/courses/1741/?format=json `)
       .then(response => {
+
         let newCourse = response.data;
         let statusHardest = newCourse.hardest_subject.status;
         let statusEasiest = newCourse.easiest_subject.status;
@@ -315,6 +312,7 @@ const Course: React.FC = () => {
         );
 
         setPeriods(periodList);
+
       });
   }, []);
 
@@ -390,7 +388,6 @@ const Course: React.FC = () => {
       <Container>
         {tabs.map(tab => (
           <TabContent
-            key={tab.name}
             selected={tab.selected}
             onClick={() => handleSelectTab(tab.name)}
           >
