@@ -30,7 +30,7 @@ interface CourseInfos {
 
 const ListCourses: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [qtdResults, setqtdResults] = useState(false);
+  const [qtdResults, setQtdResults] = useState(false);
   const [searchCourse, setSearchCourse] = useState('');
   const [courses, setCourses] = useState<CourseInfos>({
     results: [],
@@ -76,7 +76,7 @@ const ListCourses: React.FC = () => {
         `courses/?search=${searchCourse}&format=json`,
       );
       setCourses(response.data);
-      setqtdResults(true);
+      setQtdResults(true);
       setLoading(false);
     } catch (err) {}
     setSearchCourse('');
