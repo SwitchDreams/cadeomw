@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Box, Hidden } from '@material-ui/core';
 import { Book } from '@material-ui/icons';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
@@ -8,7 +8,12 @@ import {
   LandingText,
   FirstTextContainer,
   FeaturesContainer,
+  ParallaxImage,
+  AboutFeatures,
+  ListContainer,
 } from './styles';
+
+import antigaUnB from '../../assets/unb_antiga.jpg';
 
 /*
 Página principal - Bahia
@@ -42,7 +47,7 @@ const Dashboard: React.FC = () => {
       </WavesContainer>
 
       <FirstTextContainer>
-        <div className="text-container">
+        <div className="container">
           <h2>O que você vai encontrar aqui?</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. In deserunt
@@ -54,7 +59,7 @@ const Dashboard: React.FC = () => {
       </FirstTextContainer>
 
       <FeaturesContainer>
-        <div className="center-features">
+        <div className="container">
           <Grid
             container
             direction="row"
@@ -91,6 +96,86 @@ const Dashboard: React.FC = () => {
           </Grid>
         </div>
       </FeaturesContainer>
+
+      <AboutFeatures>
+        <div className="container">
+          <Grid container direction="row" justify="center" spacing={3}>
+            <Grid item xs={12} sm={12} md={6}>
+              <ListContainer>
+                <h2>Este é um H2 top</h2>
+                <ul>
+                  <div>
+                    <li>
+                      <div className="logo">
+                        <span>
+                          <Book style={{ fontSize: 30 }} />
+                        </span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Fuga recusandae, temporibus error exercitationem
+                          sequi ducimus repellat rem ex consequuntur mollitia.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="logo">
+                        <span>
+                          <Book style={{ fontSize: 30 }} />
+                        </span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Fuga recusandae, temporibus error exercitationem
+                          sequi ducimus repellat rem ex consequuntur mollitia.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="logo">
+                        <span>
+                          <Book style={{ fontSize: 30 }} />
+                        </span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Fuga recusandae, temporibus error exercitationem
+                          sequi ducimus repellat rem ex consequuntur mollitia.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="logo">
+                        <span>
+                          <Book style={{ fontSize: 30 }} />
+                        </span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Fuga recusandae, temporibus error exercitationem
+                          sequi ducimus repellat rem ex consequuntur mollitia.
+                        </p>
+                      </div>
+                    </li>
+                  </div>
+                </ul>
+              </ListContainer>
+            </Grid>
+            <Hidden xsDown>
+              <Grid item md={6}>
+                <img src={antigaUnB} alt="unb" />
+              </Grid>
+            </Hidden>
+          </Grid>
+        </div>
+      </AboutFeatures>
+
+      {/* <ParallaxImage /> */}
+      <div style={{ height: 300 }} />
     </>
   );
 };
