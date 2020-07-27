@@ -56,7 +56,7 @@ const InformationCard: React.FC = () => {
         <List component="nav" aria-label="main mailbox folders">
           <ListItem button>
             <ListItemIcon>
-                <CollectionsBookmarkIcon />
+              <CollectionsBookmarkIcon />
             </ListItemIcon>
             <ListItemText primary="Créditos: 256" />
           </ListItem>
@@ -116,61 +116,56 @@ const EstatisticsCard: React.FC = () => {
   );
 };
 
-/*interface SubjectCardProps {
-  title: string,
-  subject_name: string,
-  approval_rate?: string,
-  status?: string,
-  credits?: string,
-}*/
-
-export interface Props {
-  title: string,
-  subject_name: string,
-  pass_percent?: string,
-  status?: string,
-  credits?: string,
+export interface SubjectCardProps {
+  title: string;
+  subject_name: string;
+  pass_percent?: string;
+  status?: string;
+  credits?: string;
 }
 
-function SubjectCard ({ title, subject_name, pass_percent, status, credits }: Props){
+const SubjectCard: React.FC<SubjectCardProps> = ({
+  title,
+  subject_name,
+  pass_percent,
+  status,
+  credits,
+}: SubjectCardProps) => {
   const classes = useStylesCard();
-  if(title != null && subject_name != null && pass_percent != null && status != null && credits != null){
-    return (
-      <Card elevation={7} className={classes.bullet}>
-        <CardContent>
-          <h3>{title}</h3>
-          <Divider />
-          <List component="nav" aria-label="main mailbox folders">
-            <ListItem>
-              <ListItemIcon>
-                <AssessmentIcon />
-              </ListItemIcon>
-              <ListItemText primary={subject_name} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <BarChartIcon />
-              </ListItemIcon>
-              <ListItemText primary={pass_percent} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <AssessmentIcon />
-              </ListItemIcon>
-              <ListItemText primary={status} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <CollectionsBookmarkIcon />
-              </ListItemIcon>
-              <ListItemText primary={credits} />
-            </ListItem>
-          </List>
-        </CardContent>
-      </Card>
-    );
-  }
-
+  return (
+    <Card elevation={7} className={classes.bullet}>
+      <CardContent>
+        <h3>{title}</h3>
+        <Divider />
+        <List component="nav" aria-label="main mailbox folders">
+          <ListItem>
+            <ListItemIcon>
+              <AssessmentIcon />
+            </ListItemIcon>
+            <ListItemText primary={subject_name} />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary={pass_percent} />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <AssessmentIcon />
+            </ListItemIcon>
+            <ListItemText primary={status} />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CollectionsBookmarkIcon />
+            </ListItemIcon>
+            <ListItemText primary={credits} />
+          </ListItem>
+        </List>
+      </CardContent>
+    </Card>
+  );
 };
 
 interface Tab {
@@ -193,17 +188,17 @@ interface Course {
   name: string;
   flow: Period[];
   hardest_subject: {
-    subject_name: string,
-    status: string,
-    credit: BigInteger,
-    pass_percent: string,
-  },
+    subject_name: string;
+    status: string;
+    credit: BigInteger;
+    pass_percent: string;
+  };
   easiest_subject: {
-    subject_name: string,
-    status: string,
-    credit: BigInteger,
-    pass_percent: string,
-  },
+    subject_name: string;
+    status: string;
+    credit: BigInteger;
+    pass_percent: string;
+  };
 }
 
 interface URLParams {
@@ -235,10 +230,12 @@ const Course: React.FC = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    api.get(`https://mw-melhorado-app.herokuapp.com/courses/1741/?format=json `).then(response => {
-      console.log(response.data);
-      setCourse(response.data);
-    });
+    api
+      .get(`https://mw-melhorado-app.herokuapp.com/courses/1741/?format=json `)
+      .then(response => {
+        console.log(response.data);
+        setCourse(response.data);
+      });
   }, []);
 
   const handleTogglePeriod = useCallback(
@@ -607,24 +604,24 @@ const Course: React.FC = () => {
             <EstatisticsCard />
           </InfoContainerCard>
 
-          {course && 
+          {course && (
             <SubjectCardStyle>
-              {<SubjectCard
+              <SubjectCard
                 title="Materia mais dificil"
                 subject_name={course.hardest_subject.subject_name}
                 pass_percent={course.hardest_subject.pass_percent}
                 status={course.hardest_subject.status}
-                credits={course.hardest_subject.credits}
-              />}
+                credits={course.hardest_subject.credit.toString()}
+              />
               <SubjectCard
                 title="Materia mais dificil"
                 subject_name={course.easiest_subject.subject_name}
                 pass_percent={course.easiest_subject.pass_percent}
                 status={course.easiest_subject.status}
-                credits={course.easiest_subject.credits}
+                credits={course.easiest_subject.credit.toString()}
               />
             </SubjectCardStyle>
-          }
+          )}
 
           <Flux>
             {periods.map(period => {
