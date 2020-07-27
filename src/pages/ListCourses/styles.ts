@@ -95,6 +95,7 @@ a {
     }
     
     strong {
+        text-transform: lowercase;
         font-size: 20px;
         color: #3D3D4D;
     }
