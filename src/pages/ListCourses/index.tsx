@@ -2,7 +2,7 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { apiCourses } from '../../services/api';
-import Spinner from '../../assets/spinner-icon.gif'
+import Spinner from '../../assets/spinner-icon.gif';
 
 import { Courses, Form, QtdSearch, Loading } from './styles';
 import Header from '../../components/Header';
@@ -41,14 +41,13 @@ const ListCourses: React.FC = () => {
 
   async function getCourses() {
     try {
-      const response = await apiCourses.get<CourseInfos>(`courses/?format=json`)
-      console.log(response.data);
+      const response = await apiCourses.get<CourseInfos>(
+        `courses/?format=json`,
+      );
+
       setCourses(response.data);
       setLoading(false);
-    } catch(err) {
-
-    }
-    
+    } catch (err) {}
   }
 
   useEffect(() => {
@@ -58,31 +57,28 @@ const ListCourses: React.FC = () => {
   async function handlePagination(pag: string) {
     if (pag !== null) {
       setLoading(true);
-      try{
-      const response = await Axios.get<CourseInfos>(`${pag}`)
-        console.log(response.data);
+      try {
+        const response = await Axios.get<CourseInfos>(`${pag}`);
         setCourses(response.data);
         setLoading(false);
-        window.scrollTo(0,0);
-      } catch(err) {
-
-      }
+        window.scrollTo(0, 0);
+      } catch (err) {}
     }
   }
 
-  async function handleSearchCourse(event: FormEvent<HTMLFormElement>): Promise<void> {
+  async function handleSearchCourse(
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> {
     event.preventDefault();
-    console.log(event);
     setLoading(true);
     try {
-      const response = await apiCourses.get<CourseInfos>(`courses/?search=${searchCourse}&format=json`)
-      console.log("search: ", response.data);
+      const response = await apiCourses.get<CourseInfos>(
+        `courses/?search=${searchCourse}&format=json`,
+      );
       setCourses(response.data);
       setqtdResults(true);
       setLoading(false);
-    }catch(err){
-
-    }
+    } catch (err) {}
     setSearchCourse('');
   }
 
@@ -101,49 +97,59 @@ const ListCourses: React.FC = () => {
         </form>
       </Form>
 
-      { loading && 
-      <Loading> 
-        <div>
-          <img src={Spinner} alt="loading"></img> 
-          <h1> Carregando </h1>
-        </div>
-      </Loading> }
+      {loading && (
+        <Loading>
+          <div>
+            <img src={Spinner} alt="loading" />
+            <h1> Carregando </h1>
+          </div>
+        </Loading>
+      )}
 
-      { qtdResults && !loading &&
-        <QtdSearch> 
-          <p>Foram encontrados {courses.count} resultados</p> 
-        </QtdSearch> } 
-      { !loading &&
+      {qtdResults && !loading && (
+        <QtdSearch>
+          <p>Foram encontrados {courses.count} resultados</p>
+        </QtdSearch>
+      )}
+      {!loading && (
         <Courses>
           {courses.results.map(course => (
             <a key={course.code} href={`courses/${course.code}`}>
               <div>
                 <strong>{course.name}</strong>
-                <p>Código: {course.code}</p>
-                <p>Quantidade de períodos: {course.num_semester}</p>
+                <p>
+                  Código:
+                  {course.code}
+                </p>
+                <p>
+                  Quantidade de períodos:
+                  {course.num_semester}
+                </p>
               </div>
               <FiChevronRight size={20} />
             </a>
           ))}
 
-          { !loading && 
-          <div className="actions">
-            <button
-              type="button"
-              disabled={courses.previous == null}
-              onClick={() => handlePagination(courses.previous)}
-            >
-              Anterior
-            </button>
-            <button
-              type="button"
-              disabled={courses.next == null}
-              onClick={() => handlePagination(courses.next)}
-            >
-              Próximo
-            </button>
-          </div> }
-        </Courses> }
+          {!loading && (
+            <div className="actions">
+              <button
+                type="button"
+                disabled={courses.previous == null}
+                onClick={() => handlePagination(courses.previous)}
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                disabled={courses.next == null}
+                onClick={() => handlePagination(courses.next)}
+              >
+                Próximo
+              </button>
+            </div>
+          )}
+        </Courses>
+      )}
     </>
   );
 };
