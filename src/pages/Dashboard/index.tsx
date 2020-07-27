@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, Hidden } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import { Book } from '@material-ui/icons';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
@@ -8,7 +8,6 @@ import {
   LandingText,
   FirstTextContainer,
   FeaturesContainer,
-  ParallaxImage,
   AboutFeatures,
   ListContainer,
 } from './styles';

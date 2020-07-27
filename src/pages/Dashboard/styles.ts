@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import droneUnB from '../../assets/DroneUnB.gif';
+import droneUnB from '../../assets/unb.svg';
 import unbAntiga from '../../assets/unb_antiga.jpg';
 
 export const WavesContainer = styled.div`
