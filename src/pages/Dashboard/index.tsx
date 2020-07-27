@@ -72,7 +72,7 @@ const Dashboard: React.FC = () => {
                 title="Fully functional"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
                 Logo={Book}
-                logoColor="#cde432"
+                logoColor="#7c4fe0"
               />
             </Grid>
 
@@ -81,7 +81,7 @@ const Dashboard: React.FC = () => {
                 title="Fully functional"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
                 Logo={Book}
-                logoColor="#cde432"
+                logoColor="#7c4fe0"
               />
             </Grid>
 
@@ -90,7 +90,7 @@ const Dashboard: React.FC = () => {
                 title="Fully functional"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
                 Logo={Book}
-                logoColor="#cde432"
+                logoColor="#7c4fe0"
               />
             </Grid>
           </Grid>

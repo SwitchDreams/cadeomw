@@ -6,8 +6,8 @@ export const WavesContainer = styled.div`
   .curved {
     background: linear-gradient(
         0deg,
-        rgba(255, 0, 77, 0.4),
-        rgba(255, 0, 77, 0.4)
+        rgba(124, 79, 224, 0.75),
+        rgba(124, 79, 224, 0.75)
       ),
       url(${droneUnB});
     background-size: cover;
