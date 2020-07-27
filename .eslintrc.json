@@ -29,6 +29,7 @@
         "prettier"
     ],
     "rules": {
+        "react/jsx-one-expression-per-line": "off",
         "prettier/prettier": "error",
         "react/jsx-wrap-multilines": "off",
         "react-hooks/rules-of-hooks": "error",
