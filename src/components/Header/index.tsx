@@ -43,7 +43,11 @@ const Header: React.FC = () => {
           <Typography variant="h6">MW-Melhorado</Typography>
           <Menu>
             {menuItems.map(menu => (
-              <Link to={menu.link} onClick={() => handleMenuChange(menu.name)}>
+              <Link
+                key={menu.link}
+                to={menu.link}
+                onClick={() => handleMenuChange(menu.name)}
+              >
                 <MenuText>{menu.name}</MenuText>
               </Link>
             ))}
