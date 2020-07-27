@@ -131,6 +131,7 @@ export const ContentContainer = styled.div`
 
   &:hover {
     background: #eee;
+    cursor: pointer;
   }
 `;
 
