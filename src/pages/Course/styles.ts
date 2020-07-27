@@ -23,7 +23,7 @@ export const useStylesCard = makeStyles({
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
-    transform: 'scale(0.8)',
+    transform: 'scale(0.9)',
   },
   title: {},
   pos: {},
@@ -38,7 +38,10 @@ export const CourseNameContainer = styled.h1`
 export const CourseName = styled.h1`
   margin-top: 50px;
   font-weight: bold;
+  padding: 0 40px 0 40px;
   font-size: 40px;
+  color: #585858;
+  border-top: 1px solid #585858;
 `;
 
 export const Container = styled.div`
@@ -89,7 +92,7 @@ export const CardFluxContainer = styled.div`
 `;
 
 export const InfoContainerCard = styled.div`
-  min-width: 25%;
+  width: 25%;
   margin: 50px 30px 0 70px;
   display: flex;
   flex-direction: column;
@@ -97,7 +100,7 @@ export const InfoContainerCard = styled.div`
 `;
 
 export const Flux = styled.div`
-  width: 80%;
+  width: 45%;
   margin: 50px 0 100px 0;
 `;
 
@@ -173,3 +176,20 @@ export const ContentStatus = styled.p<ContentStatusProps>`
       color: #080;
     `}
 `;
+
+export const CardSubjectsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 50px 100px 0 0;
+`;
+
+export const SubjectCardStyle = styled.div`
+  min-width: 25%;
+  margin: 70px 0px 30 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CardTitle = styled.h3``;
