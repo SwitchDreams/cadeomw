@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.div``;
-
 export const QtdSearch = styled.div`
-  max-width: 700px;
   display: flex;
-  p {
-    padding: 10px;
-    margin-left: 300px;
+  align-items: center;
+  justify-content: center;
+
+  .text-container {
+    max-width: 700px;
+
+    p {
+      text-align: center;
+      padding: 10px;
+      margin-left: 300px;
+    }
   }
+  /* p {
+  } */
 `;
 
 export const Loading = styled.div`

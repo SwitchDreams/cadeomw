@@ -108,7 +108,9 @@ const ListCourses: React.FC = () => {
 
       {qtdResults && !loading && (
         <QtdSearch>
-          <p>Foram encontrados {courses.count} resultados</p>
+          <div className="text-container">
+            <p>Foram encontrados {courses.count} resultados</p>
+          </div>
         </QtdSearch>
       )}
       {!loading && (
