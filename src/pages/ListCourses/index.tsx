@@ -57,10 +57,12 @@ const ListCourses: React.FC = () => {
 
   async function handlePagination(pag: string) {
     if (pag !== null) {
+      setLoading(true);
       try{
       const response = await Axios.get<CourseInfos>(`${pag}`)
         console.log(response.data);
         setCourses(response.data);
+        setLoading(false);
         window.scrollTo(0,0);
       } catch(err) {
 
@@ -71,11 +73,13 @@ const ListCourses: React.FC = () => {
   async function handleSearchCourse(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
     console.log(event);
+    setLoading(true);
     try {
       const response = await apiCourses.get<CourseInfos>(`courses/?search=${searchCourse}&format=json`)
       console.log("search: ", response.data);
       setCourses(response.data);
       setqtdResults(true);
+      setLoading(false);
     }catch(err){
 
     }
@@ -105,38 +109,41 @@ const ListCourses: React.FC = () => {
         </div>
       </Loading> }
 
-      { qtdResults && <QtdSearch> <p>Foram encontrados {courses.count} resultados</p> </QtdSearch>} 
+      { qtdResults && !loading &&
+        <QtdSearch> 
+          <p>Foram encontrados {courses.count} resultados</p> 
+        </QtdSearch> } 
+      { !loading &&
+        <Courses>
+          {courses.results.map(course => (
+            <a key={course.code} href={`courses/${course.code}`}>
+              <div>
+                <strong>{course.name}</strong>
+                <p>Código: {course.code}</p>
+                <p>Quantidade de períodos: {course.num_semester}</p>
+              </div>
+              <FiChevronRight size={20} />
+            </a>
+          ))}
 
-      <Courses>
-        {courses.results.map(course => (
-          <a key={course.code} href={`courses/${course.code}`}>
-            <div>
-              <strong>{course.name}</strong>
-              <p>Código: {course.code}</p>
-              <p>Quantidade de períodos: {course.num_semester}</p>
-            </div>
-            <FiChevronRight size={20} />
-          </a>
-        ))}
-
-        { !loading && 
-        <div className="actions">
-          <button
-            type="button"
-            disabled={courses.previous == null}
-            onClick={() => handlePagination(courses.previous)}
-          >
-            Anterior
-          </button>
-          <button
-            type="button"
-            disabled={courses.next == null}
-            onClick={() => handlePagination(courses.next)}
-          >
-            Próximo
-          </button>
-        </div> }
-      </Courses>
+          { !loading && 
+          <div className="actions">
+            <button
+              type="button"
+              disabled={courses.previous == null}
+              onClick={() => handlePagination(courses.previous)}
+            >
+              Anterior
+            </button>
+            <button
+              type="button"
+              disabled={courses.next == null}
+              onClick={() => handlePagination(courses.next)}
+            >
+              Próximo
+            </button>
+          </div> }
+        </Courses> }
     </>
   );
 };
