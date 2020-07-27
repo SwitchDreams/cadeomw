@@ -3,11 +3,37 @@ import { shade } from 'polished';
 
 export const Container = styled.div``;
 
+export const QtdSearch = styled.div`
+    max-width: 700px;
+    display: flex;
+    p {
+        padding: 10px;
+        margin-left: 300px;
+        
+        
+    }
+`;
+
+export const Loading = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+        img {
+            margin-top: 40px;
+        }
+        h1 {
+            margin-left: 45px;
+            margin-top: 40px;
+            margin-bottom: 50px;
+        }
+    }
+`;
 export const Form = styled.div`
 margin-top: 60px;
 max-width: 700px;
 margin: 0 auto;
-padding: 40px 20px;
+padding: 25px 20px;
 
 form {
     display: flex;

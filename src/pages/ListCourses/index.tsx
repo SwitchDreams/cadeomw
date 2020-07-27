@@ -2,8 +2,9 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { apiCourses } from '../../services/api';
+import Spinner from '../../assets/spinner-icon.gif'
 
-import { Courses, Form } from './styles';
+import { Courses, Form, QtdSearch, Loading } from './styles';
 import Header from '../../components/Header';
 
 /*
@@ -24,45 +25,60 @@ interface CourseInfos {
   results: Results[];
   next: string;
   previous: string;
+  count: number;
 }
 
 const ListCourses: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const [qtdResults, setqtdResults] = useState(false);
   const [searchCourse, setSearchCourse] = useState('');
   const [courses, setCourses] = useState<CourseInfos>({
     results: [],
     next: '',
     previous: '',
+    count: 0,
   });
 
-  function getCourses() {
-    apiCourses.get<CourseInfos>(`courses/?format=json`).then(response => {
+  async function getCourses() {
+    try {
+      const response = await apiCourses.get<CourseInfos>(`courses/?format=json`)
       console.log(response.data);
       setCourses(response.data);
-    });
+      setLoading(false);
+    } catch(err) {
+
+    }
+    
   }
 
   useEffect(() => {
     getCourses();
   }, []);
 
-  function handlePagination(pag: string) {
+  async function handlePagination(pag: string) {
     if (pag !== null) {
-      Axios.get<CourseInfos>(`${pag}`).then(response => {
+      try{
+      const response = await Axios.get<CourseInfos>(`${pag}`)
         console.log(response.data);
         setCourses(response.data);
-      });
+        window.scrollTo(0,0);
+      } catch(err) {
+
+      }
     }
   }
 
-  function handleSearchCourse(event: FormEvent<HTMLFormElement>): void {
+  async function handleSearchCourse(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
     console.log(event);
-    apiCourses
-      .get<CourseInfos>(`courses/?search=${searchCourse}&format=json`)
-      .then(response => {
-        console.log(response.data);
-        setCourses(response.data);
-      });
+    try {
+      const response = await apiCourses.get<CourseInfos>(`courses/?search=${searchCourse}&format=json`)
+      console.log("search: ", response.data);
+      setCourses(response.data);
+      setqtdResults(true);
+    }catch(err){
+
+    }
     setSearchCourse('');
   }
 
@@ -81,6 +97,16 @@ const ListCourses: React.FC = () => {
         </form>
       </Form>
 
+      { loading && 
+      <Loading> 
+        <div>
+          <img src={Spinner} alt="loading"></img> 
+          <h1> Carregando </h1>
+        </div>
+      </Loading> }
+
+      { qtdResults && <QtdSearch> <p>Foram encontrados {courses.count} resultados</p> </QtdSearch>} 
+
       <Courses>
         {courses.results.map(course => (
           <a key={course.code} href={`courses/${course.code}`}>
@@ -93,6 +119,7 @@ const ListCourses: React.FC = () => {
           </a>
         ))}
 
+        { !loading && 
         <div className="actions">
           <button
             type="button"
@@ -108,7 +135,7 @@ const ListCourses: React.FC = () => {
           >
             Próximo
           </button>
-        </div>
+        </div> }
       </Courses>
     </>
   );
