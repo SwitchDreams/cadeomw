@@ -3,6 +3,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 interface TabContentProps {
   selected: boolean;
+  window: boolean;
 }
 
 interface ContentStatusProps {
@@ -68,6 +69,7 @@ export const Container = styled.div`
 
 export const TabContent = styled.div<TabContentProps>`
   background: #7c4fe0;
+  width: 10%;
 
   ${props =>
     props.selected &&
@@ -75,7 +77,12 @@ export const TabContent = styled.div<TabContentProps>`
       background: #fff;
     `}
 
-  width: 250px;
+  ${props =>
+    props.window &&
+    css`
+      width: 30%;
+    `}
+
   margin: 45px 0 0 50px;
   border-radius: 30px 30px 0 0;
   box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.5);
@@ -86,6 +93,10 @@ export const TabContent = styled.div<TabContentProps>`
 
 export const TabText = styled.p<TabContentProps>`
   color: #fff;
+  margin: auto;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
 
   ${props =>
     props.selected &&
@@ -93,10 +104,11 @@ export const TabText = styled.p<TabContentProps>`
       color: #240a59;
     `}
 
-  margin: auto;
-  margin-top: 20px;
-  font-weight: bold;
-  font-size: 18px;
+  ${props =>
+    props.window &&
+    css`
+      font-size: 20px;
+    `}
 `;
 
 export const ContainerPage = styled.div``;
@@ -124,7 +136,6 @@ export const InfoContainerCard = styled.div<AllContainerProps>`
     props.window &&
     css`
       width: 80%;
-      font-size: 12px;
       margin: 0;
     `}
 `;

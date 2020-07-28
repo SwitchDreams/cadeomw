@@ -151,6 +151,12 @@ const Course: React.FC = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    }
+  }, []);
+
   window.addEventListener('resize', () => {
     if (window.innerWidth <= 1000) {
       setWindowCheck(true);
@@ -189,8 +195,11 @@ const Course: React.FC = () => {
             key={tab.name}
             selected={tab.selected}
             onClick={() => handleSelectTab(tab.name)}
+            window={windowCheck}
           >
-            <TabText selected={tab.selected}>{tab.name}</TabText>
+            <TabText window={windowCheck} selected={tab.selected}>
+              {tab.name}
+            </TabText>
           </TabContent>
         ))}
       </Container>
