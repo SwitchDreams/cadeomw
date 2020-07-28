@@ -12,11 +12,8 @@ export const QtdSearch = styled.div`
     p {
       text-align: center;
       padding: 10px;
-      margin-left: 300px;
     }
   }
-  /* p {
-  } */
 `;
 
 export const Loading = styled.div`
@@ -98,7 +95,6 @@ export const Courses = styled.div`
     }
 
     strong {
-      text-transform: lowercase;
       font-size: 20px;
       color: #3d3d4d;
     }
