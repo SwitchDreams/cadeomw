@@ -4,6 +4,8 @@ import { FiChevronRight } from 'react-icons/fi';
 import { apiCourses } from '../../services/api';
 import Spinner from '../../assets/spinner-icon.gif';
 
+import { useToast } from '../../hooks/toasts'
+
 import { Courses, Form, QtdSearch, Loading } from './styles';
 import Header from '../../components/Header';
 
@@ -38,6 +40,7 @@ const ListCourses: React.FC = () => {
     previous: '',
     count: 0,
   });
+  const { addToast } = useToast();
 
   async function getCourses() {
     try {
@@ -47,12 +50,14 @@ const ListCourses: React.FC = () => {
 
       setCourses(response.data);
       setLoading(false);
-    } catch (err) {}
+    } catch (err) {
+      addToast();
+    }
   }
 
   useEffect(() => {
     getCourses();
-  }, []);
+  }, [addToast]);
 
   async function handlePagination(pag: string) {
     if (pag !== null) {
