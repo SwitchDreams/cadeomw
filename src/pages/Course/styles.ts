@@ -47,12 +47,12 @@ export const CourseName = styled.h1`
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  background: rgb(38, 0, 77);
+  background: #7c4fe0;
   height: 100px;
 `;
 
 export const TabContent = styled.div<TabContentProps>`
-  background: rgb(38, 0, 77);
+  background: #7c4fe0;
 
   ${props =>
     props.selected &&
@@ -99,7 +99,7 @@ export const InfoContainerCard = styled.div`
   align-items: center;
 `;
 
-export const Flux = styled.div`
+export const FluxContainer = styled.div`
   width: 45%;
   margin: 50px 0 100px 0;
 `;
@@ -131,6 +131,7 @@ export const ContentContainer = styled.div`
 
   &:hover {
     background: #eee;
+    cursor: pointer;
   }
 `;
 
@@ -192,12 +193,19 @@ export const CardSubjectsContainer = styled.div`
   margin: 50px 100px 0 0;
 `;
 
-export const SubjectCardStyle = styled.div`
-  min-width: 25%;
-  margin: 70px 0px 30 50px;
+export const Loading = styled.div`
   display: flex;
-  flex-direction: column;
+  height: 800px;
   align-items: center;
+  justify-content: center;
+  div {
+    img {
+      margin-top: 40px;
+    }
+    h1 {
+      margin-left: 45px;
+      margin-top: 40px;
+      margin-bottom: 50px;
+    }
+  }
 `;
-
-export const CardTitle = styled.h3``;

@@ -47,13 +47,7 @@
                 "ts": "never",
                 "tsx": "never"
             }
-        ],
-        "atypescript-eslint/explicit-function-return-type": [
-            "error",
-            {
-                "allowExpressions": true
-            }
-          ]
+        ]
     },
     "settings": {
         "import/resolver": {
