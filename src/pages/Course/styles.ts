@@ -9,10 +9,14 @@ interface ContentStatusProps {
   status: boolean;
 }
 
+interface AllContainerProps {
+  window: boolean;
+}
+
 export const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: 850,
+      width: '100%',
     },
     container: {},
   }),
@@ -28,6 +32,17 @@ export const useStylesCard = makeStyles({
   title: {},
   pos: {},
 });
+
+export const AllContainer = styled.div<AllContainerProps>`
+  width: 100%;
+
+  ${props =>
+    props.window &&
+    css`
+      display: flex;
+      flex-direction: column;
+    `}
+`;
 
 export const CourseNameContainer = styled.h1`
   display: flex;
@@ -86,22 +101,44 @@ export const TabText = styled.p<TabContentProps>`
 
 export const ContainerPage = styled.div``;
 
-export const CardFluxContainer = styled.div`
+export const CardFluxContainer = styled.div<AllContainerProps>`
   display: flex;
   flex-direction: row;
+
+  ${props =>
+    props.window &&
+    css`
+      flex-direction: column;
+      align-items: center;
+    `}
 `;
 
-export const InfoContainerCard = styled.div`
-  width: 25%;
+export const InfoContainerCard = styled.div<AllContainerProps>`
+  width: 20%;
   margin: 50px 30px 0 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  ${props =>
+    props.window &&
+    css`
+      width: 80%;
+      font-size: 12px;
+      margin: 0;
+    `}
 `;
 
-export const FluxContainer = styled.div`
+export const FluxContainer = styled.div<AllContainerProps>`
   width: 45%;
   margin: 50px 0 100px 0;
+
+  ${props =>
+    props.window &&
+    css`
+      width: 90%;
+      margin: 10px 0 10px 0;
+    `}
 `;
 
 export const PeriodContainer = styled.div`
@@ -111,21 +148,30 @@ export const PeriodContainer = styled.div`
 
   height: 60px;
   padding-left: 40px;
-  display: flex;
   margin-bottom: 10px;
-  width: 95%;
+
+  width: 100%;
+  display: flex;
   align-items: center;
+  flex: 1;
   cursor: pointer;
 `;
 
-export const PeriodText = styled.div`
+export const PeriodText = styled.div<AllContainerProps>`
   font-size: 18px;
-  margin-left: 20px;
+  margin: 0 20px 0 20px;
+
+  ${props =>
+    props.window &&
+    css`
+      font-size: 12px;
+      margin: 0 5px 0 5px;
+    `}
 `;
 
 export const ContentContainer = styled.div`
   height: 45px;
-  width: 90%;
+  width: 100%;
   border-radius: 10px;
   margin: 10px 0 10px 0;
 
@@ -142,20 +188,33 @@ export const Content = styled.p`
   padding: 8px;
 `;
 
-export const ContentText = styled.p`
+export const ContentText = styled.p<AllContainerProps>`
   font-size: 18px;
   margin-left: 20px;
   height: 20px;
   width: 70%;
+
+  ${props =>
+    props.window &&
+    css`
+      font-size: 12px;
+      margin: 0 5px;
+    `}
 `;
 
-export const ContentCreditsContainer = styled.div`
+export const ContentCreditsContainer = styled.div<AllContainerProps>`
   display: flex;
   flex-direction: row;
 
   font-size: 18px;
   height: 20px;
   width: 40%;
+
+  ${props =>
+    props.window &&
+    css`
+      font-size: 12px;
+    `}
 `;
 
 export const ContentCredits = styled.p`
@@ -186,11 +245,20 @@ export const ContentStatus = styled.p<ContentStatusProps>`
     `}
 `;
 
-export const CardSubjectsContainer = styled.div`
+export const CardSubjectsContainer = styled.div<AllContainerProps>`
   display: flex;
   flex-direction: column;
   width: 25%;
-  margin: 50px 100px 0 0;
+
+  margin-top: 50px;
+
+  ${props =>
+    props.window &&
+    css`
+      margin-top: 0;
+      font-size: 12px;
+      width: 80%;
+    `}
 `;
 
 export const Loading = styled.div`

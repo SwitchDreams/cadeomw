@@ -9,6 +9,7 @@ import InfoCards from './infoCards';
 import HardestEasiest from '../../components/SubjectCard';
 
 import {
+  AllContainer,
   CourseNameContainer,
   CourseName,
   Container,
@@ -63,6 +64,7 @@ const Course: React.FC = () => {
   ];
   // const { params } = useRouteMatch<URLParams>();
 
+  const [windowCheck, setWindowCheck] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const [course, setCourse] = useState<Course | null>(null);
@@ -149,6 +151,14 @@ const Course: React.FC = () => {
       });
   }, []);
 
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    } else {
+      setWindowCheck(false);
+    }
+  });
+
   const handleSelectTab = useCallback(
     (name: string) => {
       const newTab = tabs.map(tab =>
@@ -185,43 +195,45 @@ const Course: React.FC = () => {
         ))}
       </Container>
 
-      {loading && (
-        <Loading>
-          <div>
-            <img src={Spinner} alt="loading" />
-            <h1> Carregando </h1>
-          </div>
-        </Loading>
-      )}
+      <AllContainer window={windowCheck}>
+        {loading && (
+          <Loading>
+            <div>
+              <img src={Spinner} alt="loading" />
+              <h1> Carregando </h1>
+            </div>
+          </Loading>
+        )}
 
-      {grafo && <ContainerPage />}
+        {grafo && <ContainerPage />}
 
-      {fluxo && course && (
-        <>
-          <CourseNameContainer>
-            <CourseName>{course?.name}</CourseName>
-          </CourseNameContainer>
+        {fluxo && course && (
+          <AllContainer window={windowCheck}>
+            <CourseNameContainer>
+              <CourseName>{course?.name}</CourseName>
+            </CourseNameContainer>
 
-          <CardFluxContainer>
-            <InfoContainerCard>
-              <InfoCards />
-            </InfoContainerCard>
+            <CardFluxContainer window={windowCheck}>
+              <InfoContainerCard window={windowCheck}>
+                <InfoCards />
+              </InfoContainerCard>
 
-            <Flux periods={periods} />
+              <Flux window={windowCheck} periods={periods} />
 
-            <CardSubjectsContainer>
-              <HardestEasiest
-                title="Matéria Mais Difícil"
-                subject={course.hardest_subject}
-              />
-              <HardestEasiest
-                title="Matéria Mais Fácil"
-                subject={course.easiest_subject}
-              />
-            </CardSubjectsContainer>
-          </CardFluxContainer>
-        </>
-      )}
+              <CardSubjectsContainer window={windowCheck}>
+                <HardestEasiest
+                  title="Matéria Mais Difícil"
+                  subject={course.hardest_subject}
+                />
+                <HardestEasiest
+                  title="Matéria Mais Fácil"
+                  subject={course.easiest_subject}
+                />
+              </CardSubjectsContainer>
+            </CardFluxContainer>
+          </AllContainer>
+        )}
+      </AllContainer>
     </>
   );
 };

@@ -21,9 +21,10 @@ import {
 
 interface FluxProps {
   periods: Period[] | null;
+  window: boolean;
 }
 
-const Flux: React.FC<FluxProps> = ({ periods }: FluxProps) => {
+const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
   const classes = useStyles();
 
   const [showPeriod, setShowPeriod] = useState(0);
@@ -48,7 +49,7 @@ const Flux: React.FC<FluxProps> = ({ periods }: FluxProps) => {
   );
 
   return (
-    <FluxContainer>
+    <FluxContainer window={window}>
       {periods &&
         periods.map(period => {
           let subjects: Materias[] = [];
@@ -61,15 +62,17 @@ const Flux: React.FC<FluxProps> = ({ periods }: FluxProps) => {
             <>
               <div className={classes.root} key={period.semester}>
                 <FormControlLabel
-                  style={{ width: 850 }}
+                  style={{ width: '100%' }}
                   control={
                     <PeriodContainer
                       onClick={() => handleTogglePeriod(period.semester)}
                     >
-                      <PeriodText>Período:</PeriodText>
-                      <PeriodText>{period.semester}</PeriodText>
-                      <PeriodText>Número de créditos:</PeriodText>
-                      <PeriodText>{period.credits}</PeriodText>
+                      <PeriodText window={window}>Período:</PeriodText>
+                      <PeriodText window={window}>{period.semester}</PeriodText>
+                      <PeriodText window={window}>
+                        Número de créditos:
+                      </PeriodText>
+                      <PeriodText window={window}>{period.credits}</PeriodText>
                     </PeriodContainer>
                   }
                   label=" "
@@ -79,8 +82,10 @@ const Flux: React.FC<FluxProps> = ({ periods }: FluxProps) => {
                     {subjects.map(subject => (
                       <ContentContainer key={subject.subject_name}>
                         <Content>
-                          <ContentText>{subject.subject_name}</ContentText>
-                          <ContentCreditsContainer>
+                          <ContentText window={window}>
+                            {subject.subject_name}
+                          </ContentText>
+                          <ContentCreditsContainer window={window}>
                             <ContentStatus
                               status={subject.status === 'obrigatória'}
                             >
