@@ -118,7 +118,9 @@ const ListCourses: React.FC = () => {
           {courses.results.map(course => (
             <a key={course.code} href={`courses/${course.code}`}>
               <div>
-                <strong>{course.name}</strong>
+                <strong>
+                  {course.name.charAt(0).toUpperCase() + course.name.slice(1).toLowerCase()}
+                </strong>
                 <p>
                   Código:
                   {course.code}
