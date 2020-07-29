@@ -19,21 +19,6 @@ export const QtdSearch = styled.div`
   } */
 `;
 
-export const Loading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  div {
-    img {
-      margin-top: 40px;
-    }
-    h1 {
-      margin-left: 45px;
-      margin-top: 40px;
-      margin-bottom: 50px;
-    }
-  }
-`;
 export const Form = styled.div`
   margin-top: 60px;
   max-width: 700px;
