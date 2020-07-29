@@ -143,11 +143,11 @@ const ListCourses: React.FC = () => {
                   {course.name.charAt(0).toUpperCase() + course.name.slice(1).toLowerCase()}
                 </strong>
                 <p>
-                  Código:
+                  Código: 
                   {course.code}
                 </p>
                 <p>
-                  Quantidade de períodos:
+                  Quantidade de períodos: 
                   {course.num_semester}
                 </p>
               </div>

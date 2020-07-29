@@ -108,7 +108,7 @@ a {
       color: #3d3d4d;
       ${props =>
         props.window && css`
-        font-size: 18px;
+        font-size: 16px;
         `}
       }
       
@@ -118,7 +118,7 @@ a {
         margin-top: 4px;
         ${props =>
           props.window && css`
-          font-size: 14px;
+          font-size: 12px;
           `}
         }
         
