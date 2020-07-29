@@ -78,7 +78,7 @@ export const Courses = styled.div`
 
     background: #f2f2f2;
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
     padding: 24px;
     display: block;
     text-decoration: none;
