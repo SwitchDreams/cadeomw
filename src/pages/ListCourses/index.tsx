@@ -84,7 +84,7 @@ const ListCourses: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header transparent={false} />
 
       <Form>
         <form onSubmit={handleSearchCourse}>

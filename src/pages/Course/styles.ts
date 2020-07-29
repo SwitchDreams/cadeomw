@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 interface TabContentProps {
@@ -47,7 +47,7 @@ export const CourseName = styled.h1`
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  background: #7c4fe0;
+  background: #fff;
   height: 100px;
 `;
 

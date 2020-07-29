@@ -1,6 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div``;
+interface ContainerProps {
+  transparent: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
+  background: rgb(124, 79, 224);
+
+  ${props =>
+    props.transparent &&
+    css`
+      background: transparent;
+    `}
+`;
 
 export const Menu = styled.div`
   display: flex;

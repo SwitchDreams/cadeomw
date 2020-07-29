@@ -18,7 +18,13 @@ import { Container, Menu, MenuText } from './styles';
   Header - Componente geral
 */
 
-const Header: React.FC = () => {
+interface HeaderBackground {
+  transparent: boolean;
+}
+
+const Header: React.FC<HeaderBackground> = ({
+  transparent,
+}: HeaderBackground) => {
   const [selectedMenu, setSelectedMenu] = useState('');
 
   const handleMenuChange = useCallback((menu: string) => {
@@ -34,7 +40,7 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <Container>
+    <Container transparent={transparent}>
       <AppBar
         position="static"
         style={{ background: 'transparent', boxShadow: 'none' }}
