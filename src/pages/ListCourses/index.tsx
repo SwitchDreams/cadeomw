@@ -52,7 +52,11 @@ const ListCourses: React.FC = () => {
       setCourses(response.data);
       setLoading(false);
     } catch (err) {
-      addToast();
+      addToast({
+        type: 'error',
+        title: 'Erro ao carregar os cursos',
+        description: 'Tente novamente mais tarde',
+      });
     }
   }
 
@@ -83,7 +87,13 @@ const ListCourses: React.FC = () => {
         setCourses(response.data);
         setLoading(false);
         window.scrollTo(0, 0);
-      } catch (err) {}
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Erro ao acessar novas páginas',
+          description: 'Tente novamente mais tarde',
+        });
+      }
     }
   }
 
@@ -99,7 +109,13 @@ const ListCourses: React.FC = () => {
       setCourses(response.data);
       setQtdResults(true);
       setLoading(false);
-    } catch (err) {}
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Falha na pesquisa',
+        description: 'Tente novamente mais tarde',
+      });
+    }
     setSearchCourse('');
   }
 
