@@ -8,6 +8,7 @@ import Flux from './flux';
 import InfoCards from './infoCards';
 import HardestEasiest from '../../components/SubjectCard';
 
+
 import {
   AllContainer,
   CourseNameContainer,
@@ -50,6 +51,12 @@ export interface Course {
   hardest_subject: Materias;
   easiest_subject: Materias;
 }
+
+
+
+
+
+
 
 const Course: React.FC = () => {
   const tabsInit = [

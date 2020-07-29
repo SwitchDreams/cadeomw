@@ -77,4 +77,6 @@ const InfoCards: React.FC = () => {
   );
 };
 
+
+
 export default InfoCards;
