@@ -14,6 +14,13 @@ export const Container = styled.div<ContainerProps>`
     `}
 `;
 
+export const WaveContainer = styled.div`
+  height: 190px;
+  svg {
+    background: #7c4fe0;
+  }
+`;
+
 export const Menu = styled.div`
   display: flex;
   flex-direction: row;
