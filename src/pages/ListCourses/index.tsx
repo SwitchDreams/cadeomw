@@ -41,6 +41,7 @@ const ListCourses: React.FC = () => {
     count: 0,
   });
   const { addToast } = useToast();
+  const [WindowCheck, setWindowCheck] = useState(false);
 
   async function getCourses() {
     try {
@@ -54,6 +55,21 @@ const ListCourses: React.FC = () => {
       addToast();
     }
   }
+
+  useEffect(() => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    }
+  }, []);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    } else {
+      setWindowCheck(false);
+    }
+  });
+  
 
   useEffect(() => {
     getCourses();
@@ -119,7 +135,7 @@ const ListCourses: React.FC = () => {
         </QtdSearch>
       )}
       {!loading && (
-        <Courses>
+        <Courses window={WindowCheck}>
           {courses.results.map(course => (
             <a key={course.code} href={`courses/${course.code}`}>
               <div>
