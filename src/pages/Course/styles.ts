@@ -63,7 +63,7 @@ export const CourseName = styled.h1`
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  background: #7c4fe0;
+  background: #fff;
   height: 100px;
 `;
 
@@ -74,7 +74,7 @@ export const TabContent = styled.div<TabContentProps>`
   ${props =>
     props.selected &&
     css`
-      background: #fff;
+      background: rgba(124, 79, 224, 0.5);
     `}
 
   ${props =>
@@ -98,11 +98,11 @@ export const TabText = styled.p<TabContentProps>`
   font-weight: bold;
   font-size: 18px;
 
-  ${props =>
+  /* ${props =>
     props.selected &&
     css`
       color: #240a59;
-    `}
+    `} */
 
   ${props =>
     props.window &&
@@ -170,6 +170,7 @@ export const PeriodContainer = styled.div`
 
 export const PeriodText = styled.div<AllContainerProps>`
   font-size: 18px;
+
   margin: 0 20px 0 20px;
 
   ${props =>

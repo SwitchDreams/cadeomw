@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
     <>
       <WavesContainer>
         <div className="curved">
-          <Header />
+          <Header transparent />
 
           <LandingText>
             <div className="space">
