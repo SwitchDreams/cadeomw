@@ -1,4 +1,4 @@
-from course.models import Course, Subject
+from course.models import Course, Subject, PreRequisiteSet, PreRequisite
 
 
 def format_datetime(datetime):
@@ -12,6 +12,32 @@ def format_datetime(datetime):
         return None
 
 
+def remove_duplicates(list_of_list):
+    """ Remove pré-requisitos duplicados """
+    new_list = []
+    for elem in list_of_list:
+        if elem not in new_list:
+            new_list.append(elem)
+    return new_list
+
+
+def save_prerequisites(prerequisite_dict):
+    """ Salva os pré-requisitos """
+    print("Salvando Pré-Requisitos...")
+    for key, value in prerequisite_dict.items():
+        for prerequisite_set_list in value:
+            prerequisite_set = PreRequisiteSet.objects.create(subject_id=key)
+            for prerequisite_code in remove_duplicates(prerequisite_set_list):
+                try:
+                    PreRequisite.objects.create(prerequisite_set=prerequisite_set, subject_id=prerequisite_code)
+                except:
+                    # Adiciona na lista de disciplinas que deram errado
+                    print("Disciplina não existe:" + prerequisite_code)
+                    if len(prerequisite_set_list) > 1:
+                        prerequisite_set.delete()
+                        break
+
+
 def parse_geral(filepath):
     """
     Parse text at given file path
@@ -22,8 +48,7 @@ def parse_geral(filepath):
     :return: nothing
     """
     with open(filepath, 'r', encoding="ISO-8859-1") as file:
-        listaCursos = []
-        listaDisciplina = []
+        prerequisite_dict = {}
         curso = None
         linhas = file.readlines()
         for idx, linha in enumerate(linhas):
@@ -56,13 +81,8 @@ def parse_geral(filepath):
                 else:
                     periodo_fim = None
 
-                # Adiciona o curso na lista de cursos
-                if curso is not None:
-                    listaCursos.append(curso)
-
                 periodo = 0
                 # Criando o curso
-                # curso = Curso(codigo_curso, nome_curso, data_emissao, periodo_init, periodo_fim)
                 curso = Course(code=codigo_curso, name=nome_curso,
                                issue_date=format_datetime(data_emissao), begin_date=format_datetime(periodo_init),
                                end_date=format_datetime(periodo_fim))
@@ -82,11 +102,9 @@ def parse_geral(filepath):
                 creditos = int(linhas[idx + 2].split()[0]) + int(linhas[idx + 3].split()[0])
 
                 # Criando disciplina
-                # disciplina = Disciplina(codigo_disciplina, departamento, nome, creditos)
                 disciplina = Subject(code=codigo_disciplina, department=departamento, name=nome, credit=creditos)
                 disciplina.save()
                 # Adicionando Disciplina no curso
-                # curso.adicionarDisciplina(periodo, codigo_disciplina, modalidade)
                 curso.adicionar_disciplina(periodo, codigo_disciplina, modalidade)
 
                 listaPreRequisitos = []
@@ -105,28 +123,32 @@ def parse_geral(filepath):
 
                     # Logica para adicionar os pre-requisitos na listaDepreRequisitos da disciplina
                     # Se a linha for do tipo: ex: MAT 113042
-                    if (len(aux_split) >= 2):
+                    if len(aux_split) >= 2:
                         if len(aux_split[0]) == 3 and aux_split[1].isnumeric() and len(aux_split[1]) == 6:
                             codigo_pre_requisito = aux_split[1]
 
                             # Proxima linha tem um formato (NOME DA MATERIA E/OU/ )
                             prox_linha = linhas[i + 1].split()
 
-                            # listaPreRequisitos.append(codigo_pre_requisito)
                             # Se o ultimo termo da linha for OU, espera para adicionar futuramente no formato lista de lista
                             if prox_linha[-1] == "E":
                                 listaPreRequisitos.append(codigo_pre_requisito)
                             elif prox_linha[-1] == "OU":
                                 listaPreRequisitos.append(codigo_pre_requisito)
-                                disciplina.adicionarPreRequisitos(listaPreRequisitos)
+                                if disciplina.code in prerequisite_dict:
+                                    prerequisite_dict[disciplina.code].append(listaPreRequisitos)
+                                else:
+                                    prerequisite_dict[disciplina.code] = [listaPreRequisitos]
                                 listaPreRequisitos = []
                             # Se for E ou algum outro char adiciona na lista de preRequisitos
                             else:
                                 listaPreRequisitos.append(codigo_pre_requisito)
-                                disciplina.adicionarPreRequisitos(listaPreRequisitos)
+                                if disciplina.code in prerequisite_dict:
+                                    prerequisite_dict[disciplina.code].append(listaPreRequisitos)
+                                else:
+                                    prerequisite_dict[disciplina.code] = [listaPreRequisitos]
                                 listaPreRequisitos = []
-
-    return (listaDisciplina, listaCursos)
+        save_prerequisites(prerequisite_dict)
 
 
 def run():

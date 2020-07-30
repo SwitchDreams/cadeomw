@@ -1,6 +1,7 @@
 from course.models import Course, Department, Subject
 from rest_framework import viewsets, filters
-from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer, CourseDetailsSerializer
+from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer, CourseDetailsSerializer, \
+    SubjectDetailsSerializer
 
 
 class SelectSerializerMixin(object):
@@ -46,11 +47,12 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentSerializer
 
 
-class SubjectViewSet(viewsets.ModelViewSet):
+class SubjectViewSet(SelectSerializerMixin, viewsets.ModelViewSet):
     """
     API endpoint that allows subjects to be viewed or edited.
     """
     queryset = Subject.objects.all().order_by('name')
     serializer_class = SubjectSerializer
+    retrieve_serializer_class = SubjectDetailsSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
