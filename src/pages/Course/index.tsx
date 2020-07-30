@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import Flux from './flux';
 import InfoCards from './infoCards';
 import HardestEasiest from '../../components/SubjectCard';
+import {useParams} from 'react-router'
 
 import {
   AllContainer,
@@ -51,6 +52,10 @@ export interface Course {
   easiest_subject: Materias;
 }
 
+interface RouteParams {
+  id: string
+}
+
 const Course: React.FC = () => {
   const tabsInit = [
     {
@@ -73,10 +78,11 @@ const Course: React.FC = () => {
   const [tabs, setTabs] = useState<Tab[]>(tabsInit);
   const [fluxo, setFluxo] = useState(true);
   const [grafo, setGrafo] = useState(false);
+  const params = useParams<RouteParams>();
 
   useEffect(() => {
     api
-      .get(`https://mw-melhorado-app.herokuapp.com/courses/1741?format=json`)
+      .get(`https://mw-melhorado-app.herokuapp.com/courses/${params.id}?format=json`)
       .then(response => {
         let newCourse = response.data;
         let statusHardest = newCourse.hardest_subject.status;
@@ -149,7 +155,7 @@ const Course: React.FC = () => {
 
         setPeriods(periodList);
       });
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -189,8 +195,10 @@ const Course: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+      
 
       <Container>
+        <h1>{params.id}</h1>
         {tabs.map(tab => (
           <TabContent
             key={tab.name}
