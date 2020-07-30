@@ -9,6 +9,7 @@ class Department(models.Model):
         return self.name
 
 
+# Classe que armazena o curso
 class Course(models.Model):
     code = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -25,9 +26,7 @@ class Course(models.Model):
         return self.name
 
     def flow(self):
-        """
-        Retorna o fluxo das disciplinas dividido por semestre
-        """
+        """ Retorna o fluxo das disciplinas dividido por semestre """
         flow = {}
         course_subjects = self.course_subject.all()
         for subject in course_subjects:
@@ -39,7 +38,6 @@ class Course(models.Model):
         flow_list = []
         # Cast para um formato de lista
         for key, value in flow.items():
-            print(value)
             flow_list.append(value)
         return flow_list
 
@@ -56,6 +54,7 @@ class Course(models.Model):
         return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent())[-1].to_json()
 
 
+# Classe que armazena as disciplinas
 class Subject(models.Model):
     code = models.BigIntegerField(primary_key=True)
     # TODO mudar departamento para ser model ao inves de string
@@ -68,12 +67,19 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
 
-    def adicionarPreRequisitos(self, argument):
-        # TODO adicionar pre-requisito
-        return ''
+    def prerequisites(self):
+        """ Retorna os pré-requisitos em JSON """
+        prerequisites = []
+        for prerequisite_set in self.prerequisite_set.all():
+            prerequisites_set_list = []
+            for prerequisite in prerequisite_set.prerequisite.all():
+                prerequisites_set_list.append(
+                    {"departament": prerequisite.subject.department, "subject_name": prerequisite.subject.name})
+            prerequisites.append(prerequisites_set_list)
+        return prerequisites
 
-    # Retorna a porcentagem de aprovados
     def pass_percent(self):
+        """  Retorna a porcentagem de aprovados """
         # Coleta todas as menções
         semester_grades = self.semester_grade.all()
         qte_pass = qte_fail = 0.0
@@ -91,6 +97,7 @@ class Subject(models.Model):
             return round(qte_pass / (qte_pass + qte_fail), 2)
 
 
+# Classe que armazena as disciplinas do curso com o semestre
 class CourseSubject(models.Model):
     STATUS = (
         ('OBR', 'Obrigatória'),
@@ -106,11 +113,12 @@ class CourseSubject(models.Model):
         return self.subject.name
 
     def to_json(self):
-        return {"subject_name": self.subject.name, "status": self.status,
-                "credit": self.subject.credit,
+        return {"code": self.subject.code, "subject_name": self.subject.name,
+                "status": self.status, "credit": self.subject.credit,
                 "pass_percent": self.subject.pass_percent()}
 
 
+# Classe que armazen as menções da disciplinas em um determinado semestre
 class SemesterGrade(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='semester_grade')
     # Semester (Ex: 2018/2)
@@ -125,3 +133,14 @@ class SemesterGrade(models.Model):
     tr = models.PositiveSmallIntegerField()
     tj = models.PositiveSmallIntegerField()
     cc = models.PositiveSmallIntegerField()
+
+
+# Classe que armazena um cojunto de pre-requisitos
+class PreRequisiteSet(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite_set')
+
+
+# Classe que armazena um pré-requisito em um conjunto de requisito
+class PreRequisite(models.Model):
+    prerequisite_set = models.ForeignKey(PreRequisiteSet, on_delete=models.CASCADE, related_name='prerequisite')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
