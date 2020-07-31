@@ -1,5 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
+import { useParams } from 'react-router-dom';
+import Spinner from '../../assets/spinner-icon.gif';
+
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -33,6 +36,7 @@ interface Tab {
 export interface Materias {
   subject_name: string;
   credit: number;
+  code: number;
   status: string | undefined;
   pass_percent: number;
 }
@@ -50,6 +54,10 @@ export interface Course {
   easiest_subject: Materias;
 }
 
+interface RouteParams {
+  id: string;
+}
+
 const Course: React.FC = () => {
   const tabsInit = [
     {
@@ -61,7 +69,6 @@ const Course: React.FC = () => {
       selected: false,
     },
   ];
-  // const { params } = useRouteMatch<URLParams>();
 
   const [windowCheck, setWindowCheck] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -72,10 +79,13 @@ const Course: React.FC = () => {
   const [tabs, setTabs] = useState<Tab[]>(tabsInit);
   const [fluxo, setFluxo] = useState(true);
   const [grafo, setGrafo] = useState(false);
+  const params = useParams<RouteParams>();
 
   useEffect(() => {
     api
-      .get(`https://mw-melhorado-app.herokuapp.com/courses/1741?format=json`)
+      .get(
+        `https://mw-melhorado-app.herokuapp.com/courses/${params.id}?format=json`,
+      )
       .then(response => {
         let newCourse = response.data;
         let statusHardest = newCourse.hardest_subject.status;
@@ -137,6 +147,7 @@ const Course: React.FC = () => {
                 subject_name: newSubjectName,
                 status: newStatus,
                 pass_percent: subject.pass_percent,
+                code: subject.code,
               };
             });
 
@@ -148,7 +159,7 @@ const Course: React.FC = () => {
 
         setPeriods(periodList);
       });
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -187,7 +198,8 @@ const Course: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header transparent={false} />
+
       <Container>
         {tabs.map(tab => (
           <TabContent

@@ -160,6 +160,8 @@ export const FeatureCardContainer = styled.div<WindowProp>`
   justify-content: center;
   align-items: center;
 
+  cursor: pointer;
+
   transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   &:hover {
     transform: translateY(-10px);
