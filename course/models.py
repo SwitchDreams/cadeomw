@@ -99,6 +99,40 @@ class Subject(models.Model):
         else:
             return round(qte_pass / (qte_pass + qte_fail), 2)
 
+    def grade_infos(self):
+        """ Gera informações para plotar no gráfico """
+        grade_infos = {}
+        semester_grades = self.semester_grade.all()
+        for semester_grade in semester_grades:
+            # subject_dict = subject.to_json()
+            if semester_grade.semester in grade_infos:
+                # Soma as menções para cada tipo
+                grade_infos[semester_grade.semester]["grades"]["ss"] += semester_grade.ss
+                grade_infos[semester_grade.semester]["grades"]["ms"] += semester_grade.ms
+                grade_infos[semester_grade.semester]["grades"]["mm"] += semester_grade.mm
+                grade_infos[semester_grade.semester]["grades"]["mi"] += semester_grade.mi
+                grade_infos[semester_grade.semester]["grades"]["ii"] += semester_grade.ii
+                grade_infos[semester_grade.semester]["grades"]["sr"] += semester_grade.sr
+                grade_infos[semester_grade.semester]["grades"]["tr"] += semester_grade.tr
+                grade_infos[semester_grade.semester]["grades"]["tj"] += semester_grade.tj
+            else:
+                grade_infos[semester_grade.semester] = {"semester": semester_grade.semester,
+                                                        "grades":
+                                                            {"ss": semester_grade.ss,
+                                                             "ms": semester_grade.ms,
+                                                             "mm": semester_grade.mm,
+                                                             "mi": semester_grade.mi,
+                                                             "ii": semester_grade.ii,
+                                                             "sr": semester_grade.sr,
+                                                             "tr": semester_grade.tr,
+                                                             "tj": semester_grade.tj}
+                                                        }
+        grade_list = []
+        # Cast para um formato de lista
+        for key, value in grade_infos.items():
+            grade_list.append(value)
+        return grade_list
+
 
 # Classe que armazena as disciplinas do curso com o semestre
 class CourseSubject(models.Model):
