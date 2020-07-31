@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
-  padding: 30px 0;
-  background-color: #7c4fe0;
+  background-color: transparent;
 
-  hr {
-    display: block;
-    max-width: 80%;
-    color: white;
-    margin: auto;
-  }
-
-  .copyright {
-    text-align: center;
-    color: white;
+  .waves {
+    padding: 0;
+    margin: 0;
+    p {
+      text-align: center;
+      color: #fff;
+      height: 30px;
+      margin-bottom: 10px;
+      background: #7c4fe0;
+    }
   }
 `;
