@@ -19,6 +19,7 @@ const Header: React.FC<HeaderBackground> = ({
   transparent,
 }: HeaderBackground) => {
   const [navFixed, setNavFixed] = useState(false);
+  const [selectedLink, setSelectedLink] = useState(0);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -34,12 +35,35 @@ const Header: React.FC<HeaderBackground> = ({
     });
   }, []);
 
+  useEffect(() => {
+    const location = window.location.pathname.split('/')[1];
+    switch (location) {
+      case '':
+        setSelectedLink(1);
+        break;
+      case 'courses':
+        setSelectedLink(2);
+        break;
+      case 'list-courses':
+        setSelectedLink(3);
+        break;
+      case 'subjects':
+        setSelectedLink(4);
+        break;
+      case 'contact-us':
+        setSelectedLink(5);
+        break;
+      default:
+        break;
+    }
+  }, []);
+
   const menuItems = [
-    { name: 'Home', link: '/' },
-    { name: 'Curso', link: '/courses/1741' },
-    { name: 'Cursos', link: '/list-courses' },
-    { name: 'Disciplinas', link: '/subjects' },
-    { name: 'Contato', link: '/contact-us' },
+    { id: 1, name: 'Home', link: '/' },
+    { id: 2, name: 'Curso', link: '/courses/1741' },
+    { id: 3, name: 'Cursos', link: '/list-courses' },
+    { id: 4, name: 'Disciplinas', link: '/subjects' },
+    { id: 5, name: 'Contato', link: '/contact-us' },
   ];
 
   return (
@@ -50,12 +74,20 @@ const Header: React.FC<HeaderBackground> = ({
           expand="lg"
           className={navFixed ? 'fixed' : ''}
         >
-          <Navbar.Brand href="#home">MW-Melhorado</Navbar.Brand>
+          <Navbar.Brand href="/" style={{ color: navFixed ? '#222' : '#fff' }}>
+            MW-Melhorado
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
               {menuItems.map(menu => (
-                <Nav.Link href={menu.link}>{menu.name}</Nav.Link>
+                <Nav.Link
+                  href={menu.link}
+                  className={selectedLink === menu.id ? 'active' : ''}
+                  style={{ color: navFixed ? '#222' : '#fff' }}
+                >
+                  {menu.name}
+                </Nav.Link>
               ))}
             </Nav>
           </Navbar.Collapse>

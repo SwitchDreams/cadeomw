@@ -13,6 +13,38 @@ export const Container = styled.div<ContainerProps>`
       background: transparent;
     `}
 
+  a.nav-link {
+    margin: 0 30px !important;
+    position: relative;
+
+    &,
+    &::after,
+    &::before {
+      transition: all 0.3s;
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 0%;
+      content: '.';
+      color: transparent;
+      background: red;
+      height: 2px;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+
+    &.active::after {
+      width: 100%;
+    }
+  }
+
   div.scrolled {
     position: fixed !important;
     width: 100%;
