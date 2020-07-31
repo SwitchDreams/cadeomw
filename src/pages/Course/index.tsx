@@ -1,7 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
-import Spinner from '../../assets/spinner-icon.gif';
-
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
