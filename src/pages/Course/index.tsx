@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
+import { useParams } from 'react-router-dom';
 import Spinner from '../../assets/spinner-icon.gif';
 
 import api from '../../services/api';
@@ -7,8 +8,6 @@ import Header from '../../components/Header';
 import Flux from './flux';
 import InfoCards from './infoCards';
 import HardestEasiest from '../../components/SubjectCard';
-import {useParams} from 'react-router'
-
 
 import {
   AllContainer,
@@ -54,9 +53,8 @@ export interface Course {
 }
 
 interface RouteParams {
-  id: string
+  id: string;
 }
-
 
 const Course: React.FC = () => {
   const tabsInit = [
@@ -69,7 +67,6 @@ const Course: React.FC = () => {
       selected: false,
     },
   ];
-  // const { params } = useRouteMatch<URLParams>();
 
   const [windowCheck, setWindowCheck] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -84,7 +81,9 @@ const Course: React.FC = () => {
 
   useEffect(() => {
     api
-      .get(`https://mw-melhorado-app.herokuapp.com/courses/${params.id}?format=json`)
+      .get(
+        `https://mw-melhorado-app.herokuapp.com/courses/${params.id}?format=json`,
+      )
       .then(response => {
         let newCourse = response.data;
         let statusHardest = newCourse.hardest_subject.status;
@@ -197,10 +196,8 @@ const Course: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
-      
 
       <Container>
-        <h1>{params.id}</h1>
         {tabs.map(tab => (
           <TabContent
             key={tab.name}
