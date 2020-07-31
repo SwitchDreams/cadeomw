@@ -9,6 +9,7 @@ import InfoCards from './infoCards';
 import HardestEasiest from '../../components/SubjectCard';
 import {useParams} from 'react-router'
 
+
 import {
   AllContainer,
   CourseNameContainer,
@@ -55,6 +56,7 @@ export interface Course {
 interface RouteParams {
   id: string
 }
+
 
 const Course: React.FC = () => {
   const tabsInit = [

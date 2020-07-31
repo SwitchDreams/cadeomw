@@ -19,9 +19,69 @@ import {
   CreditText,
 } from './styles';
 
+import Tooltip from '@material-ui/core/Tooltip';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import List from '@material-ui/core/List';
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ErrorIcon from '@material-ui/icons/Error';
+import InsertChartIcon from '@material-ui/icons/InsertChart';
+import { withStyles, makeStyles } from '@material-ui/core/styles'; //nao retirar ainda
+
 interface FluxProps {
   periods: Period[] | null;
   window: boolean;
+}
+
+interface TootlipInfo {
+  subject_name: string;
+  credit: number;
+  status: string | undefined;
+  pass_percent: number;  
+}
+
+/*nao retirar o htmltooltip ainda*/
+
+const HtmlTooltip = withStyles((theme) => ({
+  tooltip: {
+    //ackgroundColor: '#FFFFF2',
+    color: 'rgba(255, 251, 252, 2.00)',
+    backgroundColor: '#8447FF',
+  },
+}))(Tooltip);
+
+const TootlipText: React.FC<TootlipInfo> = ({ subject_name, credit, status, pass_percent}) => {
+  return (
+    <List component="nav" aria-label="main mailbox folders">
+      <ListItem button>
+        <ListItemIcon>
+          <ArrowForwardIosIcon />
+        </ListItemIcon>
+        <ListItemText primary={subject_name} />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <CollectionsBookmarkIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Creditos: " + credit} />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <ErrorIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Status: " + status} />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <InsertChartIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Porcentagem de aprovação: " + pass_percent*100 + "%"} />
+      </ListItem>
+    </List>
+  )
+
 }
 
 const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
@@ -81,22 +141,25 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                   <Collapse in={showPeriod === period.semester}>
                     {subjects.map(subject => (
                       <ContentContainer key={subject.subject_name}>
-                        <Content>
-                          <ContentText window={window}>
-                            {subject.subject_name}
-                          </ContentText>
-                          <ContentCreditsContainer window={window}>
-                            <ContentStatus
-                              status={subject.status === 'obrigatória'}
-                            >
-                              {subject.status}
-                            </ContentStatus>
-                            <ContentCredits>
-                              <Credit>{subject.credit}</Credit>
-                              <CreditText>créditos</CreditText>
-                            </ContentCredits>
-                          </ContentCreditsContainer>
-                        </Content>
+                        <Tooltip title={<TootlipText subject_name={subject.subject_name} credit={subject.credit} 
+                          status={subject.status} pass_percent={subject.pass_percent} />} arrow >
+                          <Content>
+                            <ContentText window={window}>
+                              {subject.subject_name}
+                            </ContentText>
+                            <ContentCreditsContainer window={window}>
+                              <ContentStatus
+                                status={subject.status === 'obrigatória'}
+                              >
+                                {subject.status}
+                              </ContentStatus>
+                              <ContentCredits>
+                                <Credit>{subject.credit}</Credit>
+                                <CreditText>créditos</CreditText>
+                              </ContentCredits>
+                            </ContentCreditsContainer>
+                          </Content>
+                        </Tooltip>
                       </ContentContainer>
                     ))}
                   </Collapse>
