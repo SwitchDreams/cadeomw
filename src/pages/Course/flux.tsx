@@ -12,7 +12,8 @@ import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ErrorIcon from '@material-ui/icons/Error';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
-import { withStyles, makeStyles } from '@material-ui/core/styles'; // nao retirar ainda
+// import { withStyles, makeStyles } from '@material-ui/core/styles'; // nao retirar ainda
+
 import {
   useStyles,
   FluxContainer,
@@ -43,13 +44,13 @@ interface TootlipInfo {
 
 /* nao retirar o htmltooltip ainda */
 
-const HtmlTooltip = withStyles(theme => ({
-  tooltip: {
-    // ackgroundColor: '#FFFFF2',
-    color: 'rgba(255, 251, 252, 2.00)',
-    backgroundColor: '#8447FF',
-  },
-}))(Tooltip);
+// const HtmlTooltip = withStyles(theme => ({
+//   tooltip: {
+//     // ackgroundColor: '#FFFFF2',
+//     color: 'rgba(255, 251, 252, 2.00)',
+//     backgroundColor: '#8447FF',
+//   },
+// }))(Tooltip);
 
 const TootlipText: React.FC<TootlipInfo> = ({
   subject_name,
@@ -124,7 +125,7 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
           }
 
           return (
-            <>
+            <div key={period.semester}>
               <div className={classes.root} key={period.semester}>
                 <FormControlLabel
                   style={{ width: '100%' }}
@@ -179,7 +180,7 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                   </Collapse>
                 </div>
               </div>
-            </>
+            </div>
           );
         })}
     </FluxContainer>

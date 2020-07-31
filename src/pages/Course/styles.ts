@@ -45,7 +45,7 @@ export const AllContainer = styled.div<AllContainerProps>`
     `}
 `;
 
-export const CourseNameContainer = styled.h1`
+export const CourseNameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

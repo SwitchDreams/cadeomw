@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
