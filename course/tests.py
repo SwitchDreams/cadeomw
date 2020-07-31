@@ -1,7 +1,6 @@
 from django.test import TestCase
 from course.models import Course, Subject
 
-
 # Create your tests here.
 class CourseTestCase(TestCase):
     def setUp(self):
