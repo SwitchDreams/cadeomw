@@ -15,6 +15,7 @@
     "@types/react-router-dom": "^5.1.5",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "graphviz-react": "^1.1.1",
     "polished": "^3.6.5",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
@@ -28,8 +29,8 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

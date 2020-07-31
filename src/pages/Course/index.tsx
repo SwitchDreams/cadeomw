@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
+import { Graphviz } from 'graphviz-react';
 import Spinner from '../../assets/spinner-icon.gif';
 
 import api from '../../services/api';
@@ -16,7 +17,6 @@ import {
   Container,
   TabContent,
   TabText,
-  ContainerPage,
   CardFluxContainer,
   InfoContainerCard,
   CardSubjectsContainer,
@@ -50,6 +50,7 @@ export interface Course {
   flow: Period[];
   hardest_subject: Materias;
   easiest_subject: Materias;
+  flow_graph: string;
 }
 
 interface RouteParams {
@@ -222,7 +223,12 @@ const Course: React.FC = () => {
           </Loading>
         )}
 
-        {grafo && <ContainerPage />}
+        {grafo && course && (
+          <Graphviz
+            dot={course?.flow_graph}
+            options={{ fit: true, height: '100%', width: '100%', zoom: true }}
+          />
+        )}
 
         {fluxo && course && (
           <AllContainer window={windowCheck}>
