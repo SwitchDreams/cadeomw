@@ -12,6 +12,36 @@ export const Container = styled.div<ContainerProps>`
     css`
       background: transparent;
     `}
+
+  div.scrolled {
+    position: fixed !important;
+    width: 100%;
+    z-index: 999;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+
+    /* transform: translateY(-100px); */
+    /* transition-timing-function: ease-in;
+    transition: 0.2s; */
+
+    animation: slide-down 0.5s;
+
+    /* nav.fixed {
+      transition: 0.25s;
+      transition-timing-function: ease-out;
+    } */
+  }
+
+  @keyframes slide-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const WaveContainer = styled.div`

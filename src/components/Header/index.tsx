@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import { Navbar, Nav } from 'react-bootstrap';
 
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
@@ -16,6 +18,22 @@ interface HeaderBackground {
 const Header: React.FC<HeaderBackground> = ({
   transparent,
 }: HeaderBackground) => {
+  const [navFixed, setNavFixed] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 150;
+
+      if (!isTop) {
+        console.log('Fixed');
+        setNavFixed(true);
+      } else {
+        console.log('Not Fixed');
+        setNavFixed(false);
+      }
+    });
+  }, []);
+
   const menuItems = [
     { name: 'Home', link: '/' },
     { name: 'Curso', link: '/courses/1741' },
@@ -26,22 +44,23 @@ const Header: React.FC<HeaderBackground> = ({
 
   return (
     <Container transparent={transparent}>
-      <AppBar
-        position="static"
-        style={{ background: 'transparent', boxShadow: 'none' }}
-      >
-        <Toolbar>
-          <Typography variant="h6">MW-Melhorado</Typography>
-          <Menu>
-            {menuItems.map(menu => (
-              <Link key={menu.link} to={menu.link}>
-                <MenuText>{menu.name}</MenuText>
-              </Link>
-            ))}
-          </Menu>
-        </Toolbar>
-      </AppBar>
-
+      <div className={navFixed ? 'scrolled' : ''}>
+        <Navbar
+          collapseOnSelect
+          expand="lg"
+          className={navFixed ? 'fixed' : ''}
+        >
+          <Navbar.Brand href="#home">MW-Melhorado</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto">
+              {menuItems.map(menu => (
+                <Nav.Link href={menu.link}>{menu.name}</Nav.Link>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
       {!transparent && (
         <WaveContainer>
           <svg width="100%" height="200px" fill="none">
