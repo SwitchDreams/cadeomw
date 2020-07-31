@@ -216,3 +216,17 @@ export const OrLine = styled.div`
     font-weight: bold;
   }
 `;
+
+export const GraphicContainer = styled.div<WindowProp>`
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+
+  ${props =>
+    props.window &&
+    css`
+      width: 90%;
+    `};
+`;

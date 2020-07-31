@@ -14,6 +14,7 @@ import Fade from '@material-ui/core/Fade';
 
 import api from '../../services/api';
 
+import Graphic from './graphic';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 
@@ -34,12 +35,27 @@ import {
   Página de Disciplina - Bruna
 */
 
-interface Prereq {
-  departament: string;
+export interface Prereq {
+  credit: string;
+  code: number;
   subject_name: string;
 }
 
-interface Subject {
+export interface Grades {
+  semester: string;
+  grades: {
+    ss: number;
+    ms: number;
+    mm: number;
+    mi: number;
+    ii: number;
+    sr: number;
+    tr: number;
+    tj: number;
+  };
+}
+
+export interface Subject {
   name: string;
   credit: number;
   code: number;
@@ -47,6 +63,7 @@ interface Subject {
   status: string | undefined;
   pass_percent: number;
   prerequisites: Prereq[][];
+  grade_infos: Grades[];
 }
 
 const Subject: React.FC = () => {
@@ -57,47 +74,6 @@ const Subject: React.FC = () => {
 
   const { subject_id } = useParams();
   const history = useHistory();
-
-  // setSubject({
-  //   subject_name: 'Probabilidade e Estatística',
-  //   status: 'obrigatória',
-  //   credit: 4,
-  //   department: 'ADM',
-  //   code: 289076,
-  //   pass_percent: 0.58,
-  //   prerequisites: [
-  //     [
-  //       {
-  //         department: 'ADM',
-  //         name: 'Adm Financeira e Orçamentária',
-  //       },
-  //     ],
-  //     [
-  //       {
-  //         department: 'MUS',
-  //         name: 'Abordagens C Est Organizações',
-  //       },
-  //       {
-  //         department: 'FGA',
-  //         name: 'Ação Colet Formação de Grupos',
-  //       },
-  //       {
-  //         department: 'FGA',
-  //         name: 'Ação Colet Formação de Grupos',
-  //       },
-  //     ],
-  //     [
-  //       {
-  //         department: 'MUS',
-  //         name: 'Abordagens C Est Organizações',
-  //       },
-  //       {
-  //         department: 'FGA',
-  //         name: 'Ação Colet Formação de Grupos',
-  //       },
-  //     ],
-  //   ],
-  // });
 
   useEffect(() => {
     api.get(`subjects/${subject_id}/?format=json`).then(response => {
@@ -115,18 +91,18 @@ const Subject: React.FC = () => {
     });
   }, [subject_id]);
 
+  const handleNewSubject = useCallback(
+    (subject_code: number) => {
+      history.push(`/subjects/${subject_code}/?format=json`);
+    },
+    [history],
+  );
+
   useEffect(() => {
     if (window.innerWidth <= 1000) {
       setWindowCheck(true);
     }
   }, []);
-
-  const handleNewSubject = useCallback(
-    (subject_code: string) => {
-      history.push(`/subjects/${subject_code}/?format=json`);
-    },
-    [history],
-  );
 
   window.addEventListener('resize', () => {
     if (window.innerWidth <= 1000) {
@@ -201,12 +177,12 @@ const Subject: React.FC = () => {
                         <FeatureCardContainer
                           key={subjectPrereq.subject_name}
                           window={windowCheck}
-                          onClick={() => handleNewSubject('118036')}
+                          onClick={() => handleNewSubject(subjectPrereq.code)}
                         >
                           <Book style={{ color: '#7c4fe0' }} />
                           <CardTitleContainer window={windowCheck}>
                             <h3>{subjectPrereq.subject_name}</h3>
-                            <p>{`Departamento: ${subjectPrereq.departament}`}</p>
+                            <p>{`${subjectPrereq.credit} créditos`}</p>
                           </CardTitleContainer>
                         </FeatureCardContainer>
                       ))}
@@ -224,6 +200,8 @@ const Subject: React.FC = () => {
               ))}
             </div>
           </FeaturesContainer>
+
+          <Graphic window={windowCheck} subject={subject} />
         </Container>
       )}
     </>
