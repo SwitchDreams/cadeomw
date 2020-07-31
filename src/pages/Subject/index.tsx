@@ -76,19 +76,21 @@ const Subject: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    api.get(`subjects/${subject_id}/?format=json`).then(response => {
-      setLoading(true);
-      let subjectAPI = response.data;
+    try {
+      api.get(`subjects/${subject_id}/?format=json`).then(response => {
+        setLoading(true);
+        let subjectAPI = response.data;
 
-      const newSubjectName =
-        subjectAPI.name.charAt(0).toUpperCase() +
-        subjectAPI.name.slice(1).toLowerCase();
+        const newSubjectName =
+          subjectAPI.name.charAt(0).toUpperCase() +
+          subjectAPI.name.slice(1).toLowerCase();
 
-      subjectAPI = { ...response.data, name: newSubjectName };
+        subjectAPI = { ...response.data, name: newSubjectName };
 
-      setSubject(subjectAPI);
-      setLoading(false);
-    });
+        setSubject(subjectAPI);
+        setLoading(false);
+      });
+    } catch (err) {}
   }, [subject_id]);
 
   const handleNewSubject = useCallback(

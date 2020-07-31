@@ -58,6 +58,14 @@ const Graphic: React.FC<GraphicProps> = ({ subject, window }: GraphicProps) => {
     return { semester: grade_info.semester, count: grade_info.grades.sr };
   });
 
+  const tr = subject.grade_infos.map(grade_info => {
+    return { semester: grade_info.semester, count: grade_info.grades.tr };
+  });
+
+  const tj = subject.grade_infos.map(grade_info => {
+    return { semester: grade_info.semester, count: grade_info.grades.tj };
+  });
+
   const options: OptionsProps = {
     animationEnabled: true,
     title: {
@@ -120,6 +128,24 @@ const Graphic: React.FC<GraphicProps> = ({ subject, window }: GraphicProps) => {
         showInLegend: true,
         dataPoints: ss.map(ssLabel => {
           return { label: ssLabel.semester, y: ssLabel.count };
+        }),
+      },
+      {
+        color: '#2C3A68',
+        type: 'spline',
+        showInLegend: true,
+        name: 'Trancamento',
+        dataPoints: tr.map(trLabel => {
+          return { label: trLabel.semester, y: trLabel.count };
+        }),
+      },
+      {
+        color: '#8A0C90',
+        type: 'spline',
+        showInLegend: true,
+        name: 'Trancamento Justificado',
+        dataPoints: tj.map(tjLabel => {
+          return { label: tjLabel.semester, y: tjLabel.count };
         }),
       },
     ],
