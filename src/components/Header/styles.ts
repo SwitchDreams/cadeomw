@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   transparent: boolean;
+  scrolled: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -32,7 +33,12 @@ export const Container = styled.div<ContainerProps>`
       width: 0%;
       content: '.';
       color: transparent;
-      background: red;
+      background: #7c4fe0;
+      ${props =>
+        props.scrolled &&
+        css`
+          background: #fff;
+        `}
       height: 2px;
     }
 

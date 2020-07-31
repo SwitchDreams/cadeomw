@@ -67,7 +67,7 @@ const Header: React.FC<HeaderBackground> = ({
   ];
 
   return (
-    <Container transparent={transparent}>
+    <Container scrolled={!navFixed} transparent={transparent}>
       <div className={navFixed ? 'scrolled' : ''}>
         <Navbar
           collapseOnSelect
