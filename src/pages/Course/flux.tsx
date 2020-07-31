@@ -84,7 +84,9 @@ const TootlipText: React.FC<TootlipInfo> = ({
           <InsertChartIcon />
         </ListItemIcon>
         <ListItemText
-          primary={`Porcentagem de aprovação: ${pass_percent * 100}%`}
+          primary={`Porcentagem de aprovação: ${Math.round(
+            pass_percent * 100,
+          )}%`}
         />
       </ListItem>
     </List>
@@ -156,29 +158,10 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                 <div className={classes.container}>
                   <Collapse in={showPeriod === period.semester}>
                     {subjects.map(subject => (
-<<<<<<< HEAD
                       <ContentContainer
                         onClick={() => handleGoToSubjectPage(subject.code)}
                         key={subject.subject_name}
                       >
-                        <Content>
-                          <ContentText window={window}>
-                            {subject.subject_name}
-                          </ContentText>
-                          <ContentCreditsContainer window={window}>
-                            <ContentStatus
-                              status={subject.status === 'obrigatória'}
-                            >
-                              {subject.status}
-                            </ContentStatus>
-                            <ContentCredits>
-                              <Credit>{subject.credit}</Credit>
-                              <CreditText>créditos</CreditText>
-                            </ContentCredits>
-                          </ContentCreditsContainer>
-                        </Content>
-=======
-                      <ContentContainer key={subject.subject_name}>
                         <Tooltip
                           title={
                             <TootlipText
@@ -207,7 +190,6 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                             </ContentCreditsContainer>
                           </Content>
                         </Tooltip>
->>>>>>> 3257805ab42b9a6ceb43d1f5b6b3cfacb6c3bebc
                       </ContentContainer>
                     ))}
                   </Collapse>

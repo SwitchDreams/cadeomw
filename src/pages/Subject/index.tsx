@@ -1,14 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-import {
-  Book,
-  Code,
-  AllInbox,
-  Payment,
-  Equalizer,
-  Check,
-} from '@material-ui/icons';
+import { Book, Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 import Fade from '@material-ui/core/Fade';
 
@@ -60,7 +53,6 @@ export interface Subject {
   credit: number;
   code: number;
   department: string;
-  status: string | undefined;
   pass_percent: number;
   prerequisites: Prereq[][];
   grade_infos: Grades[];
@@ -116,7 +108,7 @@ const Subject: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header transparent={false} />
 
       {loading && <Loading />}
 
@@ -134,12 +126,6 @@ const Subject: React.FC = () => {
                 <Code style={{ color: '#7c4fe0' }} />
                 <strong>Código:</strong>
                 <p>{subject.code}</p>
-              </InfoContainer>
-
-              <InfoContainer>
-                <Check style={{ color: '#7c4fe0' }} />
-                <strong>Status:</strong>
-                <p>{subject.status}</p>
               </InfoContainer>
 
               <InfoContainer>
