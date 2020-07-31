@@ -41,6 +41,10 @@ class Course(models.Model):
             flow_list.append(value)
         return flow_list
 
+    def flow_graph(self):
+        """ Retorna o código DOT (Graphviz) do gráfico """
+        return do_graph(self).source
+
     def num_semester(self):
         """ Retorna o número de semestres do curso baseado no fluxo """
         return len(self.flow())
@@ -181,3 +185,6 @@ class PreRequisiteSet(models.Model):
 class PreRequisite(models.Model):
     prerequisite_set = models.ForeignKey(PreRequisiteSet, on_delete=models.CASCADE, related_name='prerequisite')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
+
+# Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
+from course.scripts.graph_flow_course import do_graph
