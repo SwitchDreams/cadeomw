@@ -67,14 +67,17 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
 
+    def to_json(self):
+        return {"code": self.code, "subject_name": self.name,
+                "credit": self.credit}
+
     def prerequisites(self):
         """ Retorna os pré-requisitos em JSON """
         prerequisites = []
         for prerequisite_set in self.prerequisite_set.all():
             prerequisites_set_list = []
             for prerequisite in prerequisite_set.prerequisite.all():
-                prerequisites_set_list.append(
-                    {"departament": prerequisite.subject.department, "subject_name": prerequisite.subject.name})
+                prerequisites_set_list.append(prerequisite.subject.to_json())
             prerequisites.append(prerequisites_set_list)
         return prerequisites
 
