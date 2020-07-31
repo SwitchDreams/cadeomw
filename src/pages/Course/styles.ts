@@ -45,7 +45,7 @@ export const AllContainer = styled.div<AllContainerProps>`
     `}
 `;
 
-export const CourseNameContainer = styled.h1`
+export const CourseNameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,8 +56,17 @@ export const CourseName = styled.h1`
   font-weight: bold;
   padding: 0 40px 0 40px;
   font-size: 40px;
+  text-align: center;
   color: #585858;
-  border-top: 1px solid #585858;
+
+  &::after {
+    content: '';
+    height: 3px;
+    width: 200px;
+    background-color: #7c4fe0;
+    display: block;
+    margin: 10px auto;
+  }
 `;
 
 export const Container = styled.div`
@@ -97,12 +106,6 @@ export const TabText = styled.p<TabContentProps>`
   margin-top: 20px;
   font-weight: bold;
   font-size: 18px;
-
-  /* ${props =>
-    props.selected &&
-    css`
-      color: #240a59;
-    `} */
 
   ${props =>
     props.window &&
@@ -147,8 +150,9 @@ export const FluxContainer = styled.div<AllContainerProps>`
   ${props =>
     props.window &&
     css`
-      width: 90%;
-      margin: 10px 0 10px 0;
+      width: 100%;
+      padding: 0 20px;
+      margin: 0;
     `}
 `;
 
@@ -183,7 +187,7 @@ export const PeriodText = styled.div<AllContainerProps>`
 
 export const ContentContainer = styled.div`
   height: 45px;
-  width: 100%;
+  width: 90%;
   border-radius: 10px;
   margin: 10px 0 10px 0;
 
@@ -197,14 +201,14 @@ export const Content = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 8px;
+  align-self: center;
 `;
 
 export const ContentText = styled.p<AllContainerProps>`
   font-size: 18px;
-  margin-left: 20px;
   height: 20px;
   width: 70%;
+  margin-left: 30px;
 
   ${props =>
     props.window &&
