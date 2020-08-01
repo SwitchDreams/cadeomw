@@ -2,12 +2,12 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { apiCourses } from '../../services/api';
-import Spinner from '../../assets/spinner-icon.gif';
 
 import { useToast } from '../../hooks/toasts'
 
 import { Courses, Form, QtdSearch, Loading } from './styles';
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
 
 /*
   Página de listagem de cursos - Waliff
@@ -134,14 +134,7 @@ const ListCourses: React.FC = () => {
         </form>
       </Form>
 
-      {loading && (
-        <Loading>
-          <div>
-            <img src={Spinner} alt="loading" />
-            <h1> Carregando </h1>
-          </div>
-        </Loading>
-      )}
+      {loading && <Loading />}
 
       {qtdResults && !loading && (
         <QtdSearch>

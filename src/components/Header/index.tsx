@@ -18,7 +18,6 @@ const Header: React.FC<HeaderBackground> = ({
 }: HeaderBackground) => {
   const menuItems = [
     { name: 'Home', link: '/' },
-    { name: 'Curso', link: '/courses/1741' },
     { name: 'Cursos', link: '/list-courses' },
     { name: 'Disciplinas', link: '/subjects' },
     { name: 'Contato', link: '/contact-us' },

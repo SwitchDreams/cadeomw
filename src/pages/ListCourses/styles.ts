@@ -35,6 +35,7 @@ div {
   }
 }
 `;
+
 export const Form = styled.div`
 margin-top: 60px;
 max-width: 700px;

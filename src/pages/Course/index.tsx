@@ -5,6 +5,8 @@ import Spinner from '../../assets/spinner-icon.gif';
 
 import api from '../../services/api';
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
+
 import Flux from './flux';
 import InfoCards from './infoCards';
 import HardestEasiest from '../../components/SubjectCard';
@@ -20,7 +22,6 @@ import {
   CardFluxContainer,
   InfoContainerCard,
   CardSubjectsContainer,
-  Loading,
 } from './styles';
 
 /*
@@ -35,6 +36,7 @@ interface Tab {
 export interface Materias {
   subject_name: string;
   credit: number;
+  code: number;
   status: string | undefined;
   pass_percent: number;
 }
@@ -145,6 +147,7 @@ const Course: React.FC = () => {
                 subject_name: newSubjectName,
                 status: newStatus,
                 pass_percent: subject.pass_percent,
+                code: subject.code,
               };
             });
 
@@ -213,14 +216,7 @@ const Course: React.FC = () => {
       </Container>
 
       <AllContainer window={windowCheck}>
-        {loading && (
-          <Loading>
-            <div>
-              <img src={Spinner} alt="loading" />
-              <h1> Carregando </h1>
-            </div>
-          </Loading>
-        )}
+        {loading && <Loading />}
 
         {grafo && <ContainerPage />}
 
