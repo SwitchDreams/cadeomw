@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
 import { Navbar, Nav } from 'react-bootstrap';
-
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-
-import { Container, Menu, MenuText, WaveContainer } from './styles';
+import { Container, WaveContainer } from './styles';
 
 /*
   Header - Componente geral
