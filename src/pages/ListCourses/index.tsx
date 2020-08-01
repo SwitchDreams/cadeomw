@@ -2,10 +2,12 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { apiCourses } from '../../services/api';
-import Spinner from '../../assets/spinner-icon.gif';
+
+import { useToast } from '../../hooks/toasts'
 
 import { Courses, Form, QtdSearch, Loading } from './styles';
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
 
 /*
   Página de listagem de cursos - Waliff
@@ -38,6 +40,8 @@ const ListCourses: React.FC = () => {
     previous: '',
     count: 0,
   });
+  const { addToast } = useToast();
+  const [WindowCheck, setWindowCheck] = useState(false);
 
   async function getCourses() {
     try {
@@ -47,12 +51,33 @@ const ListCourses: React.FC = () => {
 
       setCourses(response.data);
       setLoading(false);
-    } catch (err) {}
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Erro ao carregar os cursos',
+        description: 'Tente novamente mais tarde',
+      });
+    }
   }
 
   useEffect(() => {
-    getCourses();
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    }
   }, []);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    } else {
+      setWindowCheck(false);
+    }
+  });
+  
+
+  useEffect(() => {
+    getCourses();
+  }, [addToast]);
 
   async function handlePagination(pag: string) {
     if (pag !== null) {
@@ -62,7 +87,13 @@ const ListCourses: React.FC = () => {
         setCourses(response.data);
         setLoading(false);
         window.scrollTo(0, 0);
-      } catch (err) {}
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Erro ao acessar novas páginas',
+          description: 'Tente novamente mais tarde',
+        });
+      }
     }
   }
 
@@ -78,7 +109,13 @@ const ListCourses: React.FC = () => {
       setCourses(response.data);
       setQtdResults(true);
       setLoading(false);
-    } catch (err) {}
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Falha na pesquisa',
+        description: 'Tente novamente mais tarde',
+      });
+    }
     setSearchCourse('');
   }
 
@@ -97,14 +134,7 @@ const ListCourses: React.FC = () => {
         </form>
       </Form>
 
-      {loading && (
-        <Loading>
-          <div>
-            <img src={Spinner} alt="loading" />
-            <h1> Carregando </h1>
-          </div>
-        </Loading>
-      )}
+      {loading && <Loading />}
 
       {qtdResults && !loading && (
         <QtdSearch>
@@ -114,17 +144,19 @@ const ListCourses: React.FC = () => {
         </QtdSearch>
       )}
       {!loading && (
-        <Courses>
+        <Courses window={WindowCheck}>
           {courses.results.map(course => (
             <a key={course.code} href={`courses/${course.code}`}>
               <div>
-                <strong>{course.name}</strong>
+                <strong>
+                  {course.name.charAt(0).toUpperCase() + course.name.slice(1).toLowerCase()}
+                </strong>
                 <p>
-                  Código:
+                  Código: 
                   {course.code}
                 </p>
                 <p>
-                  Quantidade de períodos:
+                  Quantidade de períodos: 
                   {course.num_semester}
                 </p>
               </div>

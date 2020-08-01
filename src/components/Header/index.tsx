@@ -60,10 +60,9 @@ const Header: React.FC<HeaderBackground> = ({
 
   const menuItems = [
     { id: 1, name: 'Home', link: '/' },
-    { id: 2, name: 'Curso', link: '/courses/1741' },
-    { id: 3, name: 'Cursos', link: '/list-courses' },
-    { id: 4, name: 'Disciplinas', link: '/subjects' },
-    { id: 5, name: 'Contato', link: '/contact-us' },
+    { id: 2, name: 'Cursos', link: '/list-courses' },
+    { id: 3, name: 'Disciplinas', link: '/subjects' },
+    { id: 4, name: 'Contato', link: '/contact-us' },
   ];
 
   return (

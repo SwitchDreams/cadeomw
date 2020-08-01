@@ -7,15 +7,17 @@ import Routes from './routes';
 import Footer from './components/Footer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastProvider } from './hooks/toasts'
 
 const App: React.FC = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes />
-
-        <GlobalStyles />
-      </BrowserRouter>
+      <ToastProvider>
+        <BrowserRouter>
+          <Routes />
+          <GlobalStyles />
+        </BrowserRouter>
+      </ToastProvider>
       <Footer />
     </>
   );

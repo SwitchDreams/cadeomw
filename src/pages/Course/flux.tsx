@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 
 import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -83,7 +84,9 @@ const TootlipText: React.FC<TootlipInfo> = ({
           <InsertChartIcon />
         </ListItemIcon>
         <ListItemText
-          primary={`Porcentagem de aprovação: ${pass_percent * 100}%`}
+          primary={`Porcentagem de aprovação: ${Math.round(
+            pass_percent * 100,
+          )}%`}
         />
       </ListItem>
     </List>
@@ -92,6 +95,8 @@ const TootlipText: React.FC<TootlipInfo> = ({
 
 const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
   const classes = useStyles();
+
+  const history = useHistory();
 
   const [showPeriod, setShowPeriod] = useState(0);
   const [togglePeriod, setTogglePeriod] = useState(false);
@@ -112,6 +117,13 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
       setShowPeriod(period);
     },
     [togglePeriod, showPeriod],
+  );
+
+  const handleGoToSubjectPage = useCallback(
+    (code: number) => {
+      history.push(`/subjects/${code}/?format=json`);
+    },
+    [history],
   );
 
   return (
@@ -146,7 +158,10 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                 <div className={classes.container}>
                   <Collapse in={showPeriod === period.semester}>
                     {subjects.map(subject => (
-                      <ContentContainer key={subject.subject_name}>
+                      <ContentContainer
+                        onClick={() => handleGoToSubjectPage(subject.code)}
+                        key={subject.subject_name}
+                      >
                         <Tooltip
                           title={
                             <TootlipText
