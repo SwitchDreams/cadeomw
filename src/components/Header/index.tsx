@@ -41,17 +41,14 @@ const Header: React.FC<HeaderBackground> = ({
       case '':
         setSelectedLink(1);
         break;
-      case 'courses':
+      case 'list-courses':
         setSelectedLink(2);
         break;
-      case 'list-courses':
+      case 'subjects':
         setSelectedLink(3);
         break;
-      case 'subjects':
-        setSelectedLink(4);
-        break;
       case 'contact-us':
-        setSelectedLink(5);
+        setSelectedLink(4);
         break;
       default:
         break;

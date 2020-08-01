@@ -3,11 +3,10 @@ import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { apiCourses } from '../../services/api';
 
-import { useToast } from '../../hooks/toasts'
+import { useToast } from '../../hooks/toasts';
 
 import { Courses, Form, QtdSearch, Loading } from './styles';
 import Header from '../../components/Header';
-import Loading from '../../components/Loading';
 
 /*
   Página de listagem de cursos - Waliff
@@ -73,7 +72,6 @@ const ListCourses: React.FC = () => {
       setWindowCheck(false);
     }
   });
-  
 
   useEffect(() => {
     getCourses();
@@ -149,14 +147,15 @@ const ListCourses: React.FC = () => {
             <a key={course.code} href={`courses/${course.code}`}>
               <div>
                 <strong>
-                  {course.name.charAt(0).toUpperCase() + course.name.slice(1).toLowerCase()}
+                  {course.name.charAt(0).toUpperCase() +
+                    course.name.slice(1).toLowerCase()}
                 </strong>
                 <p>
-                  Código: 
+                  Código:
                   {course.code}
                 </p>
                 <p>
-                  Quantidade de períodos: 
+                  Quantidade de períodos:
                   {course.num_semester}
                 </p>
               </div>
