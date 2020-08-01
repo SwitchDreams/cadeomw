@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import { Navbar, Nav } from 'react-bootstrap';
 
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
@@ -16,32 +18,77 @@ interface HeaderBackground {
 const Header: React.FC<HeaderBackground> = ({
   transparent,
 }: HeaderBackground) => {
+  const [navFixed, setNavFixed] = useState(false);
+  const [selectedLink, setSelectedLink] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 150;
+
+      if (!isTop) {
+        console.log('Fixed');
+        setNavFixed(true);
+      } else {
+        console.log('Not Fixed');
+        setNavFixed(false);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const location = window.location.pathname.split('/')[1];
+    switch (location) {
+      case '':
+        setSelectedLink(1);
+        break;
+      case 'list-courses':
+        setSelectedLink(2);
+        break;
+      case 'subjects':
+        setSelectedLink(3);
+        break;
+      case 'contact-us':
+        setSelectedLink(4);
+        break;
+      default:
+        break;
+    }
+  }, []);
+
   const menuItems = [
-    { name: 'Home', link: '/' },
-    { name: 'Curso', link: '/courses/1741' },
-    { name: 'Cursos', link: '/list-courses' },
-    { name: 'Disciplinas', link: '/subjects' },
-    { name: 'Contato', link: '/contact-us' },
+    { id: 1, name: 'Home', link: '/' },
+    { id: 2, name: 'Cursos', link: '/list-courses' },
+    { id: 3, name: 'Disciplinas', link: '/subjects' },
+    { id: 4, name: 'Contato', link: '/contact-us' },
   ];
 
   return (
-    <Container transparent={transparent}>
-      <AppBar
-        position="static"
-        style={{ background: 'transparent', boxShadow: 'none' }}
-      >
-        <Toolbar>
-          <Typography variant="h6">MW-Melhorado</Typography>
-          <Menu>
-            {menuItems.map(menu => (
-              <Link key={menu.link} to={menu.link}>
-                <MenuText>{menu.name}</MenuText>
-              </Link>
-            ))}
-          </Menu>
-        </Toolbar>
-      </AppBar>
-
+    <Container scrolled={!navFixed} transparent={transparent}>
+      <div className={navFixed ? 'scrolled' : ''}>
+        <Navbar
+          collapseOnSelect
+          expand="lg"
+          className={navFixed ? 'fixed' : ''}
+        >
+          <Navbar.Brand href="/" style={{ color: navFixed ? '#222' : '#fff' }}>
+            MW-Melhorado
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto">
+              {menuItems.map(menu => (
+                <Nav.Link
+                  href={menu.link}
+                  className={selectedLink === menu.id ? 'active' : ''}
+                  style={{ color: navFixed ? '#222' : '#fff' }}
+                >
+                  {menu.name}
+                </Nav.Link>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
       {!transparent && (
         <WaveContainer>
           <svg width="100%" height="200px" fill="none">
