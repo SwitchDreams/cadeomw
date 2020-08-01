@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
-import Spinner from '../../assets/spinner-icon.gif';
 
 import api from '../../services/api';
 import Header from '../../components/Header';

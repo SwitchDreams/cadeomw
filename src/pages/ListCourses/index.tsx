@@ -42,22 +42,22 @@ const ListCourses: React.FC = () => {
   const { addToast } = useToast();
   const [WindowCheck, setWindowCheck] = useState(false);
 
-  async function getCourses() {
-    try {
-      const response = await apiCourses.get<CourseInfos>(
-        `courses/?format=json`,
-      );
+  // async function getCourses() {
+  //   try {
+  //     const response = await apiCourses.get<CourseInfos>(
+  //       `courses/?format=json`,
+  //     );
 
-      setCourses(response.data);
-      setLoading(false);
-    } catch (err) {
-      addToast({
-        type: 'error',
-        title: 'Erro ao carregar os cursos',
-        description: 'Tente novamente mais tarde',
-      });
-    }
-  }
+  //     setCourses(response.data);
+  //     setLoading(false);
+  //   } catch (err) {
+  //     addToast({
+  //       type: 'error',
+  //       title: 'Erro ao carregar os cursos',
+  //       description: 'Tente novamente mais tarde',
+  //     });
+  //   }
+  // }
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -74,6 +74,23 @@ const ListCourses: React.FC = () => {
   });
 
   useEffect(() => {
+    const getCourses = async () => {
+      try {
+        const response = await apiCourses.get<CourseInfos>(
+          `courses/?format=json`,
+        );
+
+        setCourses(response.data);
+        setLoading(false);
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Erro ao carregar os cursos',
+          description: 'Tente novamente mais tarde',
+        });
+      }
+    };
+
     getCourses();
   }, [addToast]);
 
