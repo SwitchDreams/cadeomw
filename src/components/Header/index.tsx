@@ -21,10 +21,8 @@ const Header: React.FC<HeaderBackground> = ({
       const isTop = window.scrollY < 150;
 
       if (!isTop) {
-        console.log('Fixed');
         setNavFixed(true);
       } else {
-        console.log('Not Fixed');
         setNavFixed(false);
       }
     });
