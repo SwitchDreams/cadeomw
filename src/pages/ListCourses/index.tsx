@@ -5,8 +5,10 @@ import { apiCourses } from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
 
-import { Courses, Form, QtdSearch, Loading } from './styles';
+import { Courses, Form, QtdSearch } from './styles';
+
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
 
 /*
   Página de listagem de cursos - Waliff
