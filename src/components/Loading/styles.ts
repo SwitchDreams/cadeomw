@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 
-export const Loading = styled.div`
+export const LoadingContainer = styled.div`
+  margin: 20px 0;
   display: flex;
-  height: 800px;
   align-items: center;
   justify-content: center;
   div {
     img {
-      margin-top: 40px;
-    }
-    h1 {
-      margin-left: 45px;
-      margin-top: 40px;
-      margin-bottom: 50px;
+      height: 150px;
+      width: 150px;
     }
   }
 `;

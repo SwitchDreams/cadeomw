@@ -1,17 +1,17 @@
 import React from 'react';
 import Spinner from '../../assets/spinner-icon.gif';
 
-import { Loading } from './styles';
+import { LoadingContainer } from './styles';
 
-const FeatureCard: React.FC = () => {
+const Loading: React.FC = () => {
   return (
-    <Loading>
+    <LoadingContainer>
       <div>
         <img src={Spinner} alt="loading" />
-        <h1> Carregando </h1>
+        <h3> Carregando </h3>
       </div>
-    </Loading>
+    </LoadingContainer>
   );
 };
 
-export default FeatureCard;
+export default Loading;
