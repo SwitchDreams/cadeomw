@@ -187,15 +187,15 @@ class PreRequisite(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
 
 class Equivalence(models.Model):
-    abrangencia = models.CharField(max_length=10) 
-    destino =  models.CharField(max_length=6)
-    disciplina = models.CharField(max_length=6)
-    direcao =  models.CharField(max_length=14)
+    coverage = models.CharField(max_length=10)
+    destination = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='destination_eq')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='subject_eq')
+    direction =  models.CharField(max_length=14)
 
 # Classe que armazena um curso e a qual equivalência ele se refere
 class Option(models.Model):
     course = models.CharField(max_length=6)
-    equivalence = models.ForeignKey(Equivalence, on_delete=models.CASCADE)
+    equivalence = models.ForeignKey(Equivalence, on_delete=models.CASCADE, related_name="options")
 
 
 # Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
