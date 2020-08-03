@@ -22,12 +22,10 @@ def parse_equivalencia(filepath):
                 # Se a linha for em branco cria a equivalencia e mostra que resetou a validade e a opcao
                 if linha == '\n':
                     try:
-                        s = Subject.objects.get(code=disciplina)
-                        d = Subject.objects.get(code=destino)
                         eq = Equivalence(
                             coverage=abrangencia.split(',')[0],
-                            destination=d,
-                            subject=s,
+                            destination_id=destino,
+                            subject_id=disciplina,
                             direction=direcao
                         )
 
