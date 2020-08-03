@@ -1,4 +1,4 @@
-from course.models import Equivalence, Option
+from course.models import Equivalence, Option, Subject
 
 def parse_equivalencia(filepath):
     """
@@ -21,21 +21,32 @@ def parse_equivalencia(filepath):
             if isInsideValidade:
                 # Se a linha for em branco cria a equivalencia e mostra que resetou a validade e a opcao
                 if linha == '\n':
-                    eq = Equivalence(
-                        abrangencia=abrangencia.split(',')[0],
-                        destino=destino,
-                        disciplina=disciplina,
-                        direcao=direcao
-                    )
-                    eq.save()
-
-                    for op in listOpcoes:
-                        print('ALOHA OP: '+op)
-                        o = Option(
-                            course=op,
-                            equivalence=eq
+                    try:
+                        s = Subject.objects.get(code=disciplina)
+                        d = Subject.objects.get(code=destino)
+                        eq = Equivalence(
+                            coverage=abrangencia.split(',')[0],
+                            destination=d,
+                            subject=s,
+                            direction=direcao
                         )
-                        o.save()
+
+                        eq.save()
+
+                        try:
+                            for op in listOpcoes:
+                                print('ALOHA OP: '+op)
+                                o = Option(
+                                    course=op,
+                                    equivalence=eq
+                                )
+                                o.save()
+                        except e:
+                            print("Erro ao criar opção: {}".format(op))
+                    except:
+                        print("Disciplina não existe. Subject: {}, Destination {}".format(disciplina, destino))
+
+
 
                     isInsideValidade = False
                     isInsideOpcao = False
