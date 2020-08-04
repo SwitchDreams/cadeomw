@@ -103,7 +103,6 @@ export const TabContent = styled.div<TabContentProps>`
 export const TabText = styled.p<TabContentProps>`
   color: #fff;
   margin: auto;
-  margin-top: 20px;
   font-weight: bold;
   font-size: 18px;
 
