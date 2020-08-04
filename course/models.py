@@ -76,7 +76,7 @@ class Subject(models.Model):
         for equivalence in self.subject_eq.all():
             equivalences.append(equivalence.to_json())
         return equivalences
-    
+
     def to_json(self):
         return {"code": self.code, "subject_name": self.name,
                 "credit": self.credit}
@@ -143,6 +143,7 @@ class Subject(models.Model):
             grade_list.append(value)
         return grade_list
 
+
 # Classe que armazena as disciplinas do curso com o semestre
 class CourseSubject(models.Model):
     STATUS = (
@@ -191,11 +192,12 @@ class PreRequisite(models.Model):
     prerequisite_set = models.ForeignKey(PreRequisiteSet, on_delete=models.CASCADE, related_name='prerequisite')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
 
+
 class Equivalence(models.Model):
     coverage = models.CharField(max_length=10)
     destination = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='destination_eq')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='subject_eq')
-    direction =  models.CharField(max_length=14)
+    direction = models.CharField(max_length=14)
 
     def to_json(self):
         return {
@@ -205,6 +207,7 @@ class Equivalence(models.Model):
             "subject": self.subject.to_json(),
             "options": [op.course for op in self.options.all()]
         }
+
 
 # Classe que armazena um curso e a qual equivalência ele se refere
 class Option(models.Model):

@@ -1,5 +1,6 @@
 from course.models import Equivalence, Option, Subject
 
+
 def parse_equivalencia(filepath):
     """
     Parse um arquivo de equivalências recebido pelo filepath
@@ -28,23 +29,18 @@ def parse_equivalencia(filepath):
                             subject_id=disciplina,
                             direction=direcao
                         )
-
                         eq.save()
-
                         try:
                             for op in listOpcoes:
-                                print('ALOHA OP: '+op)
                                 o = Option(
                                     course=op,
                                     equivalence=eq
                                 )
                                 o.save()
-                        except e:
+                        except:
                             print("Erro ao criar opção: {}".format(op))
                     except:
                         print("Disciplina não existe. Subject: {}, Destination {}".format(disciplina, destino))
-
-
 
                     isInsideValidade = False
                     isInsideOpcao = False
