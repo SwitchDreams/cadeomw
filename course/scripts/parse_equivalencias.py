@@ -1,4 +1,6 @@
-from course.models import Equivalence, Option, Subject
+import glob
+
+from course.models import Equivalence, Option
 
 
 def parse_equivalencia(filepath):
@@ -90,5 +92,6 @@ def parse_equivalencia(filepath):
 
 def run():
     print('Iniciando o parse do arquivo de equivalências')
-    parse_equivalencia('data/sigra/equivalencias/equivalencias_cic.txt')
+    for file in glob.glob('data/sigra/equivalencias/*.txt'):
+        parse_equivalencia(file)
     print('Término do parse do arquivo de equivalências')
