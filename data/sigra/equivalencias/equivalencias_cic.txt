@@ -1,0 +1,3676 @@
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   1  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113476        -
+                                                   Algoritmos e Programação de Computadores
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113476 - Algoritmos e Programação de Computadores                               Turma:
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113476 - Algoritmos e Programação de Computadores                               Turma:
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+
+
+
+            Validade: a partir de 2015/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113476 - Algoritmos e Programação de Computadores                               Turma:
+                  116319 - ESTRUTURAS DE DADOS                                                    Turma:
+            Disciplinas Destino:
+                  108561 - Algoritmos e Estrutura de Dados
+            Válido para Opção:
+                   6335-ENGENHARIA ELÉTRICA
+                   6351-Engenharia de Redes de Comunicação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113913        -
+                                                   INTRODUCAO A CIENCIA DA COMPUTACAO
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:   
+            Disciplinas Destino:
+                  116220 - INTRODUCAO AO PROCESSAMENTO DE DADOS
+            Válido para Opção:
+                   6165-Agronomia
+                   6521-ENGENHARIA FLORESTAL
+                   8222-Biblioteconomia
+                   8516-Ciências Contábeis
+
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                          Página:
+                                                                                                                                2  de          44
+            Secretaria de Administração Acadêmica                                                             Emissão:
+                                                                                                                              02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:   
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1971/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:   
+            Disciplinas Destino:
+                  116793 - INTRODUCAO A MICROINFORMATICA
+            Válido para Opção:
+                   5380-Programação Visual
+                   5398-PROJETO DO PRODUTO
+
+
+
+            Validade: a partir de 1991/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:
+            Disciplinas Destino:
+                  116793 - INTRODUCAO A MICROINFORMATICA
+            Válido para Opção:
+                   8192-Arquivologia
+                   8222-Biblioteconomia
+
+
+
+            Validade: a partir de 2008/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:
+                  193704 - Estruturas de Dados e Algoritmos                                       Turma:
+            Disciplinas Destino:
+                  169676 - COMPUTACAO PARA ENGENHARIA
+            Válido para Opção:
+                  60836-Engenharia Aeroespacial
+
+
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:
+                  193704 - Estruturas de Dados e Algoritmos                                       Turma:
+            Disciplinas Destino:
+                  169676 - COMPUTACAO PARA ENGENHARIA
+            Válido para Opção:
+                   6335-ENGENHARIA ELÉTRICA
+                   6351-Engenharia de Redes de Comunicação
+
+
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:
+            ---------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                     lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   3  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                  169749 - SISTEMAS DE PROGRAMACAO                                                Turma:
+            Disciplinas Destino:
+                  169676 - COMPUTACAO PARA ENGENHARIA
+            Válido para Opção:
+                   6335-ENGENHARIA ELÉTRICA
+                   6351-Engenharia de Redes de Comunicação
+
+
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113417 - CALCULO NUMERICO                                                       Turma:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:
+            Disciplinas Destino:
+                  207641 - Métodos Computacionais em Engenharia Ambiental
+            Válido para Opção:
+                   6254-Engenharia Ambiental
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113956        -
+                                                   PROGRAMACAO SISTEMATICA
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2011/1, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113956 - PROGRAMACAO SISTEMATICA                                                Turma:
+            Disciplinas Destino:
+                  201600 - Métodos de Programação
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113964        -
+                                                   INTRODUCAO A COMPILACAO
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113964 - INTRODUCAO A COMPILACAO                                                Turma:   
+            Disciplinas Destino:
+                  116459 - TRADUTORES
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116009        -
+                                                   LABORATORIO DE PROGRAMACAO
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:   
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   4  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+
+
+
+            Validade: de 1987/1 à 1987/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116637 - PROGRAMACAO FUNCIONAL
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+
+
+
+            Validade: de 1988/1 à 1988/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116637 - PROGRAMACAO FUNCIONAL
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+
+
+
+            Validade: de 1987/2 à 1987/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116645 - PROGRAMACAO EM LOGICA
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116017        -
+                                                   ESTRUTURAS DE DADOS E ALGORITMOS 1
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116017 - ESTRUTURAS DE DADOS E ALGORITMOS 1                                     Turma:   
+            Disciplinas Destino:
+                  116319 - ESTRUTURAS DE DADOS
+            Válido para Opção:
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   5  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116025        -
+                                                   ESTRUTURAS DE DADOS E ALGORITMOS 2
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116025 - ESTRUTURAS DE DADOS E ALGORITMOS 2                                     Turma:   
+            Disciplinas Destino:
+                  116378 - BANCOS DE DADOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116033        -
+                                                   PROJETO LOGICO DE SISTEMAS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116033 - PROJETO LOGICO DE SISTEMAS                                             Turma:   
+            Disciplinas Destino:
+                  116688 - FERRAMENTA DE ANALISE DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116041        -
+                                                   PROJETO FISICO DE SISTEMAS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116041 - PROJETO FISICO DE SISTEMAS                                             Turma:   
+            Disciplinas Destino:
+                  116696 - TECNICAS DE PROJETOS E IMPLEMENTACAO DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116050        -
+                                                   LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1988/1, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116050 - LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES                  Turma:   
+            Disciplinas Destino:
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES
+            Válido para Opção:
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   6  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Validade: de 1971/2 à 1987/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116050 - LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES                  Turma:   
+            Disciplinas Destino:
+                  116432 - SOFTWARE BASICO
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116068        -
+                                                   NOCOES DE SISTEMAS OPERACIONAIS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS                                        Turma:   
+            Disciplinas Destino:
+                  116467 - SISTEMAS OPERACIONAIS
+            Válido para Opção:
+
+
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS                                        Turma:
+            Disciplinas Destino:
+                  121771 - Introdução a Sistemas Operacionais
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116076        -
+                                                   TELECOMUNICACOES E SISTEMAS DISTRIBUIDOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116076 - TELECOMUNICACOES E SISTEMAS DISTRIBUIDOS                               Turma:   
+            Disciplinas Destino:
+                  116424 - TRANSMISSAO DE DADOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116092        -
+                                                   ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1                        Turma:   
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2                        Turma:   
+            Disciplinas Destino:
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   7  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                  113999 - LABORATORIO DE COMPUTACAO CIENTIFICA
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116106        -
+                                                   ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1                        Turma:   
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2                        Turma:   
+            Disciplinas Destino:
+                  113999 - LABORATORIO DE COMPUTACAO CIENTIFICA
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116122        -
+                                                   PROGRAMACAO CIENTIFICA
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116122 - PROGRAMACAO CIENTIFICA                                                 Turma:   
+                  116131 - PROGRAMACAO COMERCIAL                                                  Turma:   
+            Disciplinas Destino:
+                  116009 - LABORATORIO DE PROGRAMACAO
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1971/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116122 - PROGRAMACAO CIENTIFICA                                                 Turma:   
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+                   1821-Código de opção não cadastrado
+                   1830-Código de opção não cadastrado
+                   1848-Código de opção não cadastrado
+                   1856-Ciência da Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116131        -
+                                                   PROGRAMACAO COMERCIAL
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116122 - PROGRAMACAO CIENTIFICA                                                 Turma:   
+                  116131 - PROGRAMACAO COMERCIAL                                                  Turma:   
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   8  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Destino:
+                  116009 - LABORATORIO DE PROGRAMACAO
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116149        -
+                                                   TECNICAS DE PROGRAMACAO
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116149 - TECNICAS DE PROGRAMACAO                                                Turma:   
+            Disciplinas Destino:
+                  113956 - PROGRAMACAO SISTEMATICA
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116157        -
+                                                   NOCOES DE SISTEMAS OPERACIONAIS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116157 - NOCOES DE SISTEMAS OPERACIONAIS                                        Turma:   
+            Disciplinas Destino:
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116165        -
+                                                   ADMINISTRACAO DE CPD
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116165 - ADMINISTRACAO DE CPD                                                   Turma:   
+            Disciplinas Destino:
+                  116114 - SEMINARIO EM ADMINISTRACAO DE CPD
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116173        -
+                                                   PROJETO DE SISTEMAS 1
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116173 - PROJETO DE SISTEMAS 1                                                  Turma:   
+            Disciplinas Destino:
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                   9  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                  116033 - PROJETO LOGICO DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116181        -
+                                                   PROJETO DE SISTEMAS 2
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116181 - PROJETO DE SISTEMAS 2                                                  Turma:   
+            Disciplinas Destino:
+                  116041 - PROJETO FISICO DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116190        -
+                                                   ARMAZENAMENTO E RECUPERACAO DE INFORMACOES
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116190 - ARMAZENAMENTO E RECUPERACAO DE INFORMACOES                             Turma:   
+            Disciplinas Destino:
+                  116025 - ESTRUTURAS DE DADOS E ALGORITMOS 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116203        -
+                                                   INTRODUCAO A SISTEMAS DE INFORMACOES
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116203 - INTRODUCAO A SISTEMAS DE INFORMACOES                                   Turma:   
+            Disciplinas Destino:
+                  186244 - SISTEMAS DE INFORMACOES CONTABEIS
+            Válido para Opção:
+                   8516-Ciências Contábeis
+
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116203 - INTRODUCAO A SISTEMAS DE INFORMACOES                                   Turma:   
+            Disciplinas Destino:
+                  116416 - INTRODUCAO A SISTEMAS DE INFORMACAO
+            Válido para Opção:
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  10  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116211        -
+                                                   ESTAGIO SUPERVISIONADO EM PROCESSAMENTO DE DADOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116211 - ESTAGIO SUPERVISIONADO EM PROCESSAMENTO DE DADOS                       Turma:   
+            Disciplinas Destino:
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116220        -
+                                                   INTRODUCAO AO PROCESSAMENTO DE DADOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116220 - INTRODUCAO AO PROCESSAMENTO DE DADOS                                   Turma:   
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116220 - INTRODUCAO AO PROCESSAMENTO DE DADOS                                   Turma:   
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116238        -
+                                                   ORGANIZACAO DE COMPUTADORES
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116238 - ORGANIZACAO DE COMPUTADORES                                            Turma:   
+            Disciplinas Destino:
+                  116050 - LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116246        -
+                                                   TELEPROCESSAMENTO
+            Equivalência onde a disciplina é origem
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  11  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116246 - TELEPROCESSAMENTO                                                      Turma:   
+            Disciplinas Destino:
+                  116076 - TELECOMUNICACOES E SISTEMAS DISTRIBUIDOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116254        -
+                                                   TOPICOS ESPECIAIS EM COMPUTACAO
+            Equivalência onde a disciplina é origem
+
+            Validade: de 1988/1 à 1988/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116254 - TOPICOS ESPECIAIS EM COMPUTACAO                                        Turma:   
+            Disciplinas Destino:
+                  116602 - SISTEMAS DISTRIBUIDOS
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116262        -
+                                                   NOCOES DE ESTRUTURAS DE DADOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116262 - NOCOES DE ESTRUTURAS DE DADOS                                          Turma:   
+            Disciplinas Destino:
+                  116017 - ESTRUTURAS DE DADOS E ALGORITMOS 1
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116289        -
+                                                   INTRODUCAO AOS CIRCUITOS DIGITAIS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116289 - INTRODUCAO AOS CIRCUITOS DIGITAIS                                      Turma:   
+            Disciplinas Destino:
+                  116351 - CIRCUITOS DIGITAIS
+            Válido para Opção:
+
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  12  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116301        -
+                                                   COMPUTACAO BASICA
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116301 - COMPUTACAO BASICA                                                      Turma:   
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+
+
+
+            Validade: a partir de 2000/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116301 - COMPUTACAO BASICA                                                      Turma:
+            Disciplinas Destino:
+                  113476 - Algoritmos e Programação de Computadores
+            Válido para Opção:
+
+
+
+            Validade: de 2008/2 à 2016/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116301 - COMPUTACAO BASICA                                                      Turma:
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+                  60836-Engenharia Aeroespacial
+
+
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116301 - COMPUTACAO BASICA                                                      Turma:
+            Disciplinas Destino:
+                  169676 - COMPUTACAO PARA ENGENHARIA
+            Válido para Opção:
+                   6335-ENGENHARIA ELÉTRICA
+                   6351-Engenharia de Redes de Comunicação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116319        -
+                                                   ESTRUTURAS DE DADOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2008/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116319 - ESTRUTURAS DE DADOS                                                    Turma:
+            Disciplinas Destino:
+                  193704 - Estruturas de Dados e Algoritmos
+            Válido para Opção:
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  13  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                   6009-Engenharia
+                   6131-Engenharia Eletrônica
+                   6289-Engenharia de Energia
+                   6297-Engenharia Automotiva
+                   6360-Engenharia de Software
+                  60836-Engenharia Aeroespacial
+
+
+
+            Validade: a partir de 2015/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113476 - Algoritmos e Programação de Computadores                               Turma:
+                  116319 - ESTRUTURAS DE DADOS                                                    Turma:
+            Disciplinas Destino:
+                  108561 - Algoritmos e Estrutura de Dados
+            Válido para Opção:
+                   6335-ENGENHARIA ELÉTRICA
+                   6351-Engenharia de Redes de Comunicação
+
+
+
+            Validade: a partir de 2008/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116319 - ESTRUTURAS DE DADOS                                                    Turma:
+            Disciplinas Destino:
+                  193704 - Estruturas de Dados e Algoritmos
+            Válido para Opção:
+                   1741-Engenharia de Computação
+                  60836-Engenharia Aeroespacial
+
+
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116319 - ESTRUTURAS DE DADOS                                                    Turma:
+            Disciplinas Destino:
+                  116327 - ORGANIZACAO DE ARQUIVOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116327        -
+                                                   ORGANIZACAO DE ARQUIVOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116327 - ORGANIZACAO DE ARQUIVOS                                                Turma:   
+                  116378 - BANCOS DE DADOS                                                        Turma:   
+            Disciplinas Destino:
+                  116025 - ESTRUTURAS DE DADOS E ALGORITMOS 2
+            Válido para Opção:
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  14  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116351        -
+                                                   CIRCUITOS DIGITAIS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116351 - CIRCUITOS DIGITAIS                                                     Turma:
+            Disciplinas Destino:
+                  167983 - SISTEMAS DIGITAIS 1
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+                   6335-ENGENHARIA ELÉTRICA
+                   6351-Engenharia de Redes de Comunicação
+
+
+
+            Validade: a partir de 1997/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116351 - CIRCUITOS DIGITAIS                                                     Turma:
+            Disciplinas Destino:
+                  167983 - SISTEMAS DIGITAIS 1
+            Válido para Opção:
+                   6912-Engenharia de Controle e Automação
+
+
+
+            Validade: a partir de 2009/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116351 - CIRCUITOS DIGITAIS                                                     Turma:
+            Disciplinas Destino:
+                  167983 - SISTEMAS DIGITAIS 1
+            Válido para Opção:
+                   1741-Engenharia de Computação
+
+
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116351 - CIRCUITOS DIGITAIS                                                     Turma:
+            Disciplinas Destino:
+                  129011 - Circuitos Lógicos
+                  129020 - Laboratório de Circuitos Lógicos
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+                   6912-Engenharia de Controle e Automação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116378        -
+                                                   BANCOS DE DADOS
+            Equivalência onde a disciplina é origem
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  15  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116327 - ORGANIZACAO DE ARQUIVOS                                                Turma:   
+                  116378 - BANCOS DE DADOS                                                        Turma:   
+            Disciplinas Destino:
+                  116025 - ESTRUTURAS DE DADOS E ALGORITMOS 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116394        -
+                                                   ORGANIZACAO E ARQUITETURA DE COMPUTADORES
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES                              Turma:   
+                  116432 - SOFTWARE BASICO                                                        Turma:   
+            Disciplinas Destino:
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES                              Turma:
+            Disciplinas Destino:
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+
+
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES                              Turma:
+            Disciplinas Destino:
+                  113468 - Introdução aos Sistemas Computacionais
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116416        -
+                                                   SISTEMAS DE INFORMACAO
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1997/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116416 - SISTEMAS DE INFORMACAO                                                 Turma:
+            Disciplinas Destino:
+                  202134 - Administração de Sistemas de Informação
+            Válido para Opção:
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  16  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                   8117-Administração
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116424        -
+                                                   TRANSMISSAO DE DADOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1998/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116424 - TRANSMISSAO DE DADOS                                                   Turma:
+            Disciplinas Destino:
+                  116572 - REDES DE COMPUTADORES
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116432        -
+                                                   SOFTWARE BASICO
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES                              Turma:   
+                  116432 - SOFTWARE BASICO                                                        Turma:   
+            Disciplinas Destino:
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116467        -
+                                                   SISTEMAS OPERACIONAIS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116467 - SISTEMAS OPERACIONAIS                                                  Turma:
+            Disciplinas Destino:
+                  117960 - Fundamentos de Sistemas Operacionais
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116670        -
+                                                   LEVANTAMENTO DE DADOS EM PESQUISA
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1986/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  115045 - Probabilidade e Estatística                                            Turma:   
+                  115142 - Análise Estatística                                                    Turma:   
+                  116670 - LEVANTAMENTO DE DADOS EM PESQUISA                                      Turma:   
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  17  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Destino:
+                  116084 - METODOS ESTATISTICOS PARA A ANALISE DE DADOS
+            Válido para Opção:
+                   1848-Código de opção não cadastrado
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116688        -
+                                                   FERRAMENTA DE ANALISE DE SISTEMAS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1985/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116688 - FERRAMENTA DE ANALISE DE SISTEMAS                                      Turma:   
+                  116696 - TECNICAS DE PROJETOS E IMPLEMENTACAO DE SISTEMAS                       Turma:   
+            Disciplinas Destino:
+                  117188 - ANALISE E PROJETO DE SISTEMAS
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116696        -
+                                                   TECNICAS DE PROJETOS E IMPLEMENTACAO DE SISTEMAS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1985/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116688 - FERRAMENTA DE ANALISE DE SISTEMAS                                      Turma:   
+                  116696 - TECNICAS DE PROJETOS E IMPLEMENTACAO DE SISTEMAS                       Turma:   
+            Disciplinas Destino:
+                  117188 - ANALISE E PROJETO DE SISTEMAS
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116742        -
+                                                   ESTAGIO SUPERVISIONADO
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1989/1, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116742 - ESTAGIO SUPERVISIONADO                                                 Turma:   
+            Disciplinas Destino:
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Válido para Opção:
+
+
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  18  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116785        -
+                                                   PROGRAMACAO ORIENTADA A OBJETOS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2008/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116785 - PROGRAMACAO ORIENTADA A OBJETOS                                        Turma:
+            Disciplinas Destino:
+                  195341 - Orientação a Objetos
+            Válido para Opção:
+                   6009-Engenharia
+                   6131-Engenharia Eletrônica
+                   6289-Engenharia de Energia
+                   6297-Engenharia Automotiva
+                   6360-Engenharia de Software
+                  60836-Engenharia Aeroespacial
+
+
+
+            Validade: a partir de 2008/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116785 - PROGRAMACAO ORIENTADA A OBJETOS                                        Turma:
+            Disciplinas Destino:
+                  195341 - Orientação a Objetos
+            Válido para Opção:
+                  60836-Engenharia Aeroespacial
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116793        -
+                                                   INTRODUCAO A MICROINFORMATICA
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1985/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116793 - INTRODUCAO A MICROINFORMATICA                                          Turma:   
+            Disciplinas Destino:
+                  182672 - INTRODUCAO A INFORMATICA EM CIENCIAS SOCIAIS APLICADAS
+            Válido para Opção:
+                   8222-Biblioteconomia
+
+
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116793 - INTRODUCAO A MICROINFORMATICA                                          Turma:
+            Disciplinas Destino:
+                  113492 - Formação Docente em Computação
+            Válido para Opção:
+                   1899-Computação
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  19  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116807        -
+                                                   O EMPREENDIMENTO EM INFORMATICA
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116807 - O EMPREENDIMENTO EM INFORMATICA                                        Turma:
+            Disciplinas Destino:
+                  170054 - INTRODUCAO A ATIVIDADE EMPRESARIAL
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116807 - O EMPREENDIMENTO EM INFORMATICA                                        Turma:
+            Disciplinas Destino:
+                  170054 - INTRODUCAO A ATIVIDADE EMPRESARIAL
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116823        -
+                                                   TEORIA E PRATICA PEDAGOGICA EM INFORMATICA 1
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116823 - TEORIA E PRATICA PEDAGOGICA EM INFORMATICA 1                           Turma:
+            Disciplinas Destino:
+                  121657 - Prática Pedagógica em Computação 1
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116831        -
+                                                   TEORIA E PRATICA PEDAGOGICA EM INFORMATICA 2
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116831 - TEORIA E PRATICA PEDAGOGICA EM INFORMATICA 2                           Turma:
+            Disciplinas Destino:
+                  121665 - Prática Pedagógica em Computação 2
+            Válido para Opção:
+                   1899-Computação
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  20  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116891        -
+                                                   Projeto de Licenciatura 1
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116891 - Projeto de Licenciatura 1                                              Turma:
+            Disciplinas Destino:
+                  116912 - Trabalho de Graduação 1
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+
+
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116891 - Projeto de Licenciatura 1                                              Turma:
+            Disciplinas Destino:
+                  121762 - Projeto de Pesquisa na Licenciatura em Computação
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116904        -
+                                                   Projeto de Licenciatura 2
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116904 - Projeto de Licenciatura 2                                              Turma:
+            Disciplinas Destino:
+                  121754 - Produção Cientifica na Licenciatura em Computação
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117251        -
+                                                   ARQUITETURA DE PROCESSADORES DIGITAIS
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2018/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS                                  Turma:
+                  121771 - Introdução a Sistemas Operacionais                                     Turma:
+            Disciplinas Destino:
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS
+            Válido para Opção:
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  21  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117331        -
+                                                   Supervisão de Estágio de Licenciatura - Computação
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117331 - Supervisão de Estágio de Licenciatura - Computação                     Turma:
+            Disciplinas Destino:
+                  121720 - Suprvisão de Estágio  em Licenciatura em Computação 1
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117340        -
+                                                   Estágio Supervisionado de Licenciatura - Computação
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117340 - Estágio Supervisionado de Licenciatura - Computação                    Turma:
+            Disciplinas Destino:
+                  121690 - Estágio Supervisionado em Licenciatura em Computação 1
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117889        -
+                                                   Tecnicas de Programação 1
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117889 - Tecnicas de Programação 1                                              Turma:
+            Disciplinas Destino:
+                  116785 - PROGRAMACAO ORIENTADA A OBJETOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117897        -
+                                                   Tecnicas de Programação 2
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117897 - Tecnicas de Programação 2                                              Turma:
+            Disciplinas Destino:
+                  113956 - PROGRAMACAO SISTEMATICA
+            Válido para Opção:
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  22  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117901        -
+                                                   Teoria e Aplicação de Grafos
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117901 - Teoria e Aplicação de Grafos                                           Turma:
+            Disciplinas Destino:
+                  113930 - INTRODUCAO A TEORIA DOS GRAFOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117927        -
+                                                   Segurança Computacional
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117927 - Segurança Computacional                                                Turma:
+            Disciplinas Destino:
+                  116530 - SEGURANCA DE DADOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117951        -
+                                                   Compiladores
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117951 - Compiladores                                                           Turma:
+            Disciplinas Destino:
+                  116459 - TRADUTORES
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121614        -
+                                                   Métodos de Pesquisa na Licenciatura em Computação
+            Equivalência onde a disciplina é origem
+
+            Validade: de 2018/1 à 2019/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  121614 - Métodos de Pesquisa na Licenciatura em Computação                      Turma:
+            Disciplinas Destino:
+                  117919 - Metodologia Científica
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  23  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121771        -
+                                                   Introdução a Sistemas Operacionais
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2018/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS                                  Turma:
+                  121771 - Introdução a Sistemas Operacionais                                     Turma:
+            Disciplinas Destino:
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           201600        -
+                                                   Métodos de Programação
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2010/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  201600 - Métodos de Programação                                                 Turma:
+            Disciplinas Destino:
+                  117897 - Tecnicas de Programação 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           204315        -
+                                                   Teleinformática e Redes 1
+            Equivalência onde a disciplina é origem
+
+            Validade: a partir de 2009/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  204315 - Teleinformática e Redes 1                                              Turma:
+            Disciplinas Destino:
+                  116572 - Redes de Computadores
+            Válido para Opção:
+                   1741-Engenharia de Computação
+
+
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  204315 - Teleinformática e Redes 1                                              Turma:
+            Disciplinas Destino:
+                  116572 - REDES DE COMPUTADORES
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  24  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                  204315 - Teleinformática e Redes 1                                              Turma:
+            Disciplinas Destino:
+                  116572 - REDES DE COMPUTADORES
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113468        -
+                                                   Introdução aos Sistemas Computacionais
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES                              Turma:
+            Disciplinas Destino:
+                  113468 - Introdução aos Sistemas Computacionais
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113476        -
+                                                   Algoritmos e Programação de Computadores
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2000/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116301 - COMPUTACAO BASICA                                                      Turma:
+            Disciplinas Destino:
+                  113476 - Algoritmos e Programação de Computadores
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113492        -
+                                                   Formação Docente em Computação
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116793 - INTRODUCAO A MICROINFORMATICA                                          Turma:
+            Disciplinas Destino:
+                  113492 - Formação Docente em Computação
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113913        -
+                                                   INTRODUCAO A CIENCIA DA COMPUTACAO
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  25  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Origem
+                  116220 - INTRODUCAO AO PROCESSAMENTO DE DADOS                                   Turma:   
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116301 - COMPUTACAO BASICA                                                      Turma:   
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  169676 - COMPUTACAO PARA ENGENHARIA                                             Turma:
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+
+
+
+            Validade: de 2008/2 à 2016/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116301 - COMPUTACAO BASICA                                                      Turma:
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+                  60836-Engenharia Aeroespacial
+
+
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113476 - Algoritmos e Programação de Computadores                               Turma:
+            Disciplinas Destino:
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           113956        -
+                                                   PROGRAMACAO SISTEMATICA
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116149 - TECNICAS DE PROGRAMACAO                                                Turma:   
+            Disciplinas Destino:
+                  113956 - PROGRAMACAO SISTEMATICA
+            Válido para Opção:
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  26  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117897 - Tecnicas de Programação 2                                              Turma:
+            Disciplinas Destino:
+                  113956 - PROGRAMACAO SISTEMATICA
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116009        -
+                                                   LABORATORIO DE PROGRAMACAO
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116122 - PROGRAMACAO CIENTIFICA                                                 Turma:   
+                  116131 - PROGRAMACAO COMERCIAL                                                  Turma:   
+            Disciplinas Destino:
+                  116009 - LABORATORIO DE PROGRAMACAO
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116017        -
+                                                   ESTRUTURAS DE DADOS E ALGORITMOS 1
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116262 - NOCOES DE ESTRUTURAS DE DADOS                                          Turma:   
+            Disciplinas Destino:
+                  116017 - ESTRUTURAS DE DADOS E ALGORITMOS 1
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116025        -
+                                                   ESTRUTURAS DE DADOS E ALGORITMOS 2
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116190 - ARMAZENAMENTO E RECUPERACAO DE INFORMACOES                             Turma:   
+            Disciplinas Destino:
+                  116025 - ESTRUTURAS DE DADOS E ALGORITMOS 2
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116327 - ORGANIZACAO DE ARQUIVOS                                                Turma:   
+                  116378 - BANCOS DE DADOS                                                        Turma:   
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  27  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Destino:
+                  116025 - ESTRUTURAS DE DADOS E ALGORITMOS 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116033        -
+                                                   PROJETO LOGICO DE SISTEMAS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116173 - PROJETO DE SISTEMAS 1                                                  Turma:   
+            Disciplinas Destino:
+                  116033 - PROJETO LOGICO DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116041        -
+                                                   PROJETO FISICO DE SISTEMAS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116181 - PROJETO DE SISTEMAS 2                                                  Turma:   
+            Disciplinas Destino:
+                  116041 - PROJETO FISICO DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116050        -
+                                                   LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116238 - ORGANIZACAO DE COMPUTADORES                                            Turma:   
+            Disciplinas Destino:
+                  116050 - LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116068        -
+                                                   NOCOES DE SISTEMAS OPERACIONAIS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116157 - NOCOES DE SISTEMAS OPERACIONAIS                                        Turma:   
+            Disciplinas Destino:
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  28  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS
+            Válido para Opção:
+
+
+
+            Validade: a partir de 2018/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS                                  Turma:
+                  121771 - Introdução a Sistemas Operacionais                                     Turma:
+            Disciplinas Destino:
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116076        -
+                                                   TELECOMUNICACOES E SISTEMAS DISTRIBUIDOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116246 - TELEPROCESSAMENTO                                                      Turma:   
+            Disciplinas Destino:
+                  116076 - TELECOMUNICACOES E SISTEMAS DISTRIBUIDOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116084        -
+                                                   METODOS ESTATISTICOS PARA A ANALISE DE DADOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1989/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  115118 - ESTATISTICA DOCUMENTARIA                                               Turma:   
+                  115142 - Análise Estatística                                                    Turma:   
+            Disciplinas Destino:
+                  115100 - Estatística Econômica
+                  116084 - METODOS ESTATISTICOS PARA A ANALISE DE DADOS
+            Válido para Opção:
+                   1848-Código de opção não cadastrado
+
+
+
+            Validade: a partir de 1986/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  115045 - Probabilidade e Estatística                                            Turma:   
+                  115142 - Análise Estatística                                                    Turma:   
+                  116670 - LEVANTAMENTO DE DADOS EM PESQUISA                                      Turma:   
+            Disciplinas Destino:
+                  116084 - METODOS ESTATISTICOS PARA A ANALISE DE DADOS
+            Válido para Opção:
+                   1848-Código de opção não cadastrado
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  29  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116092        -
+                                                   ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116211 - ESTAGIO SUPERVISIONADO EM PROCESSAMENTO DE DADOS                       Turma:   
+            Disciplinas Destino:
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1989/1, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116742 - ESTAGIO SUPERVISIONADO                                                 Turma:   
+            Disciplinas Destino:
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116106        -
+                                                   ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116211 - ESTAGIO SUPERVISIONADO EM PROCESSAMENTO DE DADOS                       Turma:   
+            Disciplinas Destino:
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1989/1, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116742 - ESTAGIO SUPERVISIONADO                                                 Turma:   
+            Disciplinas Destino:
+                  116092 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 1
+                  116106 - ESTAGIO SUPERVISIONADO EM ANALISE DE SISTEMAS 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116114        -
+                                                   SEMINARIO EM ADMINISTRACAO DE CPD
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  30  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Origem
+                  116165 - ADMINISTRACAO DE CPD                                                   Turma:   
+            Disciplinas Destino:
+                  116114 - SEMINARIO EM ADMINISTRACAO DE CPD
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116220        -
+                                                   INTRODUCAO AO PROCESSAMENTO DE DADOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:   
+            Disciplinas Destino:
+                  116220 - INTRODUCAO AO PROCESSAMENTO DE DADOS
+            Válido para Opção:
+                   6165-Agronomia
+                   6521-ENGENHARIA FLORESTAL
+                   8222-Biblioteconomia
+                   8516-Ciências Contábeis
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116289        -
+                                                   INTRODUCAO AOS CIRCUITOS DIGITAIS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1989/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+            Disciplinas Destino:
+                  116289 - INTRODUCAO AOS CIRCUITOS DIGITAIS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116301        -
+                                                   COMPUTACAO BASICA
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:   
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1971/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116122 - PROGRAMACAO CIENTIFICA                                                 Turma:   
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  31  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+                   1821-Código de opção não cadastrado
+                   1830-Código de opção não cadastrado
+                   1848-Código de opção não cadastrado
+                   1856-Ciência da Computação
+
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116220 - INTRODUCAO AO PROCESSAMENTO DE DADOS                                   Turma:   
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113476 - Algoritmos e Programação de Computadores                               Turma:
+            Disciplinas Destino:
+                  116301 - COMPUTACAO BASICA
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116319        -
+                                                   ESTRUTURAS DE DADOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116017 - ESTRUTURAS DE DADOS E ALGORITMOS 1                                     Turma:   
+            Disciplinas Destino:
+                  116319 - ESTRUTURAS DE DADOS
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  193704 - Estruturas de Dados e Algoritmos                                       Turma:
+            Disciplinas Destino:
+                  116319 - ESTRUTURAS DE DADOS
+            Válido para Opção:
+                   6351-Engenharia de Redes de Comunicação
+                   6912-Engenharia de Controle e Automação
+
+
+
+            Validade: a partir de 2008/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  193704 - Estruturas de Dados e Algoritmos                                       Turma:
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  32  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Destino:
+                  116319 - ESTRUTURAS DE DADOS
+            Válido para Opção:
+                   1741-Engenharia de Computação
+                  60836-Engenharia Aeroespacial
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116327        -
+                                                   ORGANIZACAO DE ARQUIVOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116319 - ESTRUTURAS DE DADOS                                                    Turma:
+            Disciplinas Destino:
+                  116327 - ORGANIZACAO DE ARQUIVOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116351        -
+                                                   CIRCUITOS DIGITAIS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116289 - INTRODUCAO AOS CIRCUITOS DIGITAIS                                      Turma:   
+            Disciplinas Destino:
+                  116351 - CIRCUITOS DIGITAIS
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  167983 - SISTEMAS DIGITAIS 1                                                    Turma:
+            Disciplinas Destino:
+                  116351 - CIRCUITOS DIGITAIS
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1993/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  119466 - Prática de Eletrônica Digital 1                                        Turma:
+                  119482 - Teoria de Eletrônica Digital 1                                         Turma:
+            Disciplinas Destino:
+                  116351 - CIRCUITOS DIGITAIS
+            Válido para Opção:
+
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  33  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116378        -
+                                                   BANCOS DE DADOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116025 - ESTRUTURAS DE DADOS E ALGORITMOS 2                                     Turma:   
+            Disciplinas Destino:
+                  116378 - BANCOS DE DADOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116394        -
+                                                   ORGANIZACAO E ARQUITETURA DE COMPUTADORES
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1988/1, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116050 - LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES                  Turma:   
+            Disciplinas Destino:
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116416        -
+                                                   INTRODUCAO A SISTEMAS DE INFORMACAO
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116203 - INTRODUCAO A SISTEMAS DE INFORMACOES                                   Turma:   
+            Disciplinas Destino:
+                  116416 - INTRODUCAO A SISTEMAS DE INFORMACAO
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1997/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  202134 - Administração de Sistemas de Informação                                Turma:
+            Disciplinas Destino:
+                  116416 - SISTEMAS DE INFORMACAO
+            Válido para Opção:
+                   8117-Administração
+                   8150-Administração
+
+
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  34  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116416        -
+                                                   SISTEMAS DE INFORMACAO
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116203 - INTRODUCAO A SISTEMAS DE INFORMACOES                                   Turma:   
+            Disciplinas Destino:
+                  116416 - INTRODUCAO A SISTEMAS DE INFORMACAO
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1997/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  202134 - Administração de Sistemas de Informação                                Turma:
+            Disciplinas Destino:
+                  116416 - SISTEMAS DE INFORMACAO
+            Válido para Opção:
+                   8117-Administração
+                   8150-Administração
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116424        -
+                                                   TRANSMISSAO DE DADOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116076 - TELECOMUNICACOES E SISTEMAS DISTRIBUIDOS                               Turma:   
+            Disciplinas Destino:
+                  116424 - TRANSMISSAO DE DADOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116432        -
+                                                   SOFTWARE BASICO
+            Equivalência onde a disciplina é destino
+
+            Validade: de 1971/2 à 1987/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116050 - LINGUAGEM DE MONTADORES E ORGANIZACAO DE COMPUTADORES                  Turma:   
+            Disciplinas Destino:
+                  116432 - SOFTWARE BASICO
+            Válido para Opção:
+
+
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  35  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116459        -
+                                                   TRADUTORES
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113964 - INTRODUCAO A COMPILACAO                                                Turma:   
+            Disciplinas Destino:
+                  116459 - TRADUTORES
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117951 - Compiladores                                                           Turma:
+            Disciplinas Destino:
+                  116459 - TRADUTORES
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116467        -
+                                                   SISTEMAS OPERACIONAIS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS                                        Turma:   
+            Disciplinas Destino:
+                  116467 - SISTEMAS OPERACIONAIS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116530        -
+                                                   SEGURANCA DE DADOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117927 - Segurança Computacional                                                Turma:
+            Disciplinas Destino:
+                  116530 - SEGURANCA DE DADOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116572        -
+                                                   Redes de Computadores
+            Equivalência onde a disciplina é destino
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  36  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Validade: a partir de 2009/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  204315 - Teleinformática e Redes 1                                              Turma:
+            Disciplinas Destino:
+                  116572 - Redes de Computadores
+            Válido para Opção:
+                   1741-Engenharia de Computação
+
+
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  204315 - Teleinformática e Redes 1                                              Turma:
+            Disciplinas Destino:
+                  116572 - REDES DE COMPUTADORES
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  204315 - Teleinformática e Redes 1                                              Turma:
+            Disciplinas Destino:
+                  116572 - REDES DE COMPUTADORES
+            Válido para Opção:
+                   1899-Computação
+
+
+
+            Validade: a partir de 1998/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116424 - TRANSMISSAO DE DADOS                                                   Turma:
+            Disciplinas Destino:
+                  116572 - REDES DE COMPUTADORES
+            Válido para Opção:
+
+
+
+            Validade: a partir de 2004/1, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  167959 - FUNDAMENTOS DE REDES                                                   Turma:
+            Disciplinas Destino:
+                  116572 - Redes de Computadores
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116602        -
+                                                   SISTEMAS DISTRIBUIDOS
+            Equivalência onde a disciplina é destino
+
+            Validade: de 1988/1 à 1988/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116254 - TOPICOS ESPECIAIS EM COMPUTACAO                                        Turma:   
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  37  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Disciplinas Destino:
+                  116602 - SISTEMAS DISTRIBUIDOS
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116637        -
+                                                   PROGRAMACAO FUNCIONAL
+            Equivalência onde a disciplina é destino
+
+            Validade: de 1987/1 à 1987/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116637 - PROGRAMACAO FUNCIONAL
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+
+
+
+            Validade: de 1988/1 à 1988/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116637 - PROGRAMACAO FUNCIONAL
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116645        -
+                                                   PROGRAMACAO EM LOGICA
+            Equivalência onde a disciplina é destino
+
+            Validade: de 1987/2 à 1987/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116009 - LABORATORIO DE PROGRAMACAO                                             Turma:   
+            Disciplinas Destino:
+                  116645 - PROGRAMACAO EM LOGICA
+            Válido para Opção:
+                   1821-PROCESSAMENTO DE DADOS
+                   1830-COMPUTAÇÃO CIENTÍFICA
+                   1848-ANÁLISE DE SISTEMAS
+                   1856-Código de opção não cadastrado
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  38  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116688        -
+                                                   FERRAMENTA DE ANALISE DE SISTEMAS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116033 - PROJETO LOGICO DE SISTEMAS                                             Turma:   
+            Disciplinas Destino:
+                  116688 - FERRAMENTA DE ANALISE DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116696        -
+                                                   TECNICAS DE PROJETOS E IMPLEMENTACAO DE SISTEMAS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116041 - PROJETO FISICO DE SISTEMAS                                             Turma:   
+            Disciplinas Destino:
+                  116696 - TECNICAS DE PROJETOS E IMPLEMENTACAO DE SISTEMAS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116785        -
+                                                   PROGRAMACAO ORIENTADA A OBJETOS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  117889 - Tecnicas de Programação 1                                              Turma:
+            Disciplinas Destino:
+                  116785 - PROGRAMACAO ORIENTADA A OBJETOS
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116793        -
+                                                   INTRODUCAO A MICROINFORMATICA
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:   
+            Disciplinas Destino:
+                  116793 - INTRODUCAO A MICROINFORMATICA
+            Válido para Opção:
+                   5380-Programação Visual
+                   5398-PROJETO DO PRODUTO
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  39  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  182672 - INTRODUCAO A INFORMATICA EM CIENCIAS SOCIAIS APLICADAS                 Turma:   
+            Disciplinas Destino:
+                  116793 - INTRODUCAO A MICROINFORMATICA
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1991/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113913 - INTRODUCAO A CIENCIA DA COMPUTACAO                                     Turma:
+            Disciplinas Destino:
+                  116793 - INTRODUCAO A MICROINFORMATICA
+            Válido para Opção:
+                   8192-Arquivologia
+                   8222-Biblioteconomia
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116807        -
+                                                   O EMPREENDIMENTO EM INFORMATICA
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  170054 - INTRODUCAO A ATIVIDADE EMPRESARIAL                                     Turma:
+            Disciplinas Destino:
+                  116807 - O EMPREENDIMENTO EM INFORMATICA
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           116912        -
+                                                   Trabalho de Graduação 1
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116891 - Projeto de Licenciatura 1                                              Turma:
+            Disciplinas Destino:
+                  116912 - Trabalho de Graduação 1
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117188        -
+                                                   ANALISE E PROJETO DE SISTEMAS
+            Equivalência onde a disciplina é destino
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  40  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Validade: a partir de 1985/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116688 - FERRAMENTA DE ANALISE DE SISTEMAS                                      Turma:   
+                  116696 - TECNICAS DE PROJETOS E IMPLEMENTACAO DE SISTEMAS                       Turma:   
+            Disciplinas Destino:
+                  117188 - ANALISE E PROJETO DE SISTEMAS
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117226        -
+                                                   INTRODUCAO A PROGRAMACAO CIENTIFICA
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2005/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  118800 - Programação para Sistemas Físicos                                      Turma:
+            Disciplinas Destino:
+                  117226 - INTRODUCAO A PROGRAMACAO CIENTIFICA
+            Válido para Opção:
+                   1155-Código de opção não cadastrado
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117251        -
+                                                   ARQUITETURA DE PROCESSADORES DIGITAIS
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES                              Turma:   
+                  116432 - SOFTWARE BASICO                                                        Turma:   
+            Disciplinas Destino:
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS
+            Válido para Opção:
+
+
+
+            Validade: a partir de 1997/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116394 - ORGANIZACAO E ARQUITETURA DE COMPUTADORES                              Turma:
+            Disciplinas Destino:
+                  117251 - ARQUITETURA DE PROCESSADORES DIGITAIS
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117366        -
+                                                   Lógica Computacional 1
+            Equivalência onde a disciplina é destino
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  41  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Validade: a partir de 1988/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117358 - Lógica Matemática e Computacional                                      Turma:
+            Disciplinas Destino:
+                  117366 - Lógica Computacional 1
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117897        -
+                                                   Tecnicas de Programação 2
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2010/2, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  201600 - Métodos de Programação                                                 Turma:
+            Disciplinas Destino:
+                  117897 - Tecnicas de Programação 2
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117919        -
+                                                   Metodologia Científica
+            Equivalência onde a disciplina é destino
+
+            Validade: de 2018/1 à 2019/2, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  121614 - Métodos de Pesquisa na Licenciatura em Computação                      Turma:
+            Disciplinas Destino:
+                  117919 - Metodologia Científica
+            Válido para Opção:
+                   1856-Ciência da Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           117960        -
+                                                   Fundamentos de Sistemas Operacionais
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1971/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116467 - SISTEMAS OPERACIONAIS                                                  Turma:
+            Disciplinas Destino:
+                  117960 - Fundamentos de Sistemas Operacionais
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121657        -
+                                                   Prática Pedagógica em Computação 1
+            Equivalência onde a disciplina é destino
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  42  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116823 - TEORIA E PRATICA PEDAGOGICA EM INFORMATICA 1                           Turma:
+            Disciplinas Destino:
+                  121657 - Prática Pedagógica em Computação 1
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121665        -
+                                                   Prática Pedagógica em Computação 2
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116831 - TEORIA E PRATICA PEDAGOGICA EM INFORMATICA 2                           Turma:
+            Disciplinas Destino:
+                  121665 - Prática Pedagógica em Computação 2
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121690        -
+                                                   Estágio Supervisionado em Licenciatura em Computação 1
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117340 - Estágio Supervisionado de Licenciatura - Computação                    Turma:
+            Disciplinas Destino:
+                  121690 - Estágio Supervisionado em Licenciatura em Computação 1
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121720        -
+                                                   Suprvisão de Estágio  em Licenciatura em Computação 1
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  117331 - Supervisão de Estágio de Licenciatura - Computação                     Turma:
+            Disciplinas Destino:
+                  121720 - Suprvisão de Estágio  em Licenciatura em Computação 1
+            Válido para Opção:
+                   1899-Computação
+
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  43  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121754        -
+                                                   Produção Cientifica na Licenciatura em Computação
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116904 - Projeto de Licenciatura 2                                              Turma:
+            Disciplinas Destino:
+                  121754 - Produção Cientifica na Licenciatura em Computação
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121762        -
+                                                   Projeto de Pesquisa na Licenciatura em Computação
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116891 - Projeto de Licenciatura 1                                              Turma:
+            Disciplinas Destino:
+                  121762 - Projeto de Pesquisa na Licenciatura em Computação
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           121771        -
+                                                   Introdução a Sistemas Operacionais
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2002/1, abrangência: Opção, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  116068 - NOCOES DE SISTEMAS OPERACIONAIS                                        Turma:
+            Disciplinas Destino:
+                  121771 - Introdução a Sistemas Operacionais
+            Válido para Opção:
+                   1899-Computação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           129011        -
+                                                   Circuitos Lógicos
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116351 - CIRCUITOS DIGITAIS                                                     Turma:
+            Disciplinas Destino:
+                  129011 - Circuitos Lógicos
+                  129020 - Laboratório de Circuitos Lógicos
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
+
+
+
+
+            Universidade de Brasília                                                                             Página:
+                                                                                                                                  44  de          44
+            Secretaria de Administração Acadêmica                                                                Emissão:
+                                                                                                                                 02/07/2019     19:04
+            Equivalência de Disciplinas
+
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+                   6912-Engenharia de Controle e Automação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           129020        -
+                                                   Laboratório de Circuitos Lógicos
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 1988/2, abrangência: Opção, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  116351 - CIRCUITOS DIGITAIS                                                     Turma:
+            Disciplinas Destino:
+                  129011 - Circuitos Lógicos
+                  129020 - Laboratório de Circuitos Lógicos
+            Válido para Opção:
+                   1856-Ciência da Computação
+                   1899-Computação
+                   6912-Engenharia de Controle e Automação
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           201600        -
+                                                   Métodos de Programação
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2011/1, abrangência: Geral, deferido: Sim, direção: Bidirecional
+            Disciplinas Origem
+                  113956 - PROGRAMACAO SISTEMATICA                                                Turma:
+            Disciplinas Destino:
+                  201600 - Métodos de Programação
+            Válido para Opção:
+
+
+            _____________________________________________________________________________________________________________
+            Orgão Responsável:
+                                       CIC
+                                               -
+                                                 Departamento de Ciência da Computação
+            Disciplina           206075        -
+                                                   Sinais e Sistemas
+            Equivalência onde a disciplina é destino
+
+            Validade: a partir de 2009/2, abrangência: Geral, deferido: Sim, direção: Unidirecional
+            Disciplinas Origem
+                  120952 - Sinais e Sístemas Para Engenharia                                      Turma:
+            Disciplinas Destino:
+                  206075 - Sinais e Sistemas
+            Válido para Opção:
+
+
+
+
+
+
+
+            ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                                        lstcrrege
+
+
+
+
+
+
