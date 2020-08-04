@@ -3,9 +3,11 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import { Book, Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
+import Zoom from '@material-ui/core/Zoom';
 import Fade from '@material-ui/core/Fade';
 
 import api from '../../services/api';
+import { useToast } from '../../hooks/toasts';
 
 import Graphic from './graphic';
 import Header from '../../components/Header';
@@ -22,6 +24,10 @@ import {
   OrLine,
   InfoGeralContainer,
   InfoContainer,
+  EquivalencesContainer,
+  EquivalenceBox,
+  NoEquivalences,
+  CardFeatureContainer,
 } from './styles';
 
 /*
@@ -48,6 +54,25 @@ export interface Grades {
   };
 }
 
+export interface Equivalence {
+  coverage: string;
+  direction: string;
+  destination: {
+    code: number;
+    subject_name: string;
+    credit: number;
+  };
+  subject: {
+    code: number;
+    subject_name: string;
+    credit: number;
+  };
+  options: {
+    code: number;
+    name: string;
+  }[];
+}
+
 export interface Subject {
   name: string;
   credit: number;
@@ -56,6 +81,7 @@ export interface Subject {
   pass_percent: number;
   prerequisites: Prereq[][];
   grade_infos: Grades[];
+  equivalences: Equivalence[];
 }
 
 const Subject: React.FC = () => {
@@ -63,6 +89,8 @@ const Subject: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
 
   const [subject, setSubject] = useState<Subject | null>(null);
+
+  const { addToast } = useToast();
 
   const { subject_id } = useParams();
   const history = useHistory();
@@ -82,8 +110,18 @@ const Subject: React.FC = () => {
         setSubject(subjectAPI);
         setLoading(false);
       });
-    } catch (err) {}
-  }, [subject_id]);
+    } catch (err) {
+      setLoading(false);
+
+      addToast({
+        type: 'error',
+        title: 'Erro ao carregar a disciplina',
+        description: 'Tente novamente mais tarde',
+      });
+
+      history.push(`/subjects`);
+    }
+  }, [subject_id, addToast, history]);
 
   const handleNewSubject = useCallback(
     (subject_code: number) => {
@@ -147,6 +185,56 @@ const Subject: React.FC = () => {
             </InfoGeralContainer>
           </Grow>
 
+          <CardFeatureContainer window={windowCheck}>
+            <h4>Equivalências</h4>
+
+            <EquivalencesContainer window={windowCheck}>
+              {subject.equivalences.length === 0 && (
+                <NoEquivalences window={windowCheck}>
+                  Disciplina não possui equivalências.
+                </NoEquivalences>
+              )}
+
+              {subject.equivalences.map(equivalence => (
+                <Zoom
+                  in={!loading}
+                  style={{ transitionDelay: !loading ? '500ms' : '0ms' }}
+                >
+                  <EquivalenceBox
+                    window={windowCheck}
+                    onClick={() =>
+                      handleNewSubject(equivalence.destination.code)
+                    }
+                  >
+                    <h5>{equivalence.destination.subject_name}</h5>
+                    <ul>
+                      <li>{`${equivalence.destination.credit} créditos`}</li>
+                      <li>{equivalence.direction}</li>
+                      {equivalence.options.length === 0 && (
+                        <li>{`Equivalência ${equivalence.coverage}`}</li>
+                      )}
+                      {equivalence.options.length !== 0 && (
+                        <>
+                          <li>Cursos para equivalência:</li>
+                          <ul>
+                            {equivalence.options.length !== 0 &&
+                              equivalence.options.map(option => (
+                                <li>{option.name}</li>
+                              ))}
+                          </ul>
+                        </>
+                      )}
+                    </ul>
+                  </EquivalenceBox>
+                </Zoom>
+              ))}
+            </EquivalencesContainer>
+          </CardFeatureContainer>
+
+          {subject.grade_infos && (
+            <Graphic window={windowCheck} subject={subject} />
+          )}
+
           <FeaturesContainer window={windowCheck}>
             <div className="container">
               <h4>Pré-requisitos:</h4>
@@ -188,8 +276,6 @@ const Subject: React.FC = () => {
               ))}
             </div>
           </FeaturesContainer>
-
-          <Graphic window={windowCheck} subject={subject} />
         </Container>
       )}
     </>
