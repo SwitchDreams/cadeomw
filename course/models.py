@@ -205,14 +205,20 @@ class Equivalence(models.Model):
             "direction": self.direction,
             "destination": self.destination.to_json(),
             "subject": self.subject.to_json(),
-            "options": [op.course for op in self.options.all()]
+            "options": [op.to_json() for op in self.options.all()]
         }
 
 
 # Classe que armazena um curso e a qual equivalência ele se refere
 class Option(models.Model):
-    course = models.CharField(max_length=6)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="subject_option")
     equivalence = models.ForeignKey(Equivalence, on_delete=models.CASCADE, related_name="options")
+
+    def to_json(self):
+        return {
+            "code": self.course.code,
+            "name": self.course.name
+        }
 
 
 # Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
