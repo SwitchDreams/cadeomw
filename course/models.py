@@ -71,6 +71,12 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
 
+    def equivalences(self):
+        equivalences = []
+        for equivalence in self.subject_eq.all():
+            equivalences.append(equivalence.to_json())
+        return equivalences
+    
     def to_json(self):
         return {"code": self.code, "subject_name": self.name,
                 "credit": self.credit}
@@ -137,7 +143,6 @@ class Subject(models.Model):
             grade_list.append(value)
         return grade_list
 
-
 # Classe que armazena as disciplinas do curso com o semestre
 class CourseSubject(models.Model):
     STATUS = (
@@ -185,6 +190,27 @@ class PreRequisiteSet(models.Model):
 class PreRequisite(models.Model):
     prerequisite_set = models.ForeignKey(PreRequisiteSet, on_delete=models.CASCADE, related_name='prerequisite')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
+
+class Equivalence(models.Model):
+    coverage = models.CharField(max_length=10)
+    destination = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='destination_eq')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='subject_eq')
+    direction =  models.CharField(max_length=14)
+
+    def to_json(self):
+        return {
+            "coverage": self.coverage,
+            "direction": self.direction,
+            "destination": self.destination.to_json(),
+            "subject": self.subject.to_json(),
+            "options": [op.course for op in self.options.all()]
+        }
+
+# Classe que armazena um curso e a qual equivalência ele se refere
+class Option(models.Model):
+    course = models.CharField(max_length=6)
+    equivalence = models.ForeignKey(Equivalence, on_delete=models.CASCADE, related_name="options")
+
 
 # Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
 from course.scripts.graph_flow_course import do_graph
