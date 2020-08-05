@@ -37,7 +37,7 @@ export const LandingText = styled.div`
     p {
       font-size: 20px;
       font-weight: bold;
-      text-transform: capitalize;
+      text-transform: initial;
       color: white;
     }
   }
@@ -118,24 +118,32 @@ export const AboutFeatures = styled.section`
 `;
 
 export const ListContainer = styled.div`
-  h2 {
-    color: #222;
-    font-size: 40px;
-    font-weight: bold;
-    text-transform: capitalize;
-    padding-bottom: 20px;
+  .title-text {
+    h2 {
+      color: #222;
+      font-size: 40px;
+      font-weight: bold;
+      text-transform: capitalize;
+      padding-bottom: 5px;
 
-    &::after {
-      content: '';
-      height: 3px;
-      width: 200px;
-      background-color: #7c4fe0;
-      display: block;
-      margin: 10px 0;
+      &::after {
+        content: '';
+        height: 3px;
+        width: 200px;
+        background-color: #7c4fe0;
+        display: block;
+        margin: 10px 0;
+      }
+    }
+
+    p {
+      padding-bottom: 10px;
     }
   }
 
   ul {
+    padding: 10px 0;
+
     li {
       padding: 8px 0;
       list-style: none;
@@ -173,3 +181,56 @@ export const ListContainer = styled.div`
     }
   }
 `;
+
+export const AboutUsContainer = styled.div`
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    h2 {
+      font-size: 40px;
+      font-weight: bold;
+      text-transform: capitalize;
+      text-align: center;
+      margin-bottom: 80px;
+
+      &::after {
+        content: '';
+        height: 3px;
+        width: 200px;
+        background-color: #7c4fe0;
+        display: block;
+        margin: 10px auto;
+      }
+    }
+
+    .person {
+      display: flex;
+      flex-direction: row;
+      margin: 0 50px;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+
+      .contact {
+        margin-left: 10px;
+
+        .insta {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          svg {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const PersonContainer = styled.div``;

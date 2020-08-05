@@ -1,6 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Grid, Hidden } from '@material-ui/core';
 import { Book } from '@material-ui/icons';
+import { FiBarChart2, FiInstagram } from 'react-icons/fi';
+import { AiOutlineCluster } from 'react-icons/ai';
+import { BsArrowLeftRight, BsCalendarFill } from 'react-icons/bs';
+import { MdLineStyle } from 'react-icons/md';
+import { GoCheck } from 'react-icons/go';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 import {
@@ -10,9 +16,11 @@ import {
   FeaturesContainer,
   AboutFeatures,
   ListContainer,
+  AboutUsContainer,
 } from './styles';
 
 import antigaUnB from '../../assets/unb_antiga.jpg';
+import avatarPlaceholder from '../../assets/avatar-placeholder.gif';
 
 /*
 Página principal - Bahia
@@ -49,10 +57,11 @@ const Dashboard: React.FC = () => {
         <div className="container">
           <h2>O que você vai encontrar aqui?</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. In deserunt
-            ducimus qui labore architecto magni doloribus dolorum harum
-            reiciendis vero tenetur dolore laboriosam, sit debitis libero nam
-            similique sint vitae?
+            Com a recente notícia de que o Matrícula Web daria lugar para o
+            SIGAA, muitos jovens universitários se viram surtados com um
+            ambiente pouco intuitivo. Oferecemos um sistema que auxilia o
+            processo de matrícula, dispondo informações úteis para o aluno de
+            uma maneira mais amigável.
           </p>
         </div>
       </FirstTextContainer>
@@ -68,27 +77,27 @@ const Dashboard: React.FC = () => {
           >
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Fully functional"
-                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
-                Logo={Book}
-                logoColor="#7c4fe0"
+                title="Estatísticas"
+                text="Navegue pelas disciplinas e tenha acesso a estatísticas de menções de semestres anteriores."
+                Logo={FiBarChart2}
+                logoColor="#39f7f1"
               />
             </Grid>
 
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Fully functional"
-                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
-                Logo={Book}
-                logoColor="#7c4fe0"
+                title="Equivalências"
+                text="Veja em um único lugar as equivalências e pré-requisitos da disciplina selecionada"
+                Logo={BsArrowLeftRight}
+                logoColor="#f90"
               />
             </Grid>
 
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Fully functional"
-                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
-                Logo={Book}
+                title="Cursos"
+                text="Relembre o fluxo do seu curso, já que você não memorizou e não sabe achar no SIGAA"
+                Logo={AiOutlineCluster}
                 logoColor="#7c4fe0"
               />
             </Grid>
@@ -101,24 +110,57 @@ const Dashboard: React.FC = () => {
           <Grid container direction="row" justify="center" spacing={3}>
             <Grid item xs={12} sm={12} md={6}>
               <ListContainer>
-                <h2>Este é um H2 top</h2>
+                <div className="title-text">
+                  <h2>O que está por vir?</h2>
+                  <p>
+                    É... não deu pra fazer tudo, mas em breve teremos isso aqui:
+                  </p>
+                </div>
                 <ul>
                   <div>
                     <li>
                       <div className="logo">
                         <span>
-                          <Book style={{ fontSize: 30 }} />
+                          <MdLineStyle style={{ fontSize: 30 }} />
                         </span>
                       </div>
                       <div className="text">
                         <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Fuga recusandae, temporibus error exercitationem
-                          sequi ducimus repellat rem ex consequuntur mollitia.
+                          Mostraremos a oferta dos departamentos de uma maneira
+                          mais amigável, para que a sua única preocupação seja
+                          conseguir a matéria.
                         </p>
                       </div>
                     </li>
                     <li>
+                      <div className="logo">
+                        <span>
+                          <BsCalendarFill style={{ fontSize: 25 }} />
+                        </span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Não sabe com que matéria ocupar a sua janela? O
+                          gerador de grade horária irá te ajudar a passar menos
+                          tempo no CA.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="logo">
+                        <span>
+                          <GoCheck style={{ fontSize: 30 }} />
+                        </span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Qual turma escolher dentre as tantas opções? Migué ou
+                          Hardcore? Visualize as estatísticas de menções dos
+                          semestres anteriores divididas por turma.
+                        </p>
+                      </div>
+                    </li>
+                    {/* <li>
                       <div className="logo">
                         <span>
                           <Book style={{ fontSize: 30 }} />
@@ -131,35 +173,7 @@ const Dashboard: React.FC = () => {
                           sequi ducimus repellat rem ex consequuntur mollitia.
                         </p>
                       </div>
-                    </li>
-                    <li>
-                      <div className="logo">
-                        <span>
-                          <Book style={{ fontSize: 30 }} />
-                        </span>
-                      </div>
-                      <div className="text">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Fuga recusandae, temporibus error exercitationem
-                          sequi ducimus repellat rem ex consequuntur mollitia.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="logo">
-                        <span>
-                          <Book style={{ fontSize: 30 }} />
-                        </span>
-                      </div>
-                      <div className="text">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Fuga recusandae, temporibus error exercitationem
-                          sequi ducimus repellat rem ex consequuntur mollitia.
-                        </p>
-                      </div>
-                    </li>
+                    </li> */}
                   </div>
                 </ul>
               </ListContainer>
@@ -173,7 +187,89 @@ const Dashboard: React.FC = () => {
         </div>
       </AboutFeatures>
 
-      {/* <ParallaxImage /> */}
+      <AboutUsContainer>
+        <div className="container">
+          <h2>E quem somos nós?</h2>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={3}
+          >
+            <Hidden smDown>
+              <Grid item xs={12} md={1} sm={12} />
+            </Hidden>
+            <Grid item xs={12} md={2} sm={12}>
+              <div className="person">
+                <img src={avatarPlaceholder} alt="avatar" />
+                <div className="contact">
+                  <h6>Bruna Azambuja</h6>
+                  <div className="insta">
+                    <FiInstagram />
+                    <Link to="www.google.com">@nseioq</Link>
+                  </div>
+                </div>
+              </div>
+            </Grid>
+
+            <Grid item xs={12} md={2} sm={12}>
+              <div className="person">
+                <img src={avatarPlaceholder} alt="avatar" />
+                <div className="contact">
+                  <h6>João Pedro Assis</h6>
+                  <div className="insta">
+                    <FiInstagram />
+                    <Link to="www.google.com">@nseioq</Link>
+                  </div>
+                </div>
+              </div>
+            </Grid>
+
+            <Grid item xs={12} md={2} sm={12}>
+              <div className="person">
+                <img src={avatarPlaceholder} alt="avatar" />
+                <div className="contact">
+                  <h6>Waliff Cordeiro</h6>
+                  <div className="insta">
+                    <FiInstagram />
+                    <Link to="www.google.com">@nseioq</Link>
+                  </div>
+                </div>
+              </div>
+            </Grid>
+
+            <Grid item xs={12} md={2} sm={12}>
+              <div className="person">
+                <img src={avatarPlaceholder} alt="avatar" />
+                <div className="contact">
+                  <h6>Pedro Augusto</h6>
+                  <div className="insta">
+                    <FiInstagram />
+                    <Link to="www.google.com">@nseioq</Link>
+                  </div>
+                </div>
+              </div>
+            </Grid>
+
+            <Grid item xs={12} md={2} sm={12}>
+              <div className="person">
+                <img src={avatarPlaceholder} alt="avatar" />
+                <div className="contact">
+                  <h6>Lucas Azuma</h6>
+                  <div className="insta">
+                    <FiInstagram />
+                    <Link to="www.google.com">@nseioq</Link>
+                  </div>
+                </div>
+              </div>
+            </Grid>
+            <Hidden smDown>
+              <Grid item xs={12} md={1} sm={12} />
+            </Hidden>
+          </Grid>
+        </div>
+      </AboutUsContainer>
       <div style={{ height: 300 }} />
     </>
   );
