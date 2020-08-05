@@ -22,6 +22,12 @@ import {
 import antigaUnB from '../../assets/unb_antiga.jpg';
 import avatarPlaceholder from '../../assets/avatar-placeholder.gif';
 
+import fotoBahia from '../../assets/perfil_bahia.jpeg';
+import fotoBruna from '../../assets/perfil_bruna.png';
+import fotoPedro from '../../assets/perfil_pedro.jpeg';
+import fotoWaliff from '../../assets/perfil_waliff.png';
+import fotoJapa from '../../assets/perfil_japa.jpeg';
+
 /*
 Página principal - Bahia
 */
@@ -160,20 +166,6 @@ const Dashboard: React.FC = () => {
                         </p>
                       </div>
                     </li>
-                    {/* <li>
-                      <div className="logo">
-                        <span>
-                          <Book style={{ fontSize: 30 }} />
-                        </span>
-                      </div>
-                      <div className="text">
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Fuga recusandae, temporibus error exercitationem
-                          sequi ducimus repellat rem ex consequuntur mollitia.
-                        </p>
-                      </div>
-                    </li> */}
                   </div>
                 </ul>
               </ListContainer>
@@ -188,8 +180,9 @@ const Dashboard: React.FC = () => {
       </AboutFeatures>
 
       <AboutUsContainer>
+        <h2>E quem somos nós?</h2>
+        <p>saiba mais da motivação do projeto na página de contato!</p>
         <div className="container">
-          <h2>E quem somos nós?</h2>
           <Grid
             container
             direction="row"
@@ -197,30 +190,14 @@ const Dashboard: React.FC = () => {
             alignItems="center"
             spacing={3}
           >
-            <Hidden smDown>
-              <Grid item xs={12} md={1} sm={12} />
-            </Hidden>
             <Grid item xs={12} md={2} sm={12}>
               <div className="person">
-                <img src={avatarPlaceholder} alt="avatar" />
-                <div className="contact">
-                  <h6>Bruna Azambuja</h6>
-                  <div className="insta">
-                    <FiInstagram />
-                    <Link to="www.google.com">@nseioq</Link>
-                  </div>
-                </div>
-              </div>
-            </Grid>
-
-            <Grid item xs={12} md={2} sm={12}>
-              <div className="person">
-                <img src={avatarPlaceholder} alt="avatar" />
+                <img src={fotoBahia} alt="avatar" />
                 <div className="contact">
                   <h6>João Pedro Assis</h6>
                   <div className="insta">
                     <FiInstagram />
-                    <Link to="www.google.com">@nseioq</Link>
+                    <Link to="www.google.com">@joaopedro.assis.3</Link>
                   </div>
                 </div>
               </div>
@@ -228,12 +205,25 @@ const Dashboard: React.FC = () => {
 
             <Grid item xs={12} md={2} sm={12}>
               <div className="person">
-                <img src={avatarPlaceholder} alt="avatar" />
+                <img src={fotoBruna} alt="avatar" />
+                <div className="contact">
+                  <h6>Bruna Azambuja</h6>
+                  <div className="insta">
+                    <FiInstagram />
+                    <Link to="www.google.com">@bru_azambuja</Link>
+                  </div>
+                </div>
+              </div>
+            </Grid>
+
+            <Grid item xs={12} md={2} sm={12}>
+              <div className="person">
+                <img src={fotoWaliff} alt="avatar" />
                 <div className="contact">
                   <h6>Waliff Cordeiro</h6>
                   <div className="insta">
                     <FiInstagram />
-                    <Link to="www.google.com">@nseioq</Link>
+                    <Link to="www.google.com">@waliff.cordeiro</Link>
                   </div>
                 </div>
               </div>
@@ -241,12 +231,12 @@ const Dashboard: React.FC = () => {
 
             <Grid item xs={12} md={2} sm={12}>
               <div className="person">
-                <img src={avatarPlaceholder} alt="avatar" />
+                <img src={fotoPedro} alt="avatar" />
                 <div className="contact">
                   <h6>Pedro Augusto</h6>
                   <div className="insta">
                     <FiInstagram />
-                    <Link to="www.google.com">@nseioq</Link>
+                    <Link to="www.google.com">@naotempoxapedro</Link>
                   </div>
                 </div>
               </div>
@@ -254,23 +244,19 @@ const Dashboard: React.FC = () => {
 
             <Grid item xs={12} md={2} sm={12}>
               <div className="person">
-                <img src={avatarPlaceholder} alt="avatar" />
+                <img src={fotoJapa} alt="avatar" />
                 <div className="contact">
                   <h6>Lucas Azuma</h6>
                   <div className="insta">
                     <FiInstagram />
-                    <Link to="www.google.com">@nseioq</Link>
+                    <Link to="www.google.com">@lucas_azuma</Link>
                   </div>
                 </div>
               </div>
             </Grid>
-            <Hidden smDown>
-              <Grid item xs={12} md={1} sm={12} />
-            </Hidden>
           </Grid>
         </div>
       </AboutUsContainer>
-      <div style={{ height: 300 }} />
     </>
   );
 };

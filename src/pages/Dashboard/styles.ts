@@ -49,7 +49,7 @@ export const FirstTextContainer = styled.div`
   justify-content: center;
 
   .container {
-    max-width: 70%;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,44 +185,66 @@ export const ListContainer = styled.div`
 export const AboutUsContainer = styled.div`
   padding: 50px 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+
+  h2 {
+    max-width: 70%;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 200px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 50px;
+  }
 
   .container {
-    h2 {
-      font-size: 40px;
-      font-weight: bold;
-      text-transform: capitalize;
-      text-align: center;
-      margin-bottom: 80px;
-
-      &::after {
-        content: '';
-        height: 3px;
-        width: 200px;
-        background-color: #7c4fe0;
-        display: block;
-        margin: 10px auto;
-      }
-    }
+    min-width: 100%;
 
     .person {
+      width: 90%;
       display: flex;
       flex-direction: row;
-      margin: 0 50px;
 
       img {
-        width: 80px;
-        height: 80px;
+        margin-left: 40px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
       }
 
       .contact {
-        margin-left: 10px;
+        margin: 10px 0 0 20px;
+
+        h6 {
+          font-size: 20px;
+          font-weight: bold;
+          text-transform: capitalize;
+        }
 
         .insta {
           display: flex;
           flex-direction: row;
           align-items: center;
+
+          a {
+            color: #333;
+          }
 
           svg {
             margin-right: 5px;
