@@ -260,9 +260,13 @@ export const EquivalencesContainer = styled.div<WindowProp>`
   flex-direction: row;
   align-items: center;
 
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   padding: 0 100px 0 100px;
+
+  & + & {
+    margin-top: 40px;
+  }
 
   ${props =>
     props.window &&
@@ -270,6 +274,10 @@ export const EquivalencesContainer = styled.div<WindowProp>`
       flex-direction: column;
       flex: 1;
       padding: 0;
+
+      & + & {
+        margin-top: 0;
+      }
     `};
 `;
 
@@ -285,7 +293,7 @@ export const EquivalenceBox = styled.div<WindowProp>`
   align-items: center;
   text-align: center;
   color: #fff;
-  margin: auto;
+  margin: 15px;
   padding: 10px;
   cursor: pointer;
 

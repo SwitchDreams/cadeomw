@@ -34,6 +34,15 @@ const Equivalence: React.FC<EquivalenceProps> = ({
     [history],
   );
 
+  let { equivalences } = subject;
+  let equivalences2 = null;
+  const count = subject.equivalences.length;
+
+  if (count >= 6) {
+    equivalences = subject.equivalences.slice(0, 6);
+    equivalences2 = subject.equivalences.slice(7, count);
+  }
+
   return (
     <CardFeatureContainer window={window}>
       <h4>Equivalências</h4>
@@ -45,7 +54,7 @@ const Equivalence: React.FC<EquivalenceProps> = ({
           </NoEquivalences>
         )}
 
-        {subject.equivalences.map(equivalence => (
+        {equivalences.map(equivalence => (
           <Zoom in style={{ transitionDelay: '500ms' }}>
             <EquivalenceBox
               window={window}
@@ -64,7 +73,7 @@ const Equivalence: React.FC<EquivalenceProps> = ({
                     <ul>
                       {equivalence.options.length !== 0 &&
                         equivalence.options.map(option => (
-                          <li>{option.name}</li>
+                          <li key={option.code}>{option.name}</li>
                         ))}
                     </ul>
                   </>
@@ -73,6 +82,37 @@ const Equivalence: React.FC<EquivalenceProps> = ({
             </EquivalenceBox>
           </Zoom>
         ))}
+      </EquivalencesContainer>
+      <EquivalencesContainer window={window}>
+        {equivalences2 &&
+          equivalences2.map(equivalence => (
+            <Zoom in style={{ transitionDelay: '500ms' }}>
+              <EquivalenceBox
+                window={window}
+                onClick={() => handleNewSubject(equivalence.destination.code)}
+              >
+                <h5>{equivalence.destination.subject_name}</h5>
+                <ul>
+                  <li>{`${equivalence.destination.credit} créditos`}</li>
+                  <li>{equivalence.direction}</li>
+                  {equivalence.options.length === 0 && (
+                    <li>{`Equivalência ${equivalence.coverage}`}</li>
+                  )}
+                  {equivalence.options.length !== 0 && (
+                    <>
+                      <li>Cursos para equivalência:</li>
+                      <ul>
+                        {equivalence.options.length !== 0 &&
+                          equivalence.options.map(option => (
+                            <li key={option.code}>{option.name}</li>
+                          ))}
+                      </ul>
+                    </>
+                  )}
+                </ul>
+              </EquivalenceBox>
+            </Zoom>
+          ))}
       </EquivalencesContainer>
     </CardFeatureContainer>
   );
