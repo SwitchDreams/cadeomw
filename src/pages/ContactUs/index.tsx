@@ -100,8 +100,8 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Pedro Augusto</h6>
                 <p>
-                  cwebcipqwbeuivwqigciuqwp cbuwqi egci gwequi bweqgc iuwe cwle
-                  gciwe
+                  Fã dos e-sports, player da Green Owls e aspirante a
+                  bodybuilder.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
@@ -116,8 +116,7 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Waliff Cordeiro</h6>
                 <p>
-                  Graduando em Engenharia de Computação na Universidade de
-                  Brasília, goiano, escoteiro e co-fundador da Switch Dreams.
+                  Ebujbfi weuf heuqiof ieq ofuiqebfieof iqwgu iew file bieoq
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
@@ -134,8 +133,7 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Lucas Azuma</h6>
                 <p>
-                  Estudante de Engenharia de Computação e membro da Struct,
-                  empresa júnior do curso.
+                  Ebujbfi weuf heuqiof ieq ofuiqebfieof iqwgu iew file bieoq
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
