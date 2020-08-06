@@ -25,9 +25,9 @@ def save_prerequisites(prerequisite_dict):
     """ Salva os pré-requisitos """
     print("Salvando Pré-Requisitos...")
     for key, value in prerequisite_dict.items():
-        for prerequisite_set_list in value:
+        for prerequisite_set_list in remove_duplicates(value):
             prerequisite_set = PreRequisiteSet.objects.create(subject_id=key)
-            for prerequisite_code in remove_duplicates(prerequisite_set_list):
+            for prerequisite_code in prerequisite_set_list:
                 try:
                     PreRequisite.objects.create(prerequisite_set=prerequisite_set, subject_id=prerequisite_code)
                 except:

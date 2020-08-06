@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 # Create your models here.
@@ -16,6 +17,12 @@ class Course(models.Model):
     issue_date = models.DateField()
     begin_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    # Campos calculados
+    flow = JSONField(null=True, blank=True)
+    num_semester = models.SmallIntegerField(null=True, blank=True)
+    flow_graph = models.TextField(null=True, blank=True)
+    hardest_subject = JSONField(null=True, blank=True)
+    easiest_subject = JSONField(null=True, blank=True)
 
     def adicionar_disciplina(self, semester, code_subject, status):
         course_subject = CourseSubject(course=self, subject_id=code_subject, semester=semester,
@@ -25,7 +32,7 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
-    def flow(self):
+    def get_flow(self):
         """ Retorna o fluxo das disciplinas dividido por semestre """
         flow = {}
         course_subjects = self.course_subject.all()
@@ -41,47 +48,51 @@ class Course(models.Model):
             flow_list.append(value)
         return flow_list
 
-    def flow_graph(self):
+    def get_flow_graph(self):
         """ Retorna o código DOT (Graphviz) do gráfico """
         return do_graph(self).source
 
-    def num_semester(self):
+    def get_num_semester(self):
         """ Retorna o número de semestres do curso baseado no fluxo """
-        return len(self.flow())
+        return len(self.flow)
 
-    def hardest_subject(self):
+    def get_hardest_subject(self):
         """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
-        return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent())[0].to_json()
+        return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)[0].to_json()
 
-    def easiest_subject(self):
+    def get_easiest_subject(self):
         """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
-        return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent())[-1].to_json()
+        return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)[-1].to_json()
 
 
 # Classe que armazena as disciplinas
 class Subject(models.Model):
     code = models.BigIntegerField(primary_key=True)
     # TODO mudar departamento para ser model ao inves de string
-    # Departamento é uma sigla no arquivo dos cursos
-    # department = models.ForeignKey(Department, on_delete=models.CASCADE)
     department = models.CharField(max_length=4)
     name = models.CharField(max_length=50)
     credit = models.SmallIntegerField()
+    # Campos pré-processados
+    equivalences = JSONField(blank=True, null=True)
+    prerequisites = JSONField(blank=True, null=True)
+    grade_infos = JSONField(blank=True, null=True)
+    pass_percent = models.FloatField(default=0)
 
     def __str__(self):
         return self.name
-
-    def equivalences(self):
-        equivalences = []
-        for equivalence in self.subject_eq.all():
-            equivalences.append(equivalence.to_json())
-        return equivalences
 
     def to_json(self):
         return {"code": self.code, "subject_name": self.name,
                 "credit": self.credit}
 
-    def prerequisites(self):
+    def get_equivalences(self):
+        """ Retorna as equivalências em JSON """
+        equivalences = []
+        for equivalence in self.subject_eq.all():
+            equivalences.append(equivalence.to_json())
+        return equivalences
+
+    def get_prerequisites(self):
         """ Retorna os pré-requisitos em JSON """
         prerequisites = []
         for prerequisite_set in self.prerequisite_set.all():
@@ -91,7 +102,7 @@ class Subject(models.Model):
             prerequisites.append(prerequisites_set_list)
         return prerequisites
 
-    def pass_percent(self):
+    def get_pass_percent(self):
         """  Retorna a porcentagem de aprovados """
         # Coleta todas as menções
         semester_grades = self.semester_grade.all()
@@ -109,7 +120,7 @@ class Subject(models.Model):
         else:
             return round(qte_pass / (qte_pass + qte_fail), 2)
 
-    def grade_infos(self):
+    def get_grade_infos(self):
         """ Gera informações para plotar no gráfico """
         grade_infos = {}
         semester_grades = self.semester_grade.all()
@@ -162,7 +173,7 @@ class CourseSubject(models.Model):
     def to_json(self):
         return {"code": self.subject.code, "subject_name": self.subject.name,
                 "status": self.status, "credit": self.subject.credit,
-                "pass_percent": self.subject.pass_percent()}
+                "pass_percent": self.subject.pass_percent}
 
 
 # Classe que armazen as menções da disciplinas em um determinado semestre
