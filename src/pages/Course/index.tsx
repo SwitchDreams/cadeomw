@@ -251,10 +251,6 @@ const Course: React.FC = () => {
             </CardFluxContainer>
           </AllContainer>
         )}
-        <head>
-          <script data-ad-client="ca-pub-9432744401324317" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-          </script>
-        </head>
       </AllContainer>
     </>
   );
