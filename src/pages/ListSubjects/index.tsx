@@ -164,7 +164,7 @@ const ListSubjects: React.FC = () => {
       {!loading && (
         <Subjects window={WindowCheck}>
           {subjects.results.map(subject => (
-            <a key={subject.code} href={`subjects/${subject.code}`}>
+            <a key={subject.code} href={`/${subject.code}`}>
               <div>
                 <strong>
                   {subject.name.charAt(0).toUpperCase() +
@@ -177,10 +177,6 @@ const ListSubjects: React.FC = () => {
                 <p>
                   Departamento:
                   {subject.department}
-                </p>
-                <p>
-                  Quantidade de créditos:
-                  {subject.credit}
                 </p>
               </div>
               <FiChevronRight size={20} />
