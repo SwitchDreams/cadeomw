@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://mw-melhorado-app.herokuapp.com',
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export const apiCourses = axios.create({
-  baseURL: 'https://mw-melhorado-app.herokuapp.com',
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export default api;
