@@ -8,10 +8,16 @@ import Footer from './components/Footer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastProvider } from './hooks/toasts'
+import { Helmet } from "react-helmet";
 
 const App: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <script data-ad-client="ca-pub-9432744401324317" async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+        </script>
+      </Helmet>
       <ToastProvider>
         <BrowserRouter>
           <Routes />
