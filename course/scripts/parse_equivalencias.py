@@ -35,7 +35,7 @@ def parse_equivalencia(filepath):
                         try:
                             for op in listOpcoes:
                                 o = Option(
-                                    course=op,
+                                    course_id=op,
                                     equivalence=eq
                                 )
                                 o.save()
