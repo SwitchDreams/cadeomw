@@ -29,8 +29,8 @@ def get_color(valor):
 
 def find_prerequisite(subject_code, course_flow, semester):
     subject = Subject.objects.get(code=subject_code)
-    if len(subject.prerequisites()) >= 1:
-        return subject.prerequisites()[0]
+    if len(subject.prerequisites) >= 1:
+        return subject.prerequisites[0]
     else:
         return []
 

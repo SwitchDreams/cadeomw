@@ -61,7 +61,7 @@ subjects_list = {
     '9296': 'Pedagogia - EAD',
     '9245': 'Pedagogia - Noturno',
     '2712': 'Psicologia - Bacharel',
-    '2712': 'Psicologia - Licenciatura',
+    '2721': 'Psicologia - Licenciatura',
     '2739': 'Psicologia - Psicólogo',
     '1449': 'Química - Bacharel',
     '1503': 'Química - Licenciatura',
