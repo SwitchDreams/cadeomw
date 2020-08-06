@@ -16,23 +16,6 @@ interface GraphicProps {
   window: boolean;
 }
 
-interface OptionsProps {
-  animationEnabled: boolean;
-  title: {
-    text: string;
-  };
-  legend: {
-    maxWidth: number;
-  };
-  data: {
-    color: string;
-    type: string;
-    name: string;
-    showInLegend: boolean;
-    dataPoints: { label: string; y: number }[];
-  }[];
-}
-
 const Graphic: React.FC<GraphicProps> = ({ subject, window }: GraphicProps) => {
   const ss = subject.grade_infos.map(grade_info => {
     return { semester: grade_info.semester, count: grade_info.grades.ss };
@@ -66,7 +49,7 @@ const Graphic: React.FC<GraphicProps> = ({ subject, window }: GraphicProps) => {
     return { semester: grade_info.semester, count: grade_info.grades.tj };
   });
 
-  const options: OptionsProps = {
+  const options = {
     animationEnabled: true,
     title: {
       text: 'Gráfico de Menções da Disciplina',
