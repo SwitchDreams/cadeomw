@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Hidden } from '@material-ui/core';
-import { Book } from '@material-ui/icons';
 import { FiBarChart2, FiInstagram } from 'react-icons/fi';
 import { AiOutlineCluster } from 'react-icons/ai';
 import { BsArrowLeftRight, BsCalendarFill } from 'react-icons/bs';
