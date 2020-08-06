@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 # Create your models here.
@@ -16,6 +17,10 @@ class Course(models.Model):
     issue_date = models.DateField()
     begin_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    # Campos calculados
+    flow = JSONField(null=True, blank=True)
+    num_semester = models.SmallIntegerField(null=True, blank=True)
+    flow_graph = models.TextField(null=True, blank=True)
 
     def adicionar_disciplina(self, semester, code_subject, status):
         course_subject = CourseSubject(course=self, subject_id=code_subject, semester=semester,
@@ -25,7 +30,7 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
-    def flow(self):
+    def set_flow(self):
         """ Retorna o fluxo das disciplinas dividido por semestre """
         flow = {}
         course_subjects = self.course_subject.all()
@@ -41,13 +46,13 @@ class Course(models.Model):
             flow_list.append(value)
         return flow_list
 
-    def flow_graph(self):
+    def set_flow_graph(self):
         """ Retorna o código DOT (Graphviz) do gráfico """
         return do_graph(self).source
 
-    def num_semester(self):
+    def set_num_semester(self):
         """ Retorna o número de semestres do curso baseado no fluxo """
-        return len(self.flow())
+        return len(self.flow)
 
     def hardest_subject(self):
         """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
@@ -62,8 +67,6 @@ class Course(models.Model):
 class Subject(models.Model):
     code = models.BigIntegerField(primary_key=True)
     # TODO mudar departamento para ser model ao inves de string
-    # Departamento é uma sigla no arquivo dos cursos
-    # department = models.ForeignKey(Department, on_delete=models.CASCADE)
     department = models.CharField(max_length=4)
     name = models.CharField(max_length=50)
     credit = models.SmallIntegerField()

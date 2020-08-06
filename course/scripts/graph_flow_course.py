@@ -49,11 +49,16 @@ def do_graph(course):
     g.attr(labelloc='t')
     g.attr(fontsize='40')
 
-    flow = course.flow()
-    for semester in range(1, course.num_semester() + 1):
+    flow = course.flow
+    for semester in range(1, course.num_semester + 1):
         with g.subgraph(name=("Periodo " + str(semester))) as subgraph_periodo:
             subgraph_periodo.attr(rank='same')
-            semester_dict = list(filter(lambda subject: subject['semester'] == semester, flow))[0]
+            # Coleta somente o periodo
+            semester_dict = list(filter(lambda subject: subject['semester'] == semester, flow))
+            if len(semester_dict) >= 1:
+                semester_dict = semester_dict[0]
+            else:
+                continue
             # Para todas as disciplinas do fluxo do curso
             for subject in semester_dict["subjects"]:
                 # Cria um nó(Disciplina)
