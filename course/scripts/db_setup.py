@@ -1,6 +1,7 @@
 from course.scripts.parse_fluxo import run as run_parse_fluxo
 from course.scripts.parse_mencao import run as run_parse_mencao
 from course.scripts.parse_equivalencias import run as run_parse_equivalencias
+from course.scripts.refactor_subject_name import run as run_refactor_course_name
 from course.models import Course, Subject
 
 
@@ -34,3 +35,4 @@ def run():
     run_parse_equivalencias()
     pre_process_subjects()
     pre_process_courses()
+    run_refactor_course_name()
