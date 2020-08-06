@@ -1,6 +1,7 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
+import Downshift from 'downshift';
 import { apiCourses } from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
@@ -32,8 +33,12 @@ interface SubjectInfos {
   count: number;
 }
 
+interface Book {
+  name: string;
+}
+
 const ListSubjects: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [qtdResults, setQtdResults] = useState(false);
   const [searchSubject, setSearchSubject] = useState('');
   const [subjects, setSubjects] = useState<SubjectInfos>({
@@ -44,23 +49,6 @@ const ListSubjects: React.FC = () => {
   });
   const { addToast } = useToast();
   const [WindowCheck, setWindowCheck] = useState(false);
-
-  // async function getSubjects() {
-  //   try {
-  //     const response = await apiCourses.get<SubjectInfos>(
-  //       `subjects/?format=json`,
-  //     );
-
-  //     setSubjects(response.data);
-  //     setLoading(false);
-  //   } catch (err) {
-  //     addToast({
-  //       type: 'error',
-  //       title: 'Erro ao carregar os cursos',
-  //       description: 'Tente novamente mais tarde',
-  //     });
-  //   }
-  // }
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -137,6 +125,12 @@ const ListSubjects: React.FC = () => {
     setSearchSubject('');
   }
 
+  const data: string[] = subjects.results.map(subject => {
+    return subject.department;
+  });
+
+  // const data = ['CIC', 'MAT', 'ENE', 'FT', 'EPR'];
+
   return (
     <>
       <Header transparent={false} />
@@ -150,6 +144,45 @@ const ListSubjects: React.FC = () => {
           />
           <button type="submit">Pesquisar</button>
         </form>
+        <Downshift itemToString={department => department || ''}>
+          {({
+            getInputProps,
+            getItemProps,
+            isOpen,
+            inputValue,
+            highlightedIndex,
+            selectedItem,
+          }) => (
+            <div>
+              <input
+                {...getInputProps({ placeholder: 'Escolha um departamento' })}
+              />
+              {isOpen ? (
+                <div className="downshift-dropdown">
+                  {data
+                    .filter(
+                      item =>
+                        !inputValue ||
+                        item.toLowerCase().includes(inputValue.toLowerCase()),
+                    )
+                    .map((item: any, index: any) => (
+                      <div
+                        className="dropdown-item"
+                        {...getItemProps({ key: item, index, item })}
+                        style={{
+                          backgroundColor:
+                            highlightedIndex === index ? 'lightgray' : 'white',
+                          fontWeight: selectedItem === item ? 'bold' : 'normal',
+                        }}
+                      >
+                        {item}
+                      </div>
+                    ))}
+                </div>
+              ) : null}
+            </div>
+          )}
+        </Downshift>
       </Form>
 
       {loading && <Loading />}

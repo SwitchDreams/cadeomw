@@ -82,83 +82,79 @@ const Course: React.FC = () => {
   const params = useParams<RouteParams>();
 
   useEffect(() => {
-    api
-      .get(
-        `https://mw-melhorado-app.herokuapp.com/courses/${params.id}?format=json`,
-      )
-      .then(response => {
-        let newCourse = response.data;
-        let statusHardest = newCourse.hardest_subject.status;
-        let statusEasiest = newCourse.easiest_subject.status;
+    api.get(`/courses/${params.id}?format=json`).then(response => {
+      let newCourse = response.data;
+      let statusHardest = newCourse.hardest_subject.status;
+      let statusEasiest = newCourse.easiest_subject.status;
 
-        if (statusHardest === 'OBR' || statusHardest === 'OBS') {
-          statusHardest = 'obrigatória';
-        } else if (statusHardest === 'OPT') {
-          statusHardest = 'optativa';
-        } else {
-          statusHardest = 'módulo livre';
-        }
+      if (statusHardest === 'OBR' || statusHardest === 'OBS') {
+        statusHardest = 'obrigatória';
+      } else if (statusHardest === 'OPT') {
+        statusHardest = 'optativa';
+      } else {
+        statusHardest = 'módulo livre';
+      }
 
-        if (statusEasiest === 'OBR' || statusEasiest === 'OBS') {
-          statusEasiest = 'obrigatória';
-        } else if (statusEasiest === 'OPT') {
-          statusEasiest = 'optativa';
-        } else {
-          statusEasiest = 'módulo livre';
-        }
+      if (statusEasiest === 'OBR' || statusEasiest === 'OBS') {
+        statusEasiest = 'obrigatória';
+      } else if (statusEasiest === 'OPT') {
+        statusEasiest = 'optativa';
+      } else {
+        statusEasiest = 'módulo livre';
+      }
 
-        newCourse = {
-          ...newCourse,
-          hardest_subject: {
-            ...newCourse.hardest_subject,
-            status: statusHardest,
-          },
-          easiest_subject: {
-            ...newCourse.easiest_subject,
-            status: statusEasiest,
-          },
-        };
+      newCourse = {
+        ...newCourse,
+        hardest_subject: {
+          ...newCourse.hardest_subject,
+          status: statusHardest,
+        },
+        easiest_subject: {
+          ...newCourse.easiest_subject,
+          status: statusEasiest,
+        },
+      };
 
-        setCourse(newCourse);
+      setCourse(newCourse);
 
-        const periodList = response.data.flow.map(
-          (period: Period): Period => {
-            let sumCredits = 0;
+      const periodList = response.data.flow.map(
+        (period: Period): Period => {
+          let sumCredits = 0;
 
-            const newSubjects = period.subjects.map((subject: Materias) => {
-              sumCredits += subject.credit;
+          const newSubjects = period.subjects.map((subject: Materias) => {
+            sumCredits += subject.credit;
 
-              const newSubjectName =
-                subject.subject_name.charAt(0).toUpperCase() +
-                subject.subject_name.slice(1).toLowerCase();
+            const newSubjectName =
+              subject.subject_name.charAt(0).toUpperCase() +
+              subject.subject_name.slice(1).toLowerCase();
 
-              let newStatus;
+            let newStatus;
 
-              if (subject.status === 'OBR' || subject.status === 'OBS') {
-                newStatus = 'obrigatória';
-              } else if (subject.status === 'OPT') {
-                newStatus = 'optativa';
-              } else if (subject.status === 'ML') {
-                newStatus = 'módulo livre';
-              }
+            if (subject.status === 'OBR' || subject.status === 'OBS') {
+              newStatus = 'obrigatória';
+            } else if (subject.status === 'OPT') {
+              newStatus = 'optativa';
+            } else if (subject.status === 'ML') {
+              newStatus = 'módulo livre';
+            }
 
-              return {
-                credit: subject.credit,
-                subject_name: newSubjectName,
-                status: newStatus,
-                pass_percent: subject.pass_percent,
-                code: subject.code,
-              };
-            });
+            return {
+              credit: subject.credit,
+              subject_name: newSubjectName,
+              status: newStatus,
+              pass_percent: subject.pass_percent,
+              code: subject.code,
+            };
+          });
 
-            setLoading(false);
+          setLoading(false);
 
-            return { ...period, credits: sumCredits, subjects: newSubjects };
-          },
-        );
+          return { ...period, credits: sumCredits, subjects: newSubjects };
+        },
+      );
 
-        setPeriods(periodList);
-      });
+      setPeriods(periodList);
+    });
   }, [params.id]);
 
   useEffect(() => {
@@ -199,7 +195,7 @@ const Course: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
-      
+
       <Container>
         {tabs.map(tab => (
           <TabContent

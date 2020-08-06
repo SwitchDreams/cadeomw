@@ -42,8 +42,14 @@ export const Form = styled.div`
   margin: 0 auto;
   padding: 25px 20px;
 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   form {
     display: flex;
+    margin-right: 10px;
+
     input {
       flex: 1;
       height: 40px;
