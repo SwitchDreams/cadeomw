@@ -1,0 +1,214 @@
+import React, { useEffect, useState, FormEvent } from 'react';
+import Axios from 'axios';
+import { FiChevronRight } from 'react-icons/fi';
+import { apiCourses } from '../../services/api';
+
+import { useToast } from '../../hooks/toasts';
+
+import { Subjects, Form, QtdSearch } from './styles';
+
+import Header from '../../components/Header';
+import Loading from '../../components/Loading';
+
+/*
+  Página de listagem de cursos - Waliff
+*/
+
+type Inputs = {
+  subject: string;
+};
+
+interface Results {
+  code: number;
+  department: string;
+  credit: number;
+  name: string;
+}
+
+interface SubjectInfos {
+  results: Results[];
+  next: string;
+  previous: string;
+  count: number;
+}
+
+const ListSubjects: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const [qtdResults, setQtdResults] = useState(false);
+  const [searchSubject, setSearchSubject] = useState('');
+  const [subjects, setSubjects] = useState<SubjectInfos>({
+    results: [],
+    next: '',
+    previous: '',
+    count: 0,
+  });
+  const { addToast } = useToast();
+  const [WindowCheck, setWindowCheck] = useState(false);
+
+  // async function getSubjects() {
+  //   try {
+  //     const response = await apiCourses.get<SubjectInfos>(
+  //       `subjects/?format=json`,
+  //     );
+
+  //     setSubjects(response.data);
+  //     setLoading(false);
+  //   } catch (err) {
+  //     addToast({
+  //       type: 'error',
+  //       title: 'Erro ao carregar os cursos',
+  //       description: 'Tente novamente mais tarde',
+  //     });
+  //   }
+  // }
+
+  useEffect(() => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    }
+  }, []);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    } else {
+      setWindowCheck(false);
+    }
+  });
+
+  useEffect(() => {
+    const getSubjects = async () => {
+      try {
+        const response = await apiCourses.get<SubjectInfos>(
+          `subjects/?format=json`,
+        );
+
+        setSubjects(response.data);
+        setLoading(false);
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Erro ao carregar os cursos',
+          description: 'Tente novamente mais tarde',
+        });
+      }
+    };
+
+    getSubjects();
+  }, [addToast]);
+
+  async function handlePagination(pag: string) {
+    if (pag !== null) {
+      setLoading(true);
+      try {
+        const response = await Axios.get<SubjectInfos>(`${pag}`);
+        setSubjects(response.data);
+        setLoading(false);
+        window.scrollTo(0, 0);
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Erro ao acessar novas páginas',
+          description: 'Tente novamente mais tarde',
+        });
+      }
+    }
+  }
+
+  async function handleSearchSubject(
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> {
+    event.preventDefault();
+    setLoading(true);
+    try {
+      const response = await apiCourses.get<SubjectInfos>(
+        `subjects/?search=${searchSubject}&format=json`,
+      );
+      setSubjects(response.data);
+      setQtdResults(true);
+      setLoading(false);
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Falha na pesquisa',
+        description: 'Tente novamente mais tarde',
+      });
+    }
+    setSearchSubject('');
+  }
+
+  return (
+    <>
+      <Header transparent={false} />
+
+      <Form>
+        <form onSubmit={handleSearchSubject}>
+          <input
+            value={searchSubject}
+            onChange={e => setSearchSubject(e.target.value)}
+            placeholder="Digite o nome do curso"
+          />
+          <button type="submit">Pesquisar</button>
+        </form>
+      </Form>
+
+      {loading && <Loading />}
+
+      {qtdResults && !loading && (
+        <QtdSearch>
+          <div className="text-container">
+            <p>Foram encontrados {subjects.count} resultados</p>
+          </div>
+        </QtdSearch>
+      )}
+      {!loading && (
+        <Subjects window={WindowCheck}>
+          {subjects.results.map(subject => (
+            <a key={subject.code} href={`subjects/${subject.code}`}>
+              <div>
+                <strong>
+                  {subject.name.charAt(0).toUpperCase() +
+                    subject.name.slice(1).toLowerCase()}
+                </strong>
+                <p>
+                  Código:
+                  {subject.code}
+                </p>
+                <p>
+                  Departamento:
+                  {subject.department}
+                </p>
+                <p>
+                  Quantidade de créditos:
+                  {subject.credit}
+                </p>
+              </div>
+              <FiChevronRight size={20} />
+            </a>
+          ))}
+
+          {!loading && (
+            <div className="actions">
+              <button
+                type="button"
+                disabled={subjects.previous == null}
+                onClick={() => handlePagination(subjects.previous)}
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                disabled={subjects.next == null}
+                onClick={() => handlePagination(subjects.next)}
+              >
+                Próximo
+              </button>
+            </div>
+          )}
+        </Subjects>
+      )}
+    </>
+  );
+};
+
+export default ListSubjects;
