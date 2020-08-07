@@ -5,6 +5,13 @@ interface CoursesProps {
   window: boolean;
 }
 
+export const Select = styled.div`
+  select {
+    width: 100%;
+    text-align: center;
+  }
+`;
+
 export const QtdSearch = styled.div`
   display: flex;
   align-items: center;
