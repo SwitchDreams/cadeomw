@@ -4,7 +4,29 @@ interface WindowProps {
   window: boolean;
 }
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  body {
+    @keyframes play24 {
+      0% {
+        background-position: 0px 0px;
+      }
+      100% {
+        background-position: -15744px 0px;
+      }
+    }
+    .shapeshifter {
+      animation-duration: 1000ms;
+      animation-timing-function: steps(24);
+      animation-fill-mode: forwards;
+      width: 656px;
+      height: 656px;
+      background-repeat: no-repeat;
+    }
+    .shapeshifter.play {
+      animation-name: play24;
+    }
+  }
+`;
 
 export const WhoWeAreContainer = styled.div`
   color: #222;

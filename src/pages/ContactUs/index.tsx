@@ -9,6 +9,8 @@ import fotoPedro from '../../assets/perfil_pedro.jpeg';
 import fotoWaliff from '../../assets/perfil_waliff.png';
 import fotoJapa from '../../assets/perfil_japa.jpeg';
 
+import logo from './sprite_60fps.svg';
+
 import { Container, WhoWeAreContainer, CardsContainer } from './styles';
 
 const ContactUs: React.FC = () => {
@@ -31,6 +33,13 @@ const ContactUs: React.FC = () => {
   return (
     <Container>
       <Header transparent={false} />
+
+      {/* <body>
+        <div
+          className="shapeshifter play"
+          style={{ backgroundImage: `url(${logo})` }}
+        />
+      </body> */}
 
       <WhoWeAreContainer>
         <div className="container">
@@ -66,10 +75,7 @@ const ContactUs: React.FC = () => {
               <img src={fotoBahia} alt="profile" />
               <div className="text">
                 <h6>João Pedro Assis</h6>
-                <p>
-                  cwebcipqwbeuivwqigciuqwp cbuwqi egci gwequi bweqgc iuwe cwle
-                  gciwedbewibfui wqefui
-                </p>
+                <p>Fã de poesia, baiano e brincalhão.</p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
                   <a href="https://github.com/JoaoPedroAssis">JoaoPedroAssis</a>
@@ -116,7 +122,8 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Waliff Cordeiro</h6>
                 <p>
-                  Ebujbfi weuf heuqiof ieq ofuiqebfieof iqwgu iew file bieoq
+                  Fã de churrasco, escoteiro, goiano e apreciador de um
+                  vinhozinho.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
@@ -133,7 +140,8 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Lucas Azuma</h6>
                 <p>
-                  Ebujbfi weuf heuqiof ieq ofuiqebfieof iqwgu iew file bieoq
+                  Fã de cervejas de baixa qualidade, japonês, não sabe andar de
+                  patinete.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
