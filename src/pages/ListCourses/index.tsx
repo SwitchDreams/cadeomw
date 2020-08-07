@@ -76,6 +76,7 @@ const ListCourses: React.FC = () => {
   });
 
   useEffect(() => {
+    setLoading(true);
     const getCourses = async () => {
       try {
         const response = await apiCourses.get<CourseInfos>(
