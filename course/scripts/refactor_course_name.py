@@ -1,7 +1,7 @@
 from course.models import Course
 
 # Dicionário contendo os cursos em redundância para especificarmos
-subjects_list = {
+course_list = {
     '8117': 'Administração - Diurno',
     '8150': 'Administração - Norturno',
     '5126': 'Arquitetura e Urbanismo - Diurno',
@@ -73,7 +73,7 @@ subjects_list = {
 }
 
 # Array com cursos inexistentes.
-subjects_delete = {
+course_delete = {
     '8176': 'Administração',
     '5428': 'Artes Cênicas',
     '5461': 'Artes Cênicas',
@@ -85,8 +85,8 @@ subjects_delete = {
 }
 
 
-def refactor_subject():
-    for key, value in subjects_list.items():
+def refactor_course():
+    for key, value in course_list.items():
         try:
             curso = Course.objects.get(code=key)
             curso.name = value
@@ -94,7 +94,7 @@ def refactor_subject():
         except Course.DoesNotExist:
             print("Erro ao refatorar o curso {}: {}".format(key, value))
 
-    for key, value in subjects_delete.items():
+    for key, value in course_delete.items():
         try:
             curso = Course.objects.get(code=key)
             curso.delete()
@@ -104,5 +104,5 @@ def refactor_subject():
 
 def run():
     print("Inico da gerência de redundância de cursos... ")
-    refactor_subject()
+    refactor_course()
     print("Fim da gerência de redundância de cursos... ")

@@ -12,6 +12,6 @@ Repostório de backend do MwMelhorado feito em Django
 5. Utilize os comandos abaixo em ordem para popular sua API:
 ```python manage.py runscript parse_fluxo```
 ```python manage.py runscript parse_mencao```
-```python manage.py runscript refactor_subject_name```
+```python manage.py runscript refactor_course_name```
 6. E por fim para rodar o servidor: 
 ```python manage.py runserver```
