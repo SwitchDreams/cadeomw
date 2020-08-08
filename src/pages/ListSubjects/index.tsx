@@ -145,10 +145,6 @@ const ListSubjects: React.FC = () => {
     }
   }
 
-  const data: string[] = subjects.results.map(subject => {
-    return subject.department;
-  });
-
   return (
     <>
       <Header transparent={false} />
@@ -166,9 +162,6 @@ const ListSubjects: React.FC = () => {
         <Select>
           <select onChange={handleFilterSubject}>
             <option selected value="" />
-            <option value="CDT">
-              Centro de Apoio ao Desenvolvimento Tecnológico - CDT
-            </option>
             {departments.map(department => {
               return (
                 <option value={department.initials}>{department.name}</option>
