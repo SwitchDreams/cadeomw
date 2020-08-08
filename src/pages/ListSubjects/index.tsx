@@ -5,37 +5,44 @@ import { apiCourses } from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
 
-import { Courses, Form, QtdSearch } from './styles';
+import { Subjects, Form, QtdSearch, Select } from './styles';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
+
+import departments from './departments';
 
 /*
   Página de listagem de cursos - Waliff
 */
 
 type Inputs = {
-  course: string;
+  subject: string;
 };
 
 interface Results {
   code: number;
-  num_semester: number;
+  department: string;
+  credit: number;
   name: string;
 }
 
-interface CourseInfos {
+interface SubjectInfos {
   results: Results[];
   next: string;
   previous: string;
   count: number;
 }
 
-const ListCourses: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+interface Book {
+  name: string;
+}
+
+const ListSubjects: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [qtdResults, setQtdResults] = useState(false);
-  const [searchCourse, setSearchCourse] = useState('');
-  const [courses, setCourses] = useState<CourseInfos>({
+  const [searchSubject, setSearchSubject] = useState('');
+  const [subjects, setSubjects] = useState<SubjectInfos>({
     results: [],
     next: '',
     previous: '',
@@ -43,23 +50,6 @@ const ListCourses: React.FC = () => {
   });
   const { addToast } = useToast();
   const [WindowCheck, setWindowCheck] = useState(false);
-
-  // async function getCourses() {
-  //   try {
-  //     const response = await apiCourses.get<CourseInfos>(
-  //       `courses/?format=json`,
-  //     );
-
-  //     setCourses(response.data);
-  //     setLoading(false);
-  //   } catch (err) {
-  //     addToast({
-  //       type: 'error',
-  //       title: 'Erro ao carregar os cursos',
-  //       description: 'Tente novamente mais tarde',
-  //     });
-  //   }
-  // }
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -76,14 +66,14 @@ const ListCourses: React.FC = () => {
   });
 
   useEffect(() => {
-    setLoading(true);
-    const getCourses = async () => {
+    const getSubjects = async () => {
+      setLoading(true);
       try {
-        const response = await apiCourses.get<CourseInfos>(
-          `courses/?format=json`,
+        const response = await apiCourses.get<SubjectInfos>(
+          `subjects/?format=json`,
         );
 
-        setCourses(response.data);
+        setSubjects(response.data);
         setLoading(false);
       } catch (err) {
         addToast({
@@ -94,15 +84,15 @@ const ListCourses: React.FC = () => {
       }
     };
 
-    getCourses();
+    getSubjects();
   }, [addToast]);
 
   async function handlePagination(pag: string) {
     if (pag !== null) {
       setLoading(true);
       try {
-        const response = await Axios.get<CourseInfos>(`${pag}`);
-        setCourses(response.data);
+        const response = await Axios.get<SubjectInfos>(`${pag}`);
+        setSubjects(response.data);
         setLoading(false);
         window.scrollTo(0, 0);
       } catch (err) {
@@ -115,16 +105,16 @@ const ListCourses: React.FC = () => {
     }
   }
 
-  async function handleSearchCourse(
+  async function handleSearchSubject(
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
     event.preventDefault();
     setLoading(true);
     try {
-      const response = await apiCourses.get<CourseInfos>(
-        `courses/?search=${searchCourse}&format=json`,
+      const response = await apiCourses.get<SubjectInfos>(
+        `subjects/?search=${searchSubject}&format=json`,
       );
-      setCourses(response.data);
+      setSubjects(response.data);
       setQtdResults(true);
       setLoading(false);
     } catch (err) {
@@ -134,22 +124,58 @@ const ListCourses: React.FC = () => {
         description: 'Tente novamente mais tarde',
       });
     }
-    setSearchCourse('');
+    setSearchSubject('');
   }
+
+  async function handleFilterSubject(e: any) {
+    setLoading(true);
+    try {
+      const response = await apiCourses.get<SubjectInfos>(
+        `subjects/?search=${e.target.value}&format=json&department_only=true`,
+      );
+      setSubjects(response.data);
+      setQtdResults(true);
+      setLoading(false);
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Falha na pesquisa',
+        description: 'Tente novamente mais tarde',
+      });
+    }
+  }
+
+  const data: string[] = subjects.results.map(subject => {
+    return subject.department;
+  });
 
   return (
     <>
       <Header transparent={false} />
 
       <Form>
-        <form onSubmit={handleSearchCourse}>
+        <form onSubmit={handleSearchSubject}>
           <input
-            value={searchCourse}
-            onChange={e => setSearchCourse(e.target.value)}
+            value={searchSubject}
+            onChange={e => setSearchSubject(e.target.value)}
             placeholder="Digite o nome do curso"
           />
           <button type="submit">Pesquisar</button>
         </form>
+
+        <Select>
+          <select onChange={handleFilterSubject}>
+            <option selected value="" />
+            <option value="CDT">
+              Centro de Apoio ao Desenvolvimento Tecnológico - CDT
+            </option>
+            {departments.map(department => {
+              return (
+                <option value={department.initials}>{department.name}</option>
+              );
+            })}
+          </select>
+        </Select>
       </Form>
 
       {loading && <Loading />}
@@ -157,26 +183,26 @@ const ListCourses: React.FC = () => {
       {qtdResults && !loading && (
         <QtdSearch>
           <div className="text-container">
-            <p>Foram encontrados {courses.count} resultados</p>
+            <p>Foram encontrados {subjects.count} resultados</p>
           </div>
         </QtdSearch>
       )}
       {!loading && (
-        <Courses window={WindowCheck}>
-          {courses.results.map(course => (
-            <a key={course.code} href={`courses/${course.code}`}>
+        <Subjects window={WindowCheck}>
+          {subjects.results.map(subject => (
+            <a key={subject.code} href={`/${subject.code}`}>
               <div>
                 <strong>
-                  {course.name.charAt(0).toUpperCase() +
-                    course.name.slice(1).toLowerCase()}
+                  {subject.name.charAt(0).toUpperCase() +
+                    subject.name.slice(1).toLowerCase()}
                 </strong>
                 <p>
                   Código:
-                  {course.code}
+                  {subject.code}
                 </p>
                 <p>
-                  Quantidade de períodos:
-                  {course.num_semester}
+                  Departamento:
+                  {subject.department}
                 </p>
               </div>
               <FiChevronRight size={20} />
@@ -187,24 +213,24 @@ const ListCourses: React.FC = () => {
             <div className="actions">
               <button
                 type="button"
-                disabled={courses.previous == null}
-                onClick={() => handlePagination(courses.previous)}
+                disabled={subjects.previous == null}
+                onClick={() => handlePagination(subjects.previous)}
               >
                 Anterior
               </button>
               <button
                 type="button"
-                disabled={courses.next == null}
-                onClick={() => handlePagination(courses.next)}
+                disabled={subjects.next == null}
+                onClick={() => handlePagination(subjects.next)}
               >
                 Próximo
               </button>
             </div>
           )}
-        </Courses>
+        </Subjects>
       )}
     </>
   );
 };
 
-export default ListCourses;
+export default ListSubjects;

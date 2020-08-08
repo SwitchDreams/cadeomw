@@ -199,7 +199,7 @@ const Course: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
-      
+
       <Container>
         {tabs.map(tab => (
           <TabContent
