@@ -1,5 +1,5 @@
 from course.models import Course, Department, Subject
-from rest_framework import viewsets, filters
+from rest_framework import viewsets
 from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer, CourseDetailsSerializer, \
     SubjectDetailsSerializer
 from rest_framework import filters
@@ -10,6 +10,7 @@ class CustomSearchFilter(filters.SearchFilter):
         if request.query_params.get('department_only'):
             return ['department']
         return super(CustomSearchFilter, self).get_search_fields(view, request)
+
 
 class SelectSerializerMixin(object):
     """
@@ -35,7 +36,7 @@ class SelectSerializerMixin(object):
         return getattr(self, f"{self.action}_serializer_class") or self.serializer_class
 
 
-class CourseViewSet(SelectSerializerMixin, viewsets.ModelViewSet):
+class CourseViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows courses to be viewed or edited.
     """
@@ -46,7 +47,7 @@ class CourseViewSet(SelectSerializerMixin, viewsets.ModelViewSet):
     search_fields = ['name']
 
 
-class DepartmentViewSet(viewsets.ModelViewSet):
+class DepartmentViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows department to be viewed or edited.
     """
@@ -54,13 +55,12 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentSerializer
 
 
-class SubjectViewSet(SelectSerializerMixin, viewsets.ModelViewSet):
+class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows subjects to be viewed or edited.
     """
     queryset = Subject.objects.all().order_by('name')
     serializer_class = SubjectSerializer
     retrieve_serializer_class = SubjectDetailsSerializer
-
     filter_backends = [CustomSearchFilter]
     search_fields = ['name', 'department']
