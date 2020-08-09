@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 import droneUnB from '../../assets/unb.svg';
 import unbAntiga from '../../assets/unb_antiga.jpg';
 
@@ -266,53 +265,6 @@ export const AboutUsContainer = styled.div`
       }
     }
   }
-  /*
-  .container {
-    max-width: 100%;
-    border: 0 10px solid #ff0000;
-
-    div.MuiGrid-root {
-      display: flex;
-      justify-content: center;
-    }
-
-    .person {
-      width: 90%;
-      display: flex;
-      flex-direction: row;
-
-      img {
-        margin-left: 40px;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-      }
-
-      .contact {
-        margin: 10px 0 0 20px;
-
-        h6 {
-          font-size: 20px;
-          font-weight: bold;
-          text-transform: initial;
-        }
-
-        .insta {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-
-          a {
-            color: #333;
-          }
-
-          svg {
-            margin-right: 5px;
-          }
-        }
-      }
-    }
-  } */
 `;
 
 export const PersonContainer = styled.div``;
