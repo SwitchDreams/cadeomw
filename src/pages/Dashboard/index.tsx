@@ -183,8 +183,8 @@ const Dashboard: React.FC = () => {
       </AboutFeatures>
 
       <AboutUsContainer>
-        <h2>E quem somos nós?</h2>
-        <p>Saiba mais da motivação do projeto na página de contato!</p>
+        <h2>Conheça os envolvidos</h2>
+        <p>Descubra a motivação do projeto na página de contato!</p>
         <Container>
           <Row>
             <Col xs={12} md={{ span: 2, offset: 1 }}>
