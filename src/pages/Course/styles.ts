@@ -93,7 +93,7 @@ export const TabContent = styled.div<TabContentProps>`
     `}
 
   margin: 45px 0 0 50px;
-  border-radius: 30px 30px 0 0;
+  border-radius: 30px;
   box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.5);
 
   display: flex;
@@ -103,7 +103,6 @@ export const TabContent = styled.div<TabContentProps>`
 export const TabText = styled.p<TabContentProps>`
   color: #fff;
   margin: auto;
-  margin-top: 20px;
   font-weight: bold;
   font-size: 18px;
 

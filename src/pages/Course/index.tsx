@@ -84,7 +84,7 @@ const Course: React.FC = () => {
   useEffect(() => {
     api
       .get(
-        `https://mw-melhorado-app.herokuapp.com/courses/${params.id}?format=json`,
+        `courses/${params.id}?format=json`,
       )
       .then(response => {
         let newCourse = response.data;

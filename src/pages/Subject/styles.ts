@@ -34,7 +34,6 @@ export const InfoGeralContainer = styled.div`
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
 
   svg {
     margin-right: 10px;
@@ -108,6 +107,7 @@ export const PrereqContainer = styled.div<WindowProp>`
 
 export const FeaturesContainer = styled.div<WindowProp>`
   width: 100%;
+  margin-top: 40px;
 
   display: flex;
   justify-content: center;
@@ -230,5 +230,113 @@ export const GraphicContainer = styled.div<WindowProp>`
     props.window &&
     css`
       width: 90%;
+    `};
+`;
+
+export const CardFeatureContainer = styled.div<WindowProp>`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+
+  h4 {
+    font-size: 25px;
+    color: #222;
+    text-transform: capitalize;
+    margin: 30px 0;
+    text-align: center;
+
+    ${props =>
+      props.window &&
+      css`
+        font-size: 18px;
+      `};
+  }
+`;
+
+export const EquivalencesContainer = styled.div<WindowProp>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: center;
+  width: 100%;
+  padding: 0 100px 0 100px;
+
+  & + & {
+    margin-top: 40px;
+  }
+
+  ${props =>
+    props.window &&
+    css`
+      flex-direction: column;
+      flex: 1;
+      padding: 0;
+
+      & + & {
+        margin-top: 0;
+      }
+    `};
+`;
+
+export const EquivalenceBox = styled.div<WindowProp>`
+  background: #7c4fe0;
+  min-height: 180px;
+  max-width: 15%;
+  border-radius: 10px;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  margin: 15px;
+  padding: 10px;
+  cursor: pointer;
+
+  h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+  }
+
+  p,
+  ul {
+    margin: 3px;
+    text-align: center;
+    list-style-position: inside;
+    ul {
+      font-size: 12px;
+    }
+  }
+
+  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(31, 45, 61, 0.35) !important;
+  }
+
+  ${props =>
+    props.window &&
+    css`
+      margin-bottom: 40px;
+      max-width: 90%;
+    `};
+`;
+
+export const NoEquivalences = styled.p<WindowProp>`
+  font-size: 20px;
+  color: #222;
+  text-transform: capitalize;
+  text-align: center;
+  margin: auto;
+
+  ${props =>
+    props.window &&
+    css`
+      font-size: 12px;
     `};
 `;
