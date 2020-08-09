@@ -15,7 +15,7 @@ const Routes: React.FC = () => (
     <Route path="/" exact component={Dashboard} />
     <Route path="/courses/:id" component={Course} />
     <Route path="/list-courses" component={ListCourses} />
-    <Route path="/subjects" component={ListSubjects} />
+    <Route path="/subjects" exact component={ListSubjects} />
     <Route path="/subjects/:subject_id" component={Subject} />
     <Route path="/contact-us" component={ContactUs} />
   </Switch>
