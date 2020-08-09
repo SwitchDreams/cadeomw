@@ -35,7 +35,7 @@ class Course(models.Model):
     def get_flow(self):
         """ Retorna o fluxo das disciplinas dividido por semestre """
         flow = {}
-        course_subjects = self.course_subject.all()
+        course_subjects = self.course_subject.order_by('semester')
         for subject in course_subjects:
             subject_dict = subject.to_json()
             if subject.semester in flow:
