@@ -10,7 +10,7 @@ import {
 import { BsArrowLeftRight, BsCalendarFill } from 'react-icons/bs';
 import { MdLineStyle } from 'react-icons/md';
 import { GoCheck } from 'react-icons/go';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 import {
@@ -184,7 +184,7 @@ const Dashboard: React.FC = () => {
 
       <AboutUsContainer>
         <h2>E quem somos nós?</h2>
-        <p>saiba mais da motivação do projeto na página de contato!</p>
+        <p>Saiba mais da motivação do projeto na página de contato!</p>
         <Container>
           <Row>
             <Col xs={12} md={{ span: 2, offset: 1 }}>
@@ -274,6 +274,20 @@ const Dashboard: React.FC = () => {
             </Col>
           </Row>
         </Container>
+        <div className="button">
+          <Button
+            onClick={() => {
+              window.location.href = '/contact-us';
+            }}
+            variant="outline-primary"
+            style={{
+              color: '#7c4fe0',
+              borderColor: '#7c4fe0',
+            }}
+          >
+            Saiba mais
+          </Button>
+        </div>
       </AboutUsContainer>
     </>
   );

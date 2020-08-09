@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 import droneUnB from '../../assets/unb.svg';
 import unbAntiga from '../../assets/unb_antiga.jpg';
 
@@ -210,6 +211,15 @@ export const AboutUsContainer = styled.div`
     text-align: center;
     font-size: 15px;
     margin-bottom: 50px;
+  }
+
+  .button {
+    margin-top: 40px;
+
+    button:hover {
+      background-color: #7c4fe0;
+      color: white !important;
+    }
   }
 
   .person {
