@@ -3,7 +3,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Graphviz } from 'graphviz-react';
 
-import api from '../../services/api';
+import { api } from '../../services/api';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 

@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
-import api from '../../services/api';
+import {api} from '../../services/api';
 import { useToast } from '../../hooks/toasts';
 
 import Graphic from './graphic';
