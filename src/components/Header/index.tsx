@@ -64,7 +64,7 @@ const Header: React.FC<HeaderBackground> = ({
           className={navFixed ? 'fixed' : ''}
         >
           <Navbar.Brand href="/" style={{ color: navFixed ? '#222' : '#fff' }}>
-            MW-Melhorado
+            Cadê o MW ?
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

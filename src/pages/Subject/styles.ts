@@ -55,7 +55,7 @@ export const InfoContainer = styled.div`
 export const NoPrereq = styled.p<WindowProp>`
   font-size: 20px;
   color: #222;
-  text-transform: capitalize;
+  text-transform: initial;
 
   ${props =>
     props.window &&
@@ -74,7 +74,7 @@ export const SubjectHeader = styled.h3<WindowProp>`
   color: #222;
   font-size: 40px;
   font-weight: bold;
-  text-transform: capitalize;
+  text-transform: initial;
 
   margin-bottom: 20px;
   padding: 10px;
@@ -134,7 +134,7 @@ export const FeaturesContainer = styled.div<WindowProp>`
   h4 {
     font-size: 25px;
     color: #222;
-    text-transform: capitalize;
+    text-transform: initial;
     margin: 30px 0;
     text-align: center;
 
