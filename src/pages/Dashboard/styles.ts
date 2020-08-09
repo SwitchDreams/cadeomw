@@ -59,7 +59,7 @@ export const FirstTextContainer = styled.div`
     h2 {
       font-size: 40px;
       font-weight: bold;
-      text-transform: capitalize;
+      text-transform: initial;
 
       &::after {
         content: '';
@@ -123,7 +123,7 @@ export const ListContainer = styled.div`
       color: #222;
       font-size: 40px;
       font-weight: bold;
-      text-transform: capitalize;
+      text-transform: initial;
       padding-bottom: 5px;
 
       &::after {
@@ -183,18 +183,17 @@ export const ListContainer = styled.div`
 `;
 
 export const AboutUsContainer = styled.div`
-  padding: 50px 0;
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 50px;
 
   h2 {
     max-width: 70%;
     font-size: 40px;
     font-weight: bold;
-    text-transform: capitalize;
+    text-transform: initial;
     text-align: center;
 
     &::after {
@@ -213,8 +212,59 @@ export const AboutUsContainer = styled.div`
     margin-bottom: 50px;
   }
 
+  .person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+
+    .profile {
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
+
+    .contact {
+      text-align: center;
+
+      a {
+        text-decoration: none;
+        color: #414141;
+        font-size: 14px;
+      }
+
+      h6 {
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-weight: bold;
+        color: #414141;
+      }
+
+      .insta {
+        svg {
+          color: #bc2a8d;
+        }
+      }
+
+      .face {
+        svg {
+          color: #4267b2;
+        }
+      }
+    }
+  }
+  /*
   .container {
-    min-width: 100%;
+    max-width: 100%;
+    border: 0 10px solid #ff0000;
+
+    div.MuiGrid-root {
+      display: flex;
+      justify-content: center;
+    }
 
     .person {
       width: 90%;
@@ -234,7 +284,7 @@ export const AboutUsContainer = styled.div`
         h6 {
           font-size: 20px;
           font-weight: bold;
-          text-transform: capitalize;
+          text-transform: initial;
         }
 
         .insta {
@@ -252,7 +302,7 @@ export const AboutUsContainer = styled.div`
         }
       }
     }
-  }
+  } */
 `;
 
 export const PersonContainer = styled.div``;

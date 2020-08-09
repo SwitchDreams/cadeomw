@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Hidden } from '@material-ui/core';
-import { FiBarChart2, FiInstagram } from 'react-icons/fi';
-import { AiOutlineCluster } from 'react-icons/ai';
+import { FiBarChart2 } from 'react-icons/fi';
+import {
+  AiOutlineCluster,
+  AiFillInstagram,
+  AiFillFacebook,
+} from 'react-icons/ai';
 import { BsArrowLeftRight, BsCalendarFill } from 'react-icons/bs';
 import { MdLineStyle } from 'react-icons/md';
 import { GoCheck } from 'react-icons/go';
+import { Container, Col, Row } from 'react-bootstrap';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 import {
@@ -19,7 +24,6 @@ import {
 } from './styles';
 
 import antigaUnB from '../../assets/unb_antiga.jpg';
-import avatarPlaceholder from '../../assets/avatar-placeholder.gif';
 
 import fotoBahia from '../../assets/perfil_bahia.jpeg';
 import fotoBruna from '../../assets/perfil_bruna.png';
@@ -181,80 +185,95 @@ const Dashboard: React.FC = () => {
       <AboutUsContainer>
         <h2>E quem somos nós?</h2>
         <p>saiba mais da motivação do projeto na página de contato!</p>
-        <div className="container">
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-            spacing={3}
-          >
-            <Grid item xs={12} md={2} sm={12}>
+        <Container>
+          <Row>
+            <Col xs={12} md={{ span: 2, offset: 1 }}>
               <div className="person">
-                <img src={fotoBahia} alt="avatar" />
+                <div className="profile">
+                  <img src={fotoBahia} alt="avatar" />
+                </div>
                 <div className="contact">
                   <h6>João Pedro Assis</h6>
                   <div className="insta">
-                    <FiInstagram />
-                    <Link to="www.google.com">@joaopedro.assis.3</Link>
+                    <AiFillInstagram />
+                    <a href="https://www.instagram.com/joaopedro.assis.3">
+                      {' '}
+                      joaopedro.assis.3
+                    </a>
                   </div>
                 </div>
               </div>
-            </Grid>
-
-            <Grid item xs={12} md={2} sm={12}>
+            </Col>
+            <Col xs={12} md={2}>
               <div className="person">
-                <img src={fotoBruna} alt="avatar" />
+                <div className="profile">
+                  <img src={fotoBruna} alt="avatar" />
+                </div>
                 <div className="contact">
                   <h6>Bruna Azambuja</h6>
                   <div className="insta">
-                    <FiInstagram />
-                    <Link to="www.google.com">@bru_azambuja</Link>
+                    <AiFillInstagram />
+                    <a href="https://www.instagram.com/bru_azambuja">
+                      {' '}
+                      bru_ajambuja
+                    </a>
                   </div>
                 </div>
               </div>
-            </Grid>
-
-            <Grid item xs={12} md={2} sm={12}>
+            </Col>
+            <Col xs={12} md={2}>
               <div className="person">
-                <img src={fotoWaliff} alt="avatar" />
+                <div className="profile">
+                  <img src={fotoWaliff} alt="avatar" />
+                </div>
                 <div className="contact">
                   <h6>Waliff Cordeiro</h6>
                   <div className="insta">
-                    <FiInstagram />
-                    <Link to="www.google.com">@waliff.cordeiro</Link>
+                    <AiFillInstagram />
+                    <a href="https://www.instagram.com/waliff.cordeiro">
+                      {' '}
+                      waliff.cordeiro
+                    </a>
                   </div>
                 </div>
               </div>
-            </Grid>
-
-            <Grid item xs={12} md={2} sm={12}>
+            </Col>
+            <Col xs={12} md={2}>
               <div className="person">
-                <img src={fotoPedro} alt="avatar" />
+                <div className="profile">
+                  <img src={fotoPedro} alt="avatar" />
+                </div>
                 <div className="contact">
-                  <h6>Pedro Augusto</h6>
-                  <div className="insta">
-                    <FiInstagram />
-                    <Link to="www.google.com">@naotempoxapedro</Link>
+                  <h6>Pedro Auguto Duarte</h6>
+                  <div className="face">
+                    <AiFillFacebook />
+                    <a href="https://www.facebook.com/profile.php?id=100003234917788">
+                      {' '}
+                      Pedro Augusto
+                    </a>
                   </div>
                 </div>
               </div>
-            </Grid>
-
-            <Grid item xs={12} md={2} sm={12}>
+            </Col>
+            <Col xs={12} md={2}>
               <div className="person">
-                <img src={fotoJapa} alt="avatar" />
+                <div className="profile">
+                  <img src={fotoJapa} alt="avatar" />
+                </div>
                 <div className="contact">
                   <h6>Lucas Azuma</h6>
                   <div className="insta">
-                    <FiInstagram />
-                    <Link to="www.google.com">@lucas_azuma</Link>
+                    <AiFillInstagram />
+                    <a href="https://www.instagram.com/lucas_azuma">
+                      {' '}
+                      lucas_azuma
+                    </a>
                   </div>
                 </div>
               </div>
-            </Grid>
-          </Grid>
-        </div>
+            </Col>
+          </Row>
+        </Container>
       </AboutUsContainer>
     </>
   );
