@@ -37,27 +37,28 @@ const ContactUs: React.FC = () => {
         <div className="container">
           <h2>Por que fizemos esse projeto?</h2>
           <p>
-            Nos vimos motivados a finalmente tirar essa ideia do papel quando o
-            caos chamado SIGAA começou. Diante de várias reclamações e memes
-            sobre o assunto, tiramos proveito da infinidade de tempo livre de
-            quarentena - que logo terminaria, para desenvolver um ambiente mais
-            amigável e organizado; para que nós, alunos da UnB, possamos passar
-            menos tempo tendo a dor de cabeça de procurar qualquer informação
-            útil naquele site.
+            A motivação para tirar essa ideia do papel surgiu após o lançamento
+            do SIGAA, quando percebemos as dificuldades para realizar buscas
+            simples no sistema. Diante de várias reclamações e memes sobre o
+            assunto, aproveitamos a infinidade de tempo livre de quarentena para
+            desenvolver um ambiente mais amigável e organizado, para que nós,
+            alunos da UnB, possamos acessar as informações sobre as disciplinas
+            de forma rápida e eficiente.
           </p>
         </div>
       </WhoWeAreContainer>
 
       <WhoWeAreContainer>
         <div className="container">
-          <h2>E de onde a gente consegue esses dados?</h2>
+          <h4>E de onde a gente consegue esses dados?</h4>
           <p>
-            Os dados utilizados pelo sistema foram disponibilizados pela
-            coordenação do curso de Engenharia de Computação, e foram exportados
-            do Sigra (plataforma de acesso exclusivo de docentes). O nosso
-            sistema realiza a leitura automatizada dos documentos e as dispõe
-            nesse site. Atualizaremos os dados com a maior frequência possível,
-            contando com a colaboração de professores/coordenadores parceiros.
+            Os dados utilizados pelo <span className="negrito">Cadê o MW?</span>{' '}
+            são disponibilizados pela Coordenação do curso de Engenharia de
+            Computação e extraídos do Sigra (plataforma de acesso exclusivo de
+            docentes). O nosso sistema realiza a leitura automatizada dos
+            documentos e as dispõe no site de uma forma muito mais intuitiva
+            para o usuário. Atualizaremos as informações na maior frequência
+            possível.
           </p>
         </div>
       </WhoWeAreContainer>
@@ -69,21 +70,25 @@ const ContactUs: React.FC = () => {
             alt="Switch Dreams"
             style={{ width: 100, height: 100 }}
           />
-          <h2>Switch Dreams</h2>
+          <h4>Switch Dreams</h4>
           <p>
-            A Switch Dreams é o nome da start up idealizada por três calouros
-            durante um almoço no RU. Eles compartilham o sonho de desenvolver
-            soluções tecnológicas que impactem a sociedade. Ao longo dos
-            semestres a brincadeira ficou mais séria, e aqueles calouros estão
-            cada vez mais próximos de torná-la realidade. O Cadê o MW? é a
-            primeira de muitas iniciativas a ser de fato implementada.
+            A Switch Dreams é o nome da start up idealizada por três calouros de
+            Engenharia de Computação durante um almoço no RU. Eles compartilham
+            o sonho de desenvolver soluções tecnológicas que impactem a
+            sociedade. Ao longo dos semestres, a brincadeira ficou mais séria e
+            aqueles calouros estão cada vez mais próximos de torná-la realidade.
+            O <span className="negrito">Cadê o MW?</span> é a primeira de muitas
+            iniciativas a ser de fato implementada por eles. Além de nós da
+            Switch Dreams, também participam do{' '}
+            <span className="negrito">Cadê o MW?</span>, dois colegas de curso
+            que compartilham as mesmas ideias.
           </p>
         </div>
       </WhoWeAreContainer>
 
-      <WhoWeAreContainer>
+      {/* <WhoWeAreContainer>
         <div className="container">
-          <h2>Quem somos nós?</h2>
+          <h4>Quem somos nós?</h4>
           <p>
             Somos cinco alunos de Engenharia de computação da UnB, motivados
             pelo estresse do período de matrícula e pela oportunidade de
@@ -91,7 +96,7 @@ const ContactUs: React.FC = () => {
             gente que pudermos.
           </p>
         </div>
-      </WhoWeAreContainer>
+      </WhoWeAreContainer> */}
 
       <CardsContainer window={windowCheck}>
         <div className="container">

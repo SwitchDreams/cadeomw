@@ -4,7 +4,11 @@ interface WindowProps {
   window: boolean;
 }
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  span.negrito {
+    font-weight: bold;
+  }
+`;
 
 export const WhoWeAreContainer = styled.div`
   color: #222;
@@ -22,6 +26,19 @@ export const WhoWeAreContainer = styled.div`
 
     h2 {
       font-size: 40px;
+      font-weight: bold;
+
+      &::after {
+        content: '';
+        height: 3px;
+        width: 200px;
+        background-color: #7c4fe0;
+        display: block;
+        margin: 10px auto;
+      }
+    }
+
+    h4 {
       font-weight: bold;
 
       &::after {

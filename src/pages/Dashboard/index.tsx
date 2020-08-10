@@ -120,9 +120,7 @@ const Dashboard: React.FC = () => {
               <ListContainer>
                 <div className="title-text">
                   <h2>O que está por vir?</h2>
-                  <p>
-                    É... não deu pra fazer tudo, mas em breve teremos isso aqui:
-                  </p>
+                  <p>É... não deu pra fazer tudo, mas em breve teremos:</p>
                 </div>
                 <ul>
                   <div>
@@ -278,7 +276,7 @@ const Dashboard: React.FC = () => {
             onClick={() => {
               window.location.href = '/contact-us';
             }}
-            variant="outline-primary"
+            variant="outline-light"
             style={{
               color: '#7c4fe0',
               borderColor: '#7c4fe0',
