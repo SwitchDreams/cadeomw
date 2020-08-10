@@ -212,7 +212,7 @@ const Dashboard: React.FC = () => {
                     <AiFillInstagram />
                     <a href="https://www.instagram.com/bru_azambuja">
                       {' '}
-                      bru_ajambuja
+                      bru_azambuja
                     </a>
                   </div>
                 </div>
