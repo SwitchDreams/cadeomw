@@ -45,7 +45,7 @@ const Dashboard: React.FC = () => {
             <div className="space">
               <h1>Where tf is MW?</h1>
               <p>
-                Encontre num só lugar tudo o que você um dia soube onde
+                Encontre em um só lugar tudo o que você um dia soube onde
                 encontrar
               </p>
             </div>
