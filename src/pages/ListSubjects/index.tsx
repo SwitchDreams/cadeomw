@@ -149,7 +149,7 @@ const ListSubjects: React.FC = () => {
     <>
       <Header transparent={false} />
 
-      <Form>
+      <Form window={WindowCheck}>
         <form onSubmit={handleSearchSubject}>
           <input
             value={searchSubject}
@@ -160,6 +160,7 @@ const ListSubjects: React.FC = () => {
         </form>
 
         <Select>
+          <p>Departamentos:</p>
           <select onChange={handleFilterSubject}>
             <option selected value="" />
             {departments.map(department => {

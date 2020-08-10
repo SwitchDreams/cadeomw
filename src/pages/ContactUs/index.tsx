@@ -155,7 +155,7 @@ const ContactUs: React.FC = () => {
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
                   <a href="https://github.com/PedroAugustoRamalhoDuarte">
-                    PedroAugustoRamalhoDuarte
+                    PedroAugusto
                   </a>
                 </div>
               </div>

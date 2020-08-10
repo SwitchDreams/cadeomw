@@ -94,7 +94,7 @@ export const Courses = styled.div<CoursesProps>`
     ${props =>
       props.window &&
       css`
-        height: 90px;
+        height: 110px;
       `}
 
     & + a {

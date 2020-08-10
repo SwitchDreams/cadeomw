@@ -6,6 +6,11 @@ interface CoursesProps {
 }
 
 export const Select = styled.div`
+  p {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+
   select {
     width: 100%;
     text-align: center;
@@ -43,7 +48,7 @@ export const Loading = styled.div`
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.div<CoursesProps>`
   margin-top: 60px;
   max-width: 700px;
   margin: 0 auto;
@@ -52,6 +57,16 @@ export const Form = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  ${props =>
+    props.window &&
+    css`
+      flex-direction: column;
+      form {
+        width: 100%;
+        margin-bottom: 7px;
+      }
+    `}
 
   form {
     display: flex;
