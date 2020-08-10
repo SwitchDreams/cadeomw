@@ -35,7 +35,7 @@ class Course(models.Model):
     def get_flow(self):
         """ Retorna o fluxo das disciplinas dividido por semestre """
         flow = {}
-        course_subjects = self.course_subject.all()
+        course_subjects = self.course_subject.order_by('semester')
         for subject in course_subjects:
             subject_dict = subject.to_json()
             if subject.semester in flow:
@@ -57,11 +57,11 @@ class Course(models.Model):
         return len(self.flow)
 
     def get_hardest_subject(self):
-        """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
+        """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de aprovação"""
         return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)[0].to_json()
 
     def get_easiest_subject(self):
-        """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de parovação"""
+        """ Retorna a disciplina mais fácil no curso, ou seja com maior porcentagem de aprovação"""
         return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)[-1].to_json()
 
 

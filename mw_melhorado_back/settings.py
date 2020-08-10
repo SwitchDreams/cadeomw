@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 20
 }
 
 INSTALLED_APPS = [
@@ -86,8 +86,8 @@ WSGI_APPLICATION = 'mw_melhorado_back.wsgi.application'
 
 DATABASES = {'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'aula_trainee',
-    'USER': 'root',
+    'NAME': 'projeto_L2_test',
+    'USER': 'waliffcordeiro',
     'PASSWORD': 'abacate',
     'HOST': 'localhost',
     'PORT': '',
