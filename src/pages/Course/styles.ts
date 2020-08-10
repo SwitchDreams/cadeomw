@@ -143,7 +143,7 @@ export const InfoContainerCard = styled.div<AllContainerProps>`
 `;
 
 export const FluxContainer = styled.div<AllContainerProps>`
-  width: 45%;
+  width: 50%;
   margin: 50px 0 100px 0;
 
   ${props =>

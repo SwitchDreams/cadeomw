@@ -37,7 +37,7 @@ export const LandingText = styled.div`
     p {
       font-size: 20px;
       font-weight: bold;
-      text-transform: capitalize;
+      text-transform: initial;
       color: white;
     }
   }
@@ -49,7 +49,7 @@ export const FirstTextContainer = styled.div`
   justify-content: center;
 
   .container {
-    max-width: 70%;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +59,7 @@ export const FirstTextContainer = styled.div`
     h2 {
       font-size: 40px;
       font-weight: bold;
-      text-transform: capitalize;
+      text-transform: initial;
 
       &::after {
         content: '';
@@ -118,24 +118,32 @@ export const AboutFeatures = styled.section`
 `;
 
 export const ListContainer = styled.div`
-  h2 {
-    color: #222;
-    font-size: 40px;
-    font-weight: bold;
-    text-transform: capitalize;
-    padding-bottom: 20px;
+  .title-text {
+    h2 {
+      color: #222;
+      font-size: 40px;
+      font-weight: bold;
+      text-transform: initial;
+      padding-bottom: 5px;
 
-    &::after {
-      content: '';
-      height: 3px;
-      width: 200px;
-      background-color: #7c4fe0;
-      display: block;
-      margin: 10px 0;
+      &::after {
+        content: '';
+        height: 3px;
+        width: 200px;
+        background-color: #7c4fe0;
+        display: block;
+        margin: 10px 0;
+      }
+    }
+
+    p {
+      padding-bottom: 10px;
     }
   }
 
   ul {
+    padding: 10px 0;
+
     li {
       padding: 8px 0;
       list-style: none;
@@ -173,3 +181,90 @@ export const ListContainer = styled.div`
     }
   }
 `;
+
+export const AboutUsContainer = styled.div`
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  h2 {
+    max-width: 70%;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: initial;
+    text-align: center;
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 200px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 50px;
+  }
+
+  .button {
+    margin-top: 40px;
+
+    button:hover {
+      background-color: #7c4fe0;
+      color: white !important;
+    }
+  }
+
+  .person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+
+    .profile {
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+    }
+
+    .contact {
+      text-align: center;
+
+      a {
+        text-decoration: none;
+        color: #414141;
+        font-size: 14px;
+      }
+
+      h6 {
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-weight: bold;
+        color: #414141;
+      }
+
+      .insta {
+        svg {
+          color: #bc2a8d;
+        }
+      }
+
+      .face {
+        svg {
+          color: #4267b2;
+        }
+      }
+    }
+  }
+`;
+
+export const PersonContainer = styled.div``;

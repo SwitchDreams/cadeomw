@@ -21,7 +21,7 @@ export const FeatureCardContainer = styled.div`
     text-align: center;
 
     .text-container {
-      h3 {
+      h4 {
         font-weight: bold;
         margin: 5px;
         color: black;

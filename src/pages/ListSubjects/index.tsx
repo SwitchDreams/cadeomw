@@ -145,15 +145,11 @@ const ListSubjects: React.FC = () => {
     }
   }
 
-  const data: string[] = subjects.results.map(subject => {
-    return subject.department;
-  });
-
   return (
     <>
       <Header transparent={false} />
 
-      <Form>
+      <Form window={WindowCheck}>
         <form onSubmit={handleSearchSubject}>
           <input
             value={searchSubject}
@@ -164,11 +160,9 @@ const ListSubjects: React.FC = () => {
         </form>
 
         <Select>
+          <p>Departamentos:</p>
           <select onChange={handleFilterSubject}>
             <option selected value="" />
-            <option value="CDT">
-              Centro de Apoio ao Desenvolvimento Tecnológico - CDT
-            </option>
             {departments.map(department => {
               return (
                 <option value={department.initials}>{department.name}</option>
@@ -190,7 +184,7 @@ const ListSubjects: React.FC = () => {
       {!loading && (
         <Subjects window={WindowCheck}>
           {subjects.results.map(subject => (
-            <a key={subject.code} href={`/${subject.code}`}>
+            <a key={subject.code} href={`subjects/${subject.code}`}>
               <div>
                 <strong>
                   {subject.name.charAt(0).toUpperCase() +

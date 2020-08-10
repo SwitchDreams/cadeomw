@@ -1,12 +1,12 @@
 import React from 'react';
-import { SvgIconComponent } from '@material-ui/icons';
+import { IconType } from 'react-icons';
 import { FeatureCardContainer } from './styles';
 
 interface FeatureCardProps {
   title: string;
   text: string;
   logoColor: string;
-  Logo: SvgIconComponent;
+  Logo: IconType;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -19,10 +19,10 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     <FeatureCardContainer>
       <div className="content-container">
         <div className="logo-container">
-          <Logo style={{ fontSize: 50, color: logoColor }} />
+          <Logo style={{ fontSize: 40, color: logoColor }} />
         </div>
         <div className="text-container">
-          <h3>{title}</h3>
+          <h4>{title}</h4>
           <p>{text}</p>
         </div>
       </div>
