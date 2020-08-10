@@ -14,7 +14,7 @@ export const WhoWeAreContainer = styled.div`
   color: #222;
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 
   .container {
     max-width: 80%;
@@ -62,7 +62,7 @@ export const CardsContainer = styled.div<WindowProps>`
   color: #222;
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin: 50px 0;
   justify-content: center;
 
   .container {
