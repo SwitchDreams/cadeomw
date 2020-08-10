@@ -78,7 +78,7 @@ const ListSubjects: React.FC = () => {
       } catch (err) {
         addToast({
           type: 'error',
-          title: 'Erro ao carregar os cursos',
+          title: 'Erro ao carregar as disciplinas',
           description: 'Tente novamente mais tarde',
         });
       }
