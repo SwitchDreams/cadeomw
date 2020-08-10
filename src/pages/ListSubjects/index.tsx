@@ -159,7 +159,7 @@ const ListSubjects: React.FC = () => {
           <input
             value={searchSubject}
             onChange={e => setSearchSubject(e.target.value)}
-            placeholder="Digite o nome do curso"
+            placeholder="Digite o nome da disciplina"
           />
           <button type="submit">Pesquisar</button>
         </form>

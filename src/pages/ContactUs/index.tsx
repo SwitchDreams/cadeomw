@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineGithub } from 'react-icons/ai';
+import { MdEmail } from 'react-icons/md';
 
 import Header from '../../components/Header';
 
@@ -53,7 +54,7 @@ const ContactUs: React.FC = () => {
           <h4>E de onde a gente consegue esses dados?</h4>
           <p>
             Os dados utilizados pelo <span className="negrito">Cadê o MW?</span>{' '}
-            são disponibilizados pela Coordenação do curso de Engenharia de
+            foram disponibilizados pela Coordenação do curso de Engenharia de
             Computação e extraídos do Sigra (plataforma de acesso exclusivo de
             docentes). O nosso sistema realiza a leitura automatizada dos
             documentos e as dispõe no site de uma forma muito mais intuitiva
@@ -86,34 +87,19 @@ const ContactUs: React.FC = () => {
         </div>
       </WhoWeAreContainer>
 
-      {/* <WhoWeAreContainer>
-        <div className="container">
-          <h4>Quem somos nós?</h4>
-          <p>
-            Somos cinco alunos de Engenharia de computação da UnB, motivados
-            pelo estresse do período de matrícula e pela oportunidade de
-            compartilhar essas ferramentas que desenvolvemos com o máximo de
-            gente que pudermos.
-          </p>
-        </div>
-      </WhoWeAreContainer> */}
-
       <CardsContainer window={windowCheck}>
         <div className="container">
           <div className="containercards">
             <div className="card">
               <div className="images">
                 <img className="profile" src={fotoBahia} alt="profile" />
-                <img
-                  className="switch-dreams"
-                  src={logo}
-                  alt="Switch Dreams"
-                  style={{ width: 25, height: 25 }}
-                />
               </div>
               <div className="text">
                 <h6>João Pedro Assis</h6>
-                <p>Fã de um festão, músico, cervejeiro, baiano e brincalhão.</p>
+                <p>
+                  Fã de um festão, músico, cervejeiro, baiano e brincalhão.
+                  Fundador da Swith Dreams.
+                </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
                   <a href="https://github.com/JoaoPedroAssis">JoaoPedroAssis</a>
@@ -128,7 +114,7 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Bruna Azambuja</h6>
                 <p>
-                  Fã de uma festinha, jogadora de volei e adora aproveitar um
+                  Fã de uma festa, jogadora de volei e adora aproveitar um
                   barzinho com os amigos.
                 </p>
                 <div className="link">
@@ -144,18 +130,12 @@ const ContactUs: React.FC = () => {
             <div className="card">
               <div className="images">
                 <img className="profile" src={fotoPedro} alt="profile" />
-                <img
-                  className="switch-dreams"
-                  src={logo}
-                  alt="Switch Dreams"
-                  style={{ width: 25, height: 25 }}
-                />
               </div>
               <div className="text">
                 <h6>Pedro Augusto</h6>
                 <p>
                   Fã dos e-sports, player da Green Owls e aspirante a
-                  bodybuilder.
+                  bodybuilder. Fundador da Swith Dreams.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
@@ -168,19 +148,13 @@ const ContactUs: React.FC = () => {
             <div className="card">
               <div className="images">
                 <img className="profile" src={fotoWaliff} alt="profile" />
-                <img
-                  className="switch-dreams"
-                  src={logo}
-                  alt="Switch Dreams"
-                  style={{ width: 25, height: 25 }}
-                />
               </div>
 
               <div className="text">
                 <h6>Waliff Cordeiro</h6>
                 <p>
                   Fã de churrasco, escoteiro, goiano e apreciador de um
-                  vinhozinho.
+                  vinhozinho. Fundador da Swith Dreams.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
@@ -211,6 +185,38 @@ const ContactUs: React.FC = () => {
           </div>
         </div>
       </CardsContainer>
+
+      <WhoWeAreContainer>
+        <div className="container">
+          <h5>Fale Conosco!</h5>
+          <p>
+            {' '}
+            Gostou do site? Tem algo que pode melhorar? Lance o feedback brabo{' '}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://forms.gle/Kfz7ZcnpghkkD8Dp7"
+            >
+              aqui
+            </a>
+            !
+          </p>
+          <p>Sem ninguém pra conversar? Coversae com a gente!</p>
+          <div>
+            <MdEmail /> cadeomw@gmail.com
+          </div>
+        </div>
+        {/* <div className="contact-form">
+          <p>
+            Gostou do site? Tem algo que pode melhorar? Lanse o feedback brabo{' '}
+            <a href="#">aqui</a>!
+          </p>
+        </div>
+        <div className="contact-email">
+          <p>Sem ninguém pra conversar? Coversa com a gente!</p>
+          <MdEmail /> cadeomw@gmail.com
+        </div> */}
+      </WhoWeAreContainer>
     </Container>
   );
 };

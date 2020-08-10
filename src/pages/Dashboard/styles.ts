@@ -39,6 +39,7 @@ export const LandingText = styled.div`
       font-weight: bold;
       text-transform: initial;
       color: white;
+      max-width: 90%;
     }
   }
 `;
@@ -189,6 +190,10 @@ export const AboutUsContainer = styled.div`
   align-items: center;
   width: 100%;
 
+  span.negrito {
+    font-weight: bold;
+  }
+
   h2 {
     max-width: 70%;
     font-size: 40px;
@@ -210,6 +215,7 @@ export const AboutUsContainer = styled.div`
     text-align: center;
     font-size: 15px;
     margin-bottom: 50px;
+    max-width: 90%;
   }
 
   .button {
