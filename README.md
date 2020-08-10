@@ -1,7 +1,7 @@
 # mw-melhorado-back
 
 ## Descrição
-Repostório de backend do MwMelhorado feito em Django
+Repositório de backend do MwMelhorado feito em Django
 
 ## Instalação
 1. Instale o python no seu pc
