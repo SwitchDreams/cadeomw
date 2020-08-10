@@ -244,7 +244,7 @@ const Dashboard: React.FC = () => {
                   <img src={fotoPedro} alt="avatar" />
                 </div>
                 <div className="contact">
-                  <h6>Pedro Auguto Duarte</h6>
+                  <h6>Pedro Augusto Duarte</h6>
                   <div className="face">
                     <AiFillFacebook />
                     <a href="https://www.facebook.com/profile.php?id=100003234917788">
