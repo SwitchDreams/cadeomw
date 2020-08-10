@@ -1,6 +1,6 @@
 # mw-melhorado-back
 
-## Descirção
+## Descrição
 Repostório de backend do MwMelhorado feito em Django
 
 ## Instalação
