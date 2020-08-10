@@ -51,6 +51,19 @@ export const WhoWeAreContainer = styled.div`
       }
     }
 
+    h5 {
+      font-weight: bold;
+
+      &::after {
+        content: '';
+        height: 3px;
+        width: 200px;
+        background-color: #7c4fe0;
+        display: block;
+        margin: 10px auto;
+      }
+    }
+
     p {
       padding-top: 10px;
       font-size: 17px;
@@ -165,5 +178,17 @@ export const CardsContainer = styled.div<WindowProps>`
           }
         }
       `};
+  }
+`;
+
+export const ContactContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .contact-form {
+  }
+
+  .contact-email {
   }
 `;

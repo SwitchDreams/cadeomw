@@ -190,6 +190,10 @@ export const AboutUsContainer = styled.div`
   align-items: center;
   width: 100%;
 
+  span.negrito {
+    font-weight: bold;
+  }
+
   h2 {
     max-width: 70%;
     font-size: 40px;
