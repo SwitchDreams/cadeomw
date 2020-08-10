@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Graphviz } from 'graphviz-react';
 
 import api from '../../services/api';
@@ -80,6 +80,7 @@ const Course: React.FC = () => {
   const [fluxo, setFluxo] = useState(true);
   const [grafo, setGrafo] = useState(false);
   const params = useParams<RouteParams>();
+  const history = useHistory();
 
   const { addToast } = useToast();
 
@@ -160,13 +161,15 @@ const Course: React.FC = () => {
         setPeriods(periodList);
       })
       .catch(() => {
+        setLoading(false);
         addToast({
           type: 'error',
           title: 'Erro ao carregar o curso desejado',
           description: 'Tente novamente mais tarde',
         });
+        history.push('/list-courses');
       });
-  }, [params.id, addToast]);
+  }, [params.id, addToast, history]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
