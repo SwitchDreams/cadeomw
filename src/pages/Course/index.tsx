@@ -64,10 +64,6 @@ const Course: React.FC = () => {
       name: 'Fluxo',
       selected: true,
     },
-    {
-      name: 'Grafo',
-      selected: false,
-    },
   ];
 
   const [windowCheck, setWindowCheck] = useState(false);
