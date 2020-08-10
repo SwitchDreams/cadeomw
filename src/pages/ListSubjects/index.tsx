@@ -183,7 +183,7 @@ const ListSubjects: React.FC = () => {
       {!loading && (
         <Subjects window={WindowCheck}>
           {subjects.results.map(subject => (
-            <a key={subject.code} href={`/${subject.code}`}>
+            <a key={subject.code} href={`subjects/${subject.code}`}>
               <div>
                 <strong>
                   {subject.name.charAt(0).toUpperCase() +
