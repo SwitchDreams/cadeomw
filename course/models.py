@@ -57,8 +57,13 @@ class Course(models.Model):
         return len(self.flow)
 
     def get_hardest_subject(self):
-        """ Retorna a disciplina mais difícil no curso, ou seja com menor porcentagem de aprovação"""
-        return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)[0].to_json()
+        """ Retorna a disciplina mais difícil no curso que tenha pass_percent > 0, 
+        ou seja com menor porcentagem de aprovação"""
+        subjects = sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)
+        for subject in subjects:
+            if subject.subject.pass_percent > 0:
+                return subject.to_json()
+        return subjects[0].to_json()
 
     def get_easiest_subject(self):
         """ Retorna a disciplina mais fácil no curso, ou seja com maior porcentagem de aprovação"""
