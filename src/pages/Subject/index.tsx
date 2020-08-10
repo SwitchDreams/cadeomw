@@ -18,6 +18,7 @@ import {
   Container,
   InfoGeralContainer,
   InfoContainer,
+  NotExistingSubject,
 } from './styles';
 
 /*
@@ -133,7 +134,17 @@ const Subject: React.FC = () => {
 
       {loading && <Loading />}
 
-      {!loading && subject && (
+      {subject && subject.pass_percent === 0 && (
+        <NotExistingSubject>
+          <SubjectHeader window={windowCheck}>{subject.name}</SubjectHeader>
+          <h2>
+            Disciplina não existe mais, ou não possuímos seus dados no Banco de
+            Dados.
+          </h2>
+        </NotExistingSubject>
+      )}
+
+      {!loading && subject && subject.pass_percent !== 0 && (
         <Container>
           <SubjectHeader window={windowCheck}>{subject.name}</SubjectHeader>
 

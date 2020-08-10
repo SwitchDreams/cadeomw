@@ -340,3 +340,12 @@ export const NoEquivalences = styled.p<WindowProp>`
       font-size: 12px;
     `};
 `;
+
+export const NotExistingSubject = styled.div`
+  text-align: center;
+  max-width: 100%;
+
+  h2 {
+    font-size: 14px;
+  }
+`;
