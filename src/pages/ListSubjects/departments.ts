@@ -6,247 +6,247 @@ interface DepartmentProps {
 const departments: DepartmentProps[] = [
   {
     initials: 'CDT',
-    name: 'Centro de Apoio ao Desenvolvimento Tecnológico - CDT',
+    name: 'CDT - C. de Apoio ao Desenvolvimento Tecnológico',
   },
   {
     initials: 'CDS',
-    name: 'Centro de Desenvolvimento Sustentável - CDS',
+    name: 'CDS - C. de Desenvolvimento Sustentável',
   },
   {
     initials: 'CEAM',
-    name: 'Centro de Estudos Avançados e Multidisciplinares - CEAM',
+    name: 'CEAM - C. de Estudos Avançados e Multidisciplinares',
   },
   {
     initials: 'DAN',
-    name: 'Departamento de Antropologia - DAN',
+    name: 'DAN - Dpt. de Antropologia',
   },
   {
     initials: 'CEN',
-    name: 'Departamento de Artes Cênicas - CEN',
+    name: 'CEN - Dpt. de Artes Cênicas',
   },
   {
     initials: 'VIS',
-    name: 'Departamento de Artes Visuais - VIS',
+    name: 'VIS - Dpt. de Artes Visuais',
   },
   {
     initials: 'CEL',
-    name: 'Departamento de Biologia Celular - CEL',
+    name: 'CEL - Dpt. de Biologia Celular',
   },
   {
     initials: 'BOT',
-    name: 'Departamento de Botânica - BOT',
+    name: 'BOT - Dpt. de Botânica',
   },
   {
     initials: 'CIC',
-    name: 'Departamento de Ciência da Computação - CIC',
+    name: 'CIC - Dpt. de Ciência da Computação',
   },
   {
     initials: 'CFS',
-    name: 'Departamento de Ciências Fisiológicas - CFS',
+    name: 'CFS - Dpt. de Ciências Fisiológicas',
   },
   {
     initials: 'DIN',
-    name: 'Departamento de Design - DIN',
+    name: 'DIN - Dpt. de Design',
   },
   {
     initials: 'ECL',
-    name: 'Departamento de Ecologia - ECL',
+    name: 'ECL - Dpt. de Ecologia',
   },
   {
     initials: 'ECO',
-    name: 'Departamento de Economia - ECO',
+    name: 'ECO - Dpt. de Economia',
   },
   {
     initials: 'ENF',
-    name: 'Departamento de Enfermagem - ENF',
+    name: 'ENF - Dpt. de Enfermagem',
   },
   {
     initials: 'ENC',
-    name: 'Departamento de Engenharia Civil e Ambiental - ENC',
+    name: 'ENC - Dpt. de Engenharia Civil e Ambiental',
   },
   {
     initials: 'ENE',
-    name: 'Departamento de Engenharia Elétrica - ENE',
+    name: 'ENE - Dpt. de Engenharia Elétrica',
   },
   {
     initials: 'EFL',
-    name: 'Departamento de Engenharia Florestal - EFL',
+    name: 'EFL - Dpt. de Engenharia Florestal',
   },
   {
     initials: 'ENM',
-    name: 'Departamento de Engenharia Mecânica - ENM',
+    name: 'ENM - Dpt. de Engenharia Mecânica',
   },
   {
     initials: 'EST',
-    name: 'Departamento de Estatística - EST',
+    name: 'EST - Dpt. de Estatística',
   },
   {
     initials: 'ELA',
-    name: 'Departamento de Estudos Latino-Americanos - ELA',
+    name: 'ELA - Dpt. de Estudos Latino-Americanos',
   },
   {
     initials: 'FAR',
-    name: 'Departamento de Farmácia - FAR',
+    name: 'FAR - Dpt. de Farmácia',
   },
   {
     initials: 'FIL',
-    name: 'Departamento de Filosofia - FIL',
+    name: 'FIL - Dpt. de Filosofia',
   },
   {
     initials: 'FIT',
-    name: 'Departamento de Fitopatologia - FIT',
+    name: 'FIT - Dpt. de Fitopatologia',
   },
   {
     initials: 'GEM',
-    name: 'Departamento de Genética e Morfologia - GEM',
+    name: 'GEM - Dpt. de Genética e Morfologia',
   },
   {
     initials: 'GEA',
-    name: 'Departamento de Geografia - GEA',
+    name: 'GEA - Dpt. de Geografia',
   },
   {
     initials: 'HIS',
-    name: 'Departamento de História - HIS',
+    name: 'HIS - Dpt. de História',
   },
   {
     initials: 'LET',
-    name: 'Departamento de Línguas Estrangeiras e Tradução - LET',
+    name: 'LET - Dpt. de Línguas Estrangeiras e Tradução',
   },
   {
     initials: 'LIP',
-    name: 'Departamento de Linguística, Português, Líng Clás - LIP',
+    name: 'LIP - Dpt. de Linguística, Português, Líng Clás',
   },
   {
     initials: 'MAT',
-    name: 'Departamento de Matemática - MAT',
+    name: 'MAT - Dpt. de Matemática',
   },
   {
     initials: 'MUS',
-    name: 'Departamento de Música - MUS',
+    name: 'MUS - Dpt. de Música',
   },
   {
     initials: 'PPB',
-    name: 'Departamento de Processos Psicologicos Básicos - PPB',
+    name: 'PPB - Dpt. de Processos Psicologicos Básicos',
   },
   {
     initials: 'PED',
-    name: 'Departamento de Psic.Escolar e do Desenvolvimento - PED',
+    name: 'PED - Dpt. de Psic.Escolar e do Desenvolvimento',
   },
   {
     initials: 'PCL',
-    name: 'Departamento de Psicologia Clínica - PCL',
+    name: 'PCL - Dpt. de Psicologia Clínica',
   },
   {
     initials: 'PST',
-    name: 'Departamento de Psicologia Social e do Trabalho - PST',
+    name: 'PST - Dpt. de Psicologia Social e do Trabalho',
   },
   {
     initials: 'DSC',
-    name: 'Departamento de Saúde Coletiva - DSC',
+    name: 'DSC - Dpt. de Saúde Coletiva',
   },
   {
     initials: 'SER',
-    name: 'Departamento de Serviço Social - SER',
+    name: 'SER - Dpt. de Serviço Social',
   },
   {
     initials: 'SOL',
-    name: 'Departamento de Sociologia - SOL',
+    name: 'SOL - Dpt. de Sociologia',
   },
   {
     initials: 'TEL',
-    name: 'Departamento de Teoria Literária e Literatura - TEL',
+    name: 'TEL - Dpt. de Teoria Literária e Literatura',
   },
   {
     initials: 'ZOO',
-    name: 'Departamento de Zoologia - ZOO',
+    name: 'ZOO - Dpt. de Zoologia',
   },
   {
     initials: 'CCA',
-    name: 'Departamento de Ciências Contábeis e Atuariais - CCA',
+    name: 'CCA - Dpt. de Ciências Contábeis e Atuariais',
   },
   {
     initials: 'FAU',
-    name: 'Direção da Faculdade de Arquitetura e Urbanismo - FAU',
+    name: 'FAU - Direção da Fc. de Arquitetura e Urbanismo',
   },
   {
     initials: 'IBD',
-    name: 'Direção do Instituto de Ciências Biológicas - IBD',
+    name: 'IBD - Direção do Instituto de Ciências Biológicas',
   },
   {
     initials: 'FACE',
-    name: 'Faculdade de Economia, Administração e Contabilidade - FACE',
+    name: 'FACE - Fc. de Economia, Administração e Contabilidade',
   },
   {
     initials: 'FAV',
-    name: 'Faculdade de Agronomia e Medicina Veterinária - FAV',
+    name: 'FAV - Fc. de Agronomia e Medicina Veterinária',
   },
   {
     initials: 'FCI',
-    name: 'Faculdade de Ciência da Informação - FCI',
+    name: 'FCI - Fc. de Ciência da Informação',
   },
   {
     initials: 'FS',
-    name: 'Faculdade de Ciências da Saúde - FS',
+    name: 'FS - Fc. de Ciências da Saúde',
   },
   {
     initials: 'FAC',
-    name: 'Faculdade de Comunicação - FAC',
+    name: 'FAC - Fc. de Comunicação',
   },
   {
     initials: 'FDD',
-    name: 'Faculdade de Direito - FDD',
+    name: 'FDD - Fc. de Direito',
   },
   {
     initials: 'FE',
-    name: 'Faculdade de Educação - FE',
+    name: 'FE - Fc. de Educação',
   },
   {
     initials: 'FEF',
-    name: 'Faculdade de Educação Física - FEF',
+    name: 'FEF - Fc. de Educação Física',
   },
   {
     initials: 'FMD',
-    name: 'Faculdade de Medicina - FMD',
+    name: 'FMD - Fc. de Medicina',
   },
   {
     initials: 'FT',
-    name: 'Faculdade de Tecnologia - FT',
+    name: 'FT - Fc. de Tecnologia',
   },
   {
     initials: 'IDA',
-    name: 'Instituto de Artes - IDA',
+    name: 'IDA - Inst. de Artes',
   },
   {
     initials: 'IPOL',
-    name: 'Instituto de Ciência Política - IPOL',
+    name: 'IPOL - Inst. de Ciência Política',
   },
   {
     initials: 'IB',
-    name: 'Instituto de Ciências Biológicas - IB',
+    name: 'IB - Inst. de Ciências Biológicas',
   },
   {
     initials: 'IH',
-    name: 'Instituto de Ciências Humanas - IH',
+    name: 'IH - Inst. de Ciências Humanas',
   },
   {
     initials: 'IFD',
-    name: 'Instituto de Física - IFD',
+    name: 'IFD - Inst. de Física',
   },
   {
     initials: 'IGD',
-    name: 'Instituto de Geociências - IGD',
+    name: 'IGD - Inst. de Geociências',
   },
   {
     initials: 'IQD',
-    name: 'Instituto de QUÍMICA - IQD',
+    name: 'IQD - Inst. de QUÍMICA',
   },
   {
     initials: 'IREL',
-    name: 'Instituto de Relações Internacionais - IREL',
+    name: 'IREL - Inst. de Relações Internacionais',
   },
   {
     initials: 'NMT',
-    name: 'Núcleo de Medicina Tropical - NMT',
+    name: 'NMT - Núcleo de Medicina Tropical',
   },
 ];
 

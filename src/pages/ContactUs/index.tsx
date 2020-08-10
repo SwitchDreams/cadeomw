@@ -104,12 +104,6 @@ const ContactUs: React.FC = () => {
             <div className="card">
               <div className="images">
                 <img className="profile" src={fotoBahia} alt="profile" />
-                <img
-                  className="switch-dreams"
-                  src={logo}
-                  alt="Switch Dreams"
-                  style={{ width: 25, height: 25 }}
-                />
               </div>
               <div className="text">
                 <h6>João Pedro Assis</h6>
@@ -128,7 +122,7 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Bruna Azambuja</h6>
                 <p>
-                  Fã de uma festinha, jogadora de volei e adora aproveitar um
+                  Fã de uma festa, jogadora de volei e adora aproveitar um
                   barzinho com os amigos.
                 </p>
                 <div className="link">
@@ -144,12 +138,6 @@ const ContactUs: React.FC = () => {
             <div className="card">
               <div className="images">
                 <img className="profile" src={fotoPedro} alt="profile" />
-                <img
-                  className="switch-dreams"
-                  src={logo}
-                  alt="Switch Dreams"
-                  style={{ width: 25, height: 25 }}
-                />
               </div>
               <div className="text">
                 <h6>Pedro Augusto</h6>
@@ -168,12 +156,6 @@ const ContactUs: React.FC = () => {
             <div className="card">
               <div className="images">
                 <img className="profile" src={fotoWaliff} alt="profile" />
-                <img
-                  className="switch-dreams"
-                  src={logo}
-                  alt="Switch Dreams"
-                  style={{ width: 25, height: 25 }}
-                />
               </div>
 
               <div className="text">
