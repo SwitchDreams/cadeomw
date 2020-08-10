@@ -86,7 +86,7 @@ const Dashboard: React.FC = () => {
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
                 title="Estatísticas"
-                text="Navegue pelas disciplinas e tenha acesso a estatísticas de menções de semestres anteriores."
+                text="Navegue pelas disciplinas e tenha acesso às estatísticas de menções de semestres anteriores."
                 Logo={FiBarChart2}
                 logoColor="#39f7f1"
               />
@@ -181,7 +181,10 @@ const Dashboard: React.FC = () => {
 
       <AboutUsContainer>
         <h2>Conheça os envolvidos</h2>
-        <p>Descubra a motivação do projeto na página de contato!</p>
+        <p>
+          Descubra a motivação do projeto na página{' '}
+          <span className="negrito">Sobre</span>!
+        </p>
         <Container>
           <Row>
             <Col xs={12} md={{ span: 2, offset: 1 }}>
@@ -274,7 +277,7 @@ const Dashboard: React.FC = () => {
         <div className="button">
           <Button
             onClick={() => {
-              window.location.href = '/contact-us';
+              window.location.href = '/about-us';
             }}
             variant="outline-light"
             style={{
