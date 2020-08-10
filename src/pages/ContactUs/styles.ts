@@ -143,7 +143,7 @@ export const CardsContainer = styled.div<WindowProps>`
           flex-direction: column;
 
           .card {
-            width: 90%;
+            width: 100%;
             flex-direction: row;
             margin: auto;
             margin-bottom: 20px;
