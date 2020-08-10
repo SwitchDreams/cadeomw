@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
-import { apiCourses } from '../../services/api';
+import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
 
@@ -69,9 +69,7 @@ const ListSubjects: React.FC = () => {
     const getSubjects = async () => {
       setLoading(true);
       try {
-        const response = await apiCourses.get<SubjectInfos>(
-          `subjects/?format=json`,
-        );
+        const response = await api.get<SubjectInfos>(`subjects/?format=json`);
 
         setSubjects(response.data);
         setLoading(false);
@@ -111,7 +109,7 @@ const ListSubjects: React.FC = () => {
     event.preventDefault();
     setLoading(true);
     try {
-      const response = await apiCourses.get<SubjectInfos>(
+      const response = await api.get<SubjectInfos>(
         `subjects/?search=${searchSubject}&format=json`,
       );
       setSubjects(response.data);
@@ -130,7 +128,7 @@ const ListSubjects: React.FC = () => {
   async function handleFilterSubject(e: any) {
     setLoading(true);
     try {
-      const response = await apiCourses.get<SubjectInfos>(
+      const response = await api.get<SubjectInfos>(
         `subjects/?search=${e.target.value}&format=json&department_only=true`,
       );
       setSubjects(response.data);

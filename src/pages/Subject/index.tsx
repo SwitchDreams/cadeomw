@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
-import {api} from '../../services/api';
+import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
 
 import Graphic from './graphic';
@@ -87,7 +87,7 @@ const Subject: React.FC = () => {
 
   useEffect(() => {
     try {
-      api.get(`subjects/${subject_id}/?format=json`).then(response => {
+      api.get<Subject>(`subjects/${subject_id}/?format=json`).then(response => {
         setLoading(true);
         let subjectAPI = response.data;
 
