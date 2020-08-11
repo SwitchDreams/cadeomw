@@ -98,7 +98,7 @@ const ContactUs: React.FC = () => {
                 <h6>João Pedro Assis</h6>
                 <p>
                   Fã de um festão, músico, cervejeiro, baiano e brincalhão.
-                  Fundador da Swith Dreams.
+                  Fundador da Switch Dreams.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
@@ -135,7 +135,7 @@ const ContactUs: React.FC = () => {
                 <h6>Pedro Augusto</h6>
                 <p>
                   Fã dos e-sports, player da Green Owls e aspirante a
-                  bodybuilder. Fundador da Swith Dreams.
+                  bodybuilder. Fundador da Switch Dreams.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
@@ -154,7 +154,7 @@ const ContactUs: React.FC = () => {
                 <h6>Waliff Cordeiro</h6>
                 <p>
                   Fã de churrasco, escoteiro, goiano e apreciador de um
-                  vinhozinho. Fundador da Swith Dreams.
+                  vinhozinho. Fundador da Switch Dreams.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
