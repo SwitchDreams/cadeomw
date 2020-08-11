@@ -128,6 +128,10 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
 
   return (
     <FluxContainer window={window}>
+      <strong>
+        Clique no período para ver as informações daquele período, e na
+        disciplina para ver seus dados completos.
+      </strong>
       {periods &&
         periods.map(period => {
           let subjects: Materias[] = [];

@@ -146,12 +146,21 @@ export const FluxContainer = styled.div<AllContainerProps>`
   width: 50%;
   margin: 50px 0 100px 0;
 
+  strong {
+    text-align: center;
+  }
+
   ${props =>
     props.window &&
     css`
       width: 100%;
       padding: 0 20px;
       margin: 0;
+
+      strong {
+        font-size: 12px;
+        font-weight: bold;
+      }
     `}
 `;
 
