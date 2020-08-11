@@ -148,6 +148,7 @@ export const FluxContainer = styled.div<AllContainerProps>`
 
   strong {
     text-align: center;
+    font-weight: bold;
   }
 
   ${props =>
@@ -159,7 +160,6 @@ export const FluxContainer = styled.div<AllContainerProps>`
 
       strong {
         font-size: 12px;
-        font-weight: bold;
       }
     `}
 `;
