@@ -7,10 +7,11 @@ import {
   AiFillFacebook,
 } from 'react-icons/ai';
 import { GrVmMaintenance } from 'react-icons/gr';
-import { BsArrowLeftRight } from 'react-icons/bs';
+import { BsArrowLeftRight, BsFillEnvelopeFill, BsReplyFill} from 'react-icons/bs';
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
+import FeedbackCard from '../../components/FeedbackCard';
 import {
   WavesContainer,
   LandingText,
@@ -71,8 +72,8 @@ const Maintenance: React.FC = () => {
           <Grid
             container
             direction="row"
-            justify="center"
-            alignItems="center"
+            justify="flex-start"
+            alignItems="baseline"
             spacing={3}
           >
             <Grid item xs={12} md={4} sm={12}>
@@ -244,6 +245,87 @@ const Maintenance: React.FC = () => {
           </Button>
         </div>
       </AboutUsContainer>
+
+      <FeaturesContainer>
+        <div className="container">
+          <Grid
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="flex-start"
+            spacing={4}
+          >
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Meu Deeeeus, vocês são MARAVILHOSOS, esse emailparabenizar pela iniciativa topissima, vocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
+                Ameeei"
+                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
+                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
+                LogoMessage={BsFillEnvelopeFill}
+                logoColor="#39f7f1"
+                LogoResponse={BsReplyFill}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Meniciativa topissima, vocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
+                Ameeei"
+                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
+                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
+                LogoMessage={BsFillEnvelopeFill}
+                logoColor="#f90"
+                LogoResponse={BsReplyFill}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Eu queria saber quais os horários que as matérias tão sendo ofertadas, porque no sigaa eu só sei olhar as que eu to matriculada, 
+                mas queria ver as outras"
+                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
+                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
+                LogoMessage={BsFillEnvelopeFill}
+                logoColor="#7c4fe0"
+                LogoResponse={BsReplyFill}
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Meu Deeeeus, vocês são MARAVILHOSOS, esse email é só pra enaltecer vocês e parabenizar pela iniciativa topissima, vocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
+                Ameeei"
+                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
+                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
+                LogoMessage={BsFillEnvelopeFill}
+                logoColor="#f90"
+                LogoResponse={BsReplyFill}
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Meu Deeeeus, vocês são MARAVILHOSOS, esse a, demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
+                Ameeei"
+                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
+                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
+                LogoMessage={BsFillEnvelopeFill}
+                logoColor="#f90"
+                LogoResponse={BsReplyFill}
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Meu Deeeeus, vocvocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
+                Ameeei"
+                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
+                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
+                LogoMessage={BsFillEnvelopeFill}
+                logoColor="#f90"
+                LogoResponse={BsReplyFill}
+              />
+            </Grid>
+          </Grid>
+        </div>
+      </FeaturesContainer>
     </>
   );
 };

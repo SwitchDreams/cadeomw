@@ -194,7 +194,7 @@ const ContactUs: React.FC = () => {
             Gostou do site? Tem algo que pode melhorar? Lance o feedback brabo{' '}
             <a
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               href="https://forms.gle/Kfz7ZcnpghkkD8Dp7"
             >
               aqui
