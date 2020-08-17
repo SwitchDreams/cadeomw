@@ -153,6 +153,9 @@ const Maintenance: React.FC = () => {
           <FirstTextContainer>
             <div className="container">
               <h2 className="pb-5"> Cadê o MW? Em números</h2>
+              <p>
+                Estatísticas coletadas após apenas uma semana do site no ar:
+              </p>
             </div>
           </FirstTextContainer>
 
