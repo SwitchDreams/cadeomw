@@ -201,7 +201,7 @@ const ContactUs: React.FC = () => {
             </a>
             !
           </p>
-          <p>Sem ninguém pra conversar? Coversae com a gente!</p>
+          <p>Sem ninguém pra conversar? Coverse com a gente!</p>
           <div>
             <MdEmail /> cadeomw@gmail.com
           </div>

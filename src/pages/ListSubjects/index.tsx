@@ -1,7 +1,8 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
-import { apiCourses } from '../../services/api';
+import { useHistory } from 'react-router-dom';
+import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
 
@@ -50,6 +51,7 @@ const ListSubjects: React.FC = () => {
   });
   const { addToast } = useToast();
   const [WindowCheck, setWindowCheck] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -69,23 +71,24 @@ const ListSubjects: React.FC = () => {
     const getSubjects = async () => {
       setLoading(true);
       try {
-        const response = await apiCourses.get<SubjectInfos>(
-          `subjects/?format=json`,
-        );
+        const response = await api.get<SubjectInfos>(`subjects/?format=json`);
 
         setSubjects(response.data);
         setLoading(false);
       } catch (err) {
+        console.log(err);
+        setLoading(false);
         addToast({
           type: 'error',
           title: 'Erro ao carregar as disciplinas',
           description: 'Tente novamente mais tarde',
         });
+        history.push('/');
       }
     };
 
     getSubjects();
-  }, [addToast]);
+  }, [addToast, history]);
 
   async function handlePagination(pag: string) {
     if (pag !== null) {
@@ -96,6 +99,7 @@ const ListSubjects: React.FC = () => {
         setLoading(false);
         window.scrollTo(0, 0);
       } catch (err) {
+        setLoading(false);
         addToast({
           type: 'error',
           title: 'Erro ao acessar novas páginas',
@@ -111,13 +115,14 @@ const ListSubjects: React.FC = () => {
     event.preventDefault();
     setLoading(true);
     try {
-      const response = await apiCourses.get<SubjectInfos>(
+      const response = await api.get<SubjectInfos>(
         `subjects/?search=${searchSubject}&format=json`,
       );
       setSubjects(response.data);
       setQtdResults(true);
       setLoading(false);
     } catch (err) {
+      setLoading(false);
       addToast({
         type: 'error',
         title: 'Falha na pesquisa',
@@ -130,7 +135,7 @@ const ListSubjects: React.FC = () => {
   async function handleFilterSubject(e: any) {
     setLoading(true);
     try {
-      const response = await apiCourses.get<SubjectInfos>(
+      const response = await api.get<SubjectInfos>(
         `subjects/?search=${e.target.value}&format=json&department_only=true`,
       );
       setSubjects(response.data);

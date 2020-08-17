@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Book } from '@material-ui/icons';
 
@@ -28,6 +28,8 @@ const Equivalence: React.FC<PrereqProps> = ({
   subject,
   window,
 }: PrereqProps) => {
+  const [subjectFiltered, setSubjectFiltered] = useState<Subject | null>(null);
+
   const history = useHistory();
 
   const handleNewSubject = useCallback(
@@ -37,6 +39,14 @@ const Equivalence: React.FC<PrereqProps> = ({
     [history],
   );
 
+  useEffect(() => {
+    const newList = subject.prerequisites.filter(prereq => {
+      return prereq.length !== 0;
+    });
+
+    setSubjectFiltered({ ...subject, prerequisites: newList });
+  }, [subject]);
+
   return (
     <FeaturesContainer window={window}>
       <div className="container">
@@ -44,39 +54,43 @@ const Equivalence: React.FC<PrereqProps> = ({
 
         {subject.prerequisites.length === 0 && (
           <NoPrereq window={window}>
-            Disciplina não possui pré-requisitos.
+            Disciplina não possui pré-requisitos ou não estão disponíveis em
+            nosso banco de dados.
           </NoPrereq>
         )}
 
-        {subject.prerequisites.map(prerequisite => (
-          <>
-            <Fade in timeout={{ enter: 2000 }}>
-              <PrereqContainer window={window}>
-                {prerequisite.map(subjectPrereq => (
-                  <FeatureCardContainer
-                    key={subjectPrereq.subject_name}
-                    window={window}
-                    onClick={() => handleNewSubject(subjectPrereq.code)}
-                  >
-                    <Book style={{ color: '#7c4fe0' }} />
-                    <CardTitleContainer window={window}>
-                      <h3>{subjectPrereq.subject_name}</h3>
-                      <p>{`${subjectPrereq.credit} créditos`}</p>
-                    </CardTitleContainer>
-                  </FeatureCardContainer>
-                ))}
-              </PrereqContainer>
-            </Fade>
-            {subject.prerequisites[subject.prerequisites.length - 1] !==
-              prerequisite && (
-              <OrLine>
-                <p>----</p>
-                <p>OU</p>
-                <p>----</p>
-              </OrLine>
-            )}
-          </>
-        ))}
+        {subjectFiltered &&
+          subjectFiltered.prerequisites.map(prerequisite => (
+            <>
+              <Fade in timeout={{ enter: 2000 }}>
+                <PrereqContainer window={window}>
+                  {prerequisite.map(subjectPrereq => (
+                    <FeatureCardContainer
+                      key={subjectPrereq.subject_name}
+                      window={window}
+                      onClick={() => handleNewSubject(subjectPrereq.code)}
+                    >
+                      <Book style={{ color: '#7c4fe0' }} />
+                      <CardTitleContainer window={window}>
+                        <h3>{subjectPrereq.subject_name}</h3>
+                        <p>{`${subjectPrereq.credit} créditos`}</p>
+                      </CardTitleContainer>
+                    </FeatureCardContainer>
+                  ))}
+                </PrereqContainer>
+              </Fade>
+
+              {subjectFiltered.prerequisites[
+                subjectFiltered.prerequisites.length - 1
+              ] !== prerequisite && (
+                <OrLine>
+                  <p>----</p>
+                  <p>OU</p>
+                  <p>----</p>
+                </OrLine>
+              )}
+            </>
+          ))}
       </div>
     </FeaturesContainer>
   );

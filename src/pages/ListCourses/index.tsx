@@ -1,7 +1,8 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
-import { apiCourses } from '../../services/api';
+import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
 
@@ -43,23 +44,7 @@ const ListCourses: React.FC = () => {
   });
   const { addToast } = useToast();
   const [WindowCheck, setWindowCheck] = useState(false);
-
-  // async function getCourses() {
-  //   try {
-  //     const response = await apiCourses.get<CourseInfos>(
-  //       `courses/?format=json`,
-  //     );
-
-  //     setCourses(response.data);
-  //     setLoading(false);
-  //   } catch (err) {
-  //     addToast({
-  //       type: 'error',
-  //       title: 'Erro ao carregar os cursos',
-  //       description: 'Tente novamente mais tarde',
-  //     });
-  //   }
-  // }
+  const history = useHistory();
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -79,23 +64,24 @@ const ListCourses: React.FC = () => {
     setLoading(true);
     const getCourses = async () => {
       try {
-        const response = await apiCourses.get<CourseInfos>(
-          `courses/?format=json`,
-        );
+        const response = await api.get<CourseInfos>(`courses/?format=json`);
 
         setCourses(response.data);
         setLoading(false);
       } catch (err) {
+        console.log(err);
+        setLoading(false);
         addToast({
           type: 'error',
           title: 'Erro ao carregar os cursos',
           description: 'Tente novamente mais tarde',
         });
+        history.push('/');
       }
     };
 
     getCourses();
-  }, [addToast]);
+  }, [addToast, history]);
 
   async function handlePagination(pag: string) {
     if (pag !== null) {
@@ -106,6 +92,7 @@ const ListCourses: React.FC = () => {
         setLoading(false);
         window.scrollTo(0, 0);
       } catch (err) {
+        setLoading(false);
         addToast({
           type: 'error',
           title: 'Erro ao acessar novas páginas',
@@ -121,13 +108,14 @@ const ListCourses: React.FC = () => {
     event.preventDefault();
     setLoading(true);
     try {
-      const response = await apiCourses.get<CourseInfos>(
+      const response = await api.get<CourseInfos>(
         `courses/?search=${searchCourse}&format=json`,
       );
       setCourses(response.data);
       setQtdResults(true);
       setLoading(false);
     } catch (err) {
+      setLoading(false);
       addToast({
         type: 'error',
         title: 'Falha na pesquisa',

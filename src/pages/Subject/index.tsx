@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
-import {api} from '../../services/api';
+import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
 
 import Graphic from './graphic';
@@ -18,6 +18,7 @@ import {
   Container,
   InfoGeralContainer,
   InfoContainer,
+  NotExistingSubject,
 } from './styles';
 
 /*
@@ -87,7 +88,7 @@ const Subject: React.FC = () => {
 
   useEffect(() => {
     try {
-      api.get(`subjects/${subject_id}/?format=json`).then(response => {
+      api.get<Subject>(`subjects/${subject_id}/?format=json`).then(response => {
         setLoading(true);
         let subjectAPI = response.data;
 
@@ -133,7 +134,17 @@ const Subject: React.FC = () => {
 
       {loading && <Loading />}
 
-      {!loading && subject && (
+      {subject && subject.pass_percent === 0 && (
+        <NotExistingSubject>
+          <SubjectHeader window={windowCheck}>{subject.name}</SubjectHeader>
+          <h2>
+            Disciplina não existe mais, ou não possuímos seus dados no Banco de
+            Dados.
+          </h2>
+        </NotExistingSubject>
+      )}
+
+      {!loading && subject && subject.pass_percent !== 0 && (
         <Container>
           <SubjectHeader window={windowCheck}>{subject.name}</SubjectHeader>
 
