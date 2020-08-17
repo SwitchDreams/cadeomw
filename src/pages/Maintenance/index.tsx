@@ -88,6 +88,11 @@ const Maintenance: React.FC = () => {
             será descontinuado). Além disso, os dados são de 2018 e todos nós
             sabemos que muita coisa mudou desde então.
           </p>
+          <p>
+            Após uma reunião com docentes da UnB, optamos por tirar o site do ar
+            para não propagar informações desatualizadas, mas não se preocupe!
+            Estaremos de volta no próximo período de matrícula!
+          </p>
         </div>
       </FirstTextContainer>
 
@@ -134,7 +139,7 @@ const Maintenance: React.FC = () => {
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
                 title="Outras funcionalidades"
-                text="Contamos com sua criatividade para fazer um site melhor para comunidade academica"
+                text="Contamos com sua criatividade para fazer um site melhor para comunidade acadêmica"
                 Logo={AiOutlineCluster}
                 logoColor="#7c4fe0"
               />
@@ -159,7 +164,7 @@ const Maintenance: React.FC = () => {
             spacing={3}
           >
             <Grid item xs={12} md={4} sm={12}>
-              <h4> Visistantes únicos </h4>
+              <h4> Visitantes únicos </h4>
               <h3>{renderCount && <CountUp startNum={0} endNum={12766} />}</h3>
             </Grid>
 
