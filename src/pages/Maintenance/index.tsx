@@ -28,6 +28,7 @@ import fotoBruna from '../../assets/perfil_bruna.png';
 import fotoPedro from '../../assets/perfil_pedro.jpeg';
 import fotoWaliff from '../../assets/perfil_waliff.png';
 import fotoJapa from '../../assets/perfil_japa.jpeg';
+import thanks from '../../assets/obrigado.jpg';
 
 const Maintenance: React.FC = () => {
   const [renderCount, setRenderCount] = useState(false);
@@ -71,6 +72,12 @@ const Maintenance: React.FC = () => {
           </svg>
         </div>
       </WavesContainer>
+
+      <div className="text-center">
+        <p>Primeiramente:</p>
+
+        <img src={thanks} alt="thanks" style={{ width: 300, height: 'auto' }} />
+      </div>
 
       <FirstTextContainer>
         <div className="container">
