@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import droneUnB from '../../assets/unb.svg';
+import maintenance from '../../assets/maintenance.png';
 import unbAntiga from '../../assets/unb_antiga.jpg';
 
 export const WavesContainer = styled.div`
@@ -9,7 +9,7 @@ export const WavesContainer = styled.div`
         rgba(124, 79, 224, 0.75),
         rgba(124, 79, 224, 0.75)
       ),
-      url(${droneUnB});
+      url(${maintenance});
     background-size: cover;
 
     svg {
@@ -20,7 +20,7 @@ export const WavesContainer = styled.div`
 
 export const LandingText = styled.div`
   .space {
-    height: 300px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,6 +48,7 @@ export const FirstTextContainer = styled.div`
   color: #222;
   display: flex;
   justify-content: center;
+  padding: 40px 0;
 
   .container {
     max-width: 90%;
@@ -79,7 +80,7 @@ export const FirstTextContainer = styled.div`
 `;
 
 export const FeaturesContainer = styled.div`
-  margin: 100px 0;
+  margin: 40px 0;
 
   display: flex;
   justify-content: center;
@@ -184,7 +185,7 @@ export const ListContainer = styled.div`
 `;
 
 export const AboutUsContainer = styled.div`
-  padding-top: 100px;
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
