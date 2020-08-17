@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid } from '@material-ui/core';
-import { FiBarChart2 } from 'react-icons/fi';
+import { BsCalendarFill } from 'react-icons/bs';
 import {
   AiOutlineCluster,
   AiFillInstagram,
   AiFillFacebook,
 } from 'react-icons/ai';
-import { GrVmMaintenance } from 'react-icons/gr';
-import { BsArrowLeftRight, BsFillEnvelopeFill, BsReplyFill} from 'react-icons/bs';
-import { Container, Col, Row, Button } from 'react-bootstrap';
+import { FaWrench } from 'react-icons/fa';
+import { MdLineStyle } from 'react-icons/md';
+
+import { Container, Col, Row } from 'react-bootstrap';
 import Header from '../../components/Header';
+import CountUp from '../../components/CountUp';
 import FeatureCard from '../../components/FeatureCard';
 import FeedbackCard from '../../components/FeedbackCard';
 import {
@@ -28,6 +30,21 @@ import fotoWaliff from '../../assets/perfil_waliff.png';
 import fotoJapa from '../../assets/perfil_japa.jpeg';
 
 const Maintenance: React.FC = () => {
+  const [renderCount, setRenderCount] = useState(false);
+
+  function handleScroll() {
+    if (window.pageYOffset > 1200) {
+      setRenderCount(true);
+      window.removeEventListener('scroll', () => {});
+    }
+  }
+
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener('scroll', handleScroll);
+    }
+    watchScroll();
+  });
   return (
     <>
       <WavesContainer>
@@ -36,11 +53,11 @@ const Maintenance: React.FC = () => {
 
           <LandingText>
             <div className="space">
-              <h1>Where tf is MW?</h1>
-              <GrVmMaintenance style={{ fontSize: 100, color: '#7c4fe0' }} />
+              <h1>Where tf is Cadê o MW?</h1>
+              <FaWrench style={{ fontSize: 80, color: '#fff' }} />
               <p>
-                Estamos em manuntenção, fazendo um site melhor para você!!
-                Voltaremos no próximo semestre!!
+                Estamos em manutenção, mas não se preocupe! Semestre que vem
+                estaremos de volta!
               </p>
             </div>
           </LandingText>
@@ -57,12 +74,25 @@ const Maintenance: React.FC = () => {
 
       <FirstTextContainer>
         <div className="container">
-          <h2>O que pretendemos trazer de novidades no pŕoximo semestre?</h2>
+          <h2>Por que o site está fora do ar?</h2>
+          <p>
+            Infelizmente algumas de nossas informações não estavam 100%
+            atualizadas, haja vista que foram obtidas pelo SIGRA (que em breve
+            será descontinuado). Além disso, os dados são de 2018 e todos nós
+            sabemos que muita coisa mudou desde então.
+          </p>
+        </div>
+      </FirstTextContainer>
+
+      <FirstTextContainer>
+        <div className="container">
+          <h2>O que teremos de novo?</h2>
           <p>
             Nesse semestre, focamos em mostrar detalhadamente as informações do
-            seu curso, já no semestre que vem, nosso foco, será em auxiliar na
-            matrícula, montando as melhores grades horárias e indicando as
-            melhores disciplinas para você.
+            seu curso, pois muitos alunos sentiram dificuldades em acessá-las.
+            No próximo semestre, nosso foco será em auxiliar na matrícula,
+            montando as melhores grades horárias e indicando as melhores
+            disciplinas para você.
           </p>
         </div>
       </FirstTextContainer>
@@ -78,10 +108,9 @@ const Maintenance: React.FC = () => {
           >
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Grade automática"
-                text="Escolha as materiás que você deseja pegar no semestre e montaremos sua grade com base em suas
-                restrições de horários"
-                Logo={FiBarChart2}
+                title="Montador de grade automático"
+                text="Escolha as materiás que deseja no semestre e montaremos a grade para você"
+                Logo={BsCalendarFill}
                 logoColor="#39f7f1"
               />
             </Grid>
@@ -90,7 +119,7 @@ const Maintenance: React.FC = () => {
               <FeatureCard
                 title="Disponibilização da oferta"
                 text="Teremos também informações sobre a oferta de forma mais detalhada e intuitiva"
-                Logo={BsArrowLeftRight}
+                Logo={MdLineStyle}
                 logoColor="#f90"
               />
             </Grid>
@@ -124,23 +153,90 @@ const Maintenance: React.FC = () => {
           >
             <Grid item xs={12} md={4} sm={12}>
               <h4> Visistantes únicos </h4>
-              <h3> 12.000</h3>
+              <h3>{renderCount && <CountUp startNum={0} endNum={12766} />}</h3>
             </Grid>
 
             <Grid item xs={12} md={4} sm={12}>
               <h4> Total de visualizações </h4>
-              <h3> 200.000 </h3>
+              <h3>{renderCount && <CountUp startNum={0} endNum={202182} />}</h3>
+            </Grid>
+          </Grid>
+          <span style={{ color: '#ccc', fontSize: 12 }}>
+            Dados retirados em 16/08/2020
+          </span>
+        </div>
+      </AboutFeatures>
+      {/*
+      <div style={{ height: 30 }} /> */}
+      <FirstTextContainer>
+        <div className="container">
+          <h2>Feedbacks</h2>
+          <p>
+            Apenas algumas das mensagens que nos fizeram muito felizes{' '}
+            <span role="img" aria-label="face">
+              🙃
+            </span>
+          </p>
+        </div>
+      </FirstTextContainer>
+
+      <FeaturesContainer>
+        <div className="container">
+          <Grid
+            container
+            direction="row"
+            justify="space-evenly"
+            alignItems="flex-start"
+            spacing={4}
+          >
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Obrigada pela experiência, vcs são foda. N conheço já considero pacas."
+                response="Obrigado por utilizar! Também consideramos pacas todos vocês!"
+              />
+            </Grid>
+
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Ow namoral só queria agradecer mesmo! Que iniciativa foda 👏🏼👏🏼👏🏼 A plataforma tá sensacional, brabos! "
+                response="Nós que agradecemos! Muito obrigado por ter usado o Cadê o MW? !"
+              />
+            </Grid>
+
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Parabéns!!! Ficou muito legal! Espero ansiosa pelas promessas das novas funcionalidades!!! Desejo muito sucesso!!!"
+                response="Nós também estamos ansiosos pelas novas funcionalidades, queremos que todos vocês tirem proveito delas! Aguarde os próximos capítulos heheh"
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Muito bom e intuitivo, a interface é linda de morrer, amei haja vista q sempre choro quando tenho q usar o SIGAA"
+                response="Que bom que achou fácil de usar! Mas só pedimos para que você não morra com a interface antes de nos ver no próximo semestre!"
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Adorei a proposta do grupo! Parabéns pela iniciativa e pelo trabalho desenvolvido! Continuem assim! Vocês vão mudar o mundo!"
+                response="Obrigado pelos elogios! Já que mudar o mundo é muito difícil, vamos trabalhar para mudar o nosso país UnB hahaha!"
+              />
+            </Grid>
+            <Grid item xs={12} md={4} sm={12}>
+              <FeedbackCard
+                message="Gente, eu só queria agradecer mesmo, o site é top. Ainda não tá perfeito, mas já foi um baita alívio kkkkkk Eu coloquei a sugestão só pra não ser spam, mas eu só fui atrás do contato pra deixar meu muito obrigada."
+                response="De fato, ainda está longe de ser perfeito (e talvez nunca seja), mas só de ter sido um baita alívio já nos deixa muito contentes! Obrigado por separar um tempinho pra nos agradecer!"
+              />
             </Grid>
           </Grid>
         </div>
-      </AboutFeatures>
+      </FeaturesContainer>
 
       <AboutUsContainer>
-        <h2>Conheça os envolvidos</h2>
-        <p>
+        <h2>O time</h2>
+        {/* <p>
           Descubra a motivação do projeto na página{' '}
           <span className="negrito">Sobre</span>!
-        </p>
+        </p> */}
         <Container>
           <Row>
             <Col xs={12} md={{ span: 2, offset: 1 }}>
@@ -230,102 +326,7 @@ const Maintenance: React.FC = () => {
             </Col>
           </Row>
         </Container>
-        <div className="button">
-          <Button
-            onClick={() => {
-              window.location.href = '/about-us';
-            }}
-            variant="outline-light"
-            style={{
-              color: '#7c4fe0',
-              borderColor: '#7c4fe0',
-            }}
-          >
-            Saiba mais
-          </Button>
-        </div>
       </AboutUsContainer>
-
-      <FeaturesContainer>
-        <div className="container">
-          <Grid
-            container
-            direction="row"
-            justify="space-evenly"
-            alignItems="flex-start"
-            spacing={4}
-          >
-            <Grid item xs={12} md={4} sm={12}>
-              <FeedbackCard
-                message="Meu Deeeeus, vocês são MARAVILHOSOS, esse emailparabenizar pela iniciativa topissima, vocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
-                Ameeei"
-                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
-                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
-                LogoMessage={BsFillEnvelopeFill}
-                logoColor="#39f7f1"
-                LogoResponse={BsReplyFill}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4} sm={12}>
-              <FeedbackCard
-                message="Meniciativa topissima, vocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
-                Ameeei"
-                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
-                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
-                LogoMessage={BsFillEnvelopeFill}
-                logoColor="#f90"
-                LogoResponse={BsReplyFill}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4} sm={12}>
-              <FeedbackCard
-                message="Eu queria saber quais os horários que as matérias tão sendo ofertadas, porque no sigaa eu só sei olhar as que eu to matriculada, 
-                mas queria ver as outras"
-                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
-                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
-                LogoMessage={BsFillEnvelopeFill}
-                logoColor="#7c4fe0"
-                LogoResponse={BsReplyFill}
-              />
-            </Grid>
-            <Grid item xs={12} md={4} sm={12}>
-              <FeedbackCard
-                message="Meu Deeeeus, vocês são MARAVILHOSOS, esse email é só pra enaltecer vocês e parabenizar pela iniciativa topissima, vocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
-                Ameeei"
-                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
-                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
-                LogoMessage={BsFillEnvelopeFill}
-                logoColor="#f90"
-                LogoResponse={BsReplyFill}
-              />
-            </Grid>
-            <Grid item xs={12} md={4} sm={12}>
-              <FeedbackCard
-                message="Meu Deeeeus, vocês são MARAVILHOSOS, esse a, demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
-                Ameeei"
-                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
-                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
-                LogoMessage={BsFillEnvelopeFill}
-                logoColor="#f90"
-                LogoResponse={BsReplyFill}
-              />
-            </Grid>
-            <Grid item xs={12} md={4} sm={12}>
-              <FeedbackCard
-                message="Meu Deeeeus, vocvocês são demais e ajudando demais, nós, meros mortais, perdidos no sigaa.
-                Ameeei"
-                response="Boa noite, agradecemos e muito o apoio, Ana Paula! É bem legal ver que nosso trabalho será útil e poderá auxiliar os estudantes que já sofrem tanto com outras coisas. O sistema não precisa ser mais um dos problemas né? Ao longo do uso da plataforma pode nos enviar as sugestões de melhoria, 
-                mais uma vez, agradeço imensamente o apoio e a mensagem de carinho!"
-                LogoMessage={BsFillEnvelopeFill}
-                logoColor="#f90"
-                LogoResponse={BsReplyFill}
-              />
-            </Grid>
-          </Grid>
-        </div>
-      </FeaturesContainer>
     </>
   );
 };
