@@ -15,3 +15,18 @@ Repositório de backend do MwMelhorado feito em Django
 ```python manage.py runscript refactor_course_name```
 6. E por fim para rodar o servidor: 
 ```python manage.py runserver```
+
+## Cadê o MW? V2.0
+
+### Refatoração dos parsers (01/09/2020)
+
+- [ ] Parse da Oferta (Waliff)
+- [ ] Parse do Curso (Bahia + Pedro)
+  - [ ] Parse do Currículo (Bahia)
+  - [ ] Parse do Fluxo (Pedro)
+- [ ] Parse dos Departamentos (Bruna)
+  
+### Adsense
+- [ ] Pesquisar novas maneiras de ganhar dinheiro no site
+Japa
+
