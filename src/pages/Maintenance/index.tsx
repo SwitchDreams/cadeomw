@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@material-ui/core';
-import { BsCalendarFill } from 'react-icons/bs';
 import {
   AiOutlineCluster,
   AiFillInstagram,
   AiFillFacebook,
+  AiTwotoneCalendar,
 } from 'react-icons/ai';
 import { FaWrench } from 'react-icons/fa';
 import { MdLineStyle } from 'react-icons/md';
@@ -116,13 +116,13 @@ const Maintenance: React.FC = () => {
             direction="row"
             justify="flex-start"
             alignItems="baseline"
-            spacing={3}
+            spacing={4}
           >
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Montador de grade automático"
+                title="Montador de grade automática"
                 text="Escolha as materiás que deseja no semestre e montaremos a grade para você"
-                Logo={BsCalendarFill}
+                Logo={AiTwotoneCalendar}
                 logoColor="#39f7f1"
               />
             </Grid>
@@ -204,39 +204,39 @@ const Maintenance: React.FC = () => {
             alignItems="flex-start"
             spacing={4}
           >
-            <Grid item xs={12} md={4} sm={12}>
+            <Grid item xs={12} sm={12} md={6} xl={3}>
               <FeedbackCard
                 message="Obrigada pela experiência, vcs são foda. N conheço já considero pacas."
                 response="Obrigado por utilizar! Também consideramos pacas todos vocês!"
               />
             </Grid>
 
-            <Grid item xs={12} md={4} sm={12}>
+            <Grid item xs={12} sm={12} md={6} xl={3}>
               <FeedbackCard
                 message="Ow namoral só queria agradecer mesmo! Que iniciativa foda 👏🏼👏🏼👏🏼 A plataforma tá sensacional, brabos! "
                 response="Nós que agradecemos! Muito obrigado por ter usado o Cadê o MW? !"
               />
             </Grid>
 
-            <Grid item xs={12} md={4} sm={12}>
+            <Grid item xs={12} sm={12} md={6} xl={3}>
               <FeedbackCard
                 message="Parabéns!!! Ficou muito legal! Espero ansiosa pelas promessas das novas funcionalidades!!! Desejo muito sucesso!!!"
                 response="Nós também estamos ansiosos pelas novas funcionalidades, queremos que todos vocês tirem proveito delas! Aguarde os próximos capítulos heheh"
               />
             </Grid>
-            <Grid item xs={12} md={4} sm={12}>
+            <Grid item xs={12} sm={12} md={6} xl={3}>
               <FeedbackCard
                 message="Muito bom e intuitivo, a interface é linda de morrer, amei haja vista q sempre choro quando tenho q usar o SIGAA"
                 response="Que bom que achou fácil de usar! Mas só pedimos para que você não morra com a interface antes de nos ver no próximo semestre!"
               />
             </Grid>
-            <Grid item xs={12} md={4} sm={12}>
+            <Grid item xs={12} sm={12} md={6} xl={3}>
               <FeedbackCard
                 message="Adorei a proposta do grupo! Parabéns pela iniciativa e pelo trabalho desenvolvido! Continuem assim! Vocês vão mudar o mundo!"
                 response="Obrigado pelos elogios! Já que mudar o mundo é muito difícil, vamos trabalhar para mudar o nosso país UnB hahaha!"
               />
             </Grid>
-            <Grid item xs={12} md={4} sm={12}>
+            <Grid item xs={12} sm={12} md={6} xl={3}>
               <FeedbackCard
                 message="Gente, eu só queria agradecer mesmo, o site é top. Ainda não tá perfeito, mas já foi um baita alívio kkkkkk Eu coloquei a sugestão só pra não ser spam, mas eu só fui atrás do contato pra deixar meu muito obrigada."
                 response="De fato, ainda está longe de ser perfeito (e talvez nunca seja), mas só de ter sido um baita alívio já nos deixa muito contentes! Obrigado por separar um tempinho pra nos agradecer!"

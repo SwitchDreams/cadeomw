@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FeatureCardContainer = styled.div`
   width: 320px;
-  height: 240px;
+  height: 260px;
   border-radius: 1.5rem;
   box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.3);
 
@@ -21,7 +21,7 @@ export const FeatureCardContainer = styled.div`
     text-align: center;
 
     .text-container {
-      h4 {
+      h5 {
         font-weight: bold;
         margin: 5px;
         color: black;

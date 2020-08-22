@@ -22,7 +22,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
           <Logo style={{ fontSize: 40, color: logoColor }} />
         </div>
         <div className="text-container">
-          <h4>{title}</h4>
+          <h5>{title}</h5>
           <p>{text}</p>
         </div>
       </div>
