@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import JSONField
 
 # Create your models here.
 class Department(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -12,11 +12,17 @@ class Department(models.Model):
 
 # Classe que armazena o curso
 class Course(models.Model):
+    SHIFT = (
+        ('N', 'Noturno'),
+        ('D', 'Diurno'),
+    )
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='courses')
     code = models.BigIntegerField(primary_key=True)
-    name = models.CharField(max_length=50)
-    issue_date = models.DateField()
-    begin_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
+    name = models.CharField(max_length=100)
+    coordinator_name = models.CharField(max_length=100, null=True)
+    academic_degree = models.CharField(max_length=100)
+    is_ead = models.BooleanField(default=False)
+    shift = models.CharField(max_length=2, choices=SHIFT)
     # Campos calculados
     flow = JSONField(null=True, blank=True)
     num_semester = models.SmallIntegerField(null=True, blank=True)
