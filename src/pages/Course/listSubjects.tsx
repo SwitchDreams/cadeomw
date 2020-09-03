@@ -26,19 +26,24 @@ const Listagem: React.FC<ListProps> = ({
   window,
   status,
 }: ListProps) => {
+  let counter = 0;
   return (
     <ContainerSubjects window={window}>
       <h2>Disciplinas {status}s</h2>
-      {materias.map(subject => (
-        <div className="subject">
-          <div className="name">
-            <strong>{subject.departamento}</strong> - {subject.nome} -{' '}
-            {subject.cargaHoraria}h
+      {materias.map(subject => {
+        counter += 1;
+
+        return (
+          <div className="subject">
+            <div className="name">
+              {counter} - <strong>{subject.departamento}</strong> -{' '}
+              {subject.nome} - {subject.cargaHoraria}h
+            </div>
+            {status === 'obrigatória' && <div className="obr">obrigatória</div>}
+            {status === 'optativa' && <div className="opt">optativa</div>}
           </div>
-          {status === 'obrigatória' && <div className="obr">obrigatória</div>}
-          {status === 'optativa' && <div className="opt">optativa</div>}
-        </div>
-      ))}
+        );
+      })}
     </ContainerSubjects>
   );
 };
