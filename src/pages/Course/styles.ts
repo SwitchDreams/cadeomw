@@ -69,16 +69,26 @@ export const CourseName = styled.h1`
   }
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<AllContainerProps>`
   display: flex;
   flex-direction: row;
   background: #fff;
   height: 100px;
+
+  ${props =>
+    props.window &&
+    css`
+      width: 100%;
+    `}
 `;
 
 export const TabContent = styled.div<TabContentProps>`
   background: #7c4fe0;
   width: 10%;
+
+  margin: 45px 0 0 50px;
+  border-radius: 30px;
+  box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.5);
 
   ${props =>
     props.selected &&
@@ -89,15 +99,17 @@ export const TabContent = styled.div<TabContentProps>`
   ${props =>
     props.window &&
     css`
-      width: 30%;
+      width: 35%;
+      height: 50px;
+      margin: 10px;
     `}
-
-  margin: 45px 0 0 50px;
-  border-radius: 30px;
-  box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.5);
 
   display: flex;
   flex-direction: row;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const TabText = styled.p<TabContentProps>`
@@ -105,12 +117,6 @@ export const TabText = styled.p<TabContentProps>`
   margin: auto;
   font-weight: bold;
   font-size: 18px;
-
-  ${props =>
-    props.window &&
-    css`
-      font-size: 20px;
-    `}
 `;
 
 export const ContainerPage = styled.div``;
@@ -283,4 +289,142 @@ export const CardSubjectsContainer = styled.div<AllContainerProps>`
       font-size: 12px;
       width: 80%;
     `}
+`;
+
+export const InfosGeraisContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
+
+export const InfosGerais = styled.div<AllContainerProps>`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: auto;
+
+  border-radius: 5px;
+  min-height: 200px;
+  width: 40%;
+
+  /* background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(124, 79, 224, 0.8) 100%
+  ); */
+
+  /* background: rgba(100, 100, 100, 0.1); */
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(100, 100, 100, 0.1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+
+  ${props =>
+    props.window &&
+    css`
+      width: 80%;
+    `}
+`;
+
+export const InfoText = styled.p`
+  text-align: center;
+  color: rgba(124, 79, 224, 1);
+  /* background-color: rgba(100, 100, 100, 0.4); */
+  margin: 0;
+  align-items: center;
+  font-weight: bold;
+`;
+
+export const InfoSubText = styled.p<AllContainerProps>`
+  text-align: center;
+  margin: 5px;
+  font-weight: normal;
+  color: #333;
+
+  ${props =>
+    props.window &&
+    css`
+      font-size: 13px;
+    `}
+`;
+
+export const CoordenadorText = styled.p`
+  text-align: center;
+  color: #333;
+
+  strong {
+    color: rgba(124, 79, 224, 1);
+    font-weight: bold;
+  }
+`;
+
+export const ContainerSubjects = styled.div<AllContainerProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+  .subject {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 80%;
+
+    background: rgba(100, 100, 100, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 15px 30px;
+
+    &:hover {
+      background: rgba(100, 100, 100, 0.3);
+    }
+
+    ${props =>
+      props.window &&
+      css`
+        padding: 5px 10px;
+      `}
+
+    .name {
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+
+      strong {
+        font-weight: bold;
+      }
+    }
+
+    .obr {
+      font-size: 13px;
+      font-weight: bold;
+      color: #080;
+      margin-left: 40px;
+    }
+
+    .opt {
+      font-size: 13px;
+      font-weight: bold;
+      color: #f90;
+      margin-left: 40px;
+    }
+  }
 `;
