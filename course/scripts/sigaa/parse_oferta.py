@@ -21,15 +21,21 @@ def refactor_list(lista, nome):
     print("################")
 
     turma['subject_code'] = lista[0].split(' ')[0]
-    turma['subject_name'] = lista[0].split(' ')[-1]
+
+    # Separa a palavra no, ou seja, ignora o código da disciplina, e o [1:] é pra ignorar o espaço que sobra na string
+    turma['subject_name'] = lista[0].split('-')[-1][1:]
+
     turma['name'] = lista[1]
     turma['semester'] = lista[2]
     turma['teacher'] = lista[3].split('(')[0].strip()
+
+    # Pega a quantidade de horas, separa da segunda posição até a penúltima
     turma['workload'] = lista[3].split(' ')[-1][1:-1]
+
     turma['schedule'] = lista[4]
     turma['students_qtd'] = lista[5]
 
-    # Para turmas sem sala definidas
+    # Para turmas sem local definido
     if len(lista) == 7:
         turma['place'] = lista[6]
     else:
