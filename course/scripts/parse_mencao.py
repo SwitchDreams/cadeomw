@@ -1,4 +1,4 @@
-from course.models import SemesterGrade
+from course.models.models import SemesterGrade
 import glob
 
 

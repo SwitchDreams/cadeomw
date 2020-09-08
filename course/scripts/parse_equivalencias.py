@@ -1,6 +1,6 @@
 import glob
 
-from course.models import Equivalence, Option
+from course.models.models import Equivalence, Option
 
 
 def parse_equivalencia(filepath):

@@ -1,4 +1,4 @@
-from course.models import Course, Department, Subject
+from course.models.models import Course, Department, Subject
 from rest_framework import viewsets
 from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer, CourseDetailsSerializer, \
     SubjectDetailsSerializer
