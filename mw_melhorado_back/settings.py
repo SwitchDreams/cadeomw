@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'mw_melhorado_back.wsgi.application'
 
 DATABASES = {'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'mwmelhorado',
+    'NAME': 'aula_trainee',
     'USER': 'root',
     'PASSWORD': 'abacate',
     'HOST': 'localhost',
