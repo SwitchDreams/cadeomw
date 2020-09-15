@@ -1,3 +1,4 @@
+// TODO guardar length em variaveis
 interface Class {
   name: string;
   teacher: string;
@@ -10,10 +11,9 @@ interface Subject {
   classes: Array<Class>;
 }
 
+// TODO Outras ideia que possívelmente são mais eficientes:
+// Pensar com mais enfase nos horários do que nas matérias
 export default class Generator {
-  // Algoritmo
-  // Recebe uma lista de máteria no formato Subject
-  // Recebe uma lista de horários no formato String
   subjects: Array<Subject>;
 
   selectedClasses: Array<Class>;
@@ -21,17 +21,19 @@ export default class Generator {
   busyTime: Array<string>;
 
   constructor(subjects: Array<Subject>, busyTime: Array<string>) {
-    this.subjects = subjects.sort(function (a, b) {
+    this.subjects = subjects.sort((a, b) => {
       return a.classes.length - b.classes.length;
     });
     this.selectedClasses = [];
     this.busyTime = busyTime;
   }
 
-  timeNoConflict(turma: Class): boolean {
-    for (let i = 0; i < turma.time.length; i += 1) {
-      for (let j = 0; j < this.busyTime.length; j += 1) {
-        if (turma.time[i] === this.busyTime[j]) {
+  timeNoConflict(classRoom: Class): boolean {
+    const classRoomLength = classRoom.time.length;
+    const busyTimeLength = this.busyTime.length;
+    for (let i = 0; i < classRoomLength; i += 1) {
+      for (let j = 0; j < busyTimeLength; j += 1) {
+        if (classRoom.time[i] === this.busyTime[j]) {
           return false;
         }
       }
@@ -42,16 +44,18 @@ export default class Generator {
   magic(): Array<Class> {
     // Para todas as materias em ordem de prioridade
     for (let i = 0; i < this.subjects.length; i += 1) {
+      const subjectClassesLength = this.subjects[i].classes.length;
       // Para todas as turmas
-      for (let j = 0; j < this.subjects[i].classes.length; j += 1) {
+      for (let j = 0; j < subjectClassesLength; j += 1) {
         if (this.timeNoConflict(this.subjects[i].classes[j])) {
-          // Cria uma árvore
           // TODO tentar pensar de forma mais recursiva
           this.selectedClasses.push(this.subjects[i].classes[j]);
           // Colocar os tempos no busy time
-          this.busyTime.push(this.subjects[i].classes[j].time[0]);
+          this.subjects[i].classes[j].time.map(time =>
+            this.busyTime.push(time),
+          );
           break;
-        } else if (j === this.subjects[i].classes.length) {
+        } else if (j === subjectClassesLength) {
           // eslint-disable-next-line no-console
           console.log('Não há disciplinas sem conflitos');
         }
