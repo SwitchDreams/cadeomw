@@ -9,25 +9,28 @@ import {
   CoordenadorText,
 } from './styles';
 
-const informations = {
-  cargaHoraria: {
-    totalMinima: '3810h',
-    optativaMinima: '1770h',
-  },
-  cargaHorariaObrigatoria: {
-    total: '2040h',
-    praticos: '855h',
-    teoricos: '1185h',
-  },
-  periodoLetivo: {
-    minimo: 8,
-    medio: 13,
-    maximo: 18,
-  },
-  coordenador: 'João Gondim da Silva Costa',
-};
+interface InfoProps {
+  informations: {
+    cargaHoraria: {
+      totalMinima: string;
+      optativaMinima: string;
+    };
+    cargaHorariaObrigatoria: {
+      total: string;
+      praticos: string;
+      teoricos: string;
+    };
+    periodoLetivo: {
+      minimo: number;
+      medio: number;
+      maximo: number;
+    };
+    horasComplementares: string;
+    coordenador: string;
+  };
+}
 
-const Infos: React.FC = () => {
+const Infos: React.FC<InfoProps> = ({ informations }: InfoProps) => {
   const [windowCheck, setWindowCheck] = useState(false);
 
   useEffect(() => {
@@ -56,6 +59,11 @@ const Infos: React.FC = () => {
           <InfoSubText window={windowCheck}>
             Total Mínima: {informations.cargaHoraria.totalMinima} <br />
             Optativa Mínima: {informations.cargaHoraria.optativaMinima}
+            {informations.horasComplementares && (
+              <>
+                <br /> Horas Complementares: {informations.horasComplementares}
+              </>
+            )}
           </InfoSubText>
         </InfoText>
         <InfoText>

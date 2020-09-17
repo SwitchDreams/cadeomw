@@ -1,15 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, FormEvent, useCallback } from 'react';
 
-import {
-  ContainerSubjects,
-  Content,
-  ContentText,
-  ContentCreditsContainer,
-  ContentStatus,
-  Credit,
-  ContentCredits,
-  CreditText,
-} from './styles';
+import { useToast } from '../../hooks/toasts';
+import { ContainerSubjects, Form } from './styles';
+import Loading from '../../components/Loading';
 
 interface ListProps {
   materias: {
@@ -26,11 +19,50 @@ const Listagem: React.FC<ListProps> = ({
   window,
   status,
 }: ListProps) => {
+  const [loading, setLoading] = useState(false);
+  const [subjects, setSubjects] = useState(materias);
+  const [searchSubject, setSearchSubject] = useState('');
+  const { addToast } = useToast();
+
   let counter = 0;
+
+  const handleSearchSubject = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      setLoading(true);
+
+      let filteredSubjects = materias.filter(subject =>
+        subject.nome.toLowerCase().includes(searchSubject.toLowerCase()),
+      );
+
+      if (searchSubject === '') {
+        filteredSubjects = materias;
+      }
+
+      setSubjects(filteredSubjects);
+
+      setLoading(false);
+      setSearchSubject('');
+    },
+    [searchSubject, materias],
+  );
+
   return (
     <ContainerSubjects window={window}>
       <h2>Disciplinas {status}s</h2>
-      {materias.map(subject => {
+
+      <Form window={window}>
+        <form onSubmit={handleSearchSubject}>
+          <input
+            value={searchSubject}
+            onChange={e => setSearchSubject(e.target.value)}
+            placeholder="Digite o nome da disciplina"
+          />
+          <button type="submit">Pesquisar</button>
+        </form>
+      </Form>
+
+      {subjects.map(subject => {
         counter += 1;
 
         return (
@@ -44,6 +76,8 @@ const Listagem: React.FC<ListProps> = ({
           </div>
         );
       })}
+
+      {loading && <Loading />}
     </ContainerSubjects>
   );
 };

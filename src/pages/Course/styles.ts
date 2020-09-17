@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { shade } from 'polished';
 
 interface TabContentProps {
   selected: boolean;
@@ -83,17 +84,19 @@ export const Container = styled.div<AllContainerProps>`
 `;
 
 export const TabContent = styled.div<TabContentProps>`
-  background: #7c4fe0;
+  background: #fff;
   width: 10%;
+  color: #7c4fe0;
 
   margin: 45px 0 0 50px;
-  border-radius: 30px;
-  box-shadow: 4px 0 0 0 rgba(0, 0, 0, 0.5);
+  border: 2px solid #7c4fe0;
+  border-radius: 10px;
 
   ${props =>
     props.selected &&
     css`
-      background: rgba(124, 79, 224, 0.5);
+      background: #7c4fe0;
+      color: #fff;
     `}
 
   ${props =>
@@ -109,11 +112,13 @@ export const TabContent = styled.div<TabContentProps>`
 
   &:hover {
     cursor: pointer;
+    background: #7c4fe0;
+    transition: 0.7s;
+    color: #fff;
   }
 `;
 
-export const TabText = styled.p<TabContentProps>`
-  color: #fff;
+export const TabText = styled.p`
   margin: auto;
   font-weight: bold;
   font-size: 18px;
@@ -353,6 +358,8 @@ export const InfoSubText = styled.p<AllContainerProps>`
 export const CoordenadorText = styled.p`
   text-align: center;
   color: #333;
+  width: 90%;
+  margin: auto;
 
   strong {
     color: rgba(124, 79, 224, 1);
@@ -395,6 +402,7 @@ export const ContainerSubjects = styled.div<AllContainerProps>`
 
     &:hover {
       background: rgba(100, 100, 100, 0.3);
+      transform: translateX(10px);
     }
 
     ${props =>
@@ -427,4 +435,66 @@ export const ContainerSubjects = styled.div<AllContainerProps>`
       margin-left: 40px;
     }
   }
+`;
+
+export const Form = styled.div<AllContainerProps>`
+  margin-top: 60px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 25px 20px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  form {
+    display: flex;
+    margin-right: 10px;
+
+    input {
+      flex: 1;
+      height: 40px;
+      padding: 0 24px;
+      border: 0;
+      background: #f2f2f2;
+      border-radius: 5px 0 0 5px;
+      color: #3a3a3a;
+    }
+
+    button {
+      width: 210px;
+      height: 40px;
+      background: #27004d;
+      border-radius: 0 5px 5px 0;
+      border: 0;
+      color: #fff;
+      font-weight: bold;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: ${shade(0.2, '#27004d')};
+      }
+
+      &:placeholder {
+        color: #a8a8b3;
+      }
+    }
+  }
+
+  ${props =>
+    props.window &&
+    css`
+      form {
+        width: 100%;
+        margin-bottom: 7px;
+
+        input {
+          width: 75%;
+        }
+
+        button {
+          width: 25%;
+        }
+      }
+    `}
 `;

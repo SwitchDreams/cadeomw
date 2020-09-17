@@ -3,6 +3,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Graphviz } from 'graphviz-react';
 
+import createServer from '../../services/mock';
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -26,7 +27,7 @@ import {
 } from './styles';
 
 /*
-  Página do curso - Bruna e Japa
+  Página do curso - Bruna
 */
 
 interface Tab {
@@ -54,6 +55,34 @@ export interface Course {
   hardest_subject: Materias;
   easiest_subject: Materias;
   flow_graph: string;
+  optativas: {
+    nome: string;
+    cargaHoraria: number;
+    departamento: string;
+  }[];
+  obrigatorias: {
+    nome: string;
+    cargaHoraria: number;
+    departamento: string;
+  }[];
+  informations: {
+    cargaHoraria: {
+      totalMinima: string;
+      optativaMinima: string;
+    };
+    cargaHorariaObrigatoria: {
+      total: string;
+      praticos: string;
+      teoricos: string;
+    };
+    periodoLetivo: {
+      minimo: number;
+      medio: number;
+      maximo: number;
+    };
+    horasComplementares: string;
+    coordenador: string;
+  };
 }
 
 interface RouteParams {
@@ -76,142 +105,18 @@ const Course: React.FC = () => {
     },
   ];
 
-  const Optativas = [
-    {
-      nome: 'ALGORITMOS E PROG DE COMP',
-      cargaHoraria: 60,
-      departamento: 'ADM0001',
-    },
-    {
-      nome: 'INTRODUÇÃO À ALGEBRA LINEAR',
-      cargaHoraria: 40,
-      departamento: 'CIC0232',
-    },
-    {
-      nome: 'PROGRAMACAO COMPETITIVA',
-      cargaHoraria: 60,
-      departamento: 'FEF0988',
-    },
-    {
-      nome: 'ALGORITMOS E PROG DE COMP',
-      cargaHoraria: 60,
-      departamento: 'ADM0001',
-    },
-    {
-      nome: 'INTRODUÇÃO À ALGEBRA LINEAR',
-      cargaHoraria: 40,
-      departamento: 'CIC0232',
-    },
-    {
-      nome: 'PROGRAMACAO COMPETITIVA',
-      cargaHoraria: 60,
-      departamento: 'FEF0988',
-    },
-    {
-      nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO',
-      cargaHoraria: 60,
-      departamento: 'FT0932',
-    },
-    {
-      nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO',
-      cargaHoraria: 20,
-      departamento: 'ADM0087',
-    },
-    {
-      nome: 'PROGRAMACAO SISTEMATICA',
-      cargaHoraria: 40,
-      departamento: 'ENE1342',
-    },
-    {
-      nome: 'PROGRAMACAO COMPETITIVA',
-      cargaHoraria: 60,
-      departamento: 'FEF0988',
-    },
-    {
-      nome: 'ALGORITMOS E PROG DE COMP',
-      cargaHoraria: 60,
-      departamento: 'ADM0001',
-    },
-    {
-      nome: 'INTRODUÇÃO À ALGEBRA LINEAR',
-      cargaHoraria: 40,
-      departamento: 'CIC0232',
-    },
-    {
-      nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO',
-      cargaHoraria: 60,
-      departamento: 'FT0932',
-    },
-    {
-      nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO',
-      cargaHoraria: 20,
-      departamento: 'ADM0087',
-    },
-    {
-      nome: 'PROGRAMACAO SISTEMATICA',
-      cargaHoraria: 40,
-      departamento: 'ENE1342',
-    },
-    {
-      nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO',
-      cargaHoraria: 60,
-      departamento: 'FT0932',
-    },
-    {
-      nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO',
-      cargaHoraria: 20,
-      departamento: 'ADM0087',
-    },
-    {
-      nome: 'PROGRAMACAO SISTEMATICA',
-      cargaHoraria: 40,
-      departamento: 'ENE1342',
-    },
-  ];
-
-  const Obrigatorias = [
-    {
-      nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO',
-      cargaHoraria: 60,
-      departamento: 'FT0932',
-    },
-    {
-      nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO',
-      cargaHoraria: 20,
-      departamento: 'ADM0087',
-    },
-    {
-      nome: 'PROGRAMACAO SISTEMATICA',
-      cargaHoraria: 40,
-      departamento: 'ENE1342',
-    },
-    {
-      nome: 'ALGORITMOS E PROG DE COMP',
-      cargaHoraria: 60,
-      departamento: 'ADM0001',
-    },
-    {
-      nome: 'INTRODUÇÃO À ALGEBRA LINEAR',
-      cargaHoraria: 40,
-      departamento: 'CIC0232',
-    },
-    {
-      nome: 'PROGRAMACAO COMPETITIVA',
-      cargaHoraria: 60,
-      departamento: 'FEF0988',
-    },
-  ];
+  createServer();
 
   const [windowCheck, setWindowCheck] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [course, setCourse] = useState<Course | null>(null);
   const [periods, setPeriods] = useState<Period[] | null>(null);
 
   const [tabs, setTabs] = useState<Tab[]>(tabsInit);
 
-  const [fluxo, setFluxo] = useState(false);
-  const [optativas, setOptativas] = useState(true);
+  const [fluxo, setFluxo] = useState(true);
+  const [optativas, setOptativas] = useState(false);
   const [obrigatorias, setObrigatorias] = useState(false);
   // const [grafo, setGrafo] = useState(false);
 
@@ -220,92 +125,14 @@ const Course: React.FC = () => {
 
   const { addToast } = useToast();
 
-  // useEffect(() => {
-  //   api
-  //     .get<Course>(`courses/${params.id}?format=json`)
-  //     .then(response => {
-  //       let newCourse = response.data;
-  //       let statusHardest = newCourse.hardest_subject.status;
-  //       let statusEasiest = newCourse.easiest_subject.status;
-
-  //       if (statusHardest === 'OBR' || statusHardest === 'OBS') {
-  //         statusHardest = 'obrigatória';
-  //       } else if (statusHardest === 'OPT') {
-  //         statusHardest = 'optativa';
-  //       } else {
-  //         statusHardest = 'módulo livre';
-  //       }
-
-  //       if (statusEasiest === 'OBR' || statusEasiest === 'OBS') {
-  //         statusEasiest = 'obrigatória';
-  //       } else if (statusEasiest === 'OPT') {
-  //         statusEasiest = 'optativa';
-  //       } else {
-  //         statusEasiest = 'módulo livre';
-  //       }
-
-  //       newCourse = {
-  //         ...newCourse,
-  //         hardest_subject: {
-  //           ...newCourse.hardest_subject,
-  //           status: statusHardest,
-  //         },
-  //         easiest_subject: {
-  //           ...newCourse.easiest_subject,
-  //           status: statusEasiest,
-  //         },
-  //       };
-
-  //       setCourse(newCourse);
-
-  //       const periodList = response.data.flow.map(
-  //         (period: Period): Period => {
-  //           let sumCredits = 0;
-
-  //           const newSubjects = period.subjects.map((subject: Materias) => {
-  //             sumCredits += subject.credit;
-
-  //             const newSubjectName =
-  //               subject.subject_name.charAt(0).toUpperCase() +
-  //               subject.subject_name.slice(1).toLowerCase();
-
-  //             let newStatus;
-
-  //             if (subject.status === 'OBR' || subject.status === 'OBS') {
-  //               newStatus = 'obrigatória';
-  //             } else if (subject.status === 'OPT') {
-  //               newStatus = 'optativa';
-  //             } else if (subject.status === 'ML') {
-  //               newStatus = 'módulo livre';
-  //             }
-
-  //             return {
-  //               credit: subject.credit,
-  //               subject_name: newSubjectName,
-  //               status: newStatus,
-  //               pass_percent: subject.pass_percent,
-  //               code: subject.code,
-  //             };
-  //           });
-
-  //           setLoading(false);
-
-  //           return { ...period, credits: sumCredits, subjects: newSubjects };
-  //         },
-  //       );
-
-  //       setPeriods(periodList);
-  //     })
-  //     .catch(() => {
-  //       setLoading(false);
-  //       addToast({
-  //         type: 'error',
-  //         title: 'Erro ao carregar o curso desejado',
-  //         description: 'Tente novamente mais tarde',
-  //       });
-  //       history.push('/list-courses');
-  //     });
-  // }, [params.id, addToast, history]);
+  useEffect(() => {
+    api.get(`courses/${params.id}?format=json`).then(response => {
+      const newCourse = response.data[0];
+      setCourse(newCourse);
+      setPeriods(newCourse.flow);
+      setLoading(false);
+    });
+  }, [params.id]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -360,9 +187,7 @@ const Course: React.FC = () => {
             onClick={() => handleSelectTab(tab.name)}
             window={windowCheck}
           >
-            <TabText window={windowCheck} selected={tab.selected}>
-              {tab.name}
-            </TabText>
+            <TabText>{tab.name}</TabText>
           </TabContent>
         ))}
       </Container>
@@ -377,49 +202,13 @@ const Course: React.FC = () => {
           />
         )} */}
 
-        {fluxo && (
-          <>
-            <CourseNameContainer>
-              <CourseName>Engenharia de Computação</CourseName>
-            </CourseNameContainer>
-
-            <Infos />
-          </>
-        )}
-
-        {optativas && (
-          <>
-            <CourseNameContainer>
-              <CourseName>Engenharia de Computação</CourseName>
-            </CourseNameContainer>
-
-            <Listagem
-              status="optativa"
-              window={windowCheck}
-              materias={Optativas}
-            />
-          </>
-        )}
-
-        {obrigatorias && (
-          <>
-            <CourseNameContainer>
-              <CourseName>Engenharia de Computação</CourseName>
-            </CourseNameContainer>
-
-            <Listagem
-              status="obrigatória"
-              window={windowCheck}
-              materias={Obrigatorias}
-            />
-          </>
-        )}
-
-        {/* {fluxo && course && (
+        {fluxo && course && (
           <AllContainer window={windowCheck}>
             <CourseNameContainer>
               <CourseName>{course?.name}</CourseName>
             </CourseNameContainer>
+
+            <Infos informations={course.informations} />
 
             <CardFluxContainer window={windowCheck}>
               <CardSubjectsContainer window={windowCheck}>
@@ -439,7 +228,35 @@ const Course: React.FC = () => {
               </CardSubjectsContainer>
             </CardFluxContainer>
           </AllContainer>
-        )} */}
+        )}
+
+        {optativas && course && (
+          <>
+            <CourseNameContainer>
+              <CourseName>{course?.name}</CourseName>
+            </CourseNameContainer>
+
+            <Listagem
+              status="optativa"
+              window={windowCheck}
+              materias={course?.optativas}
+            />
+          </>
+        )}
+
+        {obrigatorias && course && (
+          <>
+            <CourseNameContainer>
+              <CourseName>{course?.name}</CourseName>
+            </CourseNameContainer>
+
+            <Listagem
+              status="obrigatória"
+              window={windowCheck}
+              materias={course?.obrigatorias}
+            />
+          </>
+        )}
       </AllContainer>
     </>
   );
