@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from requests import get
-from course.models import Department, Course
+from course.models.models import Department, Course
 
 
 def parse_departments():
@@ -28,7 +28,6 @@ def parse_departments():
             # Atualiza as informações antigas
             dept = col[0].string.replace('\n', '').replace('\t', '')
             department = Department.objects.create(name=dept)
-
         else:
             # Lê informações da Tabela
             course_name = col[0].string.replace('\n', '').replace('\t', '').capitalize().strip()
@@ -42,11 +41,13 @@ def parse_departments():
                 coordenador = None
 
             code = col[6].find('a')["href"][14:20]
-
-            Course.objects.create(code=code, department=department, name=course_name, academic_degree=academic_degree, shift=shift[0], is_ead=is_ead(mode),
-                                  coordinator_name=coordenador)
-
-
+            
+            try:
+                Course.objects.create(code=code, department=department, name=course_name, academic_degree=academic_degree, shift=shift[0], is_ead=is_ead(mode),
+                                    coordinator_name=coordenador)
+            except:
+                pass
+            
 def is_ead(string):
     return string != "Presencial"
 

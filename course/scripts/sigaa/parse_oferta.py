@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from time import sleep
 import requests
+from course.models.offer import Offer
 
 url = "https://sig.unb.br/sigaa/public/turmas/listar.jsf"
 
@@ -126,7 +127,7 @@ def parse_oferta(id):
                     infos_list.append(info.strip())
 
             turmas = refactor_list(infos_list, nome)
-            # print(turmas)
+
 
             infos_list = []
 
@@ -150,8 +151,10 @@ def get_request_from_oferta():
 
 def run():
     departamentos = get_ids_and_names()
-    print(departamentos)
+    for departamento in departamentos:
+        print(departamento +" "+ departamentos[departamento])
     # for id in departamentos['ids']:
     #     sleep(0.1)
     #     parse_oferta(id)
     parse_oferta(518)
+    print(len(departamentos))
