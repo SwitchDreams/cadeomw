@@ -133,16 +133,21 @@ export const FeaturesContainer = styled.div<WindowProp>`
 
   h4 {
     font-size: 25px;
+    font-weight: bold;
     color: #222;
     text-transform: initial;
-    margin: 30px 0;
+    margin-bottom: 20px;
     text-align: center;
+    padding: 10px;
 
-    ${props =>
-      props.window &&
-      css`
-        font-size: 18px;
-      `};
+    &::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
   }
 `;
 
@@ -242,16 +247,21 @@ export const CardFeatureContainer = styled.div<WindowProp>`
 
   h4 {
     font-size: 25px;
+    font-weight: bold;
     color: #222;
-    text-transform: capitalize;
-    margin: 30px 0;
+    text-transform: initial;
+    margin-bottom: 20px;
     text-align: center;
+    padding: 10px;
 
-    ${props =>
-      props.window &&
-      css`
-        font-size: 18px;
-      `};
+    &::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
   }
 `;
 
@@ -362,10 +372,21 @@ export const OfertaContainer = styled.div<WindowProp>`
 
   h4 {
     font-size: 25px;
+    font-weight: bold;
     color: #222;
-    text-transform: capitalize;
-    margin: 30px 0;
+    text-transform: initial;
+    margin-bottom: 20px;
     text-align: center;
+    padding: 10px;
+
+    &::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
   }
 
   table {
@@ -373,7 +394,7 @@ export const OfertaContainer = styled.div<WindowProp>`
 
     td,
     th {
-      padding: 5px;
+      padding: 10px;
       text-align: center;
     }
 
@@ -390,12 +411,17 @@ export const OfertaContainer = styled.div<WindowProp>`
   ${props =>
     props.window &&
     css`
-      h4 {
-        width: 90%;
-      }
       table {
         width: 90%;
-        font-size: 15px;
+        font-size: 13px;
+
+        td {
+          padding: 5px;
+          max-width: 150px;
+          div {
+            width: 100%;
+          }
+        }
       }
     `};
 `;

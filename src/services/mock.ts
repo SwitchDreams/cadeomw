@@ -636,22 +636,27 @@ export default function (): Server {
           {
             turma: 'A',
             professor: 'Alexandre Barbosa',
-            horario: '3T45 5T45',
+            horario: ['3T45', '5T45'],
           },
           {
             turma: 'B',
-            professor: 'Alexandre Barbosa',
-            horario: '2T45 4T45',
+            professor: 'GEORGE TEODORO DA SILVA CANNEDO PIRES',
+            horario: ['2T45'],
           },
           {
             turma: 'C',
-            professor: 'Teófilo Campos',
-            horario: '3M45 5M45',
+            professor: 'TEÓFILO CAMPOS SCHULZ MEDEIROS FONTENELLI',
+            horario: ['3M45', '5M45', '7N1'],
           },
           {
             turma: 'D',
             professor: 'Mylène Farias',
-            horario: '4M12 6M12',
+            horario: ['4M12', '6M12'],
+          },
+          {
+            turma: 'E',
+            professor: 'Augusto Veloso',
+            horario: ['7T234567'],
           },
         ],
       }));

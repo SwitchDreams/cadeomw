@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import createServer from '../../services/mock';
 import api from '../../services/api';
@@ -11,8 +11,6 @@ import Flux from './flux';
 import Listagem from './listSubjects';
 import Infos from './infos';
 import HardestEasiest from '../../components/SubjectCard';
-
-import { useToast } from '../../hooks/toasts';
 
 import {
   AllContainer,

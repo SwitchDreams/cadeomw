@@ -52,7 +52,7 @@ export interface Equivalence {
 export interface Oferta {
   turma: string;
   professor: string;
-  horario: string;
+  horario: string[];
 }
 
 export interface Subject {
