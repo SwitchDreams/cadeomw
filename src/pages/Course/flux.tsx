@@ -165,6 +165,7 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                       <ContentContainer
                         onClick={() => handleGoToSubjectPage(subject.code)}
                         key={subject.subject_name}
+                        window={window}
                       >
                         <Tooltip
                           title={

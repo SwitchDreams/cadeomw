@@ -166,7 +166,7 @@ export const FluxContainer = styled.div<AllContainerProps>`
     props.window &&
     css`
       width: 100%;
-      padding: 0 20px;
+      padding: 0 10px 0 30px;
       margin: 0;
 
       strong {
@@ -188,6 +188,7 @@ export const PeriodContainer = styled.div`
   display: flex;
   align-items: center;
   flex: 1;
+  margin: auto;
   cursor: pointer;
 `;
 
@@ -204,11 +205,12 @@ export const PeriodText = styled.div<AllContainerProps>`
     `}
 `;
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled.div<AllContainerProps>`
   height: 45px;
   width: 90%;
   border-radius: 10px;
   margin: 10px 0 10px 0;
+  padding: 3px;
 
   &:hover {
     background: #eee;
@@ -234,6 +236,7 @@ export const ContentText = styled.p<AllContainerProps>`
     css`
       font-size: 12px;
       margin: 0 5px;
+      width: 50%;
     `}
 `;
 
@@ -441,11 +444,20 @@ export const Form = styled.div<AllContainerProps>`
   margin-top: 60px;
   max-width: 700px;
   margin: 0 auto;
-  padding: 25px 20px;
+  padding: 25px 20px 15px 20px;
 
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+
+  .results {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p {
+      margin: 3px 3px 0 0;
+      color: #a8a8b3;
+    }
+  }
 
   form {
     display: flex;
@@ -497,4 +509,32 @@ export const Form = styled.div<AllContainerProps>`
         }
       }
     `}
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  min-width: 20%;
+  padding: 40px 20px;
+  margin-bottom: 20px;
+
+  button {
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 5px;
+    border: 0;
+    background: #27004d;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    &:hover {
+      background: ${shade(0.2, '#27004d')};
+    }
+  }
+
+  button[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
 `;
