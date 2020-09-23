@@ -34,7 +34,7 @@ def refactor_list(lista, nome):
     turma['teacher'] = lista[3].split('(')[0].strip()
 
     # Pega a quantidade de horas, separa da segunda posição até a penúltima
-    turma['workload'] = lista[3].split(' ')[-1][1:-1]
+    turma['workload'] = int(lista[3].split(' ')[-1][1:-1][:1])
 
     turma['schedule'] = lista[4]
     turma['students_qtd'] = lista[5]
@@ -132,16 +132,19 @@ def parse_oferta(id, department_name):
             try:
                 department_object = Department.objects.get(name = department_name)
             except:
+                print("CAIU AQUI! 1")
                 pass
-            try:
-                subject_object = Subject.objects.create(
-                    department= department_object,
-                    name=turmas['subject_name'],
-                    credit=turmas['workload']
-                )
-                subject_object.save()
-            except:
-                pass
+            subject_object = Subject.objects.create(
+                code=turmas["subject_code"],
+                department= department_object,
+                name=turmas['subject_name'],
+                credit=turmas['workload']
+            )
+            subject_object.save()
+            # try:
+            # except:
+            #     print("CAIU AQUI! 2")
+            #     pass
             try:
                 oferta = Offer.objects.create(
                     department= department_object,
@@ -154,6 +157,7 @@ def parse_oferta(id, department_name):
 
                 )
             except:
+                print("CAIU AQUI! 3")
                 pass
             infos_list = []
 
@@ -177,10 +181,10 @@ def get_request_from_oferta():
 
 def run():
     departamentos = get_ids_and_names()
-    for departamento in departamentos:
-        print(departamento +" "+ departamentos[departamento].split(" - ")[0])
+    # for departamento in departamentos:
+        # print(departamento +" "+ departamentos[departamento].split(" - ")[0])
     # for id in departamentos['ids']:
     #     sleep(0.1)
     #     parse_oferta(id)
-    parse_oferta(370, "FACULDADE DIREITO")
-    print(len(departamentos))
+    parse_oferta(370, "FACULDADE DE DIREITO")
+    # print(len(departamentos))

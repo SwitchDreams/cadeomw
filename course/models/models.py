@@ -5,6 +5,7 @@ from django.contrib.postgres.fields import JSONField
 # Create your models here.
 class Department(models.Model):
     name = models.CharField(max_length=100)
+    initials = models.CharField(max_length=4)
 
     def __str__(self):
         return self.name
@@ -78,7 +79,7 @@ class Course(models.Model):
 
 # Classe que armazena as disciplinas
 class Subject(models.Model):
-    code = models.BigIntegerField(primary_key=True)
+    code = models.CharField(primary_key=True, max_length=20)
     # TODO mudar departamento para ser model ao inves de string
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='subject')
     name = models.CharField(max_length=50)

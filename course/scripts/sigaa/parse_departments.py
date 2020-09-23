@@ -18,7 +18,13 @@ def parse_departments():
     for row in table.findAll('tr')[1:2]:
         col = row.findAll('td')
         dept = col[0].string.replace('\n', '').replace('\t', '')
-        department = Department.objects.create(name=dept)
+        dept = dept.split(' - ')
+        initials = dept[0]
+        name = dept[1]
+        department = Department.objects.create(
+            name=name,
+            initials=initials
+        )
 
     # Pular o titulo da tabela
     for row in table.findAll('tr')[2:]:
@@ -27,7 +33,13 @@ def parse_departments():
         if len(col) == 1:
             # Atualiza as informações antigas
             dept = col[0].string.replace('\n', '').replace('\t', '')
-            department = Department.objects.create(name=dept)
+            dept = dept.split(' - ')
+            initials = dept[0]
+            name = dept[1]
+            department = Department.objects.create(
+                name=name,
+                initials=initials
+            )
         else:
             # Lê informações da Tabela
             course_name = col[0].string.replace('\n', '').replace('\t', '').capitalize().strip()
