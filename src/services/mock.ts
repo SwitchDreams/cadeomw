@@ -512,11 +512,126 @@ export default function (): Server {
       ]);
 
       this.get('/subjects/:subject_id', () => ({
-        subject_name: 'Sistemas Digitais',
+        name: 'Sistemas Digitais',
         credit: 4,
+        department: 'CIC',
         code: 2089,
         status: 'obrigatória',
         pass_percent: 0.43,
+        prerequisites: [
+          [
+            {
+              credit: 4,
+              code: 1285,
+              subject_name: 'Elétrica Digital',
+            },
+            {
+              credit: 2,
+              code: 2136,
+              subject_name: 'Laboratório de Elétrica Digital',
+            },
+          ],
+          [
+            {
+              credit: 6,
+              code: 5342,
+              subject_name: 'Introdução à Elétrica',
+            },
+          ],
+        ],
+        equivalences: [
+          {
+            direction: 'unidirecional',
+            destination: {
+              code: 1963,
+              subject_name: 'Elétrica Básica',
+              credit: 4,
+            },
+            subject: {
+              code: 2916,
+              subject_name: 'Algoritmos para Computação',
+              credit: 2,
+            },
+            options: [
+              {
+                code: 2013,
+                name: 'Engenharia de Computação',
+              },
+              {
+                code: 1747,
+                name: 'Engenharia Elétrica',
+              },
+            ],
+          },
+          {
+            direction: 'unidirecional',
+            destination: {
+              code: 1963,
+              subject_name: 'Elétrica Básica',
+              credit: 4,
+            },
+            subject: {
+              code: 2916,
+              subject_name: 'Algoritmos para Computação',
+              credit: 2,
+            },
+            options: [],
+          },
+          {
+            direction: 'unidirecional',
+            destination: {
+              code: 1963,
+              subject_name: 'Elétrica Básica',
+              credit: 4,
+            },
+            subject: {
+              code: 2916,
+              subject_name: 'Algoritmos para Computação',
+              credit: 2,
+            },
+            options: [
+              {
+                code: 2013,
+                name: 'Engenharia de Computação',
+              },
+              {
+                code: 1747,
+                name: 'Engenharia Elétrica',
+              },
+            ],
+          },
+          {
+            direction: 'unidirecional',
+            destination: {
+              code: 1963,
+              subject_name: 'Elétrica Básica',
+              credit: 4,
+            },
+            subject: {
+              code: 2916,
+              subject_name: 'Algoritmos para Computação',
+              credit: 2,
+            },
+            options: [
+              {
+                code: 2013,
+                name: 'Engenharia de Computação',
+              },
+              {
+                code: 1747,
+                name: 'Engenharia Elétrica',
+              },
+              {
+                code: 1747,
+                name: 'Engenharia Florestal',
+              },
+              {
+                code: 1747,
+                name: 'Eletrônica',
+              },
+            ],
+          },
+        ],
         oferta: [
           {
             turma: 'A',

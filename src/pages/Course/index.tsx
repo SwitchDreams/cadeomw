@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
 import { useParams, useHistory } from 'react-router-dom';
-import { Graphviz } from 'graphviz-react';
 
 import createServer from '../../services/mock';
 import api from '../../services/api';
@@ -121,9 +120,6 @@ const Course: React.FC = () => {
   // const [grafo, setGrafo] = useState(false);
 
   const params = useParams<RouteParams>();
-  const history = useHistory();
-
-  const { addToast } = useToast();
 
   useEffect(() => {
     api.get(`courses/${params.id}?format=json`).then(response => {

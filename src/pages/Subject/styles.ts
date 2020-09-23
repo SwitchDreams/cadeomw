@@ -259,6 +259,7 @@ export const EquivalencesContainer = styled.div<WindowProp>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 0;
 
   justify-content: center;
   width: 100%;
@@ -322,8 +323,9 @@ export const EquivalenceBox = styled.div<WindowProp>`
   ${props =>
     props.window &&
     css`
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       max-width: 90%;
+      min-height: 100px;
     `};
 `;
 
@@ -348,4 +350,52 @@ export const NotExistingSubject = styled.div`
   h2 {
     font-size: 14px;
   }
+`;
+
+export const OfertaContainer = styled.div<WindowProp>`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-top: 10px;
+
+  h4 {
+    font-size: 25px;
+    color: #222;
+    text-transform: capitalize;
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  table {
+    width: 50%;
+
+    td,
+    th {
+      padding: 5px;
+      text-align: center;
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: #ddd;
+      }
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+
+  ${props =>
+    props.window &&
+    css`
+      h4 {
+        width: 90%;
+      }
+      table {
+        width: 90%;
+        font-size: 15px;
+      }
+    `};
 `;

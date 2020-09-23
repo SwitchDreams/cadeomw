@@ -64,9 +64,9 @@ const Equivalence: React.FC<EquivalenceProps> = ({
               <ul>
                 <li>{`${equivalence.destination.credit} créditos`}</li>
                 <li>{equivalence.direction}</li>
-                {equivalence.options.length === 0 && (
+                {/* {equivalence.options.length === 0 && (
                   <li>{`Equivalência ${equivalence.coverage}`}</li>
-                )}
+                )} */}
                 {equivalence.options.length !== 0 && (
                   <>
                     <li>Cursos para equivalência:</li>
@@ -95,9 +95,9 @@ const Equivalence: React.FC<EquivalenceProps> = ({
                 <ul>
                   <li>{`${equivalence.destination.credit} créditos`}</li>
                   <li>{equivalence.direction}</li>
-                  {equivalence.options.length === 0 && (
+                  {/* {equivalence.options.length === 0 && (
                     <li>{`Equivalência ${equivalence.coverage}`}</li>
-                  )}
+                  )} */}
                   {equivalence.options.length !== 0 && (
                     <>
                       <li>Cursos para equivalência:</li>

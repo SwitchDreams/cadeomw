@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
+import createServer from '../../services/mock';
 import api from '../../services/api';
-import { useToast } from '../../hooks/toasts';
 
-import Graphic from './graphic';
 import Equivalence from './equivalence';
+import Oferta from './oferta';
 import Prereq from './prereq';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -31,22 +31,7 @@ export interface Prereq {
   subject_name: string;
 }
 
-export interface Grades {
-  semester: string;
-  grades: {
-    ss: number;
-    ms: number;
-    mm: number;
-    mi: number;
-    ii: number;
-    sr: number;
-    tr: number;
-    tj: number;
-  };
-}
-
 export interface Equivalence {
-  coverage: string;
   direction: string;
   destination: {
     code: number;
@@ -64,55 +49,44 @@ export interface Equivalence {
   }[];
 }
 
+export interface Oferta {
+  turma: string;
+  professor: string;
+  horario: string;
+}
+
 export interface Subject {
   name: string;
   credit: number;
   code: number;
   department: string;
   pass_percent: number;
+  status: string;
   prerequisites: Prereq[][];
-  grade_infos: Grades[];
   equivalences: Equivalence[];
+  oferta: Oferta[];
+}
+
+interface RouteParams {
+  id: string;
 }
 
 const Subject: React.FC = () => {
+  createServer();
+
   const [loading, setLoading] = useState(true);
   const [windowCheck, setWindowCheck] = useState(false);
 
   const [subject, setSubject] = useState<Subject | null>(null);
 
-  const { addToast } = useToast();
-
-  const { subject_id } = useParams();
-  const history = useHistory();
+  const params = useParams<RouteParams>();
 
   useEffect(() => {
-    try {
-      api.get<Subject>(`subjects/${subject_id}/?format=json`).then(response => {
-        setLoading(true);
-        let subjectAPI = response.data;
-
-        const newSubjectName =
-          subjectAPI.name.charAt(0).toUpperCase() +
-          subjectAPI.name.slice(1).toLowerCase();
-
-        subjectAPI = { ...response.data, name: newSubjectName };
-
-        setSubject(subjectAPI);
-        setLoading(false);
-      });
-    } catch (err) {
+    api.get(`subjects/${params.id}?format=json`).then(response => {
+      setSubject(response.data);
       setLoading(false);
-
-      addToast({
-        type: 'error',
-        title: 'Erro ao carregar a disciplina',
-        description: 'Tente novamente mais tarde',
-      });
-
-      history.push(`/subjects`);
-    }
-  }, [subject_id, addToast, history]);
+    });
+  }, [params.id]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -179,11 +153,9 @@ const Subject: React.FC = () => {
             </InfoGeralContainer>
           </Grow>
 
-          <Equivalence window={windowCheck} subject={subject} />
+          <Oferta window={windowCheck} subject={subject} />
 
-          {subject.grade_infos && (
-            <Graphic window={windowCheck} subject={subject} />
-          )}
+          <Equivalence window={windowCheck} subject={subject} />
 
           <Prereq window={windowCheck} subject={subject} />
         </Container>
