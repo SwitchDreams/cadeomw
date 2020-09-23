@@ -80,7 +80,7 @@ class Course(models.Model):
 class Subject(models.Model):
     code = models.BigIntegerField(primary_key=True)
     # TODO mudar departamento para ser model ao inves de string
-    department = models.CharField(max_length=4)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='subject')
     name = models.CharField(max_length=50)
     credit = models.SmallIntegerField()
     # Campos pré-processados

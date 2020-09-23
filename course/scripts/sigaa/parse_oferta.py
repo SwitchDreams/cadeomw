@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 from time import sleep
 import requests
 from course.models.offer import Offer
+from course.models.models import Department, Subject
+
 
 url = "https://sig.unb.br/sigaa/public/turmas/listar.jsf"
 
@@ -13,13 +15,14 @@ def refactor_list(lista, nome):
     lista.insert(0, nome)  # Inserindo o nome na lista
 
     # print(lista)
-    print("=====================")
+    # print("=====================")
 
     lista.pop(5)  # Retirando horário completo
     lista.pop(6)  # Retirando vagas ocupadas
 
-    print(lista)
-    print("################")
+    # Ver a lista criada
+    # print(lista)
+    # print("################")
 
     turma['subject_code'] = lista[0].split(' ')[0]
 
@@ -73,10 +76,8 @@ def get_ids_and_names():
     return departamentos
 
 
-def parse_oferta(id):
+def parse_oferta(id, department_name):
     infos_list = []
-    lista = []
-    turmas = {}
 
     request_data = get_request_from_oferta()
     payload = f'formTurma=formTurma&formTurma%3AinputNivel=G&formTurma%3AinputDepto={id}&formTurma%3AinputAno=2020&formTurma%3AinputPeriodo=1&formTurma%3Aj_id_jsp_1370969402_11=Buscar&javax.faces.ViewState=' \
@@ -128,7 +129,32 @@ def parse_oferta(id):
 
             turmas = refactor_list(infos_list, nome)
 
+            try:
+                department_object = Department.objects.get(name = department_name)
+            except:
+                pass
+            try:
+                subject_object = Subject.objects.create(
+                    department= department_object,
+                    name=turmas['subject_name'],
+                    credit=turmas['workload']
+                )
+                subject_object.save()
+            except:
+                pass
+            try:
+                oferta = Offer.objects.create(
+                    department= department_object,
+                    subject=subject_object,
+                    name= turmas['name'],
+                    semester= turmas['semester'],
+                    schedule=turmas['schedule'],
+                    schedule_qtd=turmas['students_qtd'],
+                    place=turmas['place']
 
+                )
+            except:
+                pass
             infos_list = []
 
         # for l in lista:
@@ -152,9 +178,9 @@ def get_request_from_oferta():
 def run():
     departamentos = get_ids_and_names()
     for departamento in departamentos:
-        print(departamento +" "+ departamentos[departamento])
+        print(departamento +" "+ departamentos[departamento].split(" - ")[0])
     # for id in departamentos['ids']:
     #     sleep(0.1)
     #     parse_oferta(id)
-    parse_oferta(518)
+    parse_oferta(370, "FACULDADE DIREITO")
     print(len(departamentos))
