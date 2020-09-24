@@ -80,7 +80,6 @@ class Course(models.Model):
 # Classe que armazena as disciplinas
 class Subject(models.Model):
     code = models.CharField(primary_key=True, max_length=20)
-    # TODO mudar departamento para ser model ao inves de string
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='subject')
     name = models.CharField(max_length=50)
     credit = models.SmallIntegerField()
@@ -103,6 +102,9 @@ class Subject(models.Model):
         for equivalence in self.subject_eq.all():
             equivalences.append(equivalence.to_json())
         return equivalences
+    
+    def get_offer(self):
+        return [offer.to_json() for offer in self.offers.all()]
 
     def get_prerequisites(self):
         """ Retorna os pré-requisitos em JSON """
@@ -251,6 +253,16 @@ class Offer(models.Model):
     schedule = models.CharField(max_length=100)
     students_qtd = models.CharField(max_length=3)
     place = models.CharField(max_length=100)
+
+    def to_json(self):
+        return {
+            "name": self.name,
+            "semester": self.semester,
+            "teachers": [ot.teacher.name for ot in self.offer_teachers.all()],
+            "total_vacancies": self.students_qtd,
+            "schedule": self.schedule.split(" "),
+            "place": self.place
+        }
 
 class Teacher(models.Model):
     name = models.CharField(unique=True, max_length=100)

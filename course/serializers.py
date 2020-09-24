@@ -31,4 +31,4 @@ class SubjectDetailsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Subject
         fields = ['code', 'department', 'name', 'credit', 'pass_percent', 'prerequisites', 'grade_infos',
-                  'equivalences']
+                  'equivalences', 'get_offer']

@@ -13,68 +13,41 @@ url = "https://sig.unb.br/sigaa/public/turmas/listar.jsf"
 def refactor_list(lista, nome):
     turma = {}
 
-    lista = [i for i in lista if i]  # Retirando strings vazias da lista
-    lista.insert(0, nome)  # Inserindo o nome na lista
+    #  lista = [i for i in lista if i]  # Retirando strings vazias da lista
 
-    # print(lista)
-    # print("=====================")
+    turma['name'] = lista[0].strip()
 
-    lista.pop(5)  # Retirando horário completo
-    lista.pop(6)  # Retirando vagas ocupadas
+    turma['semester'] = lista[1]
 
-    # Ver a lista criada
-    # print(lista)
-    # print("################")
-
-    turma['subject_code'] = lista[0].split(' ')[0]
-
-    # Separa a palavra no, ou seja, ignora o código da disciplina, e o [1:] é pra ignorar o espaço que sobra na string
-    turma['subject_name'] = lista[0].split('-')[-1][1:]
-
-    turma['name'] = lista[1]
-    turma['semester'] = lista[2]
-    turma['teacher'] = lista[3].split('(')[0].strip()
-
-    # Pega a quantidade de horas, separa da segunda posição até a penúltima
-    turma['workload'] = int(lista[3].split(' ')[-1][1:-1][:1])
-
-    turma['schedule'] = lista[4]
+    # Nome e carga horário vêm na mesma string
+    turma['teacher'] = lista[2].split(' (')[0]
+    turma['workload'] = int(lista[2].split('(')[1][0:-2])/4
+    
+    # Horário
+    turma['schedule'] = lista[3].split('\r')[0][1:]
+    
     turma['students_qtd'] = lista[5]
 
-    # Para turmas sem local definido
-    if len(lista) == 7:
-        turma['place'] = lista[6]
-    else:
-        turma['place'] = ''
+    turma['place'] = lista[7][1:]
+
+    turma['subject_code'] = nome.split(' ')[0]
+
+    # Separa a palavra no - ou seja, ignora o código da disciplina
+    turma['subject_name'] = nome.split(' - ', 1)[-1]
+    
 
     return turma
-
-
-def RemoveRepetidosLista(l):
-    # cria um dicionario em branco
-    dict = {}
-    # para cada valor na lista l
-    for word in l:
-        # adiciona ao dicionario: valor:1
-        # se for repetido o valor somente sobrescreve ele
-        dict[word] = 1
-    # retorna uma copia das 'keys'
-    l[:] = dict.keys()
-    return l
-
 
 def get_ids_and_names():
     departamentos = {}
     response = requests.request("GET", url)
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
-    # print(html_soup)
     list_depto = html_soup.find(id='formTurma:inputDepto')
 
     for depto in list_depto.find_all('option'):
         departamentos[depto['value']] = depto.text
 
     departamentos.pop('0', None)
-
     return departamentos
 
 
@@ -104,7 +77,11 @@ def parse_oferta(id, department_name):
     # a = html_soup.find_all(class_= "agrupador")
     # a = html_soup.find_all('tr', {'class': "agrupador"})
 
-    turma = html_soup.find_all('tr', {'class': "agrupador"})[0]
+    turma_aux = html_soup.find_all('tr', {'class': "agrupador"})
+    if not turma_aux:
+        print(f"Não existe oferta para o departamento: {department_name}")
+        return
+    turma = turma_aux[0]
     flag = False
 
     while True:
@@ -117,29 +94,31 @@ def parse_oferta(id, department_name):
             # Na primeira iteração não teremos a informação completa, então precisamos de uma flag para 
             # Montar o objeto na segunda iteração
             if flag:
-                # Criar disciplina no BD
                 print('')
             else:
                 flag = True
         else:
             flag = False
 
-            aux = turma.text
-            aux = aux.split('\n')  # Montando a lista com base nas quebras de linha
-
+            # Pegando o vetor de infos da turma
+            aux = turma.find_all('td') 
             for info in aux:
                 if info:
-                    infos_list.append(info.strip())
+                    # Extraindo o valor dos tds
+                    infos_list.append(info.text)
 
             turmas = refactor_list(infos_list, nome)
+            
+            if not turmas:
+                infos_list = []
+                turma = turma.find_next_sibling('tr')
+                continue
 
             try:
                 department_object = Department.objects.get(name=department_name)
             except:
                 print(f"Could not find department named {department_name}")
-                infos_list = []
-                turma = turma.find_next_sibling('tr')
-                continue
+                break
 
             try:
                 subject_object = Subject.objects.create(
@@ -232,10 +211,8 @@ def get_request_from_oferta():
 
 def run():
     departamentos = get_ids_and_names()
-    # for departamento in departamentos:
-        # print(departamento +" "+ departamentos[departamento].split(" - ")[0])
-    # for id in departamentos['ids']:
-    #     sleep(0.1)
-    #     parse_oferta(id)
-    parse_oferta(370, "FACULDADE DE DIREITO")
-    # print(len(departamentos))
+    for departamento in departamentos:
+        nome_depto = departamentos[departamento].split(" - ")[0].split(" (")[0]
+        print(departamento +" "+ nome_depto)
+        parse_oferta(departamento, nome_depto)
+        sleep(0.1)
