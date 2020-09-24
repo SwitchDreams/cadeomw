@@ -20,7 +20,7 @@ def parse_departments():
         dept = col[0].string.replace('\n', '').replace('\t', '')
         dept = dept.split(' - ')
         initials = dept[0]
-        name = dept[1]
+        name = dept[1].split(' (')[0]
         department = Department.objects.create(
             name=name,
             initials=initials
@@ -35,7 +35,7 @@ def parse_departments():
             dept = col[0].string.replace('\n', '').replace('\t', '')
             dept = dept.split(' - ')
             initials = dept[0]
-            name = dept[1]
+            name = dept[1].split(' (')[0]
             department = Department.objects.create(
                 name=name,
                 initials=initials

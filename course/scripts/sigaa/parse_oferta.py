@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 from time import sleep
 import requests
-from course.models.offer import Offer
+from course.models.models import Offer
 from course.models.models import Department, Subject
+from course.models.models import Teacher, OfferTeacher
+from django.db import IntegrityError
 
 
 url = "https://sig.unb.br/sigaa/public/turmas/listar.jsf"
@@ -107,6 +109,8 @@ def parse_oferta(id, department_name):
 
     while True:
 
+        if turma == None:
+            break
         # Se é agrupador, pegamos a informação do nome
         if turma['class'][0] == 'agrupador':
             nome = turma.text.strip()
@@ -130,40 +134,87 @@ def parse_oferta(id, department_name):
             turmas = refactor_list(infos_list, nome)
 
             try:
-                department_object = Department.objects.get(name = department_name)
+                department_object = Department.objects.get(name=department_name)
             except:
-                print("CAIU AQUI! 1")
-                pass
-            subject_object = Subject.objects.create(
-                code=turmas["subject_code"],
-                department= department_object,
-                name=turmas['subject_name'],
-                credit=turmas['workload']
-            )
-            subject_object.save()
-            # try:
-            # except:
-            #     print("CAIU AQUI! 2")
-            #     pass
+                print(f"Could not find department named {department_name}")
+                infos_list = []
+                turma = turma.find_next_sibling('tr')
+                continue
+
             try:
+                subject_object = Subject.objects.create(
+                    code=turmas["subject_code"],
+                    department= department_object,
+                    name=turmas['subject_name'],
+                    credit=turmas['workload']
+                )
+                subject_object.save()
+            except IntegrityError:
+                print(f"TURMA DIFERENTE: {turmas['subject_name']}")
+                pass
+            except:
+                print(f"Could not create subject named {turmas['subject_name']}")
+                infos_list = []
+                turma = turma.find_next_sibling('tr')
+                continue
+
+            try:
+                subject_object = Subject.objects.get(code=turmas["subject_code"])
                 oferta = Offer.objects.create(
                     department= department_object,
                     subject=subject_object,
                     name= turmas['name'],
                     semester= turmas['semester'],
                     schedule=turmas['schedule'],
-                    schedule_qtd=turmas['students_qtd'],
+                    students_qtd=turmas['students_qtd'],
                     place=turmas['place']
-
                 )
-            except:
-                print("CAIU AQUI! 3")
-                pass
-            infos_list = []
+                oferta.save()
 
-        # for l in lista:
-        #     print(l)
-        # print("----------")
+                try:
+                    teacher = Teacher.objects.create(
+                        name=turmas["teacher"]
+                    )
+                    teacher.save()
+
+                    ot = OfferTeacher(
+                        offer=oferta,
+                        teacher=teacher
+                    )
+                    ot.save()
+                except IntegrityError:
+                    teacher = Teacher.objects.get(
+                        name=turmas["teacher"]
+                    )
+                    ot = OfferTeacher(
+                        offer=oferta,
+                        teacher=teacher
+                    )
+                    ot.save()
+                except:
+                    print(f"could not create teacher named {turmas['teacher']} for the offer {turmas['name']}")
+                    infos_list = []
+                    turma = turma.find_next_sibling('tr')
+                    continue
+
+            except IntegrityError:
+                try:
+                    teacher = Teacher.objects.get(
+                        name=turmas["teacher"]
+                    )
+
+                    ot = OfferTeacher(
+                        offer=oferta,
+                        teacher=teacher
+                    )
+                    ot.save()
+                except:
+                    print(f"could not create teacher named {turmas['teacher']} for the offer {turmas['name']}")
+                    infos_list = []
+                    turma = turma.find_next_sibling('tr')
+                    continue
+
+            infos_list = []
 
         # Pega a sequência de informações que são sequência do nome (demais infos)
         turma = turma.find_next_sibling('tr')

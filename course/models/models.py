@@ -243,6 +243,25 @@ class Option(models.Model):
             "name": self.course.name
         }
 
+class Offer(models.Model):
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='offers')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='offers')
+    name = models.CharField(max_length=100)
+    semester = models.CharField(max_length=7)
+    schedule = models.CharField(max_length=100)
+    students_qtd = models.CharField(max_length=3)
+    place = models.CharField(max_length=100)
+
+class Teacher(models.Model):
+    name = models.CharField(unique=True, max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class OfferTeacher(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='offer_teachers')
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='offer_teachers')
 
 # Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
 from course.scripts.graph_flow_course import do_graph
