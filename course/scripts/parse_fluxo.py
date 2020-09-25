@@ -1,4 +1,4 @@
-from course.models import Course, Subject, PreRequisiteSet, PreRequisite
+from course.models.models import Course, Subject, PreRequisiteSet, PreRequisite
 
 
 def format_datetime(datetime):

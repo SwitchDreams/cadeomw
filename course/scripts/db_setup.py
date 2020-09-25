@@ -2,7 +2,7 @@ from course.scripts.parse_fluxo import run as run_parse_fluxo
 from course.scripts.parse_mencao import run as run_parse_mencao
 from course.scripts.parse_equivalencias import run as run_parse_equivalencias
 from course.scripts.refactor_course_name import run as run_refactor_course_name
-from course.models import Course, Subject
+from course.models.models import Course, Subject
 
 
 def pre_process_courses():

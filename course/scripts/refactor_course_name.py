@@ -1,4 +1,4 @@
-from course.models import Course
+from course.models.models import Course
 
 # Dicionário contendo os cursos em redundância para especificarmos
 course_list = {

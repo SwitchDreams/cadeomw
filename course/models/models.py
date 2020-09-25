@@ -4,7 +4,8 @@ from django.contrib.postgres.fields import JSONField
 
 # Create your models here.
 class Department(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    initials = models.CharField(max_length=4)
 
     def __str__(self):
         return self.name
@@ -12,11 +13,17 @@ class Department(models.Model):
 
 # Classe que armazena o curso
 class Course(models.Model):
+    SHIFT = (
+        ('N', 'Noturno'),
+        ('D', 'Diurno'),
+    )
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='courses')
     code = models.BigIntegerField(primary_key=True)
-    name = models.CharField(max_length=50)
-    issue_date = models.DateField()
-    begin_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
+    name = models.CharField(max_length=100)
+    coordinator_name = models.CharField(max_length=100, null=True)
+    academic_degree = models.CharField(max_length=100)
+    is_ead = models.BooleanField(default=False)
+    shift = models.CharField(max_length=2, choices=SHIFT)
     # Campos calculados
     flow = JSONField(null=True, blank=True)
     num_semester = models.SmallIntegerField(null=True, blank=True)
@@ -72,9 +79,8 @@ class Course(models.Model):
 
 # Classe que armazena as disciplinas
 class Subject(models.Model):
-    code = models.BigIntegerField(primary_key=True)
-    # TODO mudar departamento para ser model ao inves de string
-    department = models.CharField(max_length=4)
+    code = models.CharField(primary_key=True, max_length=20)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='subject')
     name = models.CharField(max_length=50)
     credit = models.SmallIntegerField()
     # Campos pré-processados
@@ -86,6 +92,9 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
 
+    def department_name(self):
+        return self.department.name
+
     def to_json(self):
         return {"code": self.code, "subject_name": self.name,
                 "credit": self.credit}
@@ -96,6 +105,9 @@ class Subject(models.Model):
         for equivalence in self.subject_eq.all():
             equivalences.append(equivalence.to_json())
         return equivalences
+    
+    def get_offer(self):
+        return [offer.to_json() for offer in self.offers.all()]
 
     def get_prerequisites(self):
         """ Retorna os pré-requisitos em JSON """
@@ -236,6 +248,35 @@ class Option(models.Model):
             "name": self.course.name
         }
 
+class Offer(models.Model):
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='offers')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='offers')
+    name = models.CharField(max_length=100)
+    semester = models.CharField(max_length=7)
+    schedule = models.CharField(max_length=100)
+    students_qtd = models.CharField(max_length=3)
+    place = models.CharField(max_length=100)
+
+    def to_json(self):
+        return {
+            "name": self.name,
+            "semester": self.semester,
+            "teachers": [ot.teacher.name for ot in self.offer_teachers.all()],
+            "total_vacancies": self.students_qtd,
+            "schedule": self.schedule.split(" "),
+            "place": self.place
+        }
+
+class Teacher(models.Model):
+    name = models.CharField(unique=True, max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class OfferTeacher(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='offer_teachers')
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='offer_teachers')
 
 # Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
 from course.scripts.graph_flow_course import do_graph
