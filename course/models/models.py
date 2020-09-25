@@ -92,6 +92,9 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
 
+    def department_name(self):
+        return self.department.name
+
     def to_json(self):
         return {"code": self.code, "subject_name": self.name,
                 "credit": self.credit}
