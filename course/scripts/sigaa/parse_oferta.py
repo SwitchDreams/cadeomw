@@ -53,7 +53,7 @@ def get_ids_and_names():
 ###### Create ######
 
 def create_subject(subject_code, department_object, subject_name, workload):
-    subject_object = Subject.objects.create(
+    subject_object = Subject(
         code=subject_code,
         department= department_object,
         name=subject_name,
@@ -62,7 +62,7 @@ def create_subject(subject_code, department_object, subject_name, workload):
     return subject_object
 
 def create_offer(department_object, subject_object, name, semester, schedule, students_qtd, place):
-    oferta = Offer.objects.create(
+    oferta = Offer(
         department= department_object,
         subject=subject_object,
         name= name,
@@ -165,7 +165,7 @@ def parse_oferta(id, department_name):
 
                 # Criando professor para vincular à oferta
                 try:
-                    teacher = Teacher.objects.create(name=turmas["teacher"])
+                    teacher = Teacher(name=turmas["teacher"])
                     teacher.save()
 
                     ot = OfferTeacher(offer=oferta, teacher=teacher)
