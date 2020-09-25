@@ -50,6 +50,31 @@ def get_ids_and_names():
     departamentos.pop('0', None)
     return departamentos
 
+###### Create ######
+
+def create_subject(subject_code, department_object, subject_name, workload):
+    subject_object = Subject.objects.create(
+        code=subject_code,
+        department= department_object,
+        name=subject_name,
+        credit=workload
+    )
+    return subject_object
+
+def create_offer(department_object, subject_object, name, semester, schedule, students_qtd, place):
+    oferta = Offer.objects.create(
+        department= department_object,
+        subject=subject_object,
+        name= name,
+        semester= semester,
+        schedule= schedule,
+        students_qtd= students_qtd,
+        place= place
+    )
+    return oferta
+
+
+####################
 
 def parse_oferta(id, department_name):
     infos_list = []
@@ -84,10 +109,11 @@ def parse_oferta(id, department_name):
 
         if turma == None:
             break
-        # Se é agrupador, pegamos a informação do nome
+        # Se é agrupador, conseguimos obter o nome da turma
         if turma['class'][0] == 'agrupador':
             nome = turma.text.strip()
 
+        # Se não for agrupador, é a td com as demais informações
         else:
             # Pegando o vetor de infos da turma
             aux = turma.find_all('td') 
@@ -96,85 +122,73 @@ def parse_oferta(id, department_name):
                     # Extraindo o valor dos tds
                     infos_list.append(info.text)
 
+            # Entra a lista de tds do parse desorganizada
+            # Retorna um dicionário com as infos necessárias
             turmas = refactor_list(infos_list, nome)
             
             if not turmas:
                 infos_list = []
                 turma = turma.find_next_sibling('tr')
                 continue
-
+            
+            # Tenta criar o departamento
             try:
                 department_object = Department.objects.get(name=department_name)
+            # Se não criar é porque o departamento existe nessa lista
+            # Mas não existe na model de departments
+            # Isso ocorre porque na lista desse parse consta departamentos como 'reitoria'
             except:
                 print(f"Could not find department named {department_name}")
                 break
-
+            
+            # Tenta criar a disciplina
             try:
-                subject_object = Subject.objects.create(
-                    code=turmas["subject_code"],
-                    department= department_object,
-                    name=turmas['subject_name'],
-                    credit=turmas['workload']
-                )
+                subject_object = create_subject(turmas["subject_code"], department_object, turmas['subject_name'], turmas['workload'])
                 subject_object.save()
+            # Se não conseguir por erro de integridade
+            # Significa que a disciplina foi criada, portanto devemos criar outra turma
             except IntegrityError:
                 print(f"TURMA DIFERENTE: {turmas['subject_name']}")
                 pass
+            # Se não conseguir por algum outro motivo, vamos pra próxima
             except:
                 print(f"Could not create subject named {turmas['subject_name']}")
                 infos_list = []
                 turma = turma.find_next_sibling('tr')
                 continue
 
+            # Tenta criar a oferta
             try:
                 subject_object = Subject.objects.get(code=turmas["subject_code"])
-                oferta = Offer.objects.create(
-                    department= department_object,
-                    subject=subject_object,
-                    name= turmas['name'],
-                    semester= turmas['semester'],
-                    schedule=turmas['schedule'],
-                    students_qtd=turmas['students_qtd'],
-                    place=turmas['place']
-                )
+                oferta = create_offer(department_object, subject_object, turmas['name'], turmas['semester'], turmas['schedule'], turmas['students_qtd'], turmas['place'])
                 oferta.save()
 
+                # Criando professor para vincular à oferta
                 try:
-                    teacher = Teacher.objects.create(
-                        name=turmas["teacher"]
-                    )
+                    teacher = Teacher.objects.create(name=turmas["teacher"])
                     teacher.save()
 
-                    ot = OfferTeacher(
-                        offer=oferta,
-                        teacher=teacher
-                    )
+                    ot = OfferTeacher(offer=oferta, teacher=teacher)
                     ot.save()
+                # Se tem integridade de erro, o professor já foi criado, então damos um get
                 except IntegrityError:
-                    teacher = Teacher.objects.get(
-                        name=turmas["teacher"]
-                    )
-                    ot = OfferTeacher(
-                        offer=oferta,
-                        teacher=teacher
-                    )
+                    teacher = Teacher.objects.get(name=turmas["teacher"])
+                    ot = OfferTeacher(offer=oferta, teacher=teacher)
                     ot.save()
+                # Se for outro erro, próximo
                 except:
                     print(f"could not create teacher named {turmas['teacher']} for the offer {turmas['name']}")
                     infos_list = []
                     turma = turma.find_next_sibling('tr')
                     continue
 
+            # Se não conseguir por erro de integridade
+            # Significa que a oferta já foi criada, portanto devemos criar a relação
             except IntegrityError:
                 try:
-                    teacher = Teacher.objects.get(
-                        name=turmas["teacher"]
-                    )
+                    teacher = Teacher.objects.get(name=turmas["teacher"])
 
-                    ot = OfferTeacher(
-                        offer=oferta,
-                        teacher=teacher
-                    )
+                    ot = OfferTeacher(offer=oferta, teacher=teacher)
                     ot.save()
                 except:
                     print(f"could not create teacher named {turmas['teacher']} for the offer {turmas['name']}")
