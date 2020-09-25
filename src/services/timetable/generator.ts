@@ -1,4 +1,3 @@
-// TODO guardar length em variaveis
 interface Class {
   name: string;
   teacher: string;

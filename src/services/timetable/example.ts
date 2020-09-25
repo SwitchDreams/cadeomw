@@ -51,3 +51,5 @@ export const F1 = {
     },
   ],
 };
+
+export const Subjects = [APC, C1, F1];
