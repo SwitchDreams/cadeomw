@@ -6,14 +6,15 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Chip from '@material-ui/core/Chip';
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
+import Generator from '../../services/timetable/generator';
 
 const subjects = Subjects;
 
 const useStyles = makeStyles((theme: any) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
+    minWidth: 300,
+    maxWidth: 500,
   },
   chips: {
     display: 'flex',
@@ -39,11 +40,22 @@ const MenuProps = {
 };
 
 const TimeTable: React.FC = () => {
-  const [selectedSubjects, setSelectedSubjects] = React.useState([]);
+  const [selectedSubjects, setSelectedSubjects] = React.useState<Array<string>>(
+    [],
+  );
   const classes = useStyles();
 
   function handleChange(event: any): void {
     setSelectedSubjects(event.target.value);
+  }
+
+  function handleGenerateTable(): void {
+    const filter = subjects.filter(({ name }) =>
+      selectedSubjects.includes(name),
+    );
+    const generator = new Generator(filter, []);
+    generator.magic();
+    console.log(generator.selectedClasses);
   }
 
   return (
@@ -79,7 +91,11 @@ const TimeTable: React.FC = () => {
             ))}
           </Select>
 
-          <Button variant="outlined" color="primary">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={handleGenerateTable}
+          >
             Montar Grade
           </Button>
         </FormControl>
