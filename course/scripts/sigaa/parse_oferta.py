@@ -10,10 +10,10 @@ from django.db import IntegrityError
 url = "https://sig.unb.br/sigaa/public/turmas/listar.jsf"
 
 
+# Input: Lista contendo os valores das disciplinas para ser refatorado (obtidos através dos tds)
+# Output: Dicionário contendo as informações refatoradas para criar a oferta
 def refactor_list(lista, nome):
     turma = {}
-
-    #  lista = [i for i in lista if i]  # Retirando strings vazias da lista
 
     turma['name'] = lista[0].strip()
 
@@ -74,16 +74,12 @@ def parse_oferta(id, department_name):
 
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
 
-    # a = html_soup.find_all(class_= "agrupador")
-    # a = html_soup.find_all('tr', {'class': "agrupador"})
-
     turma_aux = html_soup.find_all('tr', {'class': "agrupador"})
     if not turma_aux:
         print(f"Não existe oferta para o departamento: {department_name}")
         return
     turma = turma_aux[0]
-    flag = False
-
+    
     while True:
 
         if turma == None:
@@ -91,15 +87,8 @@ def parse_oferta(id, department_name):
         # Se é agrupador, pegamos a informação do nome
         if turma['class'][0] == 'agrupador':
             nome = turma.text.strip()
-            # Na primeira iteração não teremos a informação completa, então precisamos de uma flag para 
-            # Montar o objeto na segunda iteração
-            if flag:
-                print('')
-            else:
-                flag = True
-        else:
-            flag = False
 
+        else:
             # Pegando o vetor de infos da turma
             aux = turma.find_all('td') 
             for info in aux:
