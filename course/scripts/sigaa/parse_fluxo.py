@@ -41,9 +41,15 @@ def save_subject(course, html_subject, semester):
     subject_info = html_subject_rows[0].text.split(' - ')
     status = html_subject_rows[1].text.strip()
     code = subject_info[0]
-    name = subject_info[1]
+
+    # Prevent that subject names with "-" are wrongly parsed
+    name_components = subject_info[1:-1]
+    name=name_components[0]
+    for component in name_components[1:0]:
+        name += ' - ' + component
+    
     # Convert hours in credits
-    credit = int(int(subject_info[2][:2]) / 15)
+    credit = int(int(subject_info[-1][:-1]) / 15)
     # Get status code
     status_code = {
         "Obrigatória":  "OBR",
