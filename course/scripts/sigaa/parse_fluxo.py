@@ -51,16 +51,22 @@ def save_subject(course, html_subject, semester):
         "Módulo Livre": "ML"
     }
 
-    # Create subject if needed
+    # Try to get current subject from the DB
+    # If its not there, proceed to create it
     try:
         subject = Subject.objects.get(code=code)
     except Exception as error:
         print(f"Could not find subject {name}: {error}. Trying to create it")
         dept_initials = code[:3]
     
+        # If the subject can't be found, get its department from its code
+        # Try to find the department
         try:
             department = Department.objects.get(initials=dept_initials)
         except Exception as error:
+
+            # If the department cannot be found, check if its initials are mapped
+            # If the initials are not mapped or the mapped one fails, proceed to create subject without department
             if dept_initials in DEPARTMENTS_MAP:
                 new_deps_initials = DEPARTMENTS_MAP[dept_initials]
 
@@ -72,6 +78,7 @@ def save_subject(course, html_subject, semester):
             else:
                 print(f"Could not find alternative department code: {error}. Creating subject {name} without department")
 
+            # Creates subject without department
             try:
                 subject = Subject.objects.create(
                     name=name,
@@ -81,8 +88,11 @@ def save_subject(course, html_subject, semester):
                 subject.save()
                 print(f"Subject {name} created without department")
             except Exception as error:
+                # If all of the above fails, skip to the next subject
                 print(f"Could not create subject {name}: {error}. Skipping subject")
+                return
 
+        # Create subject if department is found
         try:
             subject = Subject.objects.create(
                 name=name,
@@ -97,7 +107,8 @@ def save_subject(course, html_subject, semester):
         except Exception as error:
             print(f"Could not create subject {name}: {error}. Skipping subject")
             return
-                
+
+    # Append the created subject       
     course.append_subject(semester, subject, status_code[status])
 
 
