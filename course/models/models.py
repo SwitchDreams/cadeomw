@@ -203,6 +203,9 @@ class CourseCurriculum(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_curriculum')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='course_curriculum')
 
+    class Meta:
+        unique_together = ('course', 'subject')
+        
     def subject_name(self):
         return self.subject.name
 
