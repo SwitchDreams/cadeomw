@@ -1,15 +1,14 @@
 import React from 'react';
-import { FormControl, MenuItem, Select, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { MenuItem, Select, Button } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import Chip from '@material-ui/core/Chip';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
 import Generator, { Class } from '../../services/timetable/generator';
+import { SubjectChip, Form } from './styles';
 
 const initialDate = '2020-09-20';
 
@@ -37,7 +36,7 @@ function shiftToHour(shift: string) {
 function classToEvent(classRoom: Class): any {
   const times = classRoom.time;
   const events: any = [];
-  times.map(time => {
+  times.map((time: string) => {
     const [week, shift, start, end] = time.split('');
     events.push({
       id: `${classRoom.name}-${classRoom.teacher}-${week}`,
@@ -51,24 +50,6 @@ function classToEvent(classRoom: Class): any {
   });
   return events;
 }
-
-const useStyles = makeStyles((theme: any) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 300,
-    maxWidth: 500,
-  },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
-}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -86,7 +67,6 @@ const TimeTable: React.FC = () => {
     [],
   );
   const [selectedClasses, setSelectedClasses] = React.useState<Array<any>>([]);
-  const classes = useStyles();
 
   function handleChange(event: any): void {
     setSelectedSubjects(event.target.value);
@@ -110,7 +90,7 @@ const TimeTable: React.FC = () => {
       <div className="text-center">
         <Header transparent={false} />
 
-        <FormControl className={classes.formControl}>
+        <Form>
           <InputLabel id="demo-mutiple-chip-label">
             Escolha suas matérias
           </InputLabel>
@@ -125,7 +105,7 @@ const TimeTable: React.FC = () => {
             renderValue={(selected: any) => (
               <div>
                 {selected.map((value: string) => (
-                  <Chip key={value} label={value} className={classes.chip} />
+                  <SubjectChip key={value} label={value} />
                 ))}
               </div>
             )}
@@ -145,7 +125,7 @@ const TimeTable: React.FC = () => {
           >
             Montar Grade
           </Button>
-        </FormControl>
+        </Form>
 
         {selectedClasses.length !== 0 && (
           <FullCalendar
