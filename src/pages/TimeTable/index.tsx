@@ -33,21 +33,23 @@ function shiftToHour(shift: string) {
   }
 }
 
-function classToEvent(classRoom: Class): any {
+function timeToEvent(time: string, classRoom: Class) {
+  const [week, shift, start, end] = time.split('');
+  return {
+    id: `${classRoom.name}-${classRoom.teacher}-${week}`,
+    start: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
+      shiftToHour(shift) + parseInt(start, 10) - 1,
+    ).padStart(2, '0')}:00:00`,
+    end: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
+      shiftToHour(shift) + parseInt(end, 10),
+    ).padStart(2, '0')}:00:00`,
+  };
+}
+
+function classToEvent(classRoom: Class) {
   const times = classRoom.time;
   const events: any = [];
-  times.map((time: string) => {
-    const [week, shift, start, end] = time.split('');
-    events.push({
-      id: `${classRoom.name}-${classRoom.teacher}-${week}`,
-      start: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
-        shiftToHour(shift) + parseInt(start, 10) - 1,
-      ).padStart(2, '0')}:00:00`,
-      end: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
-        shiftToHour(shift) + parseInt(end, 10),
-      ).padStart(2, '0')}:00:00`,
-    });
-  });
+  times.map((time: string) => events.push(timeToEvent(time, classRoom)));
   return events;
 }
 
