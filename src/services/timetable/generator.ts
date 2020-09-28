@@ -1,4 +1,4 @@
-interface Class {
+export interface Class {
   name: string;
   teacher: string;
   time: Array<string>;
