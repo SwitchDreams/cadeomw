@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import createServer from '../../services/mock';
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -101,8 +100,6 @@ const Course: React.FC = () => {
       selected: false,
     },
   ];
-
-  createServer();
 
   const [windowCheck, setWindowCheck] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -232,7 +229,7 @@ const Course: React.FC = () => {
 
             <Listagem
               status="optativa"
-              window={windowCheck}
+              windowCheck={windowCheck}
               materias={course?.optativas}
             />
           </>
@@ -246,7 +243,7 @@ const Course: React.FC = () => {
 
             <Listagem
               status="obrigatória"
-              window={windowCheck}
+              windowCheck={windowCheck}
               materias={course?.obrigatorias}
             />
           </>

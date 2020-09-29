@@ -8,13 +8,13 @@ interface ListProps {
     cargaHoraria: number;
     departamento: string;
   }[];
-  window: boolean;
+  windowCheck: boolean;
   status: string;
 }
 
 const Listagem: React.FC<ListProps> = ({
   materias,
-  window,
+  windowCheck,
   status,
 }: ListProps) => {
   const [subjects, setSubjects] = useState(materias);
@@ -92,15 +92,17 @@ const Listagem: React.FC<ListProps> = ({
             : nextPage * 20 + 20,
         ),
       );
+
+      window.scrollTo(150, 150);
     },
     [page, subjects],
   );
 
   return (
-    <ContainerSubjects window={window}>
+    <ContainerSubjects window={windowCheck}>
       <h2>Disciplinas {status}s</h2>
 
-      <Form window={window}>
+      <Form window={windowCheck}>
         <form onSubmit={handleSubmit}>
           <input
             value={searchSubject}
@@ -126,7 +128,7 @@ const Listagem: React.FC<ListProps> = ({
           counter += 1;
 
           return (
-            <div className="subject">
+            <div key={subject.nome} className="subject">
               <div className="name">
                 {counter} - <strong>{subject.departamento}</strong> -{' '}
                 {subject.nome} - {subject.cargaHoraria}h
@@ -144,7 +146,7 @@ const Listagem: React.FC<ListProps> = ({
           <button
             type="button"
             disabled={
-              materias[0] === subjectsWithPagination[0] ||
+              subjects[0] === subjectsWithPagination[0] ||
               subjectsWithPagination.length === 0
             }
             onClick={() => handlePagination('previous')}
@@ -154,7 +156,7 @@ const Listagem: React.FC<ListProps> = ({
           <button
             type="button"
             disabled={
-              materias[materias.length - 1] ===
+              subjects[subjects.length - 1] ===
                 subjectsWithPagination[subjectsWithPagination.length - 1] ||
               subjectsWithPagination.length === 0
             }

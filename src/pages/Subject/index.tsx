@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
-import createServer from '../../services/mock';
 import api from '../../services/api';
 
 import Equivalence from './equivalence';
@@ -74,8 +73,6 @@ interface RouteParams {
 }
 
 const Subject: React.FC = () => {
-  createServer();
-
   const [loading, setLoading] = useState(true);
   const [windowCheck, setWindowCheck] = useState(false);
 

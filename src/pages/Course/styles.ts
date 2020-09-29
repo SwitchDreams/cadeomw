@@ -218,7 +218,7 @@ export const ContentContainer = styled.div<AllContainerProps>`
   }
 `;
 
-export const Content = styled.p`
+export const Content = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -255,7 +255,7 @@ export const ContentCreditsContainer = styled.div<AllContainerProps>`
     `}
 `;
 
-export const ContentCredits = styled.p`
+export const ContentCredits = styled.div`
   margin-left: 10px;
   display: flex;
   flex-direction: row;
@@ -336,7 +336,7 @@ export const InfosGerais = styled.div<AllContainerProps>`
     `}
 `;
 
-export const InfoText = styled.p`
+export const InfoText = styled.div`
   text-align: center;
   color: rgba(124, 79, 224, 1);
   /* background-color: rgba(100, 100, 100, 0.4); */

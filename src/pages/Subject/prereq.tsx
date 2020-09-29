@@ -12,7 +12,6 @@ import {
   FeatureCardContainer,
   CardTitleContainer,
   FeaturesContainer,
-  OrLine,
 } from './styles';
 
 /*
@@ -61,7 +60,7 @@ const Equivalence: React.FC<PrereqProps> = ({
 
         {subjectFiltered &&
           subjectFiltered.prerequisites.map(prerequisite => (
-            <>
+            <div key={prerequisite[0].code}>
               <Fade in timeout={{ enter: 2000 }}>
                 <PrereqContainer window={window}>
                   {prerequisite.map(subjectPrereq => (
@@ -79,17 +78,7 @@ const Equivalence: React.FC<PrereqProps> = ({
                   ))}
                 </PrereqContainer>
               </Fade>
-
-              {subjectFiltered.prerequisites[
-                subjectFiltered.prerequisites.length - 1
-              ] !== prerequisite && (
-                <OrLine>
-                  <p>----</p>
-                  <p>OU</p>
-                  <p>----</p>
-                </OrLine>
-              )}
-            </>
+            </div>
           ))}
       </div>
     </FeaturesContainer>

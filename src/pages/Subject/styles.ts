@@ -118,6 +118,11 @@ export const FeaturesContainer = styled.div<WindowProp>`
     display: flex;
     flex-direction: column;
     align-items: center;
+    .div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     ${props =>
       props.window &&
@@ -210,18 +215,6 @@ export const CardTitleContainer = styled.div<WindowProp>`
         font-size: 12px;
       }
     `};
-`;
-
-export const OrLine = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 5px 0;
-
-  p {
-    margin: 0 5px;
-    font-weight: bold;
-  }
 `;
 
 export const GraphicContainer = styled.div<WindowProp>`

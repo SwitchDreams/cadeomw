@@ -74,6 +74,7 @@ const Header: React.FC<HeaderBackground> = ({
                   href={menu.link}
                   className={selectedLink === menu.id ? 'active' : ''}
                   style={{ color: navFixed ? '#222' : '#fff' }}
+                  key={menu.name}
                 >
                   {menu.name}
                 </Nav.Link>
