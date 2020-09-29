@@ -12,162 +12,79 @@ interface OfertaProps {
   window: boolean;
 }
 
+interface MapaDiasProps {
+  [id: number]: string;
+}
+
+interface MapaHorariosProps {
+  [id: string]: { inicio: string; fim: string };
+}
+
+const mapaDias: MapaDiasProps = {
+  2: 'Segunda',
+  3: 'Terça',
+  4: 'Quarta',
+  5: 'Quinta',
+  6: 'Sexta',
+  7: 'Sábado',
+};
+const mapaHorarios: MapaHorariosProps = {
+  M1: { inicio: '08:00', fim: '09:00' },
+  M2: { inicio: '09:00', fim: '10:00' },
+  M3: { inicio: '10:00', fim: '11:00' },
+  M4: { inicio: '11:00', fim: '12:00' },
+  M5: { inicio: '12:00', fim: '13:00' },
+  T1: { inicio: '13:00', fim: '14:00' },
+  T2: { inicio: '14:00', fim: '15:00' },
+  T3: { inicio: '15:00', fim: '16:00' },
+  T4: { inicio: '16:00', fim: '17:00' },
+  T5: { inicio: '17:00', fim: '18:00' },
+  T6: { inicio: '18:00', fim: '19:00' },
+  T7: { inicio: '19:00', fim: '20:00' },
+  N1: { inicio: '19:00', fim: '20:00' },
+  N2: { inicio: '20:00', fim: '21:00' },
+  N3: { inicio: '21:00', fim: '22:00' },
+  N4: { inicio: '21:40', fim: '22:30' },
+};
+
 const Oferta: React.FC<OfertaProps> = ({ subject, window }: OfertaProps) => {
   const [subjectParse, setSubjectParse] = useState(subject);
 
   useEffect(() => {
     const newOferta = subject.oferta.map(oferta => {
       const newHorarios = oferta.horario.map(horario => {
-        const dia = horario.charAt(0);
-        const periodo = horario.charAt(1);
-        const inicio = horario.charAt(2);
+        let diaString = horario.charAt(0);
+
+        for (let i = 1; i < 5; i += 1) {
+          if ('0123456789'.includes(horario.charAt(i))) {
+            diaString += horario.charAt(i);
+          } else {
+            i = 5;
+          }
+        }
+
+        const periodo = horario.charAt(diaString.length);
+        const inicio = horario.charAt(diaString.length + 1);
         const fim = horario.charAt(horario.length - 1);
 
         let horarioCompleto = '';
+        let newDia = mapaDias[(diaString[0] as unknown) as number];
 
-        switch (dia) {
-          case '2':
-            horarioCompleto = horarioCompleto.concat('Segunda: ');
-            break;
-          case '3':
-            horarioCompleto = horarioCompleto.concat('Terça: ');
-            break;
-          case '4':
-            horarioCompleto = horarioCompleto.concat('Quarta: ');
-            break;
-          case '5':
-            horarioCompleto = horarioCompleto.concat('Quinta: ');
-            break;
-          case '6':
-            horarioCompleto = horarioCompleto.concat('Sexta: ');
-            break;
-          case '7':
-            horarioCompleto = horarioCompleto.concat('Sábado: ');
-            break;
-          default:
-            horarioCompleto = horarioCompleto.concat(dia);
+        if (diaString.length > 1) {
+          for (let i = 1; i < diaString.length; i += 1) {
+            newDia += ', ';
+            newDia += `${mapaDias[(diaString[i] as unknown) as number]}`;
+          }
         }
 
-        switch (inicio) {
-          case '1':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('08h - ');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('13h - ');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('19h - ');
-            }
-            break;
-          case '2':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('09h - ');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('14h - ');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('20h - ');
-            }
-            break;
-          case '3':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('10h - ');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('15h - ');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('21h - ');
-            }
-            break;
-          case '4':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('11h - ');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('16h - ');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('22h - ');
-            }
-            break;
-          case '5':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('12h - ');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('17h - ');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('23h - ');
-            }
-            break;
-          default:
-            horarioCompleto = horarioCompleto.concat(inicio);
-        }
+        const newInicio = mapaHorarios[`${periodo}${inicio}`].inicio;
+        const newFim = mapaHorarios[`${periodo}${fim}`].fim;
 
-        switch (fim) {
-          case '1':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('09h');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('14h');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('20h');
-            }
-            break;
-          case '2':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('10h');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('15h');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('21h');
-            }
-            break;
-          case '3':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('11h');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('16h');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('22h');
-            }
-            break;
-          case '4':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('12h');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('17h');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('23h');
-            }
-            break;
-          case '5':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('13h');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('18h');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('24h');
-            }
-            break;
-          case '6':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('14h');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('19h');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('01h');
-            }
-            break;
-          case '7':
-            if (periodo === 'M') {
-              horarioCompleto = horarioCompleto.concat('15h');
-            } else if (periodo === 'T') {
-              horarioCompleto = horarioCompleto.concat('20h');
-            } else if (periodo === 'N') {
-              horarioCompleto = horarioCompleto.concat('02h');
-            }
-            break;
-          default:
-            horarioCompleto = horarioCompleto.concat(inicio);
-        }
+        horarioCompleto = `${newDia}: ${newInicio} - ${newFim}`;
 
         return horarioCompleto;
       });
+
       return { ...oferta, horario: newHorarios };
     });
 
@@ -180,23 +97,37 @@ const Oferta: React.FC<OfertaProps> = ({ subject, window }: OfertaProps) => {
       <h4>Oferta</h4>
 
       <table>
-        <tr>
-          <th>Turma</th>
-          <th>Professor</th>
-          <th>Horário</th>
-        </tr>
-        {subjectParse &&
-          subjectParse.oferta.map(oferta => (
-            <tr>
-              <td>{oferta.turma}</td>
-              <td>{oferta.professor}</td>
-              <td>
-                {oferta.horario.map(horario => {
-                  return <div>{horario}</div>;
-                })}
-              </td>
-            </tr>
-          ))}
+        <tbody>
+          <tr>
+            <th>Turma</th>
+            <th>Professor</th>
+            <th>Horário</th>
+            <th>Vagas</th>
+            <th>Local</th>
+          </tr>
+          {subjectParse &&
+            subjectParse.oferta.map(oferta => (
+              <tr key={oferta.turma}>
+                <td>{oferta.turma}</td>
+                <td className="professores">
+                  {oferta.teachers.map(prof => {
+                    let professor = `${prof} e `;
+                    if (prof === oferta.teachers[oferta.teachers.length - 1]) {
+                      professor = prof;
+                    }
+                    return professor;
+                  })}
+                </td>
+                <td className="horario">
+                  {oferta.horario.map(horario => {
+                    return <div key={horario}>{horario}</div>;
+                  })}
+                </td>
+                <td>{oferta.vagasOfertadas}</td>
+                <td>{oferta.local !== '' ? oferta.local : '-'}</td>
+              </tr>
+            ))}
+        </tbody>
       </table>
     </OfertaContainer>
   );

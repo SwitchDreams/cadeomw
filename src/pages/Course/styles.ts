@@ -462,8 +462,10 @@ export const Form = styled.div<AllContainerProps>`
   form {
     display: flex;
     margin-right: 10px;
+    width: 500px;
 
     input {
+      width: 100%;
       flex: 1;
       height: 40px;
       padding: 0 24px;
@@ -471,25 +473,6 @@ export const Form = styled.div<AllContainerProps>`
       background: #f2f2f2;
       border-radius: 5px 0 0 5px;
       color: #3a3a3a;
-    }
-
-    button {
-      width: 210px;
-      height: 40px;
-      background: #27004d;
-      border-radius: 0 5px 5px 0;
-      border: 0;
-      color: #fff;
-      font-weight: bold;
-      transition: background-color 0.2s;
-
-      &:hover {
-        background: ${shade(0.2, '#27004d')};
-      }
-
-      &:placeholder {
-        color: #a8a8b3;
-      }
     }
   }
 

@@ -1,7 +1,6 @@
 import React, { useState, FormEvent, useCallback, useEffect } from 'react';
 
 import { ContainerSubjects, Form, Pagination } from './styles';
-import Loading from '../../components/Loading';
 
 interface ListProps {
   materias: {
@@ -18,13 +17,11 @@ const Listagem: React.FC<ListProps> = ({
   window,
   status,
 }: ListProps) => {
-  const [loading, setLoading] = useState(false);
   const [subjects, setSubjects] = useState(materias);
   const [subjectsWithPagination, setSubjectsWithPagination] = useState(
     materias,
   );
   const [searchSubject, setSearchSubject] = useState('');
-  const [oldSearchedSubject, setOldSearchedSubject] = useState(searchSubject);
   const [page, setPage] = useState(0);
 
   let counter = page * 20;
@@ -39,9 +36,8 @@ const Listagem: React.FC<ListProps> = ({
   }, [materias]);
 
   const handleSearchSubject = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      setLoading(true);
+    (search: string) => {
+      setSearchSubject(search);
 
       let filteredSubjects = materias.filter(subject =>
         subject.nome
@@ -49,16 +45,14 @@ const Listagem: React.FC<ListProps> = ({
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
           .includes(
-            searchSubject
+            search
               .toLowerCase()
               .normalize('NFD')
               .replace(/[\u0300-\u036f]/g, ''),
           ),
       );
 
-      setOldSearchedSubject(searchSubject);
-
-      if (searchSubject === '') {
+      if (search === '') {
         filteredSubjects = materias;
       }
 
@@ -70,12 +64,13 @@ const Listagem: React.FC<ListProps> = ({
         ),
       );
       setPage(0);
-
-      setLoading(false);
-      setSearchSubject('');
     },
-    [searchSubject, materias],
+    [materias],
   );
+
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  }, []);
 
   const handlePagination = useCallback(
     (pagination: string) => {
@@ -106,21 +101,20 @@ const Listagem: React.FC<ListProps> = ({
       <h2>Disciplinas {status}s</h2>
 
       <Form window={window}>
-        <form onSubmit={handleSearchSubject}>
+        <form onSubmit={handleSubmit}>
           <input
             value={searchSubject}
-            onChange={e => setSearchSubject(e.target.value)}
+            onChange={event => {
+              handleSearchSubject(event.target.value);
+            }}
             placeholder="Digite o nome da disciplina"
           />
-          <button type="submit">Pesquisar</button>
         </form>
         <div className="results">
-          {oldSearchedSubject !== '' && (
-            <p>
-              resultados para &apos;{oldSearchedSubject.toLowerCase()}&apos;
-            </p>
+          {searchSubject !== '' && (
+            <p>Resultados para &apos;{searchSubject.toLowerCase()}&apos;:</p>
           )}
-          {oldSearchedSubject === '' && <p>Exibindo todos os resultados</p>}
+          {searchSubject === '' && <p>Exibindo todos os resultados: </p>}
           <p>{subjects.length} resultados</p>
         </div>
       </Form>
@@ -170,8 +164,6 @@ const Listagem: React.FC<ListProps> = ({
           </button>
         </Pagination>
       )}
-
-      {loading && <Loading />}
     </ContainerSubjects>
   );
 };

@@ -55,7 +55,11 @@ const Equivalence: React.FC<EquivalenceProps> = ({
         )}
 
         {equivalences.map(equivalence => (
-          <Zoom in style={{ transitionDelay: '500ms' }}>
+          <Zoom
+            in
+            style={{ transitionDelay: '500ms' }}
+            key={equivalence.subject.code}
+          >
             <EquivalenceBox
               window={window}
               onClick={() => handleNewSubject(equivalence.destination.code)}
@@ -86,7 +90,11 @@ const Equivalence: React.FC<EquivalenceProps> = ({
       <EquivalencesContainer window={window}>
         {equivalences2 &&
           equivalences2.map(equivalence => (
-            <Zoom in style={{ transitionDelay: '500ms' }}>
+            <Zoom
+              in
+              style={{ transitionDelay: '500ms' }}
+              key={equivalence.subject.code}
+            >
               <EquivalenceBox
                 window={window}
                 onClick={() => handleNewSubject(equivalence.destination.code)}

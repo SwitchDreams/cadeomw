@@ -543,12 +543,12 @@ export default function (): Server {
           {
             direction: 'unidirecional',
             destination: {
-              code: 1963,
+              code: 1913,
               subject_name: 'Elétrica Básica',
               credit: 4,
             },
             subject: {
-              code: 2916,
+              code: 9916,
               subject_name: 'Algoritmos para Computação',
               credit: 2,
             },
@@ -566,12 +566,12 @@ export default function (): Server {
           {
             direction: 'unidirecional',
             destination: {
-              code: 1963,
+              code: 1969,
               subject_name: 'Elétrica Básica',
               credit: 4,
             },
             subject: {
-              code: 2916,
+              code: 2906,
               subject_name: 'Algoritmos para Computação',
               credit: 2,
             },
@@ -580,12 +580,12 @@ export default function (): Server {
           {
             direction: 'unidirecional',
             destination: {
-              code: 1963,
+              code: 1263,
               subject_name: 'Elétrica Básica',
               credit: 4,
             },
             subject: {
-              code: 2916,
+              code: 8916,
               subject_name: 'Algoritmos para Computação',
               credit: 2,
             },
@@ -603,12 +603,12 @@ export default function (): Server {
           {
             direction: 'unidirecional',
             destination: {
-              code: 1963,
+              code: 1973,
               subject_name: 'Elétrica Básica',
               credit: 4,
             },
             subject: {
-              code: 2916,
+              code: 2936,
               subject_name: 'Algoritmos para Computação',
               credit: 2,
             },
@@ -622,11 +622,11 @@ export default function (): Server {
                 name: 'Engenharia Elétrica',
               },
               {
-                code: 1747,
+                code: 1748,
                 name: 'Engenharia Florestal',
               },
               {
-                code: 1747,
+                code: 1749,
                 name: 'Eletrônica',
               },
             ],
@@ -635,28 +635,56 @@ export default function (): Server {
         oferta: [
           {
             turma: 'A',
-            professor: 'Alexandre Barbosa',
-            horario: ['3T45', '5T45'],
+            teachers: [
+              'MARIO BENJAMIM BAPTISTA DE SIQUEIRA',
+              'GEORGE TEODORO DA SILVA CANNEDO PIRES',
+            ],
+            horario: ['3M5', '3T1'],
+            vagasOfertadas: 40,
+            local: 'BSA S B1 11/13 E BSA S B1 26/13',
           },
           {
             turma: 'B',
-            professor: 'GEORGE TEODORO DA SILVA CANNEDO PIRES',
-            horario: ['2T45'],
+            teachers: ['GEORGE TEODORO DA SILVA CANNEDO PIRES'],
+            horario: ['246T45'],
+            vagasOfertadas: 100,
+            local: 'BSA S BT 41/10',
           },
           {
             turma: 'C',
-            professor: 'TEÓFILO CAMPOS SCHULZ MEDEIROS FONTENELLI',
+            teachers: ['TEÓFILO CAMPOS SCHULZ MEDEIROS FONTENELLI'],
             horario: ['3M45', '5M45', '7N1'],
+            vagasOfertadas: 15,
+            local: '',
           },
           {
             turma: 'D',
-            professor: 'Mylène Farias',
+            teachers: ['MANUEL NASCIMENTO DIAS BARCELOS JUNIOR'],
             horario: ['4M12', '6M12'],
+            vagasOfertadas: 55,
+            local: 'virtual',
           },
           {
             turma: 'E',
-            professor: 'Augusto Veloso',
+            teachers: ['CARLOS ALBERTO GURGEL VERAS'],
             horario: ['7T234567'],
+            vagasOfertadas: 80,
+            local: 'A definir',
+          },
+          {
+            turma: 'F',
+            teachers: ['PEROLA DE OLIVEIRA MAGALHAES DIAS BATISTA'],
+            horario: [
+              '7M12345',
+              '7T12',
+              '2N1234',
+              '3N1234',
+              '4N1234',
+              '5N1234',
+              '6N1234',
+            ],
+            vagasOfertadas: 80,
+            local: 'A definir',
           },
         ],
       }));

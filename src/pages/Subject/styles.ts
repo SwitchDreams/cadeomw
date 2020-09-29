@@ -392,9 +392,13 @@ export const OfertaContainer = styled.div<WindowProp>`
   table {
     width: 50%;
 
-    td,
-    th {
+    td {
+      border: 1px solid #eee;
       padding: 10px;
+      text-align: center;
+    }
+
+    th {
       text-align: center;
     }
 
@@ -418,6 +422,12 @@ export const OfertaContainer = styled.div<WindowProp>`
         td {
           padding: 5px;
           max-width: 150px;
+          .horario {
+            min-width: 100px;
+          }
+          .professores {
+            max-width: 100px;
+          }
           div {
             width: 100%;
           }

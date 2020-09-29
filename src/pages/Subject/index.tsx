@@ -51,8 +51,10 @@ export interface Equivalence {
 
 export interface Oferta {
   turma: string;
-  professor: string;
+  teachers: string[];
   horario: string[];
+  vagasOfertadas: number;
+  local: string | undefined;
 }
 
 export interface Subject {
@@ -83,8 +85,25 @@ const Subject: React.FC = () => {
 
   useEffect(() => {
     api.get(`subjects/${params.id}?format=json`).then(response => {
-      setSubject(response.data);
-      setLoading(false);
+      const newData: Subject = response.data;
+
+      if (newData) {
+        const newOferta = newData.oferta.map(oferta => {
+          const newProfs = oferta.teachers.map(prof => {
+            const profString = prof.split(' ');
+
+            const newProf = profString.map(string => {
+              return string[0].toUpperCase() + string.substr(1).toLowerCase();
+            });
+
+            return newProf.join(' ');
+          });
+
+          return { ...oferta, teachers: newProfs };
+        });
+        setSubject({ ...newData, oferta: newOferta });
+        setLoading(false);
+      }
     });
   }, [params.id]);
 
