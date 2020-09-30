@@ -81,7 +81,7 @@ const TimeTable: React.FC = () => {
       selectedSubjects.includes(name),
     );
     const generator = new Generator(filter, []);
-    generator.magic();
+    generator.bestSubjectsClasses();
     const events: Array<any> = [];
     generator.selectedClasses.map(selectedClass =>
       classToEvent(selectedClass).map((event: any) => events.push(event)),

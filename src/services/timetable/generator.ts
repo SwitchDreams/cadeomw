@@ -41,8 +41,8 @@ export default class Generator {
     return true;
   }
 
-  // Retorna a melhor combinação de matérias
-  magic(): Array<Class> {
+  // Retorna a melhor combinação de turmas das matérias escolhidas
+  bestSubjectsClasses(): Array<Class> {
     // Para todas as materias em ordem de prioridade
     for (let i = 0; i < this.subjects.length; i += 1) {
       const subjectClassesLength = this.subjects[i].classes.length;
