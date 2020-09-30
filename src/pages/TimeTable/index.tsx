@@ -37,6 +37,7 @@ function timeToEvent(time: string, classRoom: Class) {
   const [week, shift, start, end] = time.split('');
   return {
     id: `${classRoom.name}-${classRoom.teacher}-${week}`,
+    // Dia 20 é segunda feira, portanto somando com o número da semana, conseguimos a data correspondente
     start: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
       shiftToHour(shift) + parseInt(start, 10) - 1,
     ).padStart(2, '0')}:00:00`,
@@ -53,6 +54,7 @@ function classToEvent(classRoom: Class) {
   return events;
 }
 
+// Variáveis de tamanho para Multiple Select
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
