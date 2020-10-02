@@ -391,52 +391,52 @@ export const ContainerSubjects = styled.div<AllContainerProps>`
       margin: 10px auto;
     }
   }
+`;
 
-  .subject {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 80%;
+export const Subject = styled.div<AllContainerProps>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 80%;
 
-    background: rgba(100, 100, 100, 0.1);
-    border-radius: 8px;
-    margin-top: 20px;
-    padding: 15px 30px;
+  background: rgba(100, 100, 100, 0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 15px 30px;
 
-    &:hover {
-      background: rgba(100, 100, 100, 0.3);
-      transform: translateX(10px);
-    }
+  &:hover {
+    background: rgba(100, 100, 100, 0.3);
+    transform: translateX(10px);
+  }
 
-    ${props =>
-      props.window &&
-      css`
-        padding: 5px 10px;
-      `}
+  ${props =>
+    props.window &&
+    css`
+      padding: 5px 10px;
+    `}
 
-    .name {
-      width: 100%;
-      text-align: center;
-      font-size: 16px;
+  .name {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
 
-      strong {
-        font-weight: bold;
-      }
-    }
-
-    .obr {
-      font-size: 13px;
+    strong {
       font-weight: bold;
-      color: #080;
-      margin-left: 40px;
     }
+  }
 
-    .opt {
-      font-size: 13px;
-      font-weight: bold;
-      color: #f90;
-      margin-left: 40px;
-    }
+  .obr {
+    font-size: 13px;
+    font-weight: bold;
+    color: #080;
+    margin-left: 40px;
+  }
+
+  .opt {
+    font-size: 13px;
+    font-weight: bold;
+    color: #f90;
+    margin-left: 40px;
   }
 `;
 

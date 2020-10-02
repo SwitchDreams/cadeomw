@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, useCallback, useEffect } from 'react';
 
-import { ContainerSubjects, Form, Pagination } from './styles';
+import { ContainerSubjects, Form, Pagination, Subject } from './styles';
 
 interface ListProps {
   materias: {
@@ -37,6 +37,12 @@ const Listagem: React.FC<ListProps> = ({
 
   const handleSearchSubject = useCallback(
     (search: string) => {
+      // Função irá filtrar (ignorando acentos, em lowercase) a lista completa
+      // de matérias (parâmetro do componente - materias) e setar o novo conjunto
+      // de dados (filteredSubjects - no estado setSubjects) que será usado para
+      // renderizar a página, ou seja, a página renderizada conterá apenas
+      // aquelas matérias que possuem a string 'search' contidas em si.
+
       setSearchSubject(search);
 
       let filteredSubjects = materias.filter(subject =>
@@ -51,6 +57,9 @@ const Listagem: React.FC<ListProps> = ({
               .replace(/[\u0300-\u036f]/g, ''),
           ),
       );
+
+      // Caso o valor de search esteja vazio (início de execução ou apagado
+      // pelo usuário), o conjunto de dados é setado para os dados completos
 
       if (search === '') {
         filteredSubjects = materias;
@@ -68,6 +77,8 @@ const Listagem: React.FC<ListProps> = ({
     [materias],
   );
 
+  // Esta função é necessária apenas para que quando o usuário dê Enter
+  // não aconteça efetivamente nada, pois a pesquisa da matéria é dinâmica
   const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   }, []);
@@ -128,16 +139,13 @@ const Listagem: React.FC<ListProps> = ({
           counter += 1;
 
           return (
-            <div key={subject.nome} className="subject">
+            <Subject key={subject.nome} window={windowCheck}>
               <div className="name">
                 {counter} - <strong>{subject.departamento}</strong> -{' '}
                 {subject.nome} - {subject.cargaHoraria}h
               </div>
-              {status === 'obrigatória' && (
-                <div className="obr">obrigatória</div>
-              )}
-              {status === 'optativa' && <div className="opt">optativa</div>}
-            </div>
+              <div className={status.slice(0, 3)}>{status}</div>
+            </Subject>
           );
         })}
 
