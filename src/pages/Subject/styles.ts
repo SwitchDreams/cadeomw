@@ -118,6 +118,11 @@ export const FeaturesContainer = styled.div<WindowProp>`
     display: flex;
     flex-direction: column;
     align-items: center;
+    .div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     ${props =>
       props.window &&
@@ -133,16 +138,21 @@ export const FeaturesContainer = styled.div<WindowProp>`
 
   h4 {
     font-size: 25px;
+    font-weight: bold;
     color: #222;
     text-transform: initial;
-    margin: 30px 0;
+    margin-bottom: 20px;
     text-align: center;
+    padding: 10px;
 
-    ${props =>
-      props.window &&
-      css`
-        font-size: 18px;
-      `};
+    &::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
   }
 `;
 
@@ -207,18 +217,6 @@ export const CardTitleContainer = styled.div<WindowProp>`
     `};
 `;
 
-export const OrLine = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 5px 0;
-
-  p {
-    margin: 0 5px;
-    font-weight: bold;
-  }
-`;
-
 export const GraphicContainer = styled.div<WindowProp>`
   width: 50%;
   margin: auto;
@@ -242,16 +240,21 @@ export const CardFeatureContainer = styled.div<WindowProp>`
 
   h4 {
     font-size: 25px;
+    font-weight: bold;
     color: #222;
-    text-transform: capitalize;
-    margin: 30px 0;
+    text-transform: initial;
+    margin-bottom: 20px;
     text-align: center;
+    padding: 10px;
 
-    ${props =>
-      props.window &&
-      css`
-        font-size: 18px;
-      `};
+    &::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
   }
 `;
 
@@ -259,6 +262,7 @@ export const EquivalencesContainer = styled.div<WindowProp>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 0;
 
   justify-content: center;
   width: 100%;
@@ -322,8 +326,9 @@ export const EquivalenceBox = styled.div<WindowProp>`
   ${props =>
     props.window &&
     css`
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       max-width: 90%;
+      min-height: 100px;
     `};
 `;
 
@@ -348,4 +353,78 @@ export const NotExistingSubject = styled.div`
   h2 {
     font-size: 14px;
   }
+`;
+
+export const OfertaContainer = styled.div<WindowProp>`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-top: 10px;
+
+  h4 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #222;
+    text-transform: initial;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+
+    &::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+  table {
+    width: 50%;
+
+    td {
+      border: 1px solid #eee;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      text-align: center;
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: #ddd;
+      }
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+
+  ${props =>
+    props.window &&
+    css`
+      table {
+        width: 90%;
+        font-size: 13px;
+
+        td {
+          padding: 5px;
+          max-width: 150px;
+          .horario {
+            min-width: 100px;
+          }
+          .professores {
+            max-width: 100px;
+          }
+          div {
+            width: 100%;
+          }
+        }
+      }
+    `};
 `;

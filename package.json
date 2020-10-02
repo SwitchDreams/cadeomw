@@ -20,6 +20,7 @@
     "canvasjs": "^1.8.3",
     "downshift": "^6.0.3",
     "graphviz-react": "^1.1.1",
+    "miragejs": "^0.1.40",
     "polished": "^3.6.5",
     "query-string": "^6.13.1",
     "react": "^16.13.1",

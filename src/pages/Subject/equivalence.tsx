@@ -55,7 +55,11 @@ const Equivalence: React.FC<EquivalenceProps> = ({
         )}
 
         {equivalences.map(equivalence => (
-          <Zoom in style={{ transitionDelay: '500ms' }}>
+          <Zoom
+            in
+            style={{ transitionDelay: '500ms' }}
+            key={equivalence.subject.code}
+          >
             <EquivalenceBox
               window={window}
               onClick={() => handleNewSubject(equivalence.destination.code)}
@@ -64,9 +68,6 @@ const Equivalence: React.FC<EquivalenceProps> = ({
               <ul>
                 <li>{`${equivalence.destination.credit} créditos`}</li>
                 <li>{equivalence.direction}</li>
-                {equivalence.options.length === 0 && (
-                  <li>{`Equivalência ${equivalence.coverage}`}</li>
-                )}
                 {equivalence.options.length !== 0 && (
                   <>
                     <li>Cursos para equivalência:</li>
@@ -86,7 +87,11 @@ const Equivalence: React.FC<EquivalenceProps> = ({
       <EquivalencesContainer window={window}>
         {equivalences2 &&
           equivalences2.map(equivalence => (
-            <Zoom in style={{ transitionDelay: '500ms' }}>
+            <Zoom
+              in
+              style={{ transitionDelay: '500ms' }}
+              key={equivalence.subject.code}
+            >
               <EquivalenceBox
                 window={window}
                 onClick={() => handleNewSubject(equivalence.destination.code)}
@@ -95,9 +100,6 @@ const Equivalence: React.FC<EquivalenceProps> = ({
                 <ul>
                   <li>{`${equivalence.destination.credit} créditos`}</li>
                   <li>{equivalence.direction}</li>
-                  {equivalence.options.length === 0 && (
-                    <li>{`Equivalência ${equivalence.coverage}`}</li>
-                  )}
                   {equivalence.options.length !== 0 && (
                     <>
                       <li>Cursos para equivalência:</li>
