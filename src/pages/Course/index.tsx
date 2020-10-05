@@ -1,16 +1,15 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
-import { useParams, useHistory } from 'react-router-dom';
-import { Graphviz } from 'graphviz-react';
+import { useParams } from 'react-router-dom';
 
 import api from '../../services/api';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 
 import Flux from './flux';
+import Listagem from './listSubjects';
+import Infos from './infos';
 import HardestEasiest from '../../components/SubjectCard';
-
-import { useToast } from '../../hooks/toasts';
 
 import {
   AllContainer,
@@ -24,7 +23,7 @@ import {
 } from './styles';
 
 /*
-  Página do curso - Bruna e Japa
+  Página do curso - Bruna
 */
 
 interface Tab {
@@ -52,6 +51,34 @@ export interface Course {
   hardest_subject: Materias;
   easiest_subject: Materias;
   flow_graph: string;
+  optativas: {
+    nome: string;
+    cargaHoraria: number;
+    departamento: string;
+  }[];
+  obrigatorias: {
+    nome: string;
+    cargaHoraria: number;
+    departamento: string;
+  }[];
+  informations: {
+    cargaHoraria: {
+      totalMinima: string;
+      optativaMinima: string;
+    };
+    cargaHorariaObrigatoria: {
+      total: string;
+      praticos: string;
+      teoricos: string;
+    };
+    periodoLetivo: {
+      minimo: number;
+      medio: number;
+      maximo: number;
+    };
+    horasComplementares: string;
+    coordenador: string;
+  };
 }
 
 interface RouteParams {
@@ -64,6 +91,14 @@ const Course: React.FC = () => {
       name: 'Fluxo',
       selected: true,
     },
+    {
+      name: 'Obrigatórias',
+      selected: false,
+    },
+    {
+      name: 'Optativas',
+      selected: false,
+    },
   ];
 
   const [windowCheck, setWindowCheck] = useState(false);
@@ -73,99 +108,22 @@ const Course: React.FC = () => {
   const [periods, setPeriods] = useState<Period[] | null>(null);
 
   const [tabs, setTabs] = useState<Tab[]>(tabsInit);
-  const [fluxo, setFluxo] = useState(true);
-  const [grafo, setGrafo] = useState(false);
-  const params = useParams<RouteParams>();
-  const history = useHistory();
 
-  const { addToast } = useToast();
+  const [fluxo, setFluxo] = useState(true);
+  const [optativas, setOptativas] = useState(false);
+  const [obrigatorias, setObrigatorias] = useState(false);
+  // const [grafo, setGrafo] = useState(false);
+
+  const params = useParams<RouteParams>();
 
   useEffect(() => {
-    api
-      .get<Course>(`courses/${params.id}?format=json`)
-      .then(response => {
-        let newCourse = response.data;
-        let statusHardest = newCourse.hardest_subject.status;
-        let statusEasiest = newCourse.easiest_subject.status;
-
-        if (statusHardest === 'OBR' || statusHardest === 'OBS') {
-          statusHardest = 'obrigatória';
-        } else if (statusHardest === 'OPT') {
-          statusHardest = 'optativa';
-        } else {
-          statusHardest = 'módulo livre';
-        }
-
-        if (statusEasiest === 'OBR' || statusEasiest === 'OBS') {
-          statusEasiest = 'obrigatória';
-        } else if (statusEasiest === 'OPT') {
-          statusEasiest = 'optativa';
-        } else {
-          statusEasiest = 'módulo livre';
-        }
-
-        newCourse = {
-          ...newCourse,
-          hardest_subject: {
-            ...newCourse.hardest_subject,
-            status: statusHardest,
-          },
-          easiest_subject: {
-            ...newCourse.easiest_subject,
-            status: statusEasiest,
-          },
-        };
-
-        setCourse(newCourse);
-
-        const periodList = response.data.flow.map(
-          (period: Period): Period => {
-            let sumCredits = 0;
-
-            const newSubjects = period.subjects.map((subject: Materias) => {
-              sumCredits += subject.credit;
-
-              const newSubjectName =
-                subject.subject_name.charAt(0).toUpperCase() +
-                subject.subject_name.slice(1).toLowerCase();
-
-              let newStatus;
-
-              if (subject.status === 'OBR' || subject.status === 'OBS') {
-                newStatus = 'obrigatória';
-              } else if (subject.status === 'OPT') {
-                newStatus = 'optativa';
-              } else if (subject.status === 'ML') {
-                newStatus = 'módulo livre';
-              }
-
-              return {
-                credit: subject.credit,
-                subject_name: newSubjectName,
-                status: newStatus,
-                pass_percent: subject.pass_percent,
-                code: subject.code,
-              };
-            });
-
-            setLoading(false);
-
-            return { ...period, credits: sumCredits, subjects: newSubjects };
-          },
-        );
-
-        setPeriods(periodList);
-      })
-      .catch(() => {
-        setLoading(false);
-        addToast({
-          type: 'error',
-          title: 'Erro ao carregar o curso desejado',
-          description: 'Tente novamente mais tarde',
-        });
-        history.push('/list-courses');
-      });
-  }, [params.id, addToast, history]);
+    api.get(`courses/${params.id}?format=json`).then(response => {
+      const newCourse = response.data[0];
+      setCourse(newCourse);
+      setPeriods(newCourse.flow);
+      setLoading(false);
+    });
+  }, [params.id]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -193,10 +151,16 @@ const Course: React.FC = () => {
 
       if (name === 'Fluxo') {
         setFluxo(true);
-        setGrafo(false);
-      } else {
+        setOptativas(false);
+        setObrigatorias(false);
+      } else if (name === 'Optativas') {
         setFluxo(false);
-        setGrafo(true);
+        setOptativas(true);
+        setObrigatorias(false);
+      } else if (name === 'Obrigatórias') {
+        setFluxo(false);
+        setOptativas(false);
+        setObrigatorias(true);
       }
     },
     [tabs],
@@ -206,7 +170,7 @@ const Course: React.FC = () => {
     <>
       <Header transparent={false} />
 
-      <Container>
+      <Container window={windowCheck}>
         {tabs.map(tab => (
           <TabContent
             key={tab.name}
@@ -214,9 +178,7 @@ const Course: React.FC = () => {
             onClick={() => handleSelectTab(tab.name)}
             window={windowCheck}
           >
-            <TabText window={windowCheck} selected={tab.selected}>
-              {tab.name}
-            </TabText>
+            <TabText>{tab.name}</TabText>
           </TabContent>
         ))}
       </Container>
@@ -224,18 +186,20 @@ const Course: React.FC = () => {
       <AllContainer window={windowCheck}>
         {loading && <Loading />}
 
-        {grafo && course && (
+        {/* {grafo && course && (
           <Graphviz
             dot={course?.flow_graph}
             options={{ fit: true, height: '100%', width: '100%', zoom: true }}
           />
-        )}
+        )} */}
 
         {fluxo && course && (
           <AllContainer window={windowCheck}>
             <CourseNameContainer>
               <CourseName>{course?.name}</CourseName>
             </CourseNameContainer>
+
+            <Infos informations={course.informations} />
 
             <CardFluxContainer window={windowCheck}>
               <CardSubjectsContainer window={windowCheck}>
@@ -255,6 +219,34 @@ const Course: React.FC = () => {
               </CardSubjectsContainer>
             </CardFluxContainer>
           </AllContainer>
+        )}
+
+        {optativas && course && (
+          <>
+            <CourseNameContainer>
+              <CourseName>{course?.name}</CourseName>
+            </CourseNameContainer>
+
+            <Listagem
+              status="optativa"
+              windowCheck={windowCheck}
+              materias={course?.optativas}
+            />
+          </>
+        )}
+
+        {obrigatorias && course && (
+          <>
+            <CourseNameContainer>
+              <CourseName>{course?.name}</CourseName>
+            </CourseNameContainer>
+
+            <Listagem
+              status="obrigatória"
+              windowCheck={windowCheck}
+              materias={course?.obrigatorias}
+            />
+          </>
         )}
       </AllContainer>
     </>
