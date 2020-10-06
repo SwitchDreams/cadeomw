@@ -21,6 +21,8 @@
     "downshift": "^6.0.3",
     "graphviz-react": "^1.1.1",
     "miragejs": "^0.1.40",
+    "pigeon-maps": "^0.16.1",
+    "pigeon-marker": "^0.3.4",
     "polished": "^3.6.5",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
