@@ -39,6 +39,7 @@ export const LocalesList = styled.ul<AllContainerProps>`
   width: 100%;
   white-space: nowrap;
   width: auto;
+  background: rgba(230, 230, 230, 0.3);
 
   ${props =>
     !props.window &&
@@ -56,8 +57,14 @@ export const LocalesList = styled.ul<AllContainerProps>`
 
   li {
     display: inline-block;
-    padding: 10px;
     text-align: center;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(230, 230, 230, 1);
+    }
 
     h5 {
       font-weight: bold;

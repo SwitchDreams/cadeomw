@@ -3,10 +3,10 @@ import React, { useState, useCallback, useEffect } from 'react';
 import Map from 'pigeon-maps';
 import Marker from 'pigeon-marker';
 import Overlay from 'pigeon-overlay';
-import marker from '../../assets/marker.jpg';
 
 import { locales } from './locales';
 import Header from '../../components/Header';
+import marker from '../../assets/marker.png';
 
 import { MapContainer, LocalesList, Title } from './styles';
 
@@ -20,7 +20,14 @@ const MapComponent: React.FC = () => {
   }
   const [windowCheck, setWindowCheck] = useState(false);
   const [current, setCurrent] = useState('');
-  const [image, setImage] = useState(marker);
+  let currentCoord = null;
+
+  if (current !== '') {
+    currentCoord = locales.filter(local => local.name === current)[0]
+      .coordinates;
+
+    currentCoord = [currentCoord[0] + 0.00059, currentCoord[1] - 0.00038];
+  }
 
   const myElement = document.getElementById('list');
 
@@ -85,10 +92,10 @@ const MapComponent: React.FC = () => {
                       color: '#fff',
                       borderRadius: '7px',
                     }
-                  : { backgroundColor: 'rgba(230, 230, 230, 0.3)' }
+                  : {}
               }
               key={local.name}
-              // onClick={() => setImage(local.image)}
+              onClick={() => setCurrent(local.name)}
             >
               <h5>{local.name}</h5>
               <p>{local.complete}</p>
@@ -101,7 +108,7 @@ const MapComponent: React.FC = () => {
           center={[-15.763013, -47.863191]}
           defaultZoom={16}
           maxZoom={16}
-          minZoom={15}
+          minZoom={16}
           min-width={1000}
           height={600}
         >
@@ -113,15 +120,23 @@ const MapComponent: React.FC = () => {
               key={local.name}
             />
           ))}
-          {/* <Overlay anchor={[-15.758246, -47.871024]}>
-            {image !== marker && (
+          {current !== '' && currentCoord && (
+            <Overlay
+              anchor={currentCoord}
+              style={{ width: '50px', height: '50px' }}
+            >
               <img
-                style={{ width: '200px', height: '200px' }}
-                alt={image}
-                src={image}
+                id="overlay"
+                style={{
+                  position: 'absolute',
+                  width: '34px',
+                  height: '30px',
+                }}
+                alt={marker}
+                src={marker}
               />
-            )}
-          </Overlay> */}
+            </Overlay>
+          )}
         </Map>
       </MapContainer>
     </>
