@@ -8,6 +8,7 @@ import Course from '../pages/Course';
 import ListCourses from '../pages/ListCourses';
 import ListSubjects from '../pages/ListSubjects';
 import Subject from '../pages/Subject';
+import Map from '../pages/Map';
 import NotFound from '../pages/NotFound';
 import TimeTable from '../pages/TimeTable';
 
@@ -19,6 +20,7 @@ const Routes: React.FC = () => (
     <Route path="/list-courses" component={ListCourses} />
     <Route path="/list-subjects" component={ListSubjects} />
     <Route path="/subjects/:subject_id" component={Subject} />
+    <Route path="/map" component={Map} />
     <Route path="" component={NotFound} />
   </Switch>
 );
