@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, FormEvent, useCallback, useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
 
 import Map from 'pigeon-maps';
 import Marker from 'pigeon-marker';
@@ -8,7 +9,13 @@ import { locales } from './locales';
 import Header from '../../components/Header';
 import marker from '../../assets/marker.png';
 
-import { MapContainer, LocalesList, Title } from './styles';
+import {
+  MapContainer,
+  LocalesList,
+  Title,
+  SearchButton,
+  ModalText,
+} from './styles';
 
 /*
   Página do Mapa - Bruna
@@ -18,6 +25,7 @@ const MapComponent: React.FC = () => {
   function mapTilerProvider(x: number, y: number, z: number) {
     return `https://stamen-tiles.a.ssl.fastly.net/terrain/${z}/${x}/${y}.jpg`;
   }
+  const [modalShow, setModalShow] = useState(false);
   const [windowCheck, setWindowCheck] = useState(false);
   const [current, setCurrent] = useState('');
   let currentCoord = null;
@@ -61,6 +69,44 @@ const MapComponent: React.FC = () => {
     [myElement, windowCheck],
   );
 
+  const handleSearch = useCallback(
+    (pin: string) => {
+      const filteredLocales = locales.filter(local =>
+        local.name
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .includes(
+            pin
+              .toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, ''),
+          ),
+      );
+
+      if (filteredLocales.length === 0) {
+        return;
+      }
+      setCurrent(filteredLocales[0].name);
+
+      if (myElement) {
+        const localPos = filteredLocales[0].position;
+        const width = windowCheck ? 220 : 270; // centralizando o escolhido
+        const deviation = windowCheck ? 1.5 : 4; // tanto para celular quanto web
+
+        myElement.scrollTo({
+          left: (localPos - deviation) * width,
+          behavior: 'smooth',
+        });
+      }
+    },
+    [myElement, windowCheck],
+  );
+
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  }, []);
+
   useEffect(() => {
     if (window.innerWidth <= 1000) {
       setWindowCheck(true);
@@ -82,6 +128,32 @@ const MapComponent: React.FC = () => {
         <Title>
           <h2>Mapa da UnB</h2>
         </Title>
+
+        <SearchButton>
+          <button type="submit" onClick={() => setModalShow(true)}>
+            Pesquisar
+          </button>
+        </SearchButton>
+
+        <Modal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          size="sm"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <ModalText>
+            <form onSubmit={handleSubmit}>
+              <input
+                onChange={event => {
+                  handleSearch(event.target.value);
+                }}
+                placeholder="Digite o nome do local"
+              />
+            </form>
+          </ModalText>
+        </Modal>
+
         <LocalesList window={windowCheck} id="list">
           {locales.map(local => (
             <li
@@ -110,7 +182,7 @@ const MapComponent: React.FC = () => {
           maxZoom={16}
           minZoom={16}
           min-width={1000}
-          height={600}
+          height={window.innerHeight * 0.5}
         >
           {locales.map(local => (
             <Marker
