@@ -148,7 +148,7 @@ const MapComponent: React.FC = () => {
                 onChange={event => {
                   handleSearch(event.target.value);
                 }}
-                placeholder="Digite o nome do local"
+                placeholder="Digite a sigla do local"
               />
             </form>
           </ModalText>

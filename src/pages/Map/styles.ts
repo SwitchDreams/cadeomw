@@ -119,6 +119,7 @@ export const SearchButton = styled.div`
 export const ModalText = styled.div`
   form {
     input {
+      padding: 10px;
       height: 50px;
       width: 100%;
     }
