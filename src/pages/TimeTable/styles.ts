@@ -9,3 +9,11 @@ export const SubjectChip = styled(Chip)`
 export const Form = styled(FormControl)`
   width: 250px;
 `;
+
+export const CalendarContainer = styled.div`
+  max-width: 80%;
+  margin: auto;
+  .fc .fc-timegrid-slots td {
+    height: 2.5em !important;
+  }
+`;
