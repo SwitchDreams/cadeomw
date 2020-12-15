@@ -7,8 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
-import Generator, { Class } from '../../services/timetable/generator';
-import { SubjectChip, Form } from './styles';
+import Generator, { GeneratorClass } from '../../services/timetable/generator';
+import { SubjectChip, Form, CalendarContainer } from './styles';
 
 const initialDate = '2020-09-20';
 
@@ -17,7 +17,7 @@ const subjects = Subjects;
 function renderEventContent(eventInfo: any) {
   return (
     <>
-      <i>{eventInfo.event.id}</i>
+      <i>{eventInfo.event.id} teste</i>
     </>
   );
 }
@@ -33,7 +33,13 @@ function shiftToHour(shift: string) {
   }
 }
 
-function timeToEvent(time: string, classRoom: Class) {
+function randomColor() {
+  return '#000000'.replace(/0/g, function () {
+    return (~~(Math.random() * 16)).toString(16);
+  });
+}
+
+function timeToEvent(time: string, classRoom: GeneratorClass) {
   const [week, shift, start, end] = time.split('');
   return {
     id: `${classRoom.name}-${classRoom.teacher}-${week}`,
@@ -44,10 +50,11 @@ function timeToEvent(time: string, classRoom: Class) {
     end: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
       shiftToHour(shift) + parseInt(end, 10),
     ).padStart(2, '0')}:00:00`,
+    color: classRoom.color,
   };
 }
 
-function classToEvent(classRoom: Class) {
+function classToEvent(classRoom: GeneratorClass): any[] {
   const times = classRoom.time;
   const events: any = [];
   times.map((time: string) => events.push(timeToEvent(time, classRoom)));
@@ -77,16 +84,33 @@ const TimeTable: React.FC = () => {
   }
 
   function handleGenerateTable(): void {
-    const filter = subjects.filter(({ name }) =>
-      selectedSubjects.includes(name),
-    );
-    const generator = new Generator(filter, []);
+    const filteredSubjects = subjects
+      .map(subject => {
+        const randColor = randomColor();
+        return {
+          classes: subject.classes.map(schoolClass => {
+            return {
+              ...schoolClass,
+              color: randColor,
+            };
+          }),
+          color: randColor,
+          name: subject.name,
+        };
+      })
+      .filter(({ name }) => {
+        return selectedSubjects.includes(name);
+      });
+    const generator = new Generator(filteredSubjects, []);
     generator.bestSubjectsClasses();
-    const events: Array<any> = [];
-    generator.selectedClasses.map(selectedClass =>
-      classToEvent(selectedClass).map((event: any) => events.push(event)),
-    );
-    setSelectedClasses(events);
+    const formattedEvents: any[] = [];
+    generator.selectedClasses.forEach(selectedClass => {
+      classToEvent(selectedClass).forEach(formattedEvent =>
+        formattedEvents.push(formattedEvent),
+      );
+    });
+    setSelectedClasses(formattedEvents);
+    const a = 10;
   }
 
   return (
@@ -132,25 +156,29 @@ const TimeTable: React.FC = () => {
         </Form>
 
         {selectedClasses.length !== 0 && (
-          <FullCalendar
-            plugins={[timeGridPlugin, dayGridPlugin]}
-            initialView="timeGridWeek"
-            weekText="ddd"
-            eventConstraint={{
-              start: '08:00:00',
-              end: '22:00:00',
-            }}
-            initialDate={initialDate}
-            allDaySlot={false}
-            eventContent={renderEventContent}
-            slotMinTime="08:00:00"
-            slotMaxTime="22:00:00"
-            slotDuration="1:00:00"
-            slotLabelInterval={{ hours: 1 }}
-            events={selectedClasses}
-            dayHeaderFormat={{ weekday: 'short' }}
-            headerToolbar={false}
-          />
+          <CalendarContainer>
+            <FullCalendar
+              plugins={[timeGridPlugin, dayGridPlugin]}
+              initialView="timeGridWeek"
+              weekText="ddd"
+              height="auto"
+              aspectRatio={1}
+              eventConstraint={{
+                start: '08:00:00',
+                end: '22:00:00',
+              }}
+              initialDate={initialDate}
+              allDaySlot={false}
+              eventContent={renderEventContent}
+              slotMinTime="08:00:00"
+              slotMaxTime="22:00:00"
+              slotDuration="1:00:00"
+              slotLabelInterval={{ hours: 1 }}
+              events={selectedClasses}
+              dayHeaderFormat={{ weekday: 'short' }}
+              headerToolbar={false}
+            />
+          </CalendarContainer>
         )}
       </div>
     </>
