@@ -4,6 +4,7 @@ export interface GeneratorClass {
   time: Array<string>;
   place: string;
   color: string;
+  subjectName: string;
 }
 
 interface GeneratorSubject {
