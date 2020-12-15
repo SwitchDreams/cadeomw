@@ -44,7 +44,7 @@ def save_subject(course, html_subject, semester):
 
     # Prevent that subject names with "-" are wrongly parsed
     name_components = subject_info[1:-1]
-    name=name_components[0]
+    name = name_components[0]
     for component in name_components[1:0]:
         name += ' - ' + component
     
