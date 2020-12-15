@@ -100,7 +100,7 @@ def save_subject(course, html_subject, semester):
 
         # Create subject if department is found
         try:
-            subject = Subject.objects.create(
+            subject = Subject(
                 name=name,
                 department=department,
                 code=code,
