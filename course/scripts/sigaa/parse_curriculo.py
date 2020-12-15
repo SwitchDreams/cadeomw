@@ -113,7 +113,7 @@ def parse_curriculum(course_sigaa_id):
         
         # Create link between the subject and its course curriculum
         try:
-            cc = CourseCurriculum.objects.create(
+            cc = CourseCurriculum(
                 course=course,
                 subject=subject
             )
@@ -183,6 +183,5 @@ def get_optional_subject_info(opt_soup):
 def run():
     # Example data from Engenharia da computação
     parse_curriculum(414610)
-
 
 
