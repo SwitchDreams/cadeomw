@@ -8,16 +8,28 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
 import Generator, { GeneratorClass } from '../../services/timetable/generator';
-import { SubjectChip, Form, CalendarContainer } from './styles';
+import { SubjectChip, Form, CalendarContainer, SlotContainer } from './styles';
 
 const initialDate = '2020-09-20';
 
 const subjects = Subjects;
 
 function renderEventContent(eventInfo: any) {
+  const [subjectName, className, teacher, place] = eventInfo.event.id.split(
+    '-',
+  ) as string[];
   return (
     <>
-      <i>{eventInfo.event.id} teste</i>
+      <SlotContainer>
+        <div className="title">
+          {subjectName} - {className}
+          <hr />
+        </div>
+        <div className="info">
+          {teacher} <br />
+          {place}
+        </div>
+      </SlotContainer>
     </>
   );
 }
@@ -42,7 +54,7 @@ function randomColor() {
 function timeToEvent(time: string, classRoom: GeneratorClass) {
   const [week, shift, start, end] = time.split('');
   return {
-    id: `${classRoom.name}-${classRoom.teacher}-${week}`,
+    id: `${classRoom.subjectName}-${classRoom.name}-${classRoom.teacher}-${classRoom.place}`,
     // Dia 20 é segunda feira, portanto somando com o número da semana, conseguimos a data correspondente
     start: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
       shiftToHour(shift) + parseInt(start, 10) - 1,
@@ -92,6 +104,7 @@ const TimeTable: React.FC = () => {
             return {
               ...schoolClass,
               color: randColor,
+              subjectName: subject.name,
             };
           }),
           color: randColor,
@@ -110,7 +123,6 @@ const TimeTable: React.FC = () => {
       );
     });
     setSelectedClasses(formattedEvents);
-    const a = 10;
   }
 
   return (
