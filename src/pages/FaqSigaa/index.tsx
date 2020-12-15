@@ -49,8 +49,8 @@ const FaqSigaa: React.FC = () => {
         <p>
           Calma pequeno gafanhoto, a gente te ajuda! Achar as coisas no SIGAA
           foi e está sendo uma dificuldade para todos nós, mas preparamos um
-          manualzinho que vai te ajudar a se localizar! <br /> Muitas das
-          informações do SIGAA não precisa-se estar logado para serem acessadas,
+          manualzinho com as principais dúvidas que pode te ajudar a se localizar! <br /> Muitas das
+          informações do SIGAA não exigem que você esteja logado para acessar,
           então basta entrar no link público e navegar pelas suas
           funcionalidades.
         </p>
@@ -72,10 +72,10 @@ const FaqSigaa: React.FC = () => {
         <div className="oferta">
           <h3>Como posso ver a oferta desse semestre ?</h3>
           <p>
-            Bom, entrando no link acima, basta clicar em{' '}
+            Bom, acessando o botão acima, basta clicar em{' '}
             <span className="negrito">Ensino</span> e depois em{' '}
             <span className="negrito">Turmas</span>. Assim você será
-            redirecionado à uma página onde pode escolher o semestre, o
+            redirecionado à uma página na qual pode escolher o semestre, o
             departamento e o nível de ensino - graduação, mestrado, doutorado,
             etc. - do qual deseja ver a oferta.
           </p>
@@ -93,8 +93,8 @@ const FaqSigaa: React.FC = () => {
 
           <p>
             Para visualizar informações sobre um curso específico, basta
-            pesquisá-lo pelo nome, e clicar na pequena lupa no canto direito da
-            tabela. Lá encontraremos informações como quem é o atual
+            pesquisá-lo pelo nome e clicar na pequena lupa no canto direito da
+            tabela. Lá encontraremos informações como: Quem é o atual
             coordenador, e-mail da coordenação entre outras. Para acessar o
             fluxo do curso, basta clicar na aba{' '}
             <span className="negrito">Ensino</span> e escolher a opção{' '}
@@ -107,26 +107,31 @@ const FaqSigaa: React.FC = () => {
         <div className="horarios">
           <h3>Entendendo os horários</h3>
           <p>
-            O formato de horários do novo padrão SIGAA deu o que comentar.
+            O formato do novo padrão de horários do SIGAA deu o que comentar.
             Muitos alunos não sabem ainda como decifrar essa sigla, mas no fim
             das contas é bem simples: <br /> O horário é composto por números e
-            letras que representam os dias e turnos da turma.
+            letras que representam os dias e turnos da turma. Veja como calcular:
           </p>
           <img src={diasDaSemana} alt="horarios" />
           <img src={turnos} alt="horarios" />
           <img src={horarios} alt="horarios" />
           <img src={exemploHorario} alt="horarios" />
+          <p>
+            Agora que já sabe como decifrar qual horário a sua sigla representa, para que fazer isso, 
+            não é mesmo? Faça isso de forma automática:
+            {/* Input com placeholder 'Digite a sigla aqui' e botão 'decifrar' */}
+          </p>
         </div>
 
         <div className="creditos">
           <h3>Onde foram parar meus créditos ?</h3>
           <p>
-            O SIGAA não utiliza o padrão já conhecido de créditos que o MW
-            usava. Agora, foi adotado um padrão de hora/aula. Cada crédito
+            O SIGAA não utiliza o padrão já conhecido de créditos que a UnB e o MW
+            usavam. Agora, foi adotado um padrão de hora/aula. Cada crédito
             corresponde a 15 horas/aula, ou seja, uma disciplina de 2 créditos
-            corresponde à 30 horas/aula, e assim por diante. Caso queira fazer a
+            corresponde a 30 horas/aula, e assim por diante. Caso queira fazer a
             conversão inversa, basta dividir o número total de horas/aula por
-            15!
+            15.
           </p>
         </div>
 
