@@ -18,7 +18,7 @@ def run():
     parse_oferta()
     print("\n###### PARSE DA OFERTA CONCLUÍDO ######\n")
 
-    Get all course IDs 
+    # Get all course IDs 
     course_ids = [course.code for course in Course.objects.all()]
 
     print("\n###### INICIANDO O PARSE DOS CURSOS ######\n")
