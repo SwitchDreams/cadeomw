@@ -86,7 +86,7 @@ def save_subject(course, html_subject, semester):
 
             # Creates subject without department
             try:
-                subject = Subject.objects.create(
+                subject = Subject(
                     name=name,
                     code=code,
                     credit=credit
