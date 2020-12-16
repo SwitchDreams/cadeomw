@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MenuItem, Select, Button } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -7,12 +7,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
-import Generator, { GeneratorClass } from '../../services/timetable/generator';
+import Generator from '../../services/timetable/generator';
 import { SubjectChip, Form, CalendarContainer, SlotContainer } from './styles';
+import { classToEvent, randomColor } from './utils';
 
 const initialDate = '2020-09-20';
-
-const subjects = Subjects;
 
 function renderEventContent(eventInfo: any) {
   const [subjectName, className, teacher, place] = eventInfo.event.id.split(
@@ -34,44 +33,7 @@ function renderEventContent(eventInfo: any) {
   );
 }
 
-function shiftToHour(shift: string) {
-  switch (shift) {
-    case 'T':
-      return 12;
-    case 'M':
-      return 8;
-    default:
-      return 0;
-  }
-}
-
-function randomColor() {
-  return '#000000'.replace(/0/g, function () {
-    return (~~(Math.random() * 16)).toString(16);
-  });
-}
-
-function timeToEvent(time: string, classRoom: GeneratorClass) {
-  const [week, shift, start, end] = time.split('');
-  return {
-    id: `${classRoom.subjectName}-${classRoom.name}-${classRoom.teacher}-${classRoom.place}`,
-    // Dia 20 é segunda feira, portanto somando com o número da semana, conseguimos a data correspondente
-    start: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
-      shiftToHour(shift) + parseInt(start, 10) - 1,
-    ).padStart(2, '0')}:00:00`,
-    end: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
-      shiftToHour(shift) + parseInt(end, 10),
-    ).padStart(2, '0')}:00:00`,
-    color: classRoom.color,
-  };
-}
-
-function classToEvent(classRoom: GeneratorClass): any[] {
-  const times = classRoom.time;
-  const events: any = [];
-  times.map((time: string) => events.push(timeToEvent(time, classRoom)));
-  return events;
-}
+const subjects = Subjects;
 
 // Variáveis de tamanho para Multiple Select
 const ITEM_HEIGHT = 48;
@@ -86,14 +48,27 @@ const MenuProps = {
 };
 
 const TimeTable: React.FC = () => {
-  const [selectedSubjects, setSelectedSubjects] = React.useState<Array<string>>(
-    [],
-  );
-  const [selectedClasses, setSelectedClasses] = React.useState<Array<any>>([]);
+  const [selectedSubjects, setSelectedSubjects] = useState<Array<string>>([]);
+  const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
+  const [windowCheck, setWindowCheck] = useState(false);
 
   function handleChange(event: any): void {
     setSelectedSubjects(event.target.value);
   }
+
+  useEffect(() => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    }
+  }, []);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    } else {
+      setWindowCheck(false);
+    }
+  });
 
   function handleGenerateTable(): void {
     const filteredSubjects = subjects
@@ -168,12 +143,13 @@ const TimeTable: React.FC = () => {
         </Form>
 
         {selectedClasses.length !== 0 && (
-          <CalendarContainer>
+          <CalendarContainer window={windowCheck}>
             <FullCalendar
               plugins={[timeGridPlugin, dayGridPlugin]}
               initialView="timeGridWeek"
               weekText="ddd"
               height="auto"
+              weekends={false}
               aspectRatio={1}
               eventConstraint={{
                 start: '08:00:00',
