@@ -1,7 +1,7 @@
+import React, { useState, useEffect, useCallback, FormEvent } from 'react';
 import { Button } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import TextField from '@material-ui/core/TextField';
 import Header from '../../components/Header';
-import { Title, Main } from './styles';
 import turmasSeta from '../../assets/turmasSeta.png';
 import ensinoSeta from '../../assets/ensinoSeta.png';
 import diasDaSemana from '../../assets/faq-dias.png';
@@ -15,6 +15,8 @@ import docentes from '../../assets/docentes.png';
 import trancamento from '../../assets/trancamento.png';
 import curso from '../../assets/curso.png';
 import fluxoCurso from '../../assets/fluxoCurso.png';
+import { parseHorario } from '../../utils/parseOferta';
+import { Title, Main } from './styles';
 
 /*
   Página FAQ SIGAA - Bruna
@@ -22,6 +24,16 @@ import fluxoCurso from '../../assets/fluxoCurso.png';
 
 const FaqSigaa: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
+  const [sigla, setSiglaValue] = useState('');
+  const [parse, setParse] = useState('');
+
+  const handleSubmitValue = useCallback((event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  }, []);
+
+  const handleSubmit = useCallback(() => {
+    if (sigla !== '') setParse(parseHorario(sigla));
+  }, [sigla]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -49,10 +61,10 @@ const FaqSigaa: React.FC = () => {
         <p>
           Calma pequeno gafanhoto, a gente te ajuda! Achar as coisas no SIGAA
           foi e está sendo uma dificuldade para todos nós, mas preparamos um
-          manualzinho com as principais dúvidas que pode te ajudar a se localizar! <br /> Muitas das
-          informações do SIGAA não exigem que você esteja logado para acessar,
-          então basta entrar no link público e navegar pelas suas
-          funcionalidades.
+          manualzinho com as principais dúvidas que pode te ajudar a se
+          localizar! <br /> Muitas das informações do SIGAA não exigem que você
+          esteja logado para acessar, então basta entrar no link público e
+          navegar pelas suas funcionalidades.
         </p>
         <div className="button">
           <Button
@@ -110,24 +122,56 @@ const FaqSigaa: React.FC = () => {
             O formato do novo padrão de horários do SIGAA deu o que comentar.
             Muitos alunos não sabem ainda como decifrar essa sigla, mas no fim
             das contas é bem simples: <br /> O horário é composto por números e
-            letras que representam os dias e turnos da turma. Veja como calcular:
+            letras que representam os dias e turnos da turma. Veja como
+            calcular:
           </p>
           <img src={diasDaSemana} alt="horarios" />
           <img src={turnos} alt="horarios" />
           <img src={horarios} alt="horarios" />
           <img src={exemploHorario} alt="horarios" />
           <p>
-            Agora que já sabe como decifrar qual horário a sua sigla representa, para que fazer isso, 
-            não é mesmo? Faça isso de forma automática:
-            {/* Input com placeholder 'Digite a sigla aqui' e botão 'decifrar' */}
+            Agora que já sabe como decifrar qual horário cada sigla representa,
+            para que ter esse trabalho, não é mesmo? <br /> Faça isso de forma
+            automática:
           </p>
+          <form onSubmit={handleSubmitValue} className="form">
+            <TextField
+              id="filled-basic"
+              label="Digite a sigla aqui"
+              variant="filled"
+              style={{ width: 200 }}
+              onChange={event => {
+                setSiglaValue(event.target.value);
+              }}
+            />
+            <div className="buttonForm">
+              <Button
+                onClick={handleSubmit}
+                variant="outline-light"
+                style={{
+                  color: '#7c4fe0',
+                  borderColor: '#7c4fe0',
+                  width: 200,
+                  marginTop: 10,
+                }}
+              >
+                Decifrar!
+              </Button>
+            </div>
+          </form>
+          <div className="message">
+            {parse !== '' && parse !== 'Erro' && (
+              <p className="parsed">{parse}</p>
+            )}
+            {parse === 'Erro' && <p className="erro">Formato Inválido!</p>}
+          </div>
         </div>
 
         <div className="creditos">
           <h3>Onde foram parar meus créditos ?</h3>
           <p>
-            O SIGAA não utiliza o padrão já conhecido de créditos que a UnB e o MW
-            usavam. Agora, foi adotado um padrão de hora/aula. Cada crédito
+            O SIGAA não utiliza o padrão já conhecido de créditos que a UnB e o
+            MW usavam. Agora, foi adotado um padrão de hora/aula. Cada crédito
             corresponde a 15 horas/aula, ou seja, uma disciplina de 2 créditos
             corresponde a 30 horas/aula, e assim por diante. Caso queira fazer a
             conversão inversa, basta dividir o número total de horas/aula por

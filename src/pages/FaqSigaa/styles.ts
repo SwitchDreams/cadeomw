@@ -34,9 +34,36 @@ export const Main = styled.div<WindowProp>`
     font-size: 17px;
   }
 
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .message {
+    height: 40px;
+
+    .parsed {
+      font-size: 20px;
+    }
+
+    .erro {
+      font-size: 20px;
+      color: #c33;
+    }
+  }
+
   .button {
     margin: 40px;
 
+    button:hover {
+      background-color: #7c4fe0;
+      color: white !important;
+    }
+  }
+
+  .buttonForm {
     button:hover {
       background-color: #7c4fe0;
       color: white !important;
