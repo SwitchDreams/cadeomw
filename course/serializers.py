@@ -12,7 +12,7 @@ class CourseDetailsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Course
         fields = ['code', 'name', 'hardest_subject', 'easiest_subject', 'flow',
-                  'flow_graph']
+                  'flow_graph', 'curriculum', 'mandatory_workload', 'opt_workload', 'total_workload']
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):

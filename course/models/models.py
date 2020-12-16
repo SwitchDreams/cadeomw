@@ -24,15 +24,19 @@ class Course(models.Model):
     academic_degree = models.CharField(max_length=100)
     is_ead = models.BooleanField(default=False)
     shift = models.CharField(max_length=2, choices=SHIFT)
+    total_workload = models.PositiveIntegerField(null=True)
+    opt_workload = models.PositiveIntegerField(null=True)
+    mandatory_workload = models.PositiveIntegerField(null=True)
     # Campos calculados
+    curriculum = JSONField(null=True, blank=True)
     flow = JSONField(null=True, blank=True)
     num_semester = models.SmallIntegerField(null=True, blank=True)
     flow_graph = models.TextField(null=True, blank=True)
     hardest_subject = JSONField(null=True, blank=True)
     easiest_subject = JSONField(null=True, blank=True)
 
-    def adicionar_disciplina(self, semester, code_subject, status):
-        course_subject = CourseSubject(course=self, subject_id=code_subject, semester=semester,
+    def append_subject(self, semester, subject, status):
+        course_subject = CourseSubject(course=self, subject=subject, semester=semester,
                                        status=status)
         course_subject.save()
 
@@ -54,6 +58,9 @@ class Course(models.Model):
         for key, value in flow.items():
             flow_list.append(value)
         return flow_list
+
+    def get_curriculum(self):
+        return [cc.subject.to_json() for cc in self.course_curriculum.all()]
 
     def get_flow_graph(self):
         """ Retorna o código DOT (Graphviz) do gráfico """
@@ -80,8 +87,8 @@ class Course(models.Model):
 # Classe que armazena as disciplinas
 class Subject(models.Model):
     code = models.CharField(primary_key=True, max_length=20)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='subject')
-    name = models.CharField(max_length=50)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='subject', null=True)
+    name = models.CharField(max_length=80)
     credit = models.SmallIntegerField()
     # Campos pré-processados
     equivalences = JSONField(blank=True, null=True)
@@ -192,6 +199,15 @@ class CourseSubject(models.Model):
                 "status": self.status, "credit": self.subject.credit,
                 "pass_percent": self.subject.pass_percent}
 
+class CourseCurriculum(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_curriculum')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='course_curriculum')
+
+    class Meta:
+        unique_together = ('course', 'subject')
+        
+    def subject_name(self):
+        return self.subject.name
 
 # Classe que armazen as menções da disciplinas em um determinado semestre
 class SemesterGrade(models.Model):
