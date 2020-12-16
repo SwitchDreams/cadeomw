@@ -1,15 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { MenuItem, Select, Button } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import TextField from '@material-ui/core/TextField';
+
+import { useToast } from '../../hooks/toasts';
+import api from '../../services/api';
+
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
 import Generator from '../../services/timetable/generator';
 import { SubjectChip, Form, CalendarContainer, SlotContainer } from './styles';
 import { classToEvent, randomColor } from './utils';
+
+interface SubjectInfos {
+  results: Results[];
+  next: string;
+  previous: string;
+  count: number;
+}
+
+interface Results {
+  code: number;
+  department: string;
+  credit: number;
+  name: string;
+}
 
 const initialDate = '2020-09-20';
 
@@ -51,6 +70,10 @@ const TimeTable: React.FC = () => {
   const [selectedSubjects, setSelectedSubjects] = useState<Array<string>>([]);
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
   const [windowCheck, setWindowCheck] = useState(false);
+  const [search, setSearch] = useState('');
+  const [subjectsSearched, setSubjectsSearched] = useState<SubjectInfos[]>();
+
+  const { addToast } = useToast();
 
   function handleChange(event: any): void {
     setSelectedSubjects(event.target.value);
@@ -69,6 +92,23 @@ const TimeTable: React.FC = () => {
       setWindowCheck(false);
     }
   });
+
+  async function handleInputSearch(event: any): Promise<void> {
+    event.preventDefault();
+    try {
+      const response = await api.get<SubjectInfos>(
+        `subjects/?search=${search}&format=json`,
+      );
+      console.log(response.data);
+      // setSubjectsSearched(response.data);
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Falha na pesquisa',
+        description: 'Tente novamente mais tarde',
+      });
+    }
+  }
 
   function handleGenerateTable(): void {
     const filteredSubjects = subjects
@@ -106,37 +146,16 @@ const TimeTable: React.FC = () => {
         <Header transparent={false} />
 
         <Form>
-          <InputLabel id="demo-mutiple-chip-label">
-            Escolha suas matérias
-          </InputLabel>
-
-          <Select
-            labelId="demo-mutiple-chip-label"
-            id="demo-mutiple-chip"
-            multiple
-            value={selectedSubjects}
-            onChange={handleChange}
-            input={<Input id="select-multiple-chip" />}
-            renderValue={(selected: any) => (
-              <div>
-                {selected.map((value: string) => (
-                  <SubjectChip key={value} label={value} />
-                ))}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {subjects.map(subject => (
-              <MenuItem key={subject.name} value={subject.name}>
-                {subject.name}
-              </MenuItem>
-            ))}
-          </Select>
-
+          <TextField
+            id="filled-basic"
+            variant="filled"
+            label="Pesquise as disciplinas"
+            onChange={e => setSearch(e.target.value)}
+          />
           <Button
             variant="outlined"
             color="primary"
-            onClick={handleGenerateTable}
+            onClick={handleInputSearch}
           >
             Montar Grade
           </Button>
