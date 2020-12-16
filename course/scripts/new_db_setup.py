@@ -2,6 +2,7 @@ from course.scripts.sigaa.parse_departments import parse_departments
 from course.scripts.sigaa.parse_oferta import run as parse_oferta
 from course.scripts.sigaa.parse_curriculo import parse_curriculum
 from course.scripts.sigaa.parse_fluxo import parse_course
+from course.scripts.sigaa.parse_equivalence import parse_equivalence
 
 from course.models.models import Course, Subject
 
@@ -29,6 +30,13 @@ def run():
 
         parse_curriculum(course_id)
         print("\n###### PARSE DO CURRÍCULO CONCLUÍDO ######\n")
+
+    print("\n###### ADICIONANDO EQUIVALÊNCIAS e PRÉ-REQUISITOS NA DISCIPLINA ######\n")
+    subjects_ids = [subject.code for subject in Subject.objects.all()]
+    for subjects_id in subjects_ids:
+        print("\n###### PARSE EQUIVALÊNCIAS e PRÉ-REQUISITOS ######\n")
+        parse_equivalence(subjects_id)
+
 
     print("\n###### PRE PROCESSANDO OS DADOS DOS CURSOS ######\n")
     for course in Course.objects.all():
