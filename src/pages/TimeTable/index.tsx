@@ -1,7 +1,5 @@
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { MenuItem, Select, Button, FormControl } from '@material-ui/core';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Button } from '@material-ui/core';
 import { Form as BootForm } from 'react-bootstrap';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,14 +7,10 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import TextField from '@material-ui/core/TextField';
-import { useToast } from '../../hooks/toasts';
-import api from '../../services/api';
-
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
 import Generator from '../../services/timetable/generator';
 import {
-  SubjectChip,
   Form,
   CalendarContainer,
   SlotContainer,
@@ -222,8 +216,6 @@ const TimeTable: React.FC = () => {
       ],
     },
   ];
-
-  const { addToast } = useToast();
 
   function handleChange(event: any): void {
     setSelectedSubjects(event.target.value);
