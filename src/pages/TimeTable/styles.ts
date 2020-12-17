@@ -57,21 +57,28 @@ export const SlotContainer = styled.div`
   }
 `;
 
-export const ListSubjects = styled.div`
+export const ListSubjects = styled.div<WindowProps>`
   margin-top: 5vh;
   width: 100%;
 
   .subjectShow {
-    width: 35%;
+    width: 40%;
     margin: auto;
 
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    ${props =>
+      props.window &&
+      css`
+        font-size: 12px;
+        width: 90%;
+      `}
   }
 `;
 
-export const SubjectCard = styled.div`
+export const SubjectCard = styled.div<WindowProps>`
   border-radius: 20px;
   box-shadow: 2px 2px 10px #333;
   width: 100%;
@@ -104,6 +111,19 @@ export const SubjectCard = styled.div`
     flex-direction: row;
     align-items: center;
   }
+
+  ${props =>
+    props.window &&
+    css`
+      h3 {
+        font-size: 12px;
+        &::after {
+          content: '';
+          height: 2px;
+          width: 100px;
+        }
+      }
+    `}
 `;
 
 export const ModalSubjectsContainer = styled.div`
@@ -134,4 +154,40 @@ export const ModalSubjectsContainer = styled.div`
       }
     }
   }
+`;
+
+export const MontarGrade = styled.div`
+  margin: 30px;
+`;
+
+export const HowToUse = styled.div<WindowProps>`
+  text-align: center;
+  color: #222;
+  max-width: 70%;
+  margin: auto;
+
+  h3 {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: initial;
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 200px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+  p {
+    margin: 40px;
+  }
+
+  ${props =>
+    props.window &&
+    css`
+      max-width: 90%;
+    `}
 `;

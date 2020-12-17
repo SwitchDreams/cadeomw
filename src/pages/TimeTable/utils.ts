@@ -1,5 +1,45 @@
 import { GeneratorClass } from '../../services/timetable/generator';
 
+export interface Subject {
+  code: string;
+  department: string;
+  department_name: string;
+  name: string;
+  credit: number;
+  pass_percent: number;
+  prerequisites: null;
+  grade_infos: null;
+  equivalences: null;
+  get_offer: {
+    name: string;
+    semester: string;
+    teachers: string[];
+    total_vacancies: string;
+    schedule: string[];
+    place: string;
+  }[];
+}
+
+export interface ParsedSubjectTimetable {
+  name: string;
+  classes: {
+    name: string;
+    teacher: string;
+    time: string[];
+    place: string;
+  }[];
+}
+
+export interface SearchResponse {
+  results: ModalSubject[];
+}
+
+export interface ModalSubject {
+  code: string;
+  department: string;
+  name: string;
+}
+
 export function shiftToHour(shift: string): number {
   switch (shift) {
     case 'T':

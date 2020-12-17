@@ -10,7 +10,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import TextField from '@material-ui/core/TextField';
 import Header from '../../components/Header';
-import { Subjects } from '../../services/timetable/example';
 import Generator from '../../services/timetable/generator';
 import {
   Form,
@@ -19,41 +18,19 @@ import {
   ListSubjects,
   SubjectCard,
   ModalSubjectsContainer,
+  MontarGrade,
+  HowToUse,
 } from './styles';
-import { classToEvent, randomColor } from './utils';
+import {
+  classToEvent,
+  randomColor,
+  Subject,
+  ParsedSubjectTimetable,
+  SearchResponse,
+  ModalSubject,
+} from './utils';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
-import { SubjectHeader } from '../Subject/styles';
-
-interface Subject {
-  code: string;
-  department: string;
-  department_name: string;
-  name: string;
-  credit: number;
-  pass_percent: number;
-  prerequisites: null;
-  grade_infos: null;
-  equivalences: null;
-  get_offer: {
-    name: string;
-    semester: string;
-    teachers: string[];
-    total_vacancies: string;
-    schedule: string[];
-    place: string;
-  }[];
-}
-
-interface SearchResponse {
-  results: ModalSubject[];
-}
-
-interface ModalSubject {
-  code: string;
-  department: string;
-  name: string;
-}
 
 const initialDate = '2020-09-20';
 
@@ -77,168 +54,17 @@ function renderEventContent(eventInfo: any) {
   );
 }
 
-const subjects = Subjects;
-
-// Variáveis de tamanho para Multiple Select
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 const TimeTable: React.FC = () => {
-  const [selectedSubjects, setSelectedSubjects] = useState<Array<string>>([]);
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
+
   const [windowCheck, setWindowCheck] = useState(false);
+
   const [search, setSearch] = useState('');
   const [subjectsSearched, setSubjectsSearched] = useState<Subject[]>([]);
   const [modalSubjects, setModalSubjects] = useState<ModalSubject[]>([]);
   const [show, setShow] = useState(false);
+
   const { addToast } = useToast();
-
-  const subjectsList = [
-    {
-      code: 'ADM0322',
-      department: 'http://localhost:8000/department/1/',
-      department_name: 'DEPTO ADMINISTRAÇÃO',
-      name: 'CRIATIVIDADE E INOVAÇÃO NAS ORGANIZAÇÕES',
-      credit: 15,
-      pass_percent: 0.0,
-      prerequisites: null,
-      grade_infos: null,
-      equivalences: null,
-      get_offer: [
-        {
-          name: 'A',
-          semester: '2020.1',
-          teachers: ['SIEGRID GUILLAUMON DECHANDT'],
-          total_vacancies: '50',
-          schedule: ['6M1234'],
-          place: 'PJC BT 005',
-        },
-      ],
-    },
-    {
-      code: 'PCL0105',
-      department: 'http://localhost:8000/department/41/',
-      department_name: 'INSTITUTO DE PSICOLOGIA',
-      name: 'PESQUISA EM PSICOLOGIA DA SAÚDE',
-      credit: 15,
-      pass_percent: 0.0,
-      prerequisites: null,
-      grade_infos: null,
-      equivalences: null,
-      get_offer: [
-        {
-          name: '02A',
-          semester: '2020.1',
-          teachers: ['ADERSON LUIZ COSTA JUNIOR'],
-          total_vacancies: '10',
-          schedule: ['7M1234'],
-          place: 'A definir',
-        },
-        {
-          name: '03A',
-          semester: '2020.1',
-          teachers: ['ELIZABETH QUEIROZ'],
-          total_vacancies: '10',
-          schedule: ['7M1234'],
-          place: 'A definir',
-        },
-        {
-          name: '04A',
-          semester: '2020.1',
-          teachers: ['ELIANE MARIA FLEURY SEIDL'],
-          total_vacancies: '10',
-          schedule: ['7M1234'],
-          place: 'A definir',
-        },
-        {
-          name: '05A',
-          semester: '2020.1',
-          teachers: ['LARISSA POLEJACK BRAMBATTI'],
-          total_vacancies: '10',
-          schedule: ['7M1234'],
-          place: 'A definir',
-        },
-        {
-          name: '06A',
-          semester: '2020.1',
-          teachers: ['TEREZA CRISTINA CAVALCANTI FERREIRA DE ARAUJO'],
-          total_vacancies: '10',
-          schedule: ['7M1234'],
-          place: 'A definir',
-        },
-      ],
-    },
-    {
-      code: 'MUS0702',
-      department: 'http://127.0.0.1:8000/department/49/?format=api',
-      department_name: 'DEPTO MÚSICA',
-      name: 'TROMBONE 3',
-      credit: 7,
-      pass_percent: 0.0,
-      prerequisites: null,
-      grade_infos: null,
-      equivalences: null,
-      get_offer: [
-        {
-          name: 'A',
-          semester: '2020.1',
-          teachers: ['CARLOS EDUARDO VIANNA DE MELLO'],
-          total_vacancies: '0',
-          schedule: ['4M5', '4T1'],
-          place: '',
-        },
-        {
-          name: 'B',
-          semester: '2020.1',
-          teachers: ['ALCIOMAR OLIVEIRA DOS SANTOS'],
-          total_vacancies: '2',
-          schedule: ['4M5', '4T1'],
-          place: '',
-        },
-      ],
-    },
-    {
-      code: 'CIC0104',
-      department: 'http://127.0.0.1:8000/department/5/?format=api',
-      department_name: 'DEPTO CIÊNCIAS DA COMPUTAÇÃO',
-      name: 'SOFTWARE BASICO',
-      credit: 15,
-      pass_percent: 0.0,
-      prerequisites: null,
-      grade_infos: null,
-      equivalences: null,
-      get_offer: [
-        {
-          name: 'A',
-          semester: '2020.1',
-          teachers: ['MARCELO LADEIRA'],
-          total_vacancies: '50',
-          schedule: ['2M34', '4M34'],
-          place: 'PAT AT 093',
-        },
-        {
-          name: 'B',
-          semester: '2020.1',
-          teachers: ['BRUNO LUIGGI MACCHIAVELLO ESPINOZA'],
-          total_vacancies: '50',
-          schedule: ['4M34', '6M34'],
-          place: 'PAT AT 117',
-        },
-      ],
-    },
-  ];
-
-  function handleChange(event: any): void {
-    setSelectedSubjects(event.target.value);
-  }
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -261,18 +87,6 @@ const TimeTable: React.FC = () => {
       );
 
       setSubjectsSearched(newSubjs);
-    },
-    [subjectsSearched],
-  );
-
-  const searchContainsSubj = useCallback(
-    (subj: Subject): boolean => {
-      let contains = false;
-      subjectsSearched.forEach(subject => {
-        if (subj.code === subject.code) contains = true;
-      });
-
-      return contains;
     },
     [subjectsSearched],
   );
@@ -317,40 +131,83 @@ const TimeTable: React.FC = () => {
     }
   }
 
-  function handleGenerateTable(): void {
-    const filteredSubjects = subjects
-      .map(subject => {
-        const randColor = randomColor();
-        return {
-          classes: subject.classes.map(schoolClass => {
-            return {
-              ...schoolClass,
-              color: randColor,
-              subjectName: subject.name,
-            };
-          }),
-          color: randColor,
-          name: subject.name,
-        };
-      })
-      .filter(({ name }) => {
-        return selectedSubjects.includes(name);
+  const handleGenerateTable = useCallback(
+    (subjects: ParsedSubjectTimetable[]) => {
+      const filteredSubjects = subjects
+        .map(subject => {
+          const randColor = randomColor();
+          return {
+            classes: subject.classes.map(schoolClass => {
+              return {
+                ...schoolClass,
+                color: randColor,
+                subjectName: subject.name,
+              };
+            }),
+            color: randColor,
+            name: subject.name,
+          };
+        })
+        .filter(({ name }) => {
+          return subjectsSearched.find(subj => subj.name === name);
+        });
+      const generator = new Generator(filteredSubjects, []);
+      generator.bestSubjectsClasses();
+      const formattedEvents: any[] = [];
+      generator.selectedClasses.forEach(selectedClass => {
+        classToEvent(selectedClass).forEach(formattedEvent =>
+          formattedEvents.push(formattedEvent),
+        );
       });
-    const generator = new Generator(filteredSubjects, []);
-    generator.bestSubjectsClasses();
-    const formattedEvents: any[] = [];
-    generator.selectedClasses.forEach(selectedClass => {
-      classToEvent(selectedClass).forEach(formattedEvent =>
-        formattedEvents.push(formattedEvent),
-      );
+      setSelectedClasses(formattedEvents);
+    },
+    [subjectsSearched],
+  );
+
+  const handleParseSubjects = useCallback(() => {
+    const parsed = subjectsSearched.map(subj => {
+      return {
+        name: subj.name,
+        classes: subj.get_offer.map(offer => {
+          return {
+            name: offer.name,
+            teacher: offer.teachers[0],
+            time: offer.schedule,
+            place: offer.place,
+          };
+        }),
+      };
     });
-    setSelectedClasses(formattedEvents);
-  }
+
+    handleGenerateTable(parsed);
+  }, [subjectsSearched, handleGenerateTable]);
 
   return (
     <>
       <div className="text-center">
         <Header transparent={false} />
+
+        <HowToUse window={windowCheck}>
+          <h3>Gerador de Grade Automática</h3>
+          <p>
+            Finalmente chegou o nosso tão esperado, xuxuzinho, gerador de grade
+            automática! <br /> E para facilitar seu uso, preparamos um pequeno
+            passo a passo para vocês.
+          </p>
+          <p>
+            Primeiro, pesquise o nome da matéria que deseja adicionar na sua
+            grade, nós mostraremos uma série de possibilidades que são
+            compatíveis com a sua pesquisa, portanto tente ser específico.
+            Depois de adicionada a disciplina em sua lista, você pode ou não
+            especificar a turma na qual deseja cursar. Caso não especificada,
+            nós pegaremos a turma que melhor se encaixa nos seus horários.
+          </p>
+          <p>
+            Caso alguma turma ou disciplina especificada tenha conflito de
+            horário com outra, uma das duas matérias não irá ser adicionada à
+            sua grade.
+          </p>
+        </HowToUse>
 
         <Form>
           <TextField
@@ -364,17 +221,9 @@ const TimeTable: React.FC = () => {
             color="primary"
             onClick={handleInputSearch}
           >
-            Montar Grade
+            Pesquisar Disciplina
           </Button>
         </Form>
-
-        {/* <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => setShow(true)}
-        >
-          Custom Width Modal
-        </Button> */}
 
         <Modal
           show={show}
@@ -392,7 +241,7 @@ const TimeTable: React.FC = () => {
             <Modal.Body>
               <ul>
                 {modalSubjects.map(subject => (
-                  <li>
+                  <li key={subject.code}>
                     <div className="subjectName">
                       <span className="bold">{subject.name} </span>-
                       <span className="grey"> {subject.code}</span>
@@ -404,7 +253,7 @@ const TimeTable: React.FC = () => {
                             style={{
                               marginLeft: '10px',
                               color: '#5cb85c',
-                              fontSize: '1vw',
+                              fontSize: windowCheck ? 20 : '1vw',
                             }}
                           />
                         )}
@@ -421,7 +270,7 @@ const TimeTable: React.FC = () => {
                       >
                         <AddIcon
                           style={{
-                            fontSize: '1.5vw',
+                            fontSize: windowCheck ? 20 : '1.5vw',
                             color: '#4e3388',
                           }}
                         />
@@ -438,10 +287,10 @@ const TimeTable: React.FC = () => {
         </Modal>
 
         {subjectsSearched && (
-          <ListSubjects>
+          <ListSubjects window={windowCheck}>
             {subjectsSearched.map(subj => (
               <div key={subj.name} className="subjectShow">
-                <SubjectCard>
+                <SubjectCard window={windowCheck}>
                   <h3>{subj.name}</h3>
                   <div className="left">
                     <BootForm.Group controlId="exampleForm.ControlSelect1">
@@ -455,14 +304,14 @@ const TimeTable: React.FC = () => {
                     <IconButton
                       aria-label="delete"
                       style={{
-                        marginLeft: '0.9vw',
+                        marginLeft: windowCheck ? 0 : '0.9vw',
                         marginBottom: '0.8vh',
                       }}
                       onClick={() => handleDeleteSubject(subj)}
                     >
                       <DeleteIcon
                         style={{
-                          fontSize: '1.5vw',
+                          fontSize: windowCheck ? 20 : '1.5vw',
                           color: '#4e3388',
                         }}
                       />
@@ -472,6 +321,18 @@ const TimeTable: React.FC = () => {
               </div>
             ))}
           </ListSubjects>
+        )}
+
+        {subjectsSearched.length !== 0 && (
+          <MontarGrade>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleParseSubjects}
+            >
+              Montar Grade Horária
+            </Button>
+          </MontarGrade>
         )}
 
         {selectedClasses.length !== 0 && (
