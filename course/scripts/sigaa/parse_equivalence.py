@@ -1,41 +1,89 @@
 from bs4 import BeautifulSoup
 import requests
-from course.models.models import PreRequisite, Equivalence
+from course.models.models import Equivalence, PreRequisiteSet, Subject
 
-def parse_equivalence(course_id):
+
+def parse_equivalence(subject_code):
     url = "https://sig.unb.br/sigaa/public/componentes/busca_componentes.jsf"
-    request_data = get_cookies_for_parse()
-    #payload='formListagemComponentes=formListagemComponentes&javax.faces.ViewState=j_id83&formListagemComponentes%3Aj_id_jsp_190531263_23=formListagemComponentes%3Aj_id_jsp_190531263_23&id={course_id}'
-    payload='formListagemComponentes=formListagemComponentes&javax.faces.ViewState=j_id83&formListagemComponentes%3Aj_id_jsp_190531263_23=formListagemComponentes%3Aj_id_jsp_190531263_23&id=176854&publico=public'
-    # headers = {
-    #     'Content-Type': 'application/x-www-form-urlencoded',
-    #     'Cookie': "JSESSIONID=CA076FF5DB0B5215A6971B0B733D5F2A.sigaa07"
-    # }
+    subject_sigaa_id, cookies = get_params_for_parse(subject_code)
+    payload = f'formListagemComponentes=formListagemComponentes&javax.faces.ViewState=j_id2&formListagemComponentes%3Aj_id_jsp_190531263_23=formListagemComponentes%3Aj_id_jsp_190531263_23&id={subject_sigaa_id}&publico=public'
     headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Accept-Language': 'pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3',
-        'Referer': 'https://sig.unb.br/sigaa/public/componentes/busca_componentes.jsf',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Origin': 'https://sig.unb.br',
-        'Connection': 'keep-alive',
-        'Cookie': '_ga=GA1.2.2132313207.1536881087; _gid=GA1.2.969949746.1607897799; JSESSIONID=CA076FF5DB0B5215A6971B0B733D5F2A.sigaa07',
-        'Upgrade-Insecure-Requests': '1',
-        'Cache-Control': 'max-age=0'
-}
+        'Cookie': cookies
+    }
     response = requests.request("POST", url, headers=headers, data=payload)
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
-    print(html_soup)
-def get_cookies_for_parse():
+    table = html_soup.select_one('.visualizacao')
+    pre_req = table.select('tr')[8]
+    # Todo tratar có-requisitos
+    co_req = table.select('tr')[9]
+    equivalence = table.select('tr')[10]
+    handle_pre_req(pre_req, subject_code)
+    handle_equivalence(equivalence, subject_code)
+
+def handle_pre_req(pre_req, subject_code):
+    pre_req_list = pre_req.text.split()[2:-1]
+    # Always find subject
+    subject = Subject.objects.get(code=subject_code)
+    pre_req_set = PreRequisiteSet.objects.create(subject=subject)
+    for disciplina in pre_req_list:
+        if disciplina != "(" and disciplina != ")":
+            # Cria um novo conjunto de disciplina
+            if disciplina.upper() == "OU":
+                subject = Subject.objects.get(code=subject_code)
+                pre_req_set = PreRequisiteSet.objects.create(subject=subject)
+            elif disciplina.upper() == "E":
+                continue
+            else:
+                # Adiciona a disciplina no conjunto de pré-requisitos atual
+                try:
+                    subject = Subject.objects.get(code=disciplina)
+                    pre_req_set.prerequisite.create(subject=subject)
+                except:
+                    print(f"Disciplina não encontrada para pré-requisito: {disciplina}")
+
+
+def handle_equivalence(equivalences, subject_code):
+    equivalences_list = equivalences.text.split()[2:-1]
+    destination = Subject.objects.get(code=subject_code)
+    for equivalence in equivalences_list:
+        if equivalence != "(" and equivalence != ")":
+            # Cria um novo conjunto de disciplina
+            if equivalence.upper() == "OU":
+                continue
+            elif equivalence.upper() == "E":
+                print("Equivalencia com E")
+                continue
+            else:
+                # Adiciona a disciplina no conjunto de pré-requisitos atual
+                # TODO verificar campos covarage e direction
+                try:
+                    Equivalence.objects.create(subject_id=equivalence, destination=destination)
+                except:
+                    print (f"Disciplina {equivalence} não existe no BD")
+
+
+def get_cookies():
     url = "https://sig.unb.br/sigaa/public/componentes/busca_componentes.jsf"
     response = requests.request("GET", url)
-    html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
-    print(response.headers["Set-Cookie"].split(' ')[0])
-    print(html_soup.select('#javax\.faces\.ViewState')[0]['value'])
-    return {
-        "cookies": response.headers["Set-Cookie"].split(' ')[0],
-        "javax": html_soup.select('#javax\.faces\.ViewState')[0]['value']
+    return response.headers["Set-Cookie"].split(' ')[0]
+
+
+def get_params_for_parse(subject_code):
+    url = "https://sig.unb.br/sigaa/public/componentes/busca_componentes.jsf"
+    cookies = get_cookies()
+    payload = f'form=form&form%3Anivel=G&form%3Atipo=4&form%3Aunidades=0&form%3AbtnBuscarComponentes=Buscar%2BComponentes&javax.faces.ViewState=j_id1&form%3AcheckCodigo=on&form%3Aj_id_jsp_190531263_11={subject_code}&form%3Aj_id_jsp_190531263_13='
+    header = {
+        'Cookie': cookies,
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
+    response = requests.request("POST", url, headers=header, data=payload)
+    page_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
+    subject_link_to = page_soup.select_one('tbody td a')
+    subject_sigaa_id = subject_link_to['onclick'].split(':')[4][1:7]
+    return subject_sigaa_id, cookies
+
 
 def run():
-    parse_equivalence(176854)
+    # Exemplo introdução ao processamento de imagens
+    parse_equivalence("ADM0092")

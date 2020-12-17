@@ -8,7 +8,7 @@ from rest_framework import filters
 class CustomSearchFilter(filters.SearchFilter):
     def get_search_fields(self, view, request):
         if request.query_params.get('department_only'):
-            return ['department']
+            return ['department__name']
         return super(CustomSearchFilter, self).get_search_fields(view, request)
 
 
@@ -63,4 +63,4 @@ class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     serializer_class = SubjectSerializer
     retrieve_serializer_class = SubjectDetailsSerializer
     filter_backends = [CustomSearchFilter]
-    search_fields = ['name', 'department']
+    search_fields = ['name', 'department__name']
