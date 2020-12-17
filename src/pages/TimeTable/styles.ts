@@ -105,3 +105,11 @@ export const SubjectCard = styled.div`
     align-items: center;
   }
 `;
+
+export const ModalSubjectsContainer = styled.div`
+  ul {
+    list-style-type: none;
+    li {
+    }
+  }
+`;

@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
-import { Form as BootForm } from 'react-bootstrap';
+import { Form as BootForm, Modal } from 'react-bootstrap';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -16,8 +17,12 @@ import {
   SlotContainer,
   ListSubjects,
   SubjectCard,
+  ModalSubjectsContainer,
 } from './styles';
 import { classToEvent, randomColor } from './utils';
+import api from '../../services/api';
+import { useToast } from '../../hooks/toasts';
+import { SubjectHeader } from '../Subject/styles';
 
 interface Subject {
   code: string;
@@ -37,6 +42,16 @@ interface Subject {
     schedule: string[];
     place: string;
   }[];
+}
+
+interface SearchResponse {
+  results: ModalSubject[];
+}
+
+interface ModalSubject {
+  code: string;
+  department: string;
+  name: string;
 }
 
 const initialDate = '2020-09-20';
@@ -81,6 +96,9 @@ const TimeTable: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
   const [search, setSearch] = useState('');
   const [subjectsSearched, setSubjectsSearched] = useState<Subject[]>([]);
+  const [modalSubjects, setModalSubjects] = useState<ModalSubject[]>([]);
+  const [show, setShow] = useState(false);
+  const { addToast } = useToast();
 
   const subjectsList = [
     {
@@ -258,26 +276,44 @@ const TimeTable: React.FC = () => {
     [subjectsSearched],
   );
 
+  async function handleAddModalSubject(subj: ModalSubject) {
+    try {
+      const response = await api.get<Subject>(`subjects/${subj.code}`);
+      setSubjectsSearched([...subjectsSearched, response.data]);
+    } catch (error) {
+      addToast({
+        type: 'error',
+        title: 'Ocorreu um erro inesperado',
+        description: 'Não foi possível adicionar essa disciplina',
+      });
+    }
+  }
+
   async function handleInputSearch(event: any): Promise<void> {
     event.preventDefault();
-    subjectsList.forEach(subj => {
-      if (subj.name.includes(search) && !searchContainsSubj(subj))
-        setSubjectsSearched([...subjectsSearched, subj]);
-    });
 
-    // try {
-    //   const response = await api.get<SubjectInfos>(
-    //     `subjects/?search=${search}&format=json`,
-    //   );
-    //   console.log(response.data);
-    //   // setSubjectsSearched(response.data);
-    // } catch (err) {
-    //   addToast({
-    //     type: 'error',
-    //     title: 'Falha na pesquisa',
-    //     description: 'Tente novamente mais tarde',
-    //   });
-    // }
+    try {
+      const response = await api.get<SearchResponse>(
+        `subjects?search=${search}&format=json`,
+      );
+      if (response.data.results.length > 0) {
+        setModalSubjects(response.data.results);
+        setShow(true);
+      } else {
+        addToast({
+          type: 'info',
+          title: 'Disciplinas não encontradas',
+          description:
+            'Não foram encontradas disciplinas que se encaixem com a pesquisa, tente mudar um pouco!',
+        });
+      }
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Falha na pesquisa',
+        description: 'Tente novamente mais tarde',
+      });
+    }
   }
 
   function handleGenerateTable(): void {
@@ -330,6 +366,62 @@ const TimeTable: React.FC = () => {
             Montar Grade
           </Button>
         </Form>
+
+        {/* <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => setShow(true)}
+        >
+          Custom Width Modal
+        </Button> */}
+
+        <Modal
+          show={show}
+          onHide={() => setShow(false)}
+          dialogClassName="modal-90w"
+          aria-labelledby="example-custom-modal-styling-title"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="example-custom-modal-styling-title">
+              Selecione as disciplinas que deseja adicionar à sua grade
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ModalSubjectsContainer>
+              <ul>
+                {modalSubjects.map(subject => (
+                  <li>
+                    <div className="subjectName">
+                      <span className="bold">{subject.name} </span>-
+                      <span className="grey"> {subject.code}</span>
+                    </div>
+                    <div className="addButton">
+                      <IconButton
+                        aria-label="add"
+                        style={{
+                          marginLeft: '0.9vw',
+                          marginBottom: '0.8vh',
+                        }}
+                        onClick={() => handleAddModalSubject(subject)}
+                      >
+                        <AddIcon
+                          style={{
+                            fontSize: '1.5vw',
+                            color: '#4e3388',
+                          }}
+                        />
+                      </IconButton>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </ModalSubjectsContainer>
+          </Modal.Body>
+          <Modal.Footer>
+            Não encontrou sua disciplina? Tente pesquisar de outra forma!
+          </Modal.Footer>
+        </Modal>
 
         {subjectsSearched && (
           <ListSubjects>
