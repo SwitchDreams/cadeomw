@@ -188,6 +188,6 @@ export const HowToUse = styled.div<WindowProps>`
   ${props =>
     props.window &&
     css`
-      max-width: 90%;
+      max-width: 100%;
     `}
 `;

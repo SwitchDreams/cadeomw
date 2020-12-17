@@ -5,6 +5,7 @@ import { Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
 import api from '../../services/api';
+import { useToast } from '../../hooks/toasts';
 
 import Equivalence from './equivalence';
 import Oferta from './oferta';
@@ -76,33 +77,43 @@ const Subject: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [windowCheck, setWindowCheck] = useState(false);
 
+  const { addToast } = useToast();
+
   const [subject, setSubject] = useState<Subject | null>(null);
 
   const params = useParams<RouteParams>();
 
   useEffect(() => {
-    api.get(`subjects/${params.id}?format=json`).then(response => {
-      const newData: Subject = response.data;
+    try {
+      api.get(`subjects/${params.id}?format=json`).then(response => {
+        const newData: Subject = response.data;
 
-      if (newData) {
-        const newOferta = newData.oferta.map(oferta => {
-          const newProfs = oferta.teachers.map(prof => {
-            const profString = prof.split(' ');
+        if (newData) {
+          const newOferta = newData.oferta.map(oferta => {
+            const newProfs = oferta.teachers.map(prof => {
+              const profString = prof.split(' ');
 
-            const newProf = profString.map(string => {
-              return string[0].toUpperCase() + string.substr(1).toLowerCase();
+              const newProf = profString.map(string => {
+                return string[0].toUpperCase() + string.substr(1).toLowerCase();
+              });
+
+              return newProf.join(' ');
             });
 
-            return newProf.join(' ');
+            return { ...oferta, teachers: newProfs };
           });
-
-          return { ...oferta, teachers: newProfs };
-        });
-        setSubject({ ...newData, oferta: newOferta });
-        setLoading(false);
-      }
-    });
-  }, [params.id]);
+          setSubject({ ...newData, oferta: newOferta });
+          setLoading(false);
+        }
+      });
+    } catch (error) {
+      addToast({
+        type: 'error',
+        title: 'Erro ao carregar a disciplina',
+        description: 'Tente novamente mais tarde',
+      });
+    }
+  }, [params.id, addToast]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
