@@ -57,7 +57,10 @@ def handle_equivalence(equivalences, subject_code):
             else:
                 # Adiciona a disciplina no conjunto de pré-requisitos atual
                 # TODO verificar campos covarage e direction
-                Equivalence.objects.create(subject_code=equivalence, destination=destination)
+                try:
+                    Equivalence.objects.create(subject_id=equivalence, destination=destination)
+                except:
+                    print (f"Disciplina {equivalence} não existe no BD")
 
 
 def get_cookies():
@@ -83,4 +86,4 @@ def get_params_for_parse(subject_code):
 
 def run():
     # Exemplo introdução ao processamento de imagens
-    parse_equivalence("CIC0176")
+    parse_equivalence("ADM0092")
