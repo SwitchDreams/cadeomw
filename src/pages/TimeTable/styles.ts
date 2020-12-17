@@ -56,3 +56,52 @@ export const SlotContainer = styled.div`
     margin-top: 5px;
   }
 `;
+
+export const ListSubjects = styled.div`
+  margin-top: 5vh;
+  width: 100%;
+
+  .subjectShow {
+    width: 35%;
+    margin: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+`;
+
+export const SubjectCard = styled.div`
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px #333;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 25px 0 25px;
+  height: 7vh;
+  margin-bottom: 10px;
+
+  h3 {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    text-align: left;
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 200px;
+      background-color: #7c4fe0;
+      display: block;
+      margin-top: 5px;
+    }
+  }
+
+  .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+`;

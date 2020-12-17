@@ -1,33 +1,48 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { MenuItem, Select, Button } from '@material-ui/core';
+import { MenuItem, Select, Button, FormControl } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import { Form as BootForm } from 'react-bootstrap';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import TextField from '@material-ui/core/TextField';
-
 import { useToast } from '../../hooks/toasts';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
 import { Subjects } from '../../services/timetable/example';
 import Generator from '../../services/timetable/generator';
-import { SubjectChip, Form, CalendarContainer, SlotContainer } from './styles';
+import {
+  SubjectChip,
+  Form,
+  CalendarContainer,
+  SlotContainer,
+  ListSubjects,
+  SubjectCard,
+} from './styles';
 import { classToEvent, randomColor } from './utils';
 
-interface SubjectInfos {
-  results: Results[];
-  next: string;
-  previous: string;
-  count: number;
-}
-
-interface Results {
-  code: number;
+interface Subject {
+  code: string;
   department: string;
-  credit: number;
+  department_name: string;
   name: string;
+  credit: number;
+  pass_percent: number;
+  prerequisites: null;
+  grade_infos: null;
+  equivalences: null;
+  get_offer: {
+    name: string;
+    semester: string;
+    teachers: string[];
+    total_vacancies: string;
+    schedule: string[];
+    place: string;
+  }[];
 }
 
 const initialDate = '2020-09-20';
@@ -71,7 +86,142 @@ const TimeTable: React.FC = () => {
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
   const [windowCheck, setWindowCheck] = useState(false);
   const [search, setSearch] = useState('');
-  const [subjectsSearched, setSubjectsSearched] = useState<SubjectInfos[]>();
+  const [subjectsSearched, setSubjectsSearched] = useState<Subject[]>([]);
+
+  const subjectsList = [
+    {
+      code: 'ADM0322',
+      department: 'http://localhost:8000/department/1/',
+      department_name: 'DEPTO ADMINISTRAÇÃO',
+      name: 'CRIATIVIDADE E INOVAÇÃO NAS ORGANIZAÇÕES',
+      credit: 15,
+      pass_percent: 0.0,
+      prerequisites: null,
+      grade_infos: null,
+      equivalences: null,
+      get_offer: [
+        {
+          name: 'A',
+          semester: '2020.1',
+          teachers: ['SIEGRID GUILLAUMON DECHANDT'],
+          total_vacancies: '50',
+          schedule: ['6M1234'],
+          place: 'PJC BT 005',
+        },
+      ],
+    },
+    {
+      code: 'PCL0105',
+      department: 'http://localhost:8000/department/41/',
+      department_name: 'INSTITUTO DE PSICOLOGIA',
+      name: 'PESQUISA EM PSICOLOGIA DA SAÚDE',
+      credit: 15,
+      pass_percent: 0.0,
+      prerequisites: null,
+      grade_infos: null,
+      equivalences: null,
+      get_offer: [
+        {
+          name: '02A',
+          semester: '2020.1',
+          teachers: ['ADERSON LUIZ COSTA JUNIOR'],
+          total_vacancies: '10',
+          schedule: ['7M1234'],
+          place: 'A definir',
+        },
+        {
+          name: '03A',
+          semester: '2020.1',
+          teachers: ['ELIZABETH QUEIROZ'],
+          total_vacancies: '10',
+          schedule: ['7M1234'],
+          place: 'A definir',
+        },
+        {
+          name: '04A',
+          semester: '2020.1',
+          teachers: ['ELIANE MARIA FLEURY SEIDL'],
+          total_vacancies: '10',
+          schedule: ['7M1234'],
+          place: 'A definir',
+        },
+        {
+          name: '05A',
+          semester: '2020.1',
+          teachers: ['LARISSA POLEJACK BRAMBATTI'],
+          total_vacancies: '10',
+          schedule: ['7M1234'],
+          place: 'A definir',
+        },
+        {
+          name: '06A',
+          semester: '2020.1',
+          teachers: ['TEREZA CRISTINA CAVALCANTI FERREIRA DE ARAUJO'],
+          total_vacancies: '10',
+          schedule: ['7M1234'],
+          place: 'A definir',
+        },
+      ],
+    },
+    {
+      code: 'MUS0702',
+      department: 'http://127.0.0.1:8000/department/49/?format=api',
+      department_name: 'DEPTO MÚSICA',
+      name: 'TROMBONE 3',
+      credit: 7,
+      pass_percent: 0.0,
+      prerequisites: null,
+      grade_infos: null,
+      equivalences: null,
+      get_offer: [
+        {
+          name: 'A',
+          semester: '2020.1',
+          teachers: ['CARLOS EDUARDO VIANNA DE MELLO'],
+          total_vacancies: '0',
+          schedule: ['4M5', '4T1'],
+          place: '',
+        },
+        {
+          name: 'B',
+          semester: '2020.1',
+          teachers: ['ALCIOMAR OLIVEIRA DOS SANTOS'],
+          total_vacancies: '2',
+          schedule: ['4M5', '4T1'],
+          place: '',
+        },
+      ],
+    },
+    {
+      code: 'CIC0104',
+      department: 'http://127.0.0.1:8000/department/5/?format=api',
+      department_name: 'DEPTO CIÊNCIAS DA COMPUTAÇÃO',
+      name: 'SOFTWARE BASICO',
+      credit: 15,
+      pass_percent: 0.0,
+      prerequisites: null,
+      grade_infos: null,
+      equivalences: null,
+      get_offer: [
+        {
+          name: 'A',
+          semester: '2020.1',
+          teachers: ['MARCELO LADEIRA'],
+          total_vacancies: '50',
+          schedule: ['2M34', '4M34'],
+          place: 'PAT AT 093',
+        },
+        {
+          name: 'B',
+          semester: '2020.1',
+          teachers: ['BRUNO LUIGGI MACCHIAVELLO ESPINOZA'],
+          total_vacancies: '50',
+          schedule: ['4M34', '6M34'],
+          place: 'PAT AT 117',
+        },
+      ],
+    },
+  ];
 
   const { addToast } = useToast();
 
@@ -93,21 +243,49 @@ const TimeTable: React.FC = () => {
     }
   });
 
+  const handleDeleteSubject = useCallback(
+    (subj: Subject) => {
+      const newSubjs = subjectsSearched.filter(
+        subjSearched => subj !== subjSearched,
+      );
+
+      setSubjectsSearched(newSubjs);
+    },
+    [subjectsSearched],
+  );
+
+  const searchContainsSubj = useCallback(
+    (subj: Subject): boolean => {
+      let contains = false;
+      subjectsSearched.forEach(subject => {
+        if (subj.code === subject.code) contains = true;
+      });
+
+      return contains;
+    },
+    [subjectsSearched],
+  );
+
   async function handleInputSearch(event: any): Promise<void> {
     event.preventDefault();
-    try {
-      const response = await api.get<SubjectInfos>(
-        `subjects/?search=${search}&format=json`,
-      );
-      console.log(response.data);
-      // setSubjectsSearched(response.data);
-    } catch (err) {
-      addToast({
-        type: 'error',
-        title: 'Falha na pesquisa',
-        description: 'Tente novamente mais tarde',
-      });
-    }
+    subjectsList.forEach(subj => {
+      if (subj.name.includes(search) && !searchContainsSubj(subj))
+        setSubjectsSearched([...subjectsSearched, subj]);
+    });
+
+    // try {
+    //   const response = await api.get<SubjectInfos>(
+    //     `subjects/?search=${search}&format=json`,
+    //   );
+    //   console.log(response.data);
+    //   // setSubjectsSearched(response.data);
+    // } catch (err) {
+    //   addToast({
+    //     type: 'error',
+    //     title: 'Falha na pesquisa',
+    //     description: 'Tente novamente mais tarde',
+    //   });
+    // }
   }
 
   function handleGenerateTable(): void {
@@ -160,6 +338,43 @@ const TimeTable: React.FC = () => {
             Montar Grade
           </Button>
         </Form>
+
+        {subjectsSearched && (
+          <ListSubjects>
+            {subjectsSearched.map(subj => (
+              <div key={subj.name} className="subjectShow">
+                <SubjectCard>
+                  <h3>{subj.name}</h3>
+                  <div className="left">
+                    <BootForm.Group controlId="exampleForm.ControlSelect1">
+                      <BootForm.Control as="select">
+                        <option>turma</option>
+                        {subj.get_offer.map(offer => (
+                          <option key={offer.name}>{offer.name}</option>
+                        ))}
+                      </BootForm.Control>
+                    </BootForm.Group>
+                    <IconButton
+                      aria-label="delete"
+                      style={{
+                        marginLeft: '0.9vw',
+                        marginBottom: '0.8vh',
+                      }}
+                      onClick={() => handleDeleteSubject(subj)}
+                    >
+                      <DeleteIcon
+                        style={{
+                          fontSize: '1.5vw',
+                          color: '#4e3388',
+                        }}
+                      />
+                    </IconButton>
+                  </div>
+                </SubjectCard>
+              </div>
+            ))}
+          </ListSubjects>
+        )}
 
         {selectedClasses.length !== 0 && (
           <CalendarContainer window={windowCheck}>
