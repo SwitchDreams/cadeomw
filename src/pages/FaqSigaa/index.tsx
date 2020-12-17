@@ -80,6 +80,84 @@ const FaqSigaa: React.FC = () => {
             Ir para SIGAA público
           </Button>
         </div>
+        <p>Escolha qual seção deseja visitar primeiro:</p>
+        <div className="summary">
+          <Button
+            onClick={() => document.getElementById('oferta')?.scrollIntoView()}
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+            }}
+          >
+            Como posso ver a oferta desse semestre?
+          </Button>
+          <Button
+            onClick={() =>
+              windowCheck ? window.scrollTo(0, 3200) : window.scrollTo(0, 2100)
+            }
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+            }}
+          >
+            Entendendo os horários
+          </Button>
+          <Button
+            onClick={() => {
+              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+            }}
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+            }}
+          >
+            Onde foram parar meus créditos?
+          </Button>
+          <Button
+            onClick={() => {
+              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+            }}
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+            }}
+          >
+            Onde encontro os professores?
+          </Button>
+          <Button
+            onClick={() => {
+              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+            }}
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+            }}
+          >
+            Onde emito meu histórico escolar?
+          </Button>
+          <Button
+            onClick={() => {
+              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+            }}
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+            }}
+          >
+            Vish, não vai dar... Como retiro uma disciplina?
+          </Button>
+          <Button
+            onClick={() => {
+              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+            }}
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+            }}
+          >
+            Como funciona o trancamento no SIGAA?
+          </Button>
+        </div>
 
         <div className="oferta">
           <h3>Como posso ver a oferta desse semestre ?</h3>

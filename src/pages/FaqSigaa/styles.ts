@@ -55,8 +55,15 @@ export const Main = styled.div<WindowProp>`
   }
 
   .button {
-    margin: 40px;
+    margin-top: 40px;
 
+    button:hover {
+      background-color: #7c4fe0;
+      color: white !important;
+    }
+  }
+
+  .summary {
     button:hover {
       background-color: #7c4fe0;
       color: white !important;

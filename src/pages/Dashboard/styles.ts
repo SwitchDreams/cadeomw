@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import maintenance from '../../assets/maintenance.png';
+import unbLogo from '../../assets/unb.svg';
 import unbAntiga from '../../assets/unb_antiga.jpg';
 
 export const WavesContainer = styled.div`
@@ -9,7 +9,7 @@ export const WavesContainer = styled.div`
         rgba(124, 79, 224, 0.75),
         rgba(124, 79, 224, 0.75)
       ),
-      url(${maintenance});
+      url(${unbLogo});
     background-size: cover;
 
     svg {
