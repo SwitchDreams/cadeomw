@@ -83,7 +83,9 @@ const FaqSigaa: React.FC = () => {
         <p>Escolha qual seção deseja visitar primeiro:</p>
         <div className="summary">
           <Button
-            onClick={() => document.getElementById('oferta')?.scrollIntoView()}
+            onClick={() =>
+              windowCheck ? window.scrollTo(0, 1000) : window.scrollTo(0, 500)
+            }
             variant="outline-light"
             style={{
               color: '#7c4fe0',
@@ -103,9 +105,9 @@ const FaqSigaa: React.FC = () => {
             Entendendo os horários
           </Button>
           <Button
-            onClick={() => {
-              window.open('https://sig.unb.br/sigaa/public/home.jsf');
-            }}
+            onClick={() =>
+              windowCheck ? window.scrollTo(0, 3200) : window.scrollTo(0, 2100)
+            }
             variant="outline-light"
             style={{
               color: '#7c4fe0',
