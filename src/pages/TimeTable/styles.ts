@@ -107,9 +107,31 @@ export const SubjectCard = styled.div`
 `;
 
 export const ModalSubjectsContainer = styled.div`
+  #title {
+    font-size: 24px;
+    text-transform: initial;
+    text-align: center;
+  }
+
   ul {
     list-style-type: none;
     li {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 15px;
+      padding: 0;
+      justify-content: space-between;
+      border-bottom: 1px solid #7c4fe0;
+      font-size: 14px;
+
+      span.bold {
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      span.grey {
+        color: #555;
+      }
     }
   }
 `;

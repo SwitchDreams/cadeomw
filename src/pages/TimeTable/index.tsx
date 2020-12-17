@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import { Form as BootForm, Modal } from 'react-bootstrap';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
+import { FaCheck } from 'react-icons/fa';
 import IconButton from '@material-ui/core/IconButton';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -382,19 +383,32 @@ const TimeTable: React.FC = () => {
           aria-labelledby="example-custom-modal-styling-title"
           centered
         >
-          <Modal.Header closeButton>
-            <Modal.Title id="example-custom-modal-styling-title">
-              Selecione as disciplinas que deseja adicionar à sua grade
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <ModalSubjectsContainer>
+          <ModalSubjectsContainer>
+            <Modal.Header closeButton>
+              <Modal.Title id="title">
+                Selecione as disciplinas que deseja adicionar à sua grade
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
               <ul>
                 {modalSubjects.map(subject => (
                   <li>
                     <div className="subjectName">
                       <span className="bold">{subject.name} </span>-
                       <span className="grey"> {subject.code}</span>
+                      <span>
+                        {subjectsSearched.find(
+                          subj => subj.name === subject.name,
+                        ) && (
+                          <FaCheck
+                            style={{
+                              marginLeft: '10px',
+                              color: '#5cb85c',
+                              fontSize: '1vw',
+                            }}
+                          />
+                        )}
+                      </span>
                     </div>
                     <div className="addButton">
                       <IconButton
@@ -416,11 +430,11 @@ const TimeTable: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </ModalSubjectsContainer>
-          </Modal.Body>
-          <Modal.Footer>
-            Não encontrou sua disciplina? Tente pesquisar de outra forma!
-          </Modal.Footer>
+            </Modal.Body>
+            <Modal.Footer>
+              Não encontrou sua disciplina? Tente pesquisar de outra forma!
+            </Modal.Footer>
+          </ModalSubjectsContainer>
         </Modal>
 
         {subjectsSearched && (
