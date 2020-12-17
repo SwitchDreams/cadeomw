@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, FormEvent } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  FormEvent,
+  useRef,
+} from 'react';
 import { Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import Header from '../../components/Header';
@@ -26,6 +32,14 @@ const FaqSigaa: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
   const [sigla, setSiglaValue] = useState('');
   const [parse, setParse] = useState('');
+
+  const horariosRef = useRef<null | HTMLDivElement>(null);
+  const ofertaRef = useRef<null | HTMLDivElement>(null);
+  const creditosRef = useRef<null | HTMLDivElement>(null);
+  const docentesRef = useRef<null | HTMLDivElement>(null);
+  const documentosRef = useRef<null | HTMLDivElement>(null);
+  const retiradaRef = useRef<null | HTMLDivElement>(null);
+  const trancamentoRef = useRef<null | HTMLDivElement>(null);
 
   const handleSubmitValue = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -83,9 +97,11 @@ const FaqSigaa: React.FC = () => {
         <p>Escolha qual seção deseja visitar primeiro:</p>
         <div className="summary">
           <Button
-            onClick={() =>
-              windowCheck ? window.scrollTo(0, 1000) : window.scrollTo(0, 500)
-            }
+            onClick={() => {
+              const node = ofertaRef.current;
+              if (node) node.scrollIntoView();
+              window.scrollBy(0, -200);
+            }}
             variant="outline-light"
             style={{
               color: '#7c4fe0',
@@ -94,9 +110,11 @@ const FaqSigaa: React.FC = () => {
             Como posso ver a oferta desse semestre?
           </Button>
           <Button
-            onClick={() =>
-              windowCheck ? window.scrollTo(0, 3200) : window.scrollTo(0, 2100)
-            }
+            onClick={() => {
+              const node = horariosRef.current;
+              if (node) node.scrollIntoView();
+              window.scrollBy(0, -200);
+            }}
             variant="outline-light"
             style={{
               color: '#7c4fe0',
@@ -105,9 +123,11 @@ const FaqSigaa: React.FC = () => {
             Entendendo os horários
           </Button>
           <Button
-            onClick={() =>
-              windowCheck ? window.scrollTo(0, 3200) : window.scrollTo(0, 2100)
-            }
+            onClick={() => {
+              const node = creditosRef.current;
+              if (node) node.scrollIntoView();
+              window.scrollBy(0, -200);
+            }}
             variant="outline-light"
             style={{
               color: '#7c4fe0',
@@ -117,7 +137,9 @@ const FaqSigaa: React.FC = () => {
           </Button>
           <Button
             onClick={() => {
-              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+              const node = docentesRef.current;
+              if (node) node.scrollIntoView();
+              window.scrollBy(0, -200);
             }}
             variant="outline-light"
             style={{
@@ -128,7 +150,9 @@ const FaqSigaa: React.FC = () => {
           </Button>
           <Button
             onClick={() => {
-              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+              const node = documentosRef.current;
+              if (node) node.scrollIntoView();
+              window.scrollBy(0, -200);
             }}
             variant="outline-light"
             style={{
@@ -139,7 +163,9 @@ const FaqSigaa: React.FC = () => {
           </Button>
           <Button
             onClick={() => {
-              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+              const node = retiradaRef.current;
+              if (node) node.scrollIntoView();
+              window.scrollBy(0, -200);
             }}
             variant="outline-light"
             style={{
@@ -150,7 +176,9 @@ const FaqSigaa: React.FC = () => {
           </Button>
           <Button
             onClick={() => {
-              window.open('https://sig.unb.br/sigaa/public/home.jsf');
+              const node = trancamentoRef.current;
+              if (node) node.scrollIntoView();
+              window.scrollBy(0, -200);
             }}
             variant="outline-light"
             style={{
@@ -161,7 +189,7 @@ const FaqSigaa: React.FC = () => {
           </Button>
         </div>
 
-        <div className="oferta">
+        <div className="oferta" ref={ofertaRef}>
           <h3>Como posso ver a oferta desse semestre ?</h3>
           <p>
             Bom, acessando o botão acima, basta clicar em{' '}
@@ -196,7 +224,7 @@ const FaqSigaa: React.FC = () => {
           <img src={fluxoCurso} alt="cursos" />
         </div>
 
-        <div className="horarios">
+        <div className="horarios" ref={horariosRef}>
           <h3>Entendendo os horários</h3>
           <p>
             O formato do novo padrão de horários do SIGAA deu o que comentar.
@@ -247,7 +275,7 @@ const FaqSigaa: React.FC = () => {
           </div>
         </div>
 
-        <div className="creditos">
+        <div className="creditos" ref={creditosRef}>
           <h3>Onde foram parar meus créditos ?</h3>
           <p>
             O SIGAA não utiliza o padrão já conhecido de créditos que a UnB e o
@@ -259,7 +287,7 @@ const FaqSigaa: React.FC = () => {
           </p>
         </div>
 
-        <div className="docentes">
+        <div className="docentes" ref={docentesRef}>
           <h3>Onde encontro os professores ?</h3>
           <p>
             Para descobrir quais são os professores de cada departamento, basta
@@ -272,7 +300,7 @@ const FaqSigaa: React.FC = () => {
           <img src={docentes} alt="docentes" />
         </div>
 
-        <div className="documentos">
+        <div className="documentos" ref={documentosRef}>
           <h3>Onde emito meu histórico escolar ?</h3>
           <p>
             Para isso, precisamos fazer o login na plataforma, com sua matrícula
@@ -307,7 +335,7 @@ const FaqSigaa: React.FC = () => {
           <img src={emitirHistorico} alt="historico" />
         </div>
 
-        <div className="retirada">
+        <div className="retirada" ref={retiradaRef}>
           <h3>Vish, não vai dar... Como retiro uma disciplina ?</h3>
           <p>
             A retirada de disciplina é pedida diretamente ao SAA. Ela pode ser
@@ -318,7 +346,7 @@ const FaqSigaa: React.FC = () => {
           </p>
         </div>
 
-        <div className="trancamento">
+        <div className="trancamento" ref={trancamentoRef}>
           <h3>Como funciona o trancamento no SIGAA ?</h3>
           <p>
             O trancamento funciona da mesma forma, porém com nome diferente do
