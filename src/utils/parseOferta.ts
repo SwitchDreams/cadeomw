@@ -45,39 +45,47 @@ const mapaHorarios: MapaHorariosProps = {
   N4: { inicio: '21:40', fim: '22:30' },
 };
 
+export function parseHorario(horario: string): string {
+  try {
+    let diaString = horario.charAt(0);
+
+    for (let i = 1; i < 5; i += 1) {
+      if ('0123456789'.includes(horario.charAt(i))) {
+        diaString += horario.charAt(i);
+      } else {
+        i = 5;
+      }
+    }
+
+    const periodo = horario.charAt(diaString.length);
+    const inicio = horario.charAt(diaString.length + 1);
+    const fim = horario.charAt(horario.length - 1);
+
+    let horarioCompleto = '';
+    let newDia = mapaDias[(diaString[0] as unknown) as number];
+
+    if (diaString.length > 1) {
+      for (let i = 1; i < diaString.length; i += 1) {
+        newDia += ', ';
+        newDia += `${mapaDias[(diaString[i] as unknown) as number]}`;
+      }
+    }
+
+    const newInicio = mapaHorarios[`${periodo}${inicio}`].inicio;
+    const newFim = mapaHorarios[`${periodo}${fim}`].fim;
+
+    horarioCompleto = `${newDia}: ${newInicio} - ${newFim}`;
+
+    return horarioCompleto;
+  } catch (error) {
+    return 'Erro';
+  }
+}
+
 export default function parseOferta(ofertas: Oferta[]): Oferta[] {
   const newOferta = ofertas.map(oferta => {
     const newHorarios = oferta.horario.map(horario => {
-      let diaString = horario.charAt(0);
-
-      for (let i = 1; i < 5; i += 1) {
-        if ('0123456789'.includes(horario.charAt(i))) {
-          diaString += horario.charAt(i);
-        } else {
-          i = 5;
-        }
-      }
-
-      const periodo = horario.charAt(diaString.length);
-      const inicio = horario.charAt(diaString.length + 1);
-      const fim = horario.charAt(horario.length - 1);
-
-      let horarioCompleto = '';
-      let newDia = mapaDias[(diaString[0] as unknown) as number];
-
-      if (diaString.length > 1) {
-        for (let i = 1; i < diaString.length; i += 1) {
-          newDia += ', ';
-          newDia += `${mapaDias[(diaString[i] as unknown) as number]}`;
-        }
-      }
-
-      const newInicio = mapaHorarios[`${periodo}${inicio}`].inicio;
-      const newFim = mapaHorarios[`${periodo}${fim}`].fim;
-
-      horarioCompleto = `${newDia}: ${newInicio} - ${newFim}`;
-
-      return horarioCompleto;
+      return parseHorario(horario);
     });
 
     return { ...oferta, horario: newHorarios };

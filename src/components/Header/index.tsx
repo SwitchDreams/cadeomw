@@ -55,8 +55,11 @@ const Header: React.FC<HeaderBackground> = ({
       case 'subjects':
         setSelectedLink(3);
         break;
-      case 'about-us':
+      case 'faq-sigaa':
         setSelectedLink(4);
+        break;
+      case 'about-us':
+        setSelectedLink(5);
         break;
       default:
         break;
@@ -67,7 +70,8 @@ const Header: React.FC<HeaderBackground> = ({
     { id: 1, name: 'Home', link: '/' },
     { id: 2, name: 'Cursos', link: '/list-courses' },
     { id: 3, name: 'Disciplinas', link: '/subjects' },
-    { id: 4, name: 'Sobre', link: '/about-us' },
+    { id: 4, name: 'FAQ SIGAA', link: '/faq-sigaa' },
+    { id: 5, name: 'Sobre', link: '/about-us' },
   ];
 
   return (
