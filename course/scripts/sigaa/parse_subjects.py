@@ -1,9 +1,6 @@
 from bs4 import BeautifulSoup
-from time import sleep
 import requests
-from course.models.models import Offer
 from course.models.models import Department, Subject
-from course.models.models import Teacher, OfferTeacher
 from django.db import IntegrityError
 
 url = "https://sig.unb.br/sigaa/public/componentes/busca_componentes.jsf"
@@ -51,6 +48,7 @@ def get_cookies():
     return response.headers["Set-Cookie"].split(' ')[0]
 
 
+# Esse parse tem a função de criar as disciplinas no banco de dados, é necessário que os departamentos já estejam criados
 def run():
     departments = get_ids_and_names()
     for department in departments:
