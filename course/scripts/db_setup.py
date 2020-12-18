@@ -7,9 +7,9 @@ from course.scripts.sigaa.parse_equivalence import parse_equivalence
 
 from course.models.models import Course, Subject
 
+
 # Faz o parse das informações
 def run():
-
     # Cria os cursos e os departamentos
     print("\n###### INICIANDO O PARSE DOS DEPARTAMENTOS ######\n")
     parse_departments()
@@ -38,9 +38,11 @@ def run():
     print("\n###### ADICIONANDO EQUIVALÊNCIAS e PRÉ-REQUISITOS NA DISCIPLINA ######\n")
     subjects_ids = [subject.code for subject in Subject.objects.all()]
     for subjects_id in subjects_ids:
-        print("\n###### PARSE EQUIVALÊNCIAS e PRÉ-REQUISITOS ######\n")
-        parse_equivalence(subjects_id)
-
+        print(f"\n###### PARSE EQUIVALÊNCIAS e PRÉ-REQUISITOS da disciplina {subjects_id} ######\n")
+        try:
+            parse_equivalence(subjects_id)
+        except:
+            print("Erro no parse\n")
 
     print("\n###### PRE PROCESSANDO OS DADOS DOS CURSOS ######\n")
     for course in Course.objects.all():
