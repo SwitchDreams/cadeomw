@@ -35,12 +35,15 @@ def parse_subjects_from_department(dapartment_sigaa_id, department):
         fields = subject.select('td')
         # Coleta os campos necessários para criação da matéria
         code, name, _, workload, _ = fields
-        Subject.objects.create(
-            code=code.text,
-            department=department,
-            name=name.text,
-            credit=workload.text[:-1]  # Retira o h do final da string
-        )
+        try:
+            Subject.objects.create(
+                code=code.text,
+                department=department,
+                name=name.text,
+                credit=workload.text[:-1]  # Retira o h do final da string
+            )
+        except IntegrityError:
+            print(f"Disciplina já existente: {code.text}")
 
 
 def get_cookies():
@@ -55,6 +58,6 @@ def run():
         try:
             department_object = Department.objects.get(name=department_name)
             parse_subjects_from_department(department, department_object)
-        except:
+        except Department.DoesNotExist:
             print(f"Departamento não existe: {department_name}")
             continue
