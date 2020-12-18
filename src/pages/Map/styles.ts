@@ -90,3 +90,38 @@ export const LocalesList = styled.ul<AllContainerProps>`
       }
     `}
 `;
+
+export const SearchButton = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+
+  button {
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    color: #7c4fe0;
+
+    background: #fff;
+    border: 2px solid #7c4fe0;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+      background: #7c4fe0;
+      transition: 0.7s;
+      color: #fff;
+    }
+  }
+`;
+export const ModalText = styled.div`
+  form {
+    input {
+      padding: 10px;
+      height: 50px;
+      width: 100%;
+    }
+  }
+`;
