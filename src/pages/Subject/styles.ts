@@ -18,7 +18,7 @@ export const useStylesCard = makeStyles({
 
 export const Container = styled.div`
   width: 100%;
-  margin-bottom: 200px;
+  margin: 100px 0 200px 0;
 `;
 
 export const InfoGeralContainer = styled.div`
