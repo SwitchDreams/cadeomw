@@ -1,5 +1,6 @@
 from course.scripts.sigaa.parse_departments import parse_departments
 from course.scripts.sigaa.parse_oferta import run as parse_oferta
+from course.scripts.sigaa.parse_subjects import run as parse_disciplinas
 from course.scripts.sigaa.parse_curriculo import parse_curriculum
 from course.scripts.sigaa.parse_fluxo import parse_course
 from course.scripts.sigaa.parse_equivalence import parse_equivalence
@@ -18,6 +19,9 @@ def run():
     print("\n###### INICIANDO O PARSE DA OFERTA ######\n")
     parse_oferta()
     print("\n###### PARSE DA OFERTA CONCLUÍDO ######\n")
+
+    # Cria todas as disciplinas com base nos departamentos
+    parse_disciplinas()
 
     # Get all course IDs 
     course_ids = [course.code for course in Course.objects.all()]
