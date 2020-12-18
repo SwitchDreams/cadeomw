@@ -27,7 +27,9 @@ def parse_course(course_sigaa_id):
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
 
     semesters = html_soup.find("div", {"class": 'yui-content'})
-    semesters = semesters.find_all("div")[2:]
+    if semesters:
+        # Verificando se não está vazio
+        semesters = semesters.find_all("div")[2:]
     for semester in semesters:
         semester_number = semester["id"][8:]
         # Do not get the last term Ex: Carga Horária Total: 360hrs.
