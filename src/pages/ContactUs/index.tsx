@@ -41,10 +41,9 @@ const ContactUs: React.FC = () => {
             A motivação para tirar essa ideia do papel surgiu após o lançamento
             do SIGAA, quando percebemos as dificuldades para realizar buscas
             simples no sistema. Diante de várias reclamações e memes sobre o
-            assunto, aproveitamos a infinidade de tempo livre de quarentena para
-            desenvolver um ambiente mais amigável e organizado, para que nós,
-            alunos da UnB, possamos acessar as informações sobre as disciplinas
-            de forma rápida e eficiente.
+            assunto, aproveitamos para desenvolver um ambiente mais amigável e
+            organizado, para que nós, alunos da UnB, possamos acessar as
+            informações sobre as disciplinas de forma rápida e eficiente.
           </p>
         </div>
       </WhoWeAreContainer>
@@ -54,12 +53,11 @@ const ContactUs: React.FC = () => {
           <h4>E de onde a gente consegue esses dados?</h4>
           <p>
             Os dados utilizados pelo <span className="negrito">Cadê o MW?</span>{' '}
-            foram disponibilizados pela Coordenação do curso de Engenharia de
-            Computação e extraídos do Sigra (plataforma de acesso exclusivo de
-            docentes). O nosso sistema realiza a leitura automatizada dos
-            documentos e as dispõe no site de uma forma muito mais intuitiva
-            para o usuário. Atualizaremos as informações na maior frequência
-            possível.
+            são retirados diretamente do próprio SIGAA. O nosso sistema realiza
+            a leitura automatizada do site oficial da UnB e as dispõe no{' '}
+            <span className="negrito">Cadê o MW?</span> de uma forma muito mais
+            intuitiva para o usuário. Atualizaremos as informações na maior
+            frequência possível.
           </p>
         </div>
       </WhoWeAreContainer>
@@ -73,16 +71,13 @@ const ContactUs: React.FC = () => {
           />
           <h4>Switch Dreams</h4>
           <p>
-            A Switch Dreams é o nome da start up idealizada por três calouros de
+            A Switch Dreams é o nome da start up idealizada por calouros de
             Engenharia de Computação durante um almoço no RU. Eles compartilham
             o sonho de desenvolver soluções tecnológicas que impactem a
             sociedade. Ao longo dos semestres, a brincadeira ficou mais séria e
             aqueles calouros estão cada vez mais próximos de torná-la realidade.
             O <span className="negrito">Cadê o MW?</span> é a primeira de muitas
-            iniciativas a ser de fato implementada por eles. Além de nós da
-            Switch Dreams, também participam do{' '}
-            <span className="negrito">Cadê o MW?</span>, dois colegas de curso
-            que compartilham as mesmas ideias.
+            iniciativas a ser de fato implementada por eles.
           </p>
         </div>
       </WhoWeAreContainer>

@@ -48,7 +48,7 @@ export const FirstTextContainer = styled.div`
   color: #222;
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  padding-bottom: 40px;
 
   .container {
     max-width: 90%;
@@ -275,3 +275,33 @@ export const AboutUsContainer = styled.div`
 `;
 
 export const PersonContainer = styled.div``;
+
+export const YouWillFind = styled.div`
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+
+  .grade {
+    max-width: 70%;
+    margin: auto;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: initial;
+    text-align: center;
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 200px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+`;

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Hidden } from '@material-ui/core';
-import { FiBarChart2 } from 'react-icons/fi';
+import { BsArrowLeftRight, BsCalendarFill } from 'react-icons/bs';
+import { RiCalendarCheckLine } from 'react-icons/ri';
 import {
   AiOutlineCluster,
   AiFillInstagram,
   AiFillFacebook,
 } from 'react-icons/ai';
-import { BsArrowLeftRight, BsCalendarFill } from 'react-icons/bs';
 import { MdLineStyle } from 'react-icons/md';
 import { GoCheck } from 'react-icons/go';
 import { Container, Col, Row, Button } from 'react-bootstrap';
@@ -20,9 +20,13 @@ import {
   AboutFeatures,
   ListContainer,
   AboutUsContainer,
+  YouWillFind,
 } from './styles';
 
 import antigaUnB from '../../assets/unb_antiga.jpg';
+import calendar from '../../assets/ladingPage/calendar.svg';
+import map from '../../assets/ladingPage/map.svg';
+import search from '../../assets/ladingPage/search.svg';
 
 import fotoBahia from '../../assets/perfil_bahia.jpeg';
 import fotoBruna from '../../assets/perfil_bruna.png';
@@ -32,9 +36,26 @@ import fotoJapa from '../../assets/perfil_japa.jpeg';
 
 /*
 Página principal - Bahia
+Atualizações - Bruna
 */
 
 const Dashboard: React.FC = () => {
+  const [windowCheck, setWindowCheck] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    }
+  }, []);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 1000) {
+      setWindowCheck(true);
+    } else {
+      setWindowCheck(false);
+    }
+  });
+
   return (
     <>
       <WavesContainer>
@@ -65,14 +86,70 @@ const Dashboard: React.FC = () => {
         <div className="container">
           <h2>O que você vai encontrar aqui?</h2>
           <p>
-            Com a recente notícia de que o Matrícula Web daria lugar para o
-            SIGAA, muitos jovens universitários se viram surtados com um
-            ambiente pouco intuitivo. Oferecemos um sistema que auxilia o
-            processo de matrícula, dispondo informações úteis para o aluno de
-            uma maneira mais amigável.
+            Com a notícia de que o Matrícula Web daria lugar ao SIGAA, muitos
+            jovens universitários se viram surtados com um ambiente pouco
+            intuitivo. <br /> Oferecemos um sistema que auxilia o processo de
+            matrícula, dispondo informações úteis para o aluno de uma maneira
+            mais amigável.
           </p>
         </div>
       </FirstTextContainer>
+
+      <YouWillFind>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item xs={6} md={2} sm={6}>
+            <img src={calendar} alt="calendar" />
+          </Grid>
+          <Grid item xs={12} md={6} sm={12}>
+            <div className="grade">
+              <h2>Gerador de grade automática</h2>
+              <p>
+                Escolha as matérias que deseja cursar, especifique as turmas que
+                tem maior interesse, e deixe o gerador de grade automática fazer
+                o trabalho para você!
+              </p>
+            </div>
+          </Grid>
+        </Grid>
+        <Grid container direction="row" justify="center" alignItems="center">
+          {windowCheck && (
+            <Grid item xs={6} md={2} sm={6}>
+              <img src={map} alt="map" />
+            </Grid>
+          )}
+          <Grid item xs={12} md={6} sm={12}>
+            <div className="grade">
+              <h2>Mapa da UnB</h2>
+              <p>
+                É calouro e não sabe o que são essas siglas nem onde ficam as
+                salas ? A gente pode te ajudar! Basta entrar no nosso mapa da
+                UnB para se localizar.
+              </p>
+            </div>
+          </Grid>
+          {!windowCheck && (
+            <Grid item xs={6} md={2} sm={6}>
+              <img src={map} alt="map" />
+            </Grid>
+          )}
+        </Grid>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item xs={6} md={2} sm={6}>
+            <img src={search} alt="search" />
+          </Grid>
+          <Grid item xs={12} md={6} sm={12}>
+            <div className="grade">
+              <h2>FAQ SIGAA</h2>
+              <p>
+                Fica perdido quando tem que encontrar alguma informação no novo
+                site da UnB ? Não consegue decifrar os horários da oferta ? Não
+                se preocupe, nós preparamos um passo a passo que pode ajudar
+                você!
+              </p>
+            </div>
+          </Grid>
+        </Grid>
+      </YouWillFind>
 
       <FeaturesContainer>
         <div className="container">
@@ -85,13 +162,12 @@ const Dashboard: React.FC = () => {
           >
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Estatísticas"
-                text="Navegue pelas disciplinas e tenha acesso às estatísticas de menções de semestres anteriores."
-                Logo={FiBarChart2}
-                logoColor="#39f7f1"
+                title="Cursos"
+                text="Relembre o fluxo do seu curso, já que você não memorizou e não sabe achar no SIGAA"
+                Logo={AiOutlineCluster}
+                logoColor="#7c4fe0"
               />
             </Grid>
-
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
                 title="Equivalências"
@@ -100,13 +176,12 @@ const Dashboard: React.FC = () => {
                 logoColor="#f90"
               />
             </Grid>
-
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Cursos"
-                text="Relembre o fluxo do seu curso, já que você não memorizou e não sabe achar no SIGAA"
-                Logo={AiOutlineCluster}
-                logoColor="#7c4fe0"
+                title="Oferta"
+                text="Navegue pela oferta das disciplinas e escolha qual deseja cursar."
+                Logo={RiCalendarCheckLine}
+                logoColor="#39f7f1"
               />
             </Grid>
           </Grid>
@@ -120,24 +195,10 @@ const Dashboard: React.FC = () => {
               <ListContainer>
                 <div className="title-text">
                   <h2>O que está por vir?</h2>
-                  <p>É... não deu pra fazer tudo, mas em breve teremos:</p>
+                  <p>Isso é só o começo! Em breve teremos:</p>
                 </div>
                 <ul>
                   <div>
-                    <li>
-                      <div className="logo">
-                        <span>
-                          <MdLineStyle style={{ fontSize: 30 }} />
-                        </span>
-                      </div>
-                      <div className="text">
-                        <p>
-                          Mostraremos a oferta dos departamentos de uma maneira
-                          mais amigável, para que a sua única preocupação seja
-                          conseguir a matéria.
-                        </p>
-                      </div>
-                    </li>
                     <li>
                       <div className="logo">
                         <span>
@@ -146,9 +207,25 @@ const Dashboard: React.FC = () => {
                       </div>
                       <div className="text">
                         <p>
-                          Não sabe com que matéria ocupar a sua janela? O
-                          gerador de grade horária irá te ajudar a passar menos
-                          tempo no CA.
+                          Um sistema integrado de provas de disciplinas, onde
+                          alunos informam as datas de entregas separadas por
+                          turma e podem fazer uso de um calendário
+                          compartilhado.
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="logo">
+                        <span>
+                          <MdLineStyle style={{ fontSize: 30 }} />
+                        </span>
+                      </div>
+                      <div className="text">
+                        <p>
+                          Chega no final do semestre e bate aquele medo de
+                          reprovar por falta? Teremos uma calculadora de
+                          frequência em que os alunos podem marcar e acompanhar
+                          suas faltas.
                         </p>
                       </div>
                     </li>
@@ -160,9 +237,9 @@ const Dashboard: React.FC = () => {
                       </div>
                       <div className="text">
                         <p>
-                          Qual turma escolher dentre as tantas opções? Migué ou
-                          Hardcore? Visualize as estatísticas de menções dos
-                          semestres anteriores divididas por turma.
+                          Aba de divulgação de parceriais do Cadê o MW? que
+                          incentivará projetos acadêmicos, iniciativas de grupos
+                          de ensino e canais de educação.
                         </p>
                       </div>
                     </li>
