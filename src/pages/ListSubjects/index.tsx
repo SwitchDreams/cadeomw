@@ -195,14 +195,8 @@ const ListSubjects: React.FC = () => {
                   {subject.name.charAt(0).toUpperCase() +
                     subject.name.slice(1).toLowerCase()}
                 </strong>
-                <p>
-                  Código:
-                  {subject.code}
-                </p>
-                <p>
-                  Departamento:
-                  {subject.department}
-                </p>
+                <p>Código: {subject.code}</p>
+                <p>Departamento: {subject.department}</p>
               </div>
               <FiChevronRight size={20} />
             </a>

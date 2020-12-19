@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import List from '@material-ui/core/List';
-import BarChartIcon from '@material-ui/icons/BarChart';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -38,16 +37,6 @@ const HardestEasiest: React.FC<SubjectsProps> = ({
                 <AssessmentIcon />
               </ListItemIcon>
               <ListItemText primary={subject.subject_name} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <BarChartIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary={`Porcentagem de aprovação: ${
-                  subject.pass_percent * 100
-                }%`}
-              />
             </ListItem>
             <ListItem>
               <ListItemIcon>

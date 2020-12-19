@@ -66,7 +66,7 @@ const Equivalence: React.FC<EquivalenceProps> = ({
             >
               <h5>{equivalence.destination.subject_name}</h5>
               <ul>
-                <li>{`${equivalence.destination.credit} créditos`}</li>
+                <li>{`${equivalence.destination.credit} horas`}</li>
                 <li>{equivalence.direction}</li>
                 {equivalence.options.length !== 0 && (
                   <>

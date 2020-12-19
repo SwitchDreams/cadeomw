@@ -12,8 +12,6 @@ import List from '@material-ui/core/List';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ErrorIcon from '@material-ui/icons/Error';
-import InsertChartIcon from '@material-ui/icons/InsertChart';
-// import { withStyles, makeStyles } from '@material-ui/core/styles'; // nao retirar ainda
 
 import {
   useStyles,
@@ -40,24 +38,12 @@ interface TootlipInfo {
   subject_name: string;
   credit: number;
   status: string | undefined;
-  pass_percent: number;
 }
-
-/* nao retirar o htmltooltip ainda */
-
-// const HtmlTooltip = withStyles(theme => ({
-//   tooltip: {
-//     // ackgroundColor: '#FFFFF2',
-//     color: 'rgba(255, 251, 252, 2.00)',
-//     backgroundColor: '#8447FF',
-//   },
-// }))(Tooltip);
 
 const TootlipText: React.FC<TootlipInfo> = ({
   subject_name,
   credit,
   status,
-  pass_percent,
 }) => {
   return (
     <List component="nav" aria-label="main mailbox folders">
@@ -78,16 +64,6 @@ const TootlipText: React.FC<TootlipInfo> = ({
           <ErrorIcon />
         </ListItemIcon>
         <ListItemText primary={`Status: ${status}`} />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <InsertChartIcon />
-        </ListItemIcon>
-        <ListItemText
-          primary={`Porcentagem de aprovação: ${Math.round(
-            pass_percent * 100,
-          )}%`}
-        />
       </ListItem>
     </List>
   );
@@ -151,10 +127,6 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                     >
                       <PeriodText window={window}>Período:</PeriodText>
                       <PeriodText window={window}>{period.semester}</PeriodText>
-                      <PeriodText window={window}>
-                        Número de créditos:
-                      </PeriodText>
-                      <PeriodText window={window}>{period.credits}</PeriodText>
                     </PeriodContainer>
                   }
                   label=" "
@@ -173,7 +145,6 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                               subject_name={subject.subject_name}
                               credit={subject.credit}
                               status={subject.status}
-                              pass_percent={subject.pass_percent}
                             />
                           }
                           arrow

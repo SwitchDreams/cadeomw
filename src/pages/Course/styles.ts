@@ -128,7 +128,9 @@ export const ContainerPage = styled.div``;
 
 export const CardFluxContainer = styled.div<AllContainerProps>`
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin: auto;
 
   ${props =>
     props.window &&

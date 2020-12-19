@@ -9,7 +9,6 @@ import Loading from '../../components/Loading';
 import Flux from './flux';
 import Listagem from './listSubjects';
 import Infos from './infos';
-import HardestEasiest from '../../components/SubjectCard';
 
 import {
   AllContainer,
@@ -19,7 +18,6 @@ import {
   TabContent,
   TabText,
   CardFluxContainer,
-  CardSubjectsContainer,
 } from './styles';
 
 /*
@@ -36,48 +34,41 @@ export interface Materias {
   credit: number;
   code: number;
   status: string | undefined;
-  pass_percent: number;
 }
 
 export interface Period {
   semester: number;
-  credits: number | null;
   subjects: Materias[];
 }
 
 export interface Course {
+  code: number;
   name: string;
+  details: {
+    workload: {
+      total: number;
+      optional: number;
+      mandatory: number;
+    };
+    num_semester: number;
+    academic_degree: string;
+    shift: string;
+    coordinator_name: string;
+  };
+  department: string;
   flow: Period[];
-  hardest_subject: Materias;
-  easiest_subject: Materias;
-  flow_graph: string;
-  optativas: {
-    nome: string;
-    cargaHoraria: number;
-    departamento: string;
-  }[];
-  obrigatorias: {
-    nome: string;
-    cargaHoraria: number;
-    departamento: string;
-  }[];
-  informations: {
-    cargaHoraria: {
-      totalMinima: string;
-      optativaMinima: string;
-    };
-    cargaHorariaObrigatoria: {
-      total: string;
-      praticos: string;
-      teoricos: string;
-    };
-    periodoLetivo: {
-      minimo: number;
-      medio: number;
-      maximo: number;
-    };
-    horasComplementares: string;
-    coordenador: string;
+  flow_graph: null;
+  curriculum: {
+    optional: {
+      code: string;
+      credit: number;
+      subject_name: string;
+    }[];
+    mandatory: {
+      code: string;
+      credit: number;
+      subject_name: string;
+    }[];
   };
 }
 
@@ -118,9 +109,24 @@ const Course: React.FC = () => {
 
   useEffect(() => {
     api.get(`courses/${params.id}?format=json`).then(response => {
-      const newCourse = response.data[0];
+      console.log(response.data);
+      const newCourse = response.data;
+
+      const newFlow = newCourse.flow.map((period: Period) => {
+        const newSubjects = period.subjects.map((subj: Materias) => {
+          return {
+            ...subj,
+            subject_name:
+              subj.subject_name[0] + subj.subject_name.slice(1).toLowerCase(),
+            status: subj.status === 'OBR' ? 'obrigatória' : 'optativa',
+          };
+        });
+
+        return { ...period, subjects: newSubjects };
+      });
+
       setCourse(newCourse);
-      setPeriods(newCourse.flow);
+      setPeriods(newFlow);
       setLoading(false);
     });
   }, [params.id]);
@@ -199,24 +205,10 @@ const Course: React.FC = () => {
               <CourseName>{course?.name}</CourseName>
             </CourseNameContainer>
 
-            <Infos informations={course.informations} />
+            {course.details && <Infos details={course.details} />}
 
             <CardFluxContainer window={windowCheck}>
-              <CardSubjectsContainer window={windowCheck}>
-                <HardestEasiest
-                  title="Matéria Mais Difícil"
-                  subject={course.hardest_subject}
-                />
-              </CardSubjectsContainer>
-
               <Flux window={windowCheck} periods={periods} />
-
-              <CardSubjectsContainer window={windowCheck}>
-                <HardestEasiest
-                  title="Matéria Mais Fácil"
-                  subject={course.easiest_subject}
-                />
-              </CardSubjectsContainer>
             </CardFluxContainer>
           </AllContainer>
         )}
@@ -230,7 +222,7 @@ const Course: React.FC = () => {
             <Listagem
               status="optativa"
               windowCheck={windowCheck}
-              materias={course?.optativas}
+              materias={course?.curriculum.optional}
             />
           </>
         )}
@@ -244,7 +236,7 @@ const Course: React.FC = () => {
             <Listagem
               status="obrigatória"
               windowCheck={windowCheck}
-              materias={course?.obrigatorias}
+              materias={course?.curriculum.mandatory}
             />
           </>
         )}

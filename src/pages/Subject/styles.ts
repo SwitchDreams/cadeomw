@@ -346,15 +346,6 @@ export const NoEquivalences = styled.p<WindowProp>`
     `};
 `;
 
-export const NotExistingSubject = styled.div`
-  text-align: center;
-  max-width: 100%;
-
-  h2 {
-    font-size: 14px;
-  }
-`;
-
 export const OfertaContainer = styled.div<WindowProp>`
   display: flex;
   flex: 1;

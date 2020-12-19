@@ -52,7 +52,7 @@ const Header: React.FC<HeaderBackground> = ({
       case 'list-courses':
         setSelectedLink(2);
         break;
-      case 'subjects':
+      case 'list-subjects':
         setSelectedLink(3);
         break;
       case 'map':
@@ -72,7 +72,7 @@ const Header: React.FC<HeaderBackground> = ({
   const menuItems = [
     { id: 1, name: 'Home', link: '/' },
     { id: 2, name: 'Cursos', link: '/list-courses' },
-    { id: 3, name: 'Disciplinas', link: '/subjects' },
+    { id: 3, name: 'Disciplinas', link: '/list-subjects' },
     { id: 4, name: 'Mapa UnB', link: '/map' },
     { id: 5, name: 'FAQ SIGAA', link: '/faq-sigaa' },
     { id: 6, name: 'Sobre Nós', link: '/about-us' },
