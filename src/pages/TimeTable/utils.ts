@@ -10,6 +10,7 @@ export interface Subject {
   prerequisites: null;
   grade_infos: null;
   equivalences: null;
+  class: string | null;
   get_offer: {
     name: string;
     semester: string;

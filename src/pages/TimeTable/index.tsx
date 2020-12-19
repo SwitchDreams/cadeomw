@@ -9,6 +9,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import TextField from '@material-ui/core/TextField';
+import { stringify } from 'querystring';
 import Header from '../../components/Header';
 import Generator from '../../services/timetable/generator';
 import {
@@ -93,8 +94,21 @@ const TimeTable: React.FC = () => {
 
   async function handleAddModalSubject(subj: ModalSubject) {
     try {
-      const response = await api.get<Subject>(`subjects/${subj.code}`);
-      setSubjectsSearched([...subjectsSearched, response.data]);
+      const response = await api.get(`subjects/${subj.code}`);
+      const newSubj = {
+        code: response.data.code,
+        department: response.data.department,
+        department_name: response.data.department_name,
+        name: response.data.name,
+        credit: response.data.credit,
+        pass_percent: response.data.pass_percent,
+        prerequisites: null,
+        grade_infos: null,
+        equivalences: null,
+        class: null,
+        get_offer: response.data.get_offer,
+      };
+      setSubjectsSearched([...subjectsSearched, newSubj]);
     } catch (error) {
       addToast({
         type: 'error',
@@ -102,6 +116,15 @@ const TimeTable: React.FC = () => {
         description: 'Não foi possível adicionar essa disciplina',
       });
     }
+  }
+
+  function handleChangeClass(props: { class: string; subj: Subject }): void {
+    const newSubjectsList = subjectsSearched.map(subject => {
+      if (props.subj.name === subject.name)
+        return { ...props.subj, class: props.class };
+      return subject;
+    });
+    setSubjectsSearched(newSubjectsList);
   }
 
   async function handleInputSearch(event: any): Promise<void> {
@@ -294,7 +317,15 @@ const TimeTable: React.FC = () => {
                   <h3>{subj.name}</h3>
                   <div className="left">
                     <BootForm.Group controlId="exampleForm.ControlSelect1">
-                      <BootForm.Control as="select">
+                      <BootForm.Control
+                        as="select"
+                        onChange={e =>
+                          handleChangeClass({
+                            class: e.target.value,
+                            subj,
+                          })
+                        }
+                      >
                         <option>turma</option>
                         {subj.get_offer.map(offer => (
                           <option key={offer.name}>{offer.name}</option>
