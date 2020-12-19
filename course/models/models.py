@@ -98,6 +98,7 @@ class Course(models.Model):
         }
 
     def preprocess_info(self):
+        """ Realiza o pré-processamento das informações do curso"""
         self.flow = self.get_flow()
         self.curriculum = {
             'optional': self.get_curriculum(),
@@ -118,6 +119,7 @@ class Subject(models.Model):
     equivalences = JSONField(blank=True, null=True)
     prerequisites = JSONField(blank=True, null=True)
     grade_infos = JSONField(blank=True, null=True)
+    offer = JSONField(blank=True, null=True)
     pass_percent = models.FloatField(default=0)
 
     def __str__(self):
@@ -201,6 +203,12 @@ class Subject(models.Model):
         for key, value in grade_infos.items():
             grade_list.append(value)
         return grade_list
+
+    def preprocess_info(self):
+        self.prerequisites = self.get_prerequisites()
+        self.equivalences = self.get_equivalences()
+        self.offer = self.get_offer()
+        self.save()
 
 
 # Classe que armazena as disciplinas do curso com o semestre

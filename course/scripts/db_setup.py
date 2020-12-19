@@ -50,8 +50,4 @@ def run():
 
     print("\n###### PRE PROCESSANDO OS DADOS DAS MATÉRIAS ######\n")
     for subject in Subject.objects.all():
-        subject.pass_percent = subject.get_pass_percent()
-        subject.prerequisites = subject.get_prerequisites()
-        subject.equivalences = subject.get_equivalences()
-        subject.grade_infos = subject.get_grade_infos()
-        subject.save()
+        subject.preprocess_info()
