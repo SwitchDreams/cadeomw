@@ -102,7 +102,7 @@ class Course(models.Model):
         self.curriculum = {
             'optional': self.get_curriculum(),
             # Coleta as disciplinas obrigatórias do fluxo do curso
-            'mandatory': self.course_subject.filter(status='OPT').order_by('semester')
+            'mandatory': [course_subject.to_json() for course_subject in self.course_subject.filter(status='OBR').order_by('semester')]
         }
         self.num_semester = self.get_num_semester()
         self.save()
