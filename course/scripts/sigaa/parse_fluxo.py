@@ -135,4 +135,4 @@ def get_request_from_course(course_sigaa_id):
 
 def run():
     # Example data from Engenharia da computação
-    parse_course(414610)
+    parse_course(414112)
