@@ -21,12 +21,16 @@ export default class Generator {
 
   busyTime: Array<string>;
 
-  constructor(subjects: Array<GeneratorSubject>, busyTime: Array<string>) {
+  constructor(
+    subjects: Array<GeneratorSubject>,
+    busyTime: Array<string>,
+    selectedClasses: Array<GeneratorClass> = [],
+  ) {
     // Ordena a prioridade das matérias de acordo com a quantidade de turmas
     this.subjects = subjects.sort((a, b) => {
       return a.classes.length - b.classes.length;
     });
-    this.selectedClasses = [];
+    this.selectedClasses = selectedClasses;
     this.busyTime = busyTime;
   }
 

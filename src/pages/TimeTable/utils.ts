@@ -11,7 +11,7 @@ export interface Subject {
   grade_infos: null;
   equivalences: null;
   class: string | null;
-  get_offer: {
+  offer: {
     name: string;
     semester: string;
     teachers: string[];
