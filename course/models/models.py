@@ -83,6 +83,31 @@ class Course(models.Model):
         """ Retorna a disciplina mais fácil no curso, ou seja com maior porcentagem de aprovação"""
         return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)[-1].to_json()
 
+    def details(self):
+        """ Retorna as informações detalhadas do curso, no formato padronizado pelo front"""
+        return {
+            'workload': {
+                'total': self.total_workload,
+                'optional': self.opt_workload,
+                'mandatory': self.mandatory_workload
+            },
+            'num_semester': self.num_semester,
+            'academic_degree': self.academic_degree,
+            'shift': self.shift,
+            'coordinator_name': self.coordinator_name
+        }
+
+    def preprocess_info(self):
+        """ Realiza o pré-processamento das informações do curso"""
+        self.flow = self.get_flow()
+        self.curriculum = {
+            'optional': self.get_curriculum(),
+            # Coleta as disciplinas obrigatórias do fluxo do curso
+            'mandatory': [course_subject.to_json() for course_subject in self.course_subject.filter(status='OBR').order_by('semester')]
+        }
+        self.num_semester = self.get_num_semester()
+        self.save()
+
 
 # Classe que armazena as disciplinas
 class Subject(models.Model):
@@ -94,6 +119,7 @@ class Subject(models.Model):
     equivalences = JSONField(blank=True, null=True)
     prerequisites = JSONField(blank=True, null=True)
     grade_infos = JSONField(blank=True, null=True)
+    offer = JSONField(blank=True, null=True)
     pass_percent = models.FloatField(default=0)
 
     def __str__(self):
@@ -112,7 +138,7 @@ class Subject(models.Model):
         for equivalence in self.subject_eq.all():
             equivalences.append(equivalence.to_json())
         return equivalences
-    
+
     def get_offer(self):
         return [offer.to_json() for offer in self.offers.all()]
 
@@ -178,6 +204,12 @@ class Subject(models.Model):
             grade_list.append(value)
         return grade_list
 
+    def preprocess_info(self):
+        self.prerequisites = self.get_prerequisites()
+        self.equivalences = self.get_equivalences()
+        self.offer = self.get_offer()
+        self.save()
+
 
 # Classe que armazena as disciplinas do curso com o semestre
 class CourseSubject(models.Model):
@@ -199,17 +231,20 @@ class CourseSubject(models.Model):
                 "status": self.status, "credit": self.subject.credit,
                 "pass_percent": self.subject.pass_percent}
 
+
 class CourseCurriculum(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_curriculum')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='course_curriculum')
 
     class Meta:
         unique_together = ('course', 'subject')
-        
+
     def subject_name(self):
         return self.subject.name
 
-# Classe que armazen as menções da disciplinas em um determinado semestre
+    # Classe que armazen as menções da disciplinas em um determinado semestre
+
+
 class SemesterGrade(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='semester_grade')
     # Semester (Ex: 2018/2)
@@ -225,13 +260,15 @@ class SemesterGrade(models.Model):
     tj = models.PositiveSmallIntegerField()
     cc = models.PositiveSmallIntegerField()
 
+    # Classe que armazena um cojunto de pre-requisitos
 
-# Classe que armazena um cojunto de pre-requisitos
+
 class PreRequisiteSet(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite_set')
 
+    # Classe que armazena um pré-requisito em um conjunto de requisito
 
-# Classe que armazena um pré-requisito em um conjunto de requisito
+
 class PreRequisite(models.Model):
     prerequisite_set = models.ForeignKey(PreRequisiteSet, on_delete=models.CASCADE, related_name='prerequisite')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
@@ -252,8 +289,9 @@ class Equivalence(models.Model):
             "options": [op.to_json() for op in self.options.all()]
         }
 
+    # Classe que armazena um curso e a qual equivalência ele se refere
 
-# Classe que armazena um curso e a qual equivalência ele se refere
+
 class Option(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="subject_option")
     equivalence = models.ForeignKey(Equivalence, on_delete=models.CASCADE, related_name="options")
@@ -263,6 +301,7 @@ class Option(models.Model):
             "code": self.course.code,
             "name": self.course.name
         }
+
 
 class Offer(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='offers')
@@ -283,6 +322,7 @@ class Offer(models.Model):
             "place": self.place
         }
 
+
 class Teacher(models.Model):
     name = models.CharField(unique=True, max_length=100)
 
@@ -294,5 +334,7 @@ class OfferTeacher(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='offer_teachers')
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='offer_teachers')
 
-# Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
+    # Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
+
+
 from course.scripts.graph_flow_course import do_graph

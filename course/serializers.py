@@ -11,24 +11,24 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
 class CourseDetailsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Course
-        fields = ['code', 'name', 'hardest_subject', 'easiest_subject', 'flow',
-                  'flow_graph', 'curriculum', 'mandatory_workload', 'opt_workload', 'total_workload']
+        fields = ['code', 'name', 'details', 'department', 'flow',
+                  'flow_graph', 'curriculum']
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Department
-        fields = ['name']
+        fields = ['name', 'initials']
 
 
 class SubjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Subject
-        fields = ['code', 'department', 'name', 'credit', 'pass_percent']
+        fields = ['code', 'department', 'name', 'credit']
 
 
 class SubjectDetailsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Subject
-        fields = ['code', 'department', 'department_name', 'name', 'credit', 'pass_percent', 'prerequisites', 'grade_infos',
-                  'equivalences', 'get_offer']
+        fields = ['code', 'name', 'department', 'department_name', 'credit', 'prerequisites',
+                  'equivalences', 'offer']

@@ -46,19 +46,8 @@ def run():
 
     print("\n###### PRE PROCESSANDO OS DADOS DOS CURSOS ######\n")
     for course in Course.objects.all():
-        course.flow = course.get_flow()
-        course.curriculum = course.get_curriculum()
-        course.num_semester = course.get_num_semester()
-        course.hardest_subject = course.get_hardest_subject()
-        course.easiest_subject = course.get_easiest_subject()
-        if course.flow is not None:
-            course.flow_graph = course.get_flow_graph()
-        course.save()
+        course.preprocess_info()
 
     print("\n###### PRE PROCESSANDO OS DADOS DAS MATÉRIAS ######\n")
     for subject in Subject.objects.all():
-        subject.pass_percent = subject.get_pass_percent()
-        subject.prerequisites = subject.get_prerequisites()
-        subject.equivalences = subject.get_equivalences()
-        subject.grade_infos = subject.get_grade_infos()
-        subject.save()
+        subject.preprocess_info()
