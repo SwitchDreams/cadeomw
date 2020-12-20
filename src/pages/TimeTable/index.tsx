@@ -283,44 +283,46 @@ const TimeTable: React.FC = () => {
             </Modal.Header>
             <Modal.Body>
               <ul>
-                {modalSubjects.map(subject => (
-                  <li key={subject.code}>
-                    <div className="subjectName">
-                      <span className="bold">{subject.name} </span>-
-                      <span className="grey"> {subject.code}</span>
-                      <span>
-                        {subjectsSearched.find(
-                          subj => subj.code === subject.code,
-                        ) && (
-                          <FaCheck
+                {modalSubjects
+                  .filter(subject => subject.offer.length !== 0)
+                  .map(subject => (
+                    <li key={subject.code}>
+                      <div className="subjectName">
+                        <span className="bold">{subject.name} </span>-
+                        <span className="grey"> {subject.code}</span>
+                        <span>
+                          {subjectsSearched.find(
+                            subj => subj.code === subject.code,
+                          ) && (
+                            <FaCheck
+                              style={{
+                                marginLeft: '10px',
+                                color: '#5cb85c',
+                                fontSize: windowCheck ? 20 : '1vw',
+                              }}
+                            />
+                          )}
+                        </span>
+                      </div>
+                      <div className="addButton">
+                        <IconButton
+                          aria-label="add"
+                          style={{
+                            marginLeft: '0.9vw',
+                            marginBottom: '0.8vh',
+                          }}
+                          onClick={() => handleAddModalSubject(subject)}
+                        >
+                          <AddIcon
                             style={{
-                              marginLeft: '10px',
-                              color: '#5cb85c',
-                              fontSize: windowCheck ? 20 : '1vw',
+                              fontSize: windowCheck ? 20 : '1.5vw',
+                              color: '#4e3388',
                             }}
                           />
-                        )}
-                      </span>
-                    </div>
-                    <div className="addButton">
-                      <IconButton
-                        aria-label="add"
-                        style={{
-                          marginLeft: '0.9vw',
-                          marginBottom: '0.8vh',
-                        }}
-                        onClick={() => handleAddModalSubject(subject)}
-                      >
-                        <AddIcon
-                          style={{
-                            fontSize: windowCheck ? 20 : '1.5vw',
-                            color: '#4e3388',
-                          }}
-                        />
-                      </IconButton>
-                    </div>
-                  </li>
-                ))}
+                        </IconButton>
+                      </div>
+                    </li>
+                  ))}
               </ul>
             </Modal.Body>
             <Modal.Footer>
