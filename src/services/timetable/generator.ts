@@ -40,8 +40,18 @@ export default class Generator {
     const busyTimeLength = this.busyTime.length;
     for (let i = 0; i < classRoomLength; i += 1) {
       for (let j = 0; j < busyTimeLength; j += 1) {
-        if (classRoom.time[i] === this.busyTime[j]) {
-          return false;
+        const [classWeek, classShift, ...classTimes] = classRoom.time[i].split(
+          '',
+        );
+        const [busyWeek, busyShift, ...busyTimes] = this.busyTime[j].split('');
+        // Caso o dia da semana e o turno seja igual
+        if (classWeek === busyWeek && classShift === busyShift) {
+          // Verifica char a char se está ocupado
+          for (let z = 0; z < classTimes.length; z += 1) {
+            if (busyTimes.includes(classTimes[z])) {
+              return false;
+            }
+          }
         }
       }
     }
