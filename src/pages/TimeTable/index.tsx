@@ -9,7 +9,6 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import TextField from '@material-ui/core/TextField';
-import { stringify } from 'querystring';
 import Header from '../../components/Header';
 import Generator from '../../services/timetable/generator';
 import {
@@ -29,6 +28,7 @@ import {
   ParsedSubjectTimetable,
   SearchResponse,
   ModalSubject,
+  parseSchedule,
 } from './utils';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
@@ -194,10 +194,11 @@ const TimeTable: React.FC = () => {
         return {
           name: subj.name,
           classes: subj.offer.map(offer => {
+            const schedule = parseSchedule(offer.schedule);
             return {
               name: offer.name,
               teacher: offer.teachers[0],
-              time: offer.schedule,
+              time: schedule,
               place: offer.place,
             };
           }),
@@ -208,10 +209,13 @@ const TimeTable: React.FC = () => {
       .filter(subj => subj.class !== null)
       .map(subj => {
         const chosenClass = subj.offer.find(c => c.name === subj.class);
+        const schedule = chosenClass
+          ? parseSchedule(chosenClass.schedule)
+          : null;
         return {
           name: chosenClass?.name,
           teacher: chosenClass?.teachers,
-          time: chosenClass?.schedule,
+          time: schedule,
           place: chosenClass?.place,
           subjectName: subj.name,
           color: randomColor(),
@@ -286,7 +290,7 @@ const TimeTable: React.FC = () => {
                       <span className="grey"> {subject.code}</span>
                       <span>
                         {subjectsSearched.find(
-                          subj => subj.name === subject.name,
+                          subj => subj.code === subject.code,
                         ) && (
                           <FaCheck
                             style={{

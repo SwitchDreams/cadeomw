@@ -80,3 +80,27 @@ export function classToEvent(classRoom: GeneratorClass): any[] {
   times.map((time: string) => events.push(timeToEvent(time, classRoom)));
   return events;
 }
+
+export function parseSchedule(schedule: string[]): string[] {
+  const response = [];
+
+  for (let i = 0; i < schedule.length; i += 1) {
+    let diaString = schedule[i].charAt(0);
+    let hourString;
+
+    for (let j = 1; j < 5; j += 1) {
+      if ('0123456789'.includes(schedule[i].charAt(j))) {
+        diaString += schedule[i].charAt(j);
+      } else {
+        hourString = schedule[i].slice(j);
+        j = 5;
+      }
+    }
+
+    for (let j = 0; j < diaString.length; j += 1) {
+      response.push(diaString[j] + hourString);
+    }
+  }
+
+  return response;
+}
