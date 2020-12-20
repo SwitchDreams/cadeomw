@@ -106,7 +106,7 @@ const TimeTable: React.FC = () => {
         grade_infos: null,
         equivalences: null,
         class: null,
-        get_offer: response.data.get_offer,
+        offer: response.data.offer,
       };
       setSubjectsSearched([...subjectsSearched, newSubj]);
     } catch (error) {
@@ -155,7 +155,7 @@ const TimeTable: React.FC = () => {
   }
 
   const handleGenerateTable = useCallback(
-    (subjects: ParsedSubjectTimetable[]) => {
+    (subjects: ParsedSubjectTimetable[], chosenClasses: any) => {
       const filteredSubjects = subjects
         .map(subject => {
           const randColor = randomColor();
@@ -174,7 +174,7 @@ const TimeTable: React.FC = () => {
         .filter(({ name }) => {
           return subjectsSearched.find(subj => subj.name === name);
         });
-      const generator = new Generator(filteredSubjects, []);
+      const generator = new Generator(filteredSubjects, [], chosenClasses);
       generator.bestSubjectsClasses();
       const formattedEvents: any[] = [];
       generator.selectedClasses.forEach(selectedClass => {
@@ -188,21 +188,37 @@ const TimeTable: React.FC = () => {
   );
 
   const handleParseSubjects = useCallback(() => {
-    const parsed = subjectsSearched.map(subj => {
-      return {
-        name: subj.name,
-        classes: subj.get_offer.map(offer => {
-          return {
-            name: offer.name,
-            teacher: offer.teachers[0],
-            time: offer.schedule,
-            place: offer.place,
-          };
-        }),
-      };
-    });
+    const parsedSubjects = subjectsSearched
+      .filter(subj => subj.class === null)
+      .map(subj => {
+        return {
+          name: subj.name,
+          classes: subj.offer.map(offer => {
+            return {
+              name: offer.name,
+              teacher: offer.teachers[0],
+              time: offer.schedule,
+              place: offer.place,
+            };
+          }),
+        };
+      });
 
-    handleGenerateTable(parsed);
+    const parsedChosenClasses = subjectsSearched
+      .filter(subj => subj.class !== null)
+      .map(subj => {
+        const chosenClass = subj.offer.find(c => c.name === subj.class);
+        return {
+          name: chosenClass?.name,
+          teacher: chosenClass?.teachers,
+          time: chosenClass?.schedule,
+          place: chosenClass?.place,
+          subjectName: subj.name,
+          color: randomColor(),
+        };
+      });
+
+    handleGenerateTable(parsedSubjects, parsedChosenClasses);
   }, [subjectsSearched, handleGenerateTable]);
 
   return (
@@ -327,7 +343,7 @@ const TimeTable: React.FC = () => {
                         }
                       >
                         <option>turma</option>
-                        {subj.get_offer.map(offer => (
+                        {subj.offer.map(offer => (
                           <option key={offer.name}>{offer.name}</option>
                         ))}
                       </BootForm.Control>
