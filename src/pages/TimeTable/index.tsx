@@ -270,7 +270,7 @@ const TimeTable: React.FC = () => {
                       <span className="grey"> {subject.code}</span>
                       <span>
                         {subjectsSearched.find(
-                          subj => subj.name === subject.name,
+                          subj => subj.code === subject.code,
                         ) && (
                           <FaCheck
                             style={{
