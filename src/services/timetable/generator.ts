@@ -7,7 +7,7 @@ export interface GeneratorClass {
   subjectName: string;
 }
 
-interface GeneratorSubject {
+export interface GeneratorSubject {
   name: string;
   classes: Array<GeneratorClass>;
   color: string;

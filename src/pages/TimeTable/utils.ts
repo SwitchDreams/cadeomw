@@ -60,15 +60,18 @@ export function randomColor(): string {
 }
 
 export function timeToEvent(time: string, classRoom: GeneratorClass) {
-  const [week, shift, start, end] = time.split('');
+  if (time.length <= 4 && time.length > 6) {
+    throw new Error('Parâmetro time deve ter de 4 a 6 dígitos');
+  }
+  const [week, shift, start, ...end] = time.split('');
   return {
-    id: `${classRoom.subjectName}-${classRoom.name}-${classRoom.teacher}-${classRoom.place}`,
+    id: `${classRoom.subjectName}-${classRoom.name}-${classRoom.teacher}-${time}`,
     // Dia 20 é segunda feira, portanto somando com o número da semana, conseguimos a data correspondente
     start: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
       shiftToHour(shift) + parseInt(start, 10) - 1,
     ).padStart(2, '0')}:00:00`,
     end: `2020-09-${20 + parseInt(week, 10) - 1}T${String(
-      shiftToHour(shift) + parseInt(end, 10),
+      shiftToHour(shift) + parseInt(end[end.length - 1], 10),
     ).padStart(2, '0')}:00:00`,
     color: classRoom.color,
   };
