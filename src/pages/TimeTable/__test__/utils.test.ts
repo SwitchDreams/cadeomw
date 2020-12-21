@@ -25,6 +25,6 @@ test('timeToEvent with six digits time', () => {
 });
 
 test('timeToEvent with invalid time', () => {
-  const time = '3T1';
+  const time = '3T';
   expect(() => timeToEvent(time, classRoom)).toThrow();
 });
