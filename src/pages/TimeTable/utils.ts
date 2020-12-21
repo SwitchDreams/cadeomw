@@ -47,6 +47,8 @@ export function shiftToHour(shift: string): number {
       return 13;
     case 'M':
       return 8;
+    case 'N':
+      return 19;
     default:
       return 0;
   }
