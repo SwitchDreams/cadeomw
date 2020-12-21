@@ -22,7 +22,7 @@ def refactor_list(lista, nome):
     # Nome e carga horário vêm na mesma string
     turma['teacher'] = lista[2].split(' (')[0]
     turma['workload'] = int(lista[2].split('(')[1][0:-2])
-    print("\n\nWORKLOAD: " + str(turma['workload']) + "\n\n")
+
     # Horário
     turma['schedule'] = lista[3].split('\r')[0][1:]
     
@@ -217,6 +217,6 @@ def run():
     departamentos = get_ids_and_names()
     for departamento in departamentos:
         nome_depto = departamentos[departamento].split(" - ")[0].split(" (")[0]
-        #print(departamento +" "+ nome_depto)
+        print(departamento +" "+ nome_depto)
         parse_oferta(departamento, nome_depto)
         sleep(0.1)
