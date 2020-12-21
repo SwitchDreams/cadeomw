@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import maintenance from '../../assets/maintenance.png';
+import unbLogo from '../../assets/unb.svg';
 import unbAntiga from '../../assets/unb_antiga.jpg';
 
 export const WavesContainer = styled.div`
@@ -9,7 +9,7 @@ export const WavesContainer = styled.div`
         rgba(124, 79, 224, 0.75),
         rgba(124, 79, 224, 0.75)
       ),
-      url(${maintenance});
+      url(${unbLogo});
     background-size: cover;
 
     svg {
@@ -48,7 +48,7 @@ export const FirstTextContainer = styled.div`
   color: #222;
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  padding-bottom: 40px;
 
   .container {
     max-width: 90%;
@@ -275,3 +275,33 @@ export const AboutUsContainer = styled.div`
 `;
 
 export const PersonContainer = styled.div``;
+
+export const YouWillFind = styled.div`
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+
+  .grade {
+    max-width: 70%;
+    margin: auto;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: initial;
+    text-align: center;
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 200px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+`;

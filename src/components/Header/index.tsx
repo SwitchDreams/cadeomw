@@ -13,8 +13,23 @@ interface HeaderBackground {
 const Header: React.FC<HeaderBackground> = ({
   transparent,
 }: HeaderBackground) => {
+  const [windowCheck, setWindowCheck] = useState(true);
   const [navFixed, setNavFixed] = useState(false);
   const [selectedLink, setSelectedLink] = useState(0);
+
+  useEffect(() => {
+    if (window.innerWidth >= 1950) {
+      setWindowCheck(false);
+    }
+  }, []);
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1950) {
+      setWindowCheck(false);
+    } else {
+      setWindowCheck(true);
+    }
+  });
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -43,8 +58,14 @@ const Header: React.FC<HeaderBackground> = ({
       case 'timetable':
         setSelectedLink(4);
         break;
-      case 'about-us':
+      case 'map':
         setSelectedLink(5);
+        break;
+      case 'faq-sigaa':
+        setSelectedLink(6);
+        break;
+      case 'about-us':
+        setSelectedLink(7);
         break;
       default:
         break;
@@ -54,9 +75,11 @@ const Header: React.FC<HeaderBackground> = ({
   const menuItems = [
     { id: 1, name: 'Home', link: '/' },
     { id: 2, name: 'Cursos', link: '/list-courses' },
-    { id: 3, name: 'Disciplinas', link: '/list-subjects' },
+    { id: 3, name: 'Disciplinas', link: '/subjects' },
     { id: 4, name: 'Gerador de Grade', link: '/timetable' },
-    { id: 5, name: 'Sobre', link: '/about-us' },
+    { id: 5, name: 'Mapa UnB', link: '/map' },
+    { id: 6, name: 'FAQ SIGAA', link: '/faq-sigaa' },
+    { id: 7, name: 'Sobre Nós', link: '/about-us' },
   ];
 
   return (
@@ -87,7 +110,7 @@ const Header: React.FC<HeaderBackground> = ({
           </Navbar.Collapse>
         </Navbar>
       </div>
-      {!transparent && (
+      {!transparent && windowCheck && (
         <WaveContainer>
           <svg width="100%" height="200px" fill="none">
             <path
