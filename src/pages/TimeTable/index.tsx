@@ -397,13 +397,13 @@ const TimeTable: React.FC = () => {
               aspectRatio={1}
               eventConstraint={{
                 start: '08:00:00',
-                end: '22:00:00',
+                end: '24:00:00',
               }}
               initialDate={initialDate}
               allDaySlot={false}
               eventContent={renderEventContent}
               slotMinTime="08:00:00"
-              slotMaxTime="22:00:00"
+              slotMaxTime="24:00:00"
               slotDuration="1:00:00"
               slotLabelInterval={{ hours: 1 }}
               events={selectedClasses}
