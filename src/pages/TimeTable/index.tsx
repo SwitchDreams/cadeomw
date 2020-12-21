@@ -189,7 +189,7 @@ const TimeTable: React.FC = () => {
 
   const handleParseSubjects = useCallback(() => {
     const parsedSubjects = subjectsSearched
-      .filter(subj => subj.class === null)
+      .filter(subj => subj.class === null || subj.class === 'turma')
       .map(subj => {
         return {
           name: subj.name,
@@ -206,7 +206,7 @@ const TimeTable: React.FC = () => {
       });
 
     const parsedChosenClasses = subjectsSearched
-      .filter(subj => subj.class !== null)
+      .filter(subj => subj.class !== null && subj.class !== 'turma')
       .map(subj => {
         const chosenClass = subj.offer.find(c => c.name === subj.class);
         const schedule = chosenClass
