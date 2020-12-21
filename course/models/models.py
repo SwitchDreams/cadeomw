@@ -10,6 +10,12 @@ class Department(models.Model):
     def __str__(self):
         return self.name
 
+    def courses_list(self):
+        return [course.to_json() for course in self.courses.all()]
+
+    def subjects_list(self):
+        return [subject.to_json() for subject in self.subject.all()]
+
 
 # Classe que armazena o curso
 class Course(models.Model):
@@ -103,10 +109,16 @@ class Course(models.Model):
         self.curriculum = {
             'optional': self.get_curriculum(),
             # Coleta as disciplinas obrigatórias do fluxo do curso
-            'mandatory': [course_subject.to_json() for course_subject in self.course_subject.filter(status='OBR').order_by('semester')]
+            'mandatory': [course_subject.to_json() for course_subject in
+                          self.course_subject.filter(status='OBR').order_by('semester')]
         }
         self.num_semester = self.get_num_semester()
         self.save()
+
+    def to_json(self):
+        return {"code": self.code, "name": self.name,
+                "shift": self.get_shift_display(), "num_semester": self.num_semester,
+                'academic_degree': self.academic_degree}
 
 
 # Classe que armazena as disciplinas
