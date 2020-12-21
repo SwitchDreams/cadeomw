@@ -18,7 +18,13 @@ class CourseDetailsSerializer(serializers.HyperlinkedModelSerializer):
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Department
-        fields = ['name', 'initials']
+        fields = ['id', 'name', 'initials']
+
+
+class DepartmentDetailsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Department
+        fields = ['id', 'name', 'initials', 'courses_list', 'subjects_list']
 
 
 class SubjectSerializer(serializers.HyperlinkedModelSerializer):

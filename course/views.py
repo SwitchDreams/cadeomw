@@ -1,7 +1,7 @@
 from course.models.models import Course, Department, Subject
 from rest_framework import viewsets
 from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSerializer, CourseDetailsSerializer, \
-    SubjectDetailsSerializer
+    SubjectDetailsSerializer, DepartmentDetailsSerializer
 from rest_framework import filters
 
 
@@ -47,13 +47,15 @@ class CourseViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     search_fields = ['name']
 
 
-class DepartmentViewSet(viewsets.ReadOnlyModelViewSet):
+class DepartmentViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows department to be viewed or edited.
     """
     queryset = Department.objects.all().order_by('name')
     serializer_class = DepartmentSerializer
-
+    retrieve_serializer_class = DepartmentDetailsSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'initials']
 
 class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
