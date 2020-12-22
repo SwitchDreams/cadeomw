@@ -109,3 +109,17 @@ export function parseSchedule(schedule: string[]): string[] {
 
   return response;
 }
+
+const checkboxesInitial = [];
+const week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+for (let i = 8; i < 23; i += 1) {
+  for (let j = 0; j < 5; j += 1) {
+    checkboxesInitial.push({
+      name: `${week[j]}${i}`,
+      checked: false,
+    });
+  }
+}
+
+export const checkboxes = checkboxesInitial;

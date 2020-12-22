@@ -9,6 +9,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
 import Header from '../../components/Header';
 import Generator from '../../services/timetable/generator';
 import {
@@ -20,6 +21,7 @@ import {
   ModalSubjectsContainer,
   MontarGrade,
   HowToUse,
+  ModalBusyHoursContainer,
 } from './styles';
 import {
   classToEvent,
@@ -29,6 +31,7 @@ import {
   SearchResponse,
   ModalSubject,
   parseSchedule,
+  checkboxes,
 } from './utils';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
@@ -44,7 +47,7 @@ function renderEventContent(eventInfo: any) {
       <SlotContainer>
         <div className="title">
           {subjectName[0]}
-          {subjectName.slice(0).toLowerCase()} - {className}
+          {subjectName.slice(1).toLowerCase()} - {className}
           <hr />
         </div>
         <div className="info">{teacher}</div>
@@ -61,7 +64,11 @@ const TimeTable: React.FC = () => {
   const [search, setSearch] = useState('');
   const [subjectsSearched, setSubjectsSearched] = useState<Subject[]>([]);
   const [modalSubjects, setModalSubjects] = useState<ModalSubject[]>([]);
+
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+
+  const [checked, setChecked] = useState(false);
 
   const { addToast } = useToast();
 
@@ -223,6 +230,13 @@ const TimeTable: React.FC = () => {
     handleGenerateTable(parsedSubjects, parsedChosenClasses);
   }, [subjectsSearched, handleGenerateTable]);
 
+  const handleChangeCheckbox = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setChecked(event.target.checked);
+    },
+    [],
+  );
+
   return (
     <>
       <div className="text-center">
@@ -251,6 +265,14 @@ const TimeTable: React.FC = () => {
         </HowToUse>
 
         <Form>
+          <Button
+            className="button"
+            variant="outlined"
+            color="primary"
+            onClick={() => setShow2(true)}
+          >
+            Adicionar Horário Ocupado
+          </Button>
           <TextField
             id="filled-basic"
             variant="filled"
@@ -260,6 +282,7 @@ const TimeTable: React.FC = () => {
           <Button
             variant="outlined"
             color="primary"
+            className="button"
             onClick={handleInputSearch}
           >
             Pesquisar Disciplina
@@ -327,6 +350,31 @@ const TimeTable: React.FC = () => {
           </ModalSubjectsContainer>
         </Modal>
 
+        <Modal
+          show={show2}
+          onHide={() => setShow2(false)}
+          dialogClassName="modal-90w"
+          aria-labelledby="example-custom-modal-styling-title"
+          centered
+        >
+          <ModalBusyHoursContainer>
+            <Modal.Header closeButton>
+              <Modal.Title id="title">
+                Selecione os horários em que não deseja ter aulas
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {checkboxes.map(() => (
+                <Checkbox
+                  color="default"
+                  onChange={handleChangeCheckbox}
+                  inputProps={{ 'aria-label': 'checkbox with default color' }}
+                />
+              ))}
+            </Modal.Body>
+          </ModalBusyHoursContainer>
+        </Modal>
+
         {subjectsSearched && (
           <ListSubjects window={windowCheck}>
             {subjectsSearched.map(subj => (
@@ -377,6 +425,7 @@ const TimeTable: React.FC = () => {
             <Button
               variant="outlined"
               color="primary"
+              className="button"
               onClick={handleParseSubjects}
             >
               Montar Grade Horária
