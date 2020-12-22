@@ -14,7 +14,7 @@ url = "https://sig.unb.br/sigaa/public/turmas/listar.jsf"
 # Output: Dicionário contendo as informações refatoradas para criar a oferta
 def refactor_list(lista, nome):
     turma = {}
-    print(lista)
+
     turma['name'] = lista[0].strip()
 
     turma['semester'] = lista[1]
@@ -143,7 +143,6 @@ def parse_oferta(id, department_name):
             
             # Tenta criar a disciplina
             try:
-                print("\nAQUI: " + turmas['workload'] + "\n")
                 subject_object = create_subject(turmas["subject_code"], department_object, turmas['subject_name'], turmas['workload'])
                 subject_object.save()
             # Se não conseguir por erro de integridade
