@@ -42,8 +42,9 @@ export const SlotContainer = styled.div`
   text-align: center;
 
   .title {
+    overflow-y: hidden;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 0.9vw;
 
     hr {
       width: 70%;
@@ -53,7 +54,9 @@ export const SlotContainer = styled.div`
   }
 
   .info {
+    overflow-y: hidden;
     margin-top: 5px;
+    font-size: 0.7vw;
   }
 `;
 

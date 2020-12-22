@@ -36,20 +36,18 @@ import { useToast } from '../../hooks/toasts';
 const initialDate = '2020-09-20';
 
 function renderEventContent(eventInfo: any) {
-  const [subjectName, className, teacher, place] = eventInfo.event.id.split(
+  const [subjectName, className, teacher] = eventInfo.event.id.split(
     '-',
   ) as string[];
   return (
     <>
       <SlotContainer>
         <div className="title">
-          {subjectName} - {className}
+          {subjectName[0]}
+          {subjectName.slice(0).toLowerCase()} - {className}
           <hr />
         </div>
-        <div className="info">
-          {teacher} <br />
-          {place}
-        </div>
+        <div className="info">{teacher}</div>
       </SlotContainer>
     </>
   );
