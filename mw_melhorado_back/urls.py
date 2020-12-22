@@ -22,7 +22,7 @@ from course import views as course_view
 router = routers.DefaultRouter()
 router.register(r'courses', course_view.CourseViewSet)
 router.register(r'department', course_view.DepartmentViewSet)
-router.register(r'subjects', course_view.SubjectViewSet)
+router.register(r'subjects', course_view.SubjectViewSet, basename='Subject')
 
 urlpatterns = [
     path('', include(router.urls)),

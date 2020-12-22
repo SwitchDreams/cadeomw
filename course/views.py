@@ -57,12 +57,22 @@ class DepartmentViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'initials']
 
+
 class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows subjects to be viewed or edited.
     """
-    queryset = Subject.objects.all().order_by('name')
+
     serializer_class = SubjectSerializer
     retrieve_serializer_class = SubjectDetailsSerializer
-    filter_backends = [CustomSearchFilter]
-    search_fields = ['name', 'department__name']
+
+    def get_queryset(self):
+        department_initial = self.request.query_params.get('department_initial')
+        subject_name_search = self.request.query_params.get('search')
+        if department_initial:
+            queryset = Subject.objects.filter(department__initials=department_initial).order_by('name')
+        else:
+            queryset = Subject.objects.all().order_by('name')
+        if subject_name_search:
+            queryset = queryset.filter(name__unaccent__icontains=subject_name_search)
+        return queryset
