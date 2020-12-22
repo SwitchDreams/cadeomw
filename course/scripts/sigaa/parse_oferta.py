@@ -21,8 +21,8 @@ def refactor_list(lista, nome):
 
     # Nome e carga horário vêm na mesma string
     turma['teacher'] = lista[2].split(' (')[0]
-    turma['workload'] = int(lista[2].split('(')[1][0:-2])/4
-    
+    turma['workload'] = int(lista[2].split('(')[1][0:-2])
+
     # Horário
     turma['schedule'] = lista[3].split('\r')[0][1:]
     
