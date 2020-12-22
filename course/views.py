@@ -5,13 +5,6 @@ from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSe
 from rest_framework import filters
 
 
-class CustomSearchFilter(filters.SearchFilter):
-    def get_search_fields(self, view, request):
-        if request.query_params.get('department_only'):
-            return ['department__name']
-        return super(CustomSearchFilter, self).get_search_fields(view, request)
-
-
 class SelectSerializerMixin(object):
     """
     Classe para permitir mais de um serializer por ViewSet
