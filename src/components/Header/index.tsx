@@ -52,17 +52,20 @@ const Header: React.FC<HeaderBackground> = ({
       case 'list-courses':
         setSelectedLink(2);
         break;
-      case 'subjects':
+      case 'list-subjects':
         setSelectedLink(3);
         break;
-      case 'map':
+      case 'list-departments':
         setSelectedLink(4);
         break;
-      case 'faq-sigaa':
+      case 'map':
         setSelectedLink(5);
         break;
-      case 'about-us':
+      case 'faq-sigaa':
         setSelectedLink(6);
+        break;
+      case 'about-us':
+        setSelectedLink(7);
         break;
       default:
         break;
@@ -72,10 +75,11 @@ const Header: React.FC<HeaderBackground> = ({
   const menuItems = [
     { id: 1, name: 'Home', link: '/' },
     { id: 2, name: 'Cursos', link: '/list-courses' },
-    { id: 3, name: 'Disciplinas', link: '/subjects' },
-    { id: 4, name: 'Mapa UnB', link: '/map' },
-    { id: 5, name: 'FAQ SIGAA', link: '/faq-sigaa' },
-    { id: 6, name: 'Sobre Nós', link: '/about-us' },
+    { id: 3, name: 'Disciplinas', link: '/list-subjects' },
+    { id: 4, name: 'Departamentos', link: '/list-departments' },
+    { id: 5, name: 'Mapa UnB', link: '/map' },
+    { id: 6, name: 'FAQ SIGAA', link: '/faq-sigaa' },
+    { id: 7, name: 'Sobre Nós', link: '/about-us' },
   ];
 
   return (
