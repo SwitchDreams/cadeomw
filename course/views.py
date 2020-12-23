@@ -33,11 +33,18 @@ class CourseViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows courses to be viewed or edited.
     """
-    queryset = Course.objects.all().order_by('name')
     serializer_class = CourseSerializer
     retrieve_serializer_class = CourseDetailsSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['name']
+
+    def get_queryset(self):
+        course_name_search = self.request.query_params.get('search')
+
+        queryset = Course.objects.all().order_by('name')
+
+        if course_name_search:
+            queryset = queryset.filter(name__unaccent__icontains=course_name_search)
+
+        return queryset
 
 
 class DepartmentViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):

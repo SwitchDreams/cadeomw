@@ -20,7 +20,7 @@ from rest_framework import routers
 from course import views as course_view
 
 router = routers.DefaultRouter()
-router.register(r'courses', course_view.CourseViewSet)
+router.register(r'courses', course_view.CourseViewSet, basename='Course')
 router.register(r'department', course_view.DepartmentViewSet)
 router.register(r'subjects', course_view.SubjectViewSet, basename='Subject')
 
