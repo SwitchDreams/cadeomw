@@ -211,4 +211,16 @@ export const HowToUse = styled.div<WindowProps>`
     `}
 `;
 
-export const ModalBusyHoursContainer = styled.div``;
+export const ModalBusyHoursContainer = styled.div`
+  table {
+    width: 100%;
+
+    th {
+      width: 16.6%;
+    }
+  }
+`;
+
+export const NoCalendarMessage = styled.div`
+  text-align: center;
+`;
