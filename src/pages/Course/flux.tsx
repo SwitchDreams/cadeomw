@@ -161,7 +161,7 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                               </ContentStatus>
                               <ContentCredits>
                                 <Credit>{subject.credit}</Credit>
-                                <CreditText>créditos</CreditText>
+                                <CreditText>horas</CreditText>
                               </ContentCredits>
                             </ContentCreditsContainer>
                           </Content>

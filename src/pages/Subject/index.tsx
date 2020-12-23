@@ -160,9 +160,10 @@ const Subject: React.FC = () => {
             <Equivalence window={windowCheck} subject={subject} />
           )}
 
-          {subject.prerequisites.length !== 0 && (
-            <Prereq window={windowCheck} subject={subject} />
-          )}
+          {subject.prerequisites.length !== 0 &&
+            subject.prerequisites[0].length !== 0 && (
+              <Prereq window={windowCheck} subject={subject} />
+            )}
         </Container>
       )}
     </>

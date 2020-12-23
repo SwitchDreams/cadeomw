@@ -287,7 +287,7 @@ export const EquivalencesContainer = styled.div<WindowProp>`
 
 export const EquivalenceBox = styled.div<WindowProp>`
   background: #7c4fe0;
-  min-height: 180px;
+  min-height: 100px;
   max-width: 15%;
   border-radius: 10px;
   box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.3);
@@ -307,14 +307,9 @@ export const EquivalenceBox = styled.div<WindowProp>`
     margin: 10px;
   }
 
-  p,
-  ul {
+  p {
     margin: 3px;
     text-align: center;
-    list-style-position: inside;
-    ul {
-      font-size: 12px;
-    }
   }
 
   transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
