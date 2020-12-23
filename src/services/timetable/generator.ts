@@ -13,6 +13,30 @@ export interface GeneratorSubject {
   color: string;
 }
 
+function hasConflictTime(
+  roomClass1: GeneratorClass,
+  roomClass2: GeneratorClass,
+): boolean {
+  for (let i = 0; i < roomClass1.time.length; i += 1) {
+    for (let j = 0; j < roomClass2.time.length; j += 1) {
+      const [classWeek, classShift, ...classTimes] = roomClass1.time[i].split(
+        '',
+      );
+      const [busyWeek, busyShift, ...busyTimes] = roomClass2.time[j].split('');
+      // Caso o dia da semana e o turno seja igual
+      if (classWeek === busyWeek && classShift === busyShift) {
+        // Verifica char a char se está ocupado
+        for (let z = 0; z < classTimes.length; z += 1) {
+          if (busyTimes.includes(classTimes[z])) {
+            return false;
+          }
+        }
+      }
+    }
+  }
+  return true;
+}
+
 // Classe responsável por gerar a grade automática
 export default class Generator {
   subjects: Array<GeneratorSubject>;
@@ -30,6 +54,16 @@ export default class Generator {
     this.subjects = subjects.sort((a, b) => {
       return a.classes.length - b.classes.length;
     });
+
+    // Verifica se as selected classes tem algum horário de conflito
+    for (let i = 0; i < selectedClasses.length; i += 1) {
+      for (let j = i; j < selectedClasses.length; j += 1) {
+        if (hasConflictTime(selectedClasses[i], selectedClasses[j])) {
+          throw new Error('Turmas selecionadas com conflito');
+        }
+      }
+    }
+
     this.selectedClasses = selectedClasses;
     this.busyTime = busyTime;
   }
@@ -78,6 +112,7 @@ export default class Generator {
         } else if (j === subjectClassesLength) {
           // eslint-disable-next-line no-console
           console.log('Não há disciplinas sem conflitos');
+          throw new Error('Não foi possível montar a grade');
         }
       }
     }
