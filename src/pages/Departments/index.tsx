@@ -159,7 +159,7 @@ const DepartmentPage: React.FC = () => {
                 <tr>
                   <th>Código</th>
                   <th>Matéria</th>
-                  <th>Créditos</th>
+                  <th>Carga Horária</th>
                 </tr>
               </thead>
               <tbody>

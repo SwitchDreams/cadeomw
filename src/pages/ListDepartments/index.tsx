@@ -156,8 +156,8 @@ const ListDepartments: React.FC = () => {
                     department.name.slice(1).toLowerCase()}
                 </strong>
                 <p>
-                  Departamento:
-                  {department.initials}
+                  Sigla:
+                  {' ' + department.initials}
                 </p>
               </div>
               <FiChevronRight size={20} />
