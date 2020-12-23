@@ -19,6 +19,7 @@ import {
   TabText,
   CardFluxContainer,
 } from './styles';
+import { useToast } from '../../hooks/toasts';
 
 /*
   Página do curso - Bruna
@@ -92,6 +93,8 @@ const Course: React.FC = () => {
     },
   ];
 
+  const { addToast } = useToast();
+
   const [windowCheck, setWindowCheck] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -108,28 +111,35 @@ const Course: React.FC = () => {
   const params = useParams<RouteParams>();
 
   useEffect(() => {
-    api.get(`courses/${params.id}?format=json`).then(response => {
-      console.log(response.data);
-      const newCourse = response.data;
+    try {
+      api.get(`courses/${params.id}?format=json`).then(response => {
+        const newCourse = response.data;
 
-      const newFlow = newCourse.flow.map((period: Period) => {
-        const newSubjects = period.subjects.map((subj: Materias) => {
-          return {
-            ...subj,
-            subject_name:
-              subj.subject_name[0] + subj.subject_name.slice(1).toLowerCase(),
-            status: subj.status === 'OBR' ? 'obrigatória' : 'optativa',
-          };
+        const newFlow = newCourse.flow.map((period: Period) => {
+          const newSubjects = period.subjects.map((subj: Materias) => {
+            return {
+              ...subj,
+              subject_name:
+                subj.subject_name[0] + subj.subject_name.slice(1).toLowerCase(),
+              status: subj.status === 'OBR' ? 'obrigatória' : 'optativa',
+            };
+          });
+
+          return { ...period, subjects: newSubjects };
         });
 
-        return { ...period, subjects: newSubjects };
+        setCourse(newCourse);
+        setPeriods(newFlow);
+        setLoading(false);
       });
-
-      setCourse(newCourse);
-      setPeriods(newFlow);
-      setLoading(false);
-    });
-  }, [params.id]);
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Erro ao carregar este curso',
+        description: 'Tente novamente mais tarde.',
+      });
+    }
+  }, [params.id, addToast]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
