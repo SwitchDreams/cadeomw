@@ -14,7 +14,7 @@ class Department(models.Model):
         return [course.to_json() for course in self.courses.all()]
 
     def subjects_list(self):
-        return [subject.to_json() for subject in self.subject.all()]
+        return [subject.to_json() for subject in self.subject.all().order_by('name')]
 
 
 # Classe que armazena o curso

@@ -5,13 +5,6 @@ from course.serializers import CourseSerializer, DepartmentSerializer, SubjectSe
 from rest_framework import filters
 
 
-class CustomSearchFilter(filters.SearchFilter):
-    def get_search_fields(self, view, request):
-        if request.query_params.get('department_only'):
-            return ['department__name']
-        return super(CustomSearchFilter, self).get_search_fields(view, request)
-
-
 class SelectSerializerMixin(object):
     """
     Classe para permitir mais de um serializer por ViewSet
@@ -40,11 +33,18 @@ class CourseViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows courses to be viewed or edited.
     """
-    queryset = Course.objects.all().order_by('name')
     serializer_class = CourseSerializer
     retrieve_serializer_class = CourseDetailsSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['name']
+
+    def get_queryset(self):
+        course_name_search = self.request.query_params.get('search')
+
+        queryset = Course.objects.all().order_by('name')
+
+        if course_name_search:
+            queryset = queryset.filter(name__unaccent__icontains=course_name_search)
+
+        return queryset
 
 
 class DepartmentViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
@@ -57,12 +57,22 @@ class DepartmentViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'initials']
 
+
 class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows subjects to be viewed or edited.
     """
-    queryset = Subject.objects.all().order_by('name')
+
     serializer_class = SubjectSerializer
     retrieve_serializer_class = SubjectDetailsSerializer
-    filter_backends = [CustomSearchFilter]
-    search_fields = ['name', 'department__name']
+
+    def get_queryset(self):
+        department_initial = self.request.query_params.get('department_initial')
+        subject_name_search = self.request.query_params.get('search')
+        if department_initial:
+            queryset = Subject.objects.filter(department__initials=department_initial).order_by('name')
+        else:
+            queryset = Subject.objects.all().order_by('name')
+        if subject_name_search:
+            queryset = queryset.filter(name__unaccent__icontains=subject_name_search)
+        return queryset
