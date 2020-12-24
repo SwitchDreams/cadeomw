@@ -57,5 +57,5 @@ def run():
             department_object = Department.objects.get(name=department_name)
             parse_subjects_from_department(department, department_object)
         except Department.DoesNotExist:
-            print(f"Departamento não existe: {department_name}")
+            print(f"Departamento não existe ou não possui disciplinas: {department_name}")
             continue
