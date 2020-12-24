@@ -62,18 +62,6 @@ def create_subject(subject_code, department_object, subject_name, workload):
     return subject_object
 
 
-def create_offer(subject_object, name, semester, schedule, students_qtd, place):
-    oferta = Offer(
-        subject=subject_object,
-        name=name,
-        semester=semester,
-        schedule=schedule,
-        students_qtd=students_qtd,
-        place=place
-    )
-    return oferta
-
-
 ####################
 
 def parse_oferta(id, department_name):
@@ -134,37 +122,55 @@ def parse_oferta(id, department_name):
 
             # Tenta criar a oferta
             try:
-                subject_object = Subject.objects.get(code=turmas["subject_code"])
-                oferta = create_offer(subject_object, turmas['name'], turmas['semester'],
-                                      turmas['schedule'], turmas['students_qtd'], turmas['place'])
-                oferta.save()
+                try:
+                    subject_object = Subject.objects.get(code=turmas["subject_code"])
+                except:
+                    print(f'Não foi possível encontrar a disciplina{turmas["subject_code"]}')
+                    infos_list = []
+                    turma = turma.find_next_sibling('tr')
+                    continue
+
+                oferta, _ = Offer.objects.get_or_create(
+                    subject=subject_object,
+                    name=turmas['name'],
+                    semester=turmas['semester'],
+                    schedule=turmas['schedule'],
+                    students_qtd=turmas['students_qtd'],
+                    place=turmas['place']
+                )
 
                 # Criando ou dando get no professor para vincular à oferta
                 try:
-                    teacher = Teacher.objects.get_or_create(name=turmas["teacher"])
+                    teacher, _ = Teacher.objects.get_or_create(name=turmas["teacher"])
+
+                    # Criando relação entre professor e oferta
+                    try:
+                        ot = OfferTeacher.objects.create(offer=oferta, teacher=teacher)
+                    except Exception as e:
+                        print(e)
+                        print(f'Erro ao vincular {turmas["teacher"]} e {turmas["subject_code"]}-{turmas["name"]}')
+                        infos_list = []
+                        turma = turma.find_next_sibling('tr')
+                        continue
                 except:
                     print(f'Erro ao criar ou dar get no professor {turmas["teacher"]} da turma {turmas["subject_code"]}-{turmas["name"]}')
                     infos_list = []
                     turma = turma.find_next_sibling('tr')
                     continue
-                try:
-                    ot = OfferTeacher(offer=oferta, teacher=teacher)
-                    ot.save()
-                except:
-                    print(f'Erro ao vincular {turmas["teacher"]} e {turmas["subject_code"]}-{turmas["name"]}')
-                    infos_list = []
-                    turma = turma.find_next_sibling('tr')
-                    continue
-            except IntegrityError:
-                print(f'Não foi possível criar a oferta para {turmas["subject_code"]}-{turmas["subject_name"]}')
+                
+            except IntegrityError as e:
+                print(e)
+                print(f'A oferta para {turmas["subject_code"]}-{turmas["subject_name"]} já existe no banco de dados')
                 infos_list = []
                 turma = turma.find_next_sibling('tr')
                 continue
-            except:
-                print(f'Não foi possível encontrar a disciplina{turmas["subject_code"]}')
+            except Exception as e:
+                print(e)
+                print(f'A oferta para {turmas["subject_code"]}-{turmas["subject_name"]} não foi encontrada')
                 infos_list = []
                 turma = turma.find_next_sibling('tr')
                 continue
+            
 
             infos_list = []
 
