@@ -144,6 +144,9 @@ def parse_oferta(id, department_name):
                     teacher = Teacher.objects.get_or_create(name=turmas["teacher"])
                 except:
                     print(f'Erro ao criar ou dar get no professor {turmas["teacher"]} da turma {turmas["subject_code"]}-{turmas["name"]}')
+                    infos_list = []
+                    turma = turma.find_next_sibling('tr')
+                    continue
                 try:
                     ot = OfferTeacher(offer=oferta, teacher=teacher)
                     ot.save()
@@ -152,8 +155,16 @@ def parse_oferta(id, department_name):
                     infos_list = []
                     turma = turma.find_next_sibling('tr')
                     continue
+            except IntegrityError:
+                print(f'Não foi possível criar a oferta para {turmas["subject_code"]}-{turmas["subject_name"]}')
+                infos_list = []
+                turma = turma.find_next_sibling('tr')
+                continue
             except:
-                print(f'disciplina {turmas["subject_code"]} não foi criada')
+                print(f'Não foi possível encontrar a disciplina{turmas["subject_code"]}')
+                infos_list = []
+                turma = turma.find_next_sibling('tr')
+                continue
 
             infos_list = []
 
