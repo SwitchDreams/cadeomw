@@ -316,8 +316,7 @@ class Option(models.Model):
 
 
 class Offer(models.Model):
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='offers')
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='offers')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='offers', unique=True)
     name = models.CharField(max_length=100)
     semester = models.CharField(max_length=7)
     schedule = models.CharField(max_length=100)
