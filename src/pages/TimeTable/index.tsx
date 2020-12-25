@@ -185,25 +185,28 @@ const TimeTable: React.FC = () => {
         .filter(({ name }) => {
           return subjectsSearched.find(subj => subj.name === name);
         });
-
-      const busyHours: string[] = [];
-      checked.forEach(check => {
-        if (check.checked) busyHours.push(check.name);
-      });
-
-      const generator = new Generator(
-        filteredSubjects,
-        busyHours,
-        chosenClasses,
-      );
-      generator.bestSubjectsClasses();
-      const formattedEvents: any[] = [];
-      generator.selectedClasses.forEach(selectedClass => {
-        classToEvent(selectedClass).forEach(formattedEvent =>
-          formattedEvents.push(formattedEvent),
-        );
-      });
-      setSelectedClasses(formattedEvents);
+      try {
+        const busyHours: string[] = [];
+        checked.forEach(check => {
+          if (check.checked) busyHours.push(check.name);
+        });
+        const generator = new Generator(filteredSubjects, busyHours, chosenClasses);
+        generator.bestSubjectsClasses();
+        const formattedEvents: any[] = [];
+        generator.selectedClasses.forEach(selectedClass => {
+          classToEvent(selectedClass).forEach(formattedEvent =>
+            formattedEvents.push(formattedEvent),
+          );
+        });
+        setSelectedClasses(formattedEvents);
+      } catch {
+        addToast({
+          type: 'error',
+          title: 'Erro montar grade',
+          description:
+            'Suas turmas pre-escolhidas possuem algum conflito de horario ou nao foi possivel montar a grade',
+        });
+      }
     },
     [subjectsSearched, checked],
   );
