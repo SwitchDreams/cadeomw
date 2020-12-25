@@ -18,9 +18,9 @@ const Oferta: React.FC<OfertaProps> = ({ subject, window }: OfertaProps) => {
   const [subjectParse, setSubjectParse] = useState(subject);
 
   useEffect(() => {
-    const newOferta = parseOferta(subject.oferta);
+    const newOferta = parseOferta(subject.offer);
 
-    const newSubjectParse = { ...subject, oferta: newOferta };
+    const newSubjectParse = { ...subject, offer: newOferta };
     setSubjectParse(newSubjectParse);
   }, [subject]);
 
@@ -38,9 +38,9 @@ const Oferta: React.FC<OfertaProps> = ({ subject, window }: OfertaProps) => {
             <th>Local</th>
           </tr>
           {subjectParse &&
-            subjectParse.oferta.map(oferta => (
-              <tr key={oferta.turma}>
-                <td>{oferta.turma}</td>
+            subjectParse.offer.map(oferta => (
+              <tr key={oferta.name}>
+                <td>{oferta.name}</td>
                 <td className="professores">
                   {oferta.teachers.map(prof => {
                     let professor = `${prof} e `;
@@ -51,12 +51,12 @@ const Oferta: React.FC<OfertaProps> = ({ subject, window }: OfertaProps) => {
                   })}
                 </td>
                 <td className="horario">
-                  {oferta.horario.map(horario => {
+                  {oferta.schedule.map(horario => {
                     return <div key={horario}>{horario}</div>;
                   })}
                 </td>
-                <td>{oferta.vagasOfertadas}</td>
-                <td>{oferta.local !== '' ? oferta.local : '-'}</td>
+                <td>{oferta.total_vacancies}</td>
+                <td>{oferta.place !== '' ? oferta.place : '-'}</td>
               </tr>
             ))}
         </tbody>

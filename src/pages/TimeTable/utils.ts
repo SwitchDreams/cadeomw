@@ -109,3 +109,64 @@ export function parseSchedule(schedule: string[]): string[] {
 
   return response;
 }
+
+const checkboxesInitial = [];
+const turno = ['M', 'T', 'N'];
+
+for (let i = 0; i < 3; i += 1) {
+  // turno --> i
+
+  if (turno[i] === 'M') {
+    for (let k = 1; k < 6; k += 1) {
+      // horário --> k
+      for (let j = 2; j < 7; j += 1) {
+        // dia --> j
+        checkboxesInitial.push({
+          name: `${j}${turno[i]}${k}`,
+          checked: false,
+        });
+      }
+    }
+  } else if (turno[i] === 'T') {
+    for (let k = 1; k < 7; k += 1) {
+      // horário --> k
+      for (let j = 2; j < 7; j += 1) {
+        // dia --> j
+        checkboxesInitial.push({
+          name: `${j}${turno[i]}${k}`,
+          checked: false,
+        });
+      }
+    }
+  } else if (turno[i] === 'N') {
+    for (let k = 1; k < 5; k += 1) {
+      // horário --> k
+      for (let j = 2; j < 7; j += 1) {
+        // dia --> j
+        checkboxesInitial.push({
+          name: `${j}${turno[i]}${k}`,
+          checked: false,
+        });
+      }
+    }
+  }
+}
+
+export const checkboxes = checkboxesInitial;
+
+export const hours = [
+  '8h00',
+  '9h00',
+  '10h00',
+  '11h00',
+  '12h00',
+  '13h00',
+  '14h00',
+  '15h00',
+  '16h00',
+  '17h00',
+  '18h00',
+  '19h00',
+  '20h00',
+  '21h00',
+];

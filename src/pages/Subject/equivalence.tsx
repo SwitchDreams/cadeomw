@@ -65,21 +65,7 @@ const Equivalence: React.FC<EquivalenceProps> = ({
               onClick={() => handleNewSubject(equivalence.destination.code)}
             >
               <h5>{equivalence.destination.subject_name}</h5>
-              <ul>
-                <li>{`${equivalence.destination.credit} créditos`}</li>
-                <li>{equivalence.direction}</li>
-                {equivalence.options.length !== 0 && (
-                  <>
-                    <li>Cursos para equivalência:</li>
-                    <ul>
-                      {equivalence.options.length !== 0 &&
-                        equivalence.options.map(option => (
-                          <li key={option.code}>{option.name}</li>
-                        ))}
-                    </ul>
-                  </>
-                )}
-              </ul>
+              <p>{`${equivalence.destination.credit} horas`}</p>
             </EquivalenceBox>
           </Zoom>
         ))}
@@ -97,21 +83,7 @@ const Equivalence: React.FC<EquivalenceProps> = ({
                 onClick={() => handleNewSubject(equivalence.destination.code)}
               >
                 <h5>{equivalence.destination.subject_name}</h5>
-                <ul>
-                  <li>{`${equivalence.destination.credit} créditos`}</li>
-                  <li>{equivalence.direction}</li>
-                  {equivalence.options.length !== 0 && (
-                    <>
-                      <li>Cursos para equivalência:</li>
-                      <ul>
-                        {equivalence.options.length !== 0 &&
-                          equivalence.options.map(option => (
-                            <li key={option.code}>{option.name}</li>
-                          ))}
-                      </ul>
-                    </>
-                  )}
-                </ul>
+                <p>{`${equivalence.destination.credit} horas`}</p>
               </EquivalenceBox>
             </Zoom>
           ))}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Code, AllInbox, Payment, Equalizer } from '@material-ui/icons';
+import { Code, AllInbox, Payment } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
 import api from '../../services/api';
@@ -18,8 +18,8 @@ import {
   Container,
   InfoGeralContainer,
   InfoContainer,
-  NotExistingSubject,
 } from './styles';
+import { useToast } from '../../hooks/toasts';
 
 /*
   Página de Disciplina - Bruna
@@ -50,32 +50,32 @@ export interface Equivalence {
 }
 
 export interface Oferta {
-  turma: string;
+  name: string;
+  semester: string;
   teachers: string[];
-  horario: string[];
-  vagasOfertadas: number;
-  local: string | undefined;
+  total_vacancies: string;
+  schedule: string[];
+  place: string | undefined;
 }
 
 export interface Subject {
   name: string;
   credit: number;
   code: number;
-  department: string;
-  pass_percent: number;
-  status: string;
+  department_name: string;
   prerequisites: Prereq[][];
   equivalences: Equivalence[];
-  oferta: Oferta[];
+  offer: Oferta[];
 }
 
 interface RouteParams {
-  id: string;
+  subject_id: string;
 }
 
 const Subject: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [windowCheck, setWindowCheck] = useState(false);
+  const { addToast } = useToast();
 
   const { addToast } = useToast();
 
@@ -85,11 +85,11 @@ const Subject: React.FC = () => {
 
   useEffect(() => {
     try {
-      api.get(`subjects/${params.id}?format=json`).then(response => {
+      api.get(`subjects/${params.subject_id}?format=json`).then(response => {
         const newData: Subject = response.data;
 
         if (newData) {
-          const newOferta = newData.oferta.map(oferta => {
+          const newOferta = newData.offer.map(oferta => {
             const newProfs = oferta.teachers.map(prof => {
               const profString = prof.split(' ');
 
@@ -102,18 +102,18 @@ const Subject: React.FC = () => {
 
             return { ...oferta, teachers: newProfs };
           });
-          setSubject({ ...newData, oferta: newOferta });
+          setSubject({ ...newData, offer: newOferta });
           setLoading(false);
         }
       });
-    } catch (error) {
+    } catch (err) {
       addToast({
         type: 'error',
-        title: 'Erro ao carregar a disciplina',
-        description: 'Tente novamente mais tarde',
+        title: 'Erro ao carregar esta disciplina',
+        description: 'Tente novamente mais tarde.',
       });
     }
-  }, [params.id, addToast]);
+  }, [params, addToast]);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -135,17 +135,7 @@ const Subject: React.FC = () => {
 
       {loading && <Loading />}
 
-      {subject && subject.pass_percent === 0 && (
-        <NotExistingSubject>
-          <SubjectHeader window={windowCheck}>{subject.name}</SubjectHeader>
-          <h2>
-            Disciplina não existe mais, ou não possuímos seus dados no Banco de
-            Dados.
-          </h2>
-        </NotExistingSubject>
-      )}
-
-      {!loading && subject && subject.pass_percent !== 0 && (
+      {!loading && subject && (
         <Container>
           <SubjectHeader window={windowCheck}>{subject.name}</SubjectHeader>
 
@@ -164,27 +154,28 @@ const Subject: React.FC = () => {
               <InfoContainer>
                 <AllInbox style={{ color: '#7c4fe0' }} />
                 <strong>Departamento:</strong>
-                <p>{subject.department}</p>
+                <p>{subject.department_name}</p>
               </InfoContainer>
 
               <InfoContainer>
                 <Payment style={{ color: '#7c4fe0' }} />
-                <p>{`${subject.credit} créditos`}</p>
-              </InfoContainer>
-
-              <InfoContainer>
-                <Equalizer style={{ color: '#7c4fe0' }} />
-                <strong>Porcentagem de aprovação:</strong>
-                <p>{`${Math.round(subject.pass_percent * 100)}%`}</p>
+                <p>{`${subject.credit} horas`}</p>
               </InfoContainer>
             </InfoGeralContainer>
           </Grow>
 
-          <Oferta window={windowCheck} subject={subject} />
+          {subject.offer.length !== 0 && (
+            <Oferta window={windowCheck} subject={subject} />
+          )}
 
-          <Equivalence window={windowCheck} subject={subject} />
+          {subject.equivalences.length !== 0 && (
+            <Equivalence window={windowCheck} subject={subject} />
+          )}
 
-          <Prereq window={windowCheck} subject={subject} />
+          {subject.prerequisites.length !== 0 &&
+            subject.prerequisites[0].length !== 0 && (
+              <Prereq window={windowCheck} subject={subject} />
+            )}
         </Container>
       )}
     </>

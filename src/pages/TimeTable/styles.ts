@@ -12,6 +12,15 @@ export const SubjectChip = styled(Chip)`
 
 export const Form = styled(FormControl)`
   width: 250px;
+
+  .button {
+    margin-bottom: 20px;
+
+    &:hover {
+      background-color: #7c4fe0;
+      color: white !important;
+    }
+  }
 `;
 
 export const CalendarContainer = styled.div<WindowProps>`
@@ -161,6 +170,13 @@ export const ModalSubjectsContainer = styled.div`
 
 export const MontarGrade = styled.div`
   margin: 30px;
+
+  .button {
+    &:hover {
+      background-color: #7c4fe0;
+      color: white !important;
+    }
+  }
 `;
 
 export const HowToUse = styled.div<WindowProps>`
@@ -193,4 +209,18 @@ export const HowToUse = styled.div<WindowProps>`
     css`
       max-width: 100%;
     `}
+`;
+
+export const ModalBusyHoursContainer = styled.div`
+  table {
+    width: 100%;
+
+    th {
+      width: 16.6%;
+    }
+  }
+`;
+
+export const NoCalendarMessage = styled.div`
+  text-align: center;
 `;

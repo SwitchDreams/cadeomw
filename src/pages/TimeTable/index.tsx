@@ -9,6 +9,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
 import Header from '../../components/Header';
 import Generator from '../../services/timetable/generator';
 import {
@@ -20,6 +21,8 @@ import {
   ModalSubjectsContainer,
   MontarGrade,
   HowToUse,
+  ModalBusyHoursContainer,
+  NoCalendarMessage,
 } from './styles';
 import {
   classToEvent,
@@ -29,6 +32,8 @@ import {
   SearchResponse,
   ModalSubject,
   parseSchedule,
+  checkboxes,
+  hours,
 } from './utils';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
@@ -44,7 +49,7 @@ function renderEventContent(eventInfo: any) {
       <SlotContainer>
         <div className="title">
           {subjectName[0]}
-          {subjectName.slice(0).toLowerCase()} - {className}
+          {subjectName.slice(1).toLowerCase()} - {className}
           <hr />
         </div>
         <div className="info">{teacher}</div>
@@ -54,14 +59,22 @@ function renderEventContent(eventInfo: any) {
 }
 
 const TimeTable: React.FC = () => {
+  let hourCounter = -5;
+
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
+  const [tryGenerate, setTryGenerate] = useState(false);
 
   const [windowCheck, setWindowCheck] = useState(false);
 
   const [search, setSearch] = useState('');
   const [subjectsSearched, setSubjectsSearched] = useState<Subject[]>([]);
   const [modalSubjects, setModalSubjects] = useState<ModalSubject[]>([]);
+
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+
+  const [checked, setChecked] = useState(checkboxes);
+  const [busyHourSelected, setBusyHourSelected] = useState(false);
 
   const { addToast } = useToast();
 
@@ -173,7 +186,11 @@ const TimeTable: React.FC = () => {
           return subjectsSearched.find(subj => subj.name === name);
         });
       try {
-        const generator = new Generator(filteredSubjects, [], chosenClasses);
+        const busyHours: string[] = [];
+        checked.forEach(check => {
+          if (check.checked) busyHours.push(check.name);
+        });
+        const generator = new Generator(filteredSubjects, busyHours, chosenClasses);
         generator.bestSubjectsClasses();
         const formattedEvents: any[] = [];
         generator.selectedClasses.forEach(selectedClass => {
@@ -191,10 +208,12 @@ const TimeTable: React.FC = () => {
         });
       }
     },
-    [subjectsSearched],
+    [subjectsSearched, checked],
   );
 
   const handleParseSubjects = useCallback(() => {
+    setTryGenerate(true);
+
     const parsedSubjects = subjectsSearched
       .filter(subj => subj.class === null || subj.class === 'turma')
       .map(subj => {
@@ -232,6 +251,18 @@ const TimeTable: React.FC = () => {
     handleGenerateTable(parsedSubjects, parsedChosenClasses);
   }, [subjectsSearched, handleGenerateTable]);
 
+  const handleChangeCheckbox = useCallback(
+    (name: string) => {
+      const checkedNewState = checked.map(state => {
+        if (state.name === name) return { name, checked: !state.checked };
+        return state;
+      });
+      setChecked(checkedNewState);
+      setBusyHourSelected(true);
+    },
+    [checked],
+  );
+
   return (
     <>
       <div className="text-center">
@@ -260,6 +291,16 @@ const TimeTable: React.FC = () => {
         </HowToUse>
 
         <Form>
+          <Button
+            className="button"
+            variant="outlined"
+            color="primary"
+            onClick={() => setShow2(true)}
+          >
+            {busyHourSelected
+              ? 'Horário Ocupado Adicionado!'
+              : 'Adicionar Horário Ocupado'}
+          </Button>
           <TextField
             id="filled-basic"
             variant="filled"
@@ -269,6 +310,7 @@ const TimeTable: React.FC = () => {
           <Button
             variant="outlined"
             color="primary"
+            className="button"
             onClick={handleInputSearch}
           >
             Pesquisar Disciplina
@@ -336,6 +378,62 @@ const TimeTable: React.FC = () => {
           </ModalSubjectsContainer>
         </Modal>
 
+        <Modal
+          show={show2}
+          onHide={() => setShow2(false)}
+          dialogClassName="modal-90w"
+          aria-labelledby="example-custom-modal-styling-title"
+          centered
+        >
+          <ModalBusyHoursContainer>
+            <Modal.Header closeButton>
+              <Modal.Title id="title">
+                Selecione os horários em que não deseja ter aulas
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Horários</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {hours.map(hour => {
+                    hourCounter += 5;
+                    return (
+                      <tr key={hour}>
+                        <td>{hour}</td>
+                        {checked
+                          .slice(hourCounter, hourCounter + 5)
+                          .map(checkbox => (
+                            <td key={checkbox.name}>
+                              <Checkbox
+                                color="default"
+                                onChange={() =>
+                                  handleChangeCheckbox(checkbox.name)
+                                }
+                                inputProps={{
+                                  'aria-label': 'checkbox with default color',
+                                }}
+                                checked={checkbox.checked}
+                              />
+                            </td>
+                          ))}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </Modal.Body>
+          </ModalBusyHoursContainer>
+        </Modal>
+
         {subjectsSearched && (
           <ListSubjects window={windowCheck}>
             {subjectsSearched.map(subj => (
@@ -386,6 +484,7 @@ const TimeTable: React.FC = () => {
             <Button
               variant="outlined"
               color="primary"
+              className="button"
               onClick={handleParseSubjects}
             >
               Montar Grade Horária
@@ -418,6 +517,12 @@ const TimeTable: React.FC = () => {
               headerToolbar={false}
             />
           </CalendarContainer>
+        )}
+        {selectedClasses.length === 0 && tryGenerate && (
+          <NoCalendarMessage>
+            Não foi possível criar uma grade horária com as disciplinas e
+            horários selecionados, tente uma nova combinação.
+          </NoCalendarMessage>
         )}
       </div>
     </>

@@ -3,11 +3,12 @@
 */
 
 interface Oferta {
-  turma: string;
+  name: string;
+  semester: string;
   teachers: string[];
-  horario: string[];
-  vagasOfertadas: number;
-  local: string | undefined;
+  total_vacancies: string;
+  schedule: string[];
+  place: string | undefined;
 }
 
 interface MapaDiasProps {
@@ -84,11 +85,11 @@ export function parseHorario(horario: string): string {
 
 export default function parseOferta(ofertas: Oferta[]): Oferta[] {
   const newOferta = ofertas.map(oferta => {
-    const newHorarios = oferta.horario.map(horario => {
+    const newHorarios = oferta.schedule.map(horario => {
       return parseHorario(horario);
     });
 
-    return { ...oferta, horario: newHorarios };
+    return { ...oferta, schedule: newHorarios };
   });
 
   return newOferta;
