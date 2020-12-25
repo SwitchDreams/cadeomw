@@ -3,9 +3,9 @@ from course.models.models import Subject
 
 # Run example
 # Para uma disciplina em específico
-# python manage.py runscripts preprocess.subject --script-args subject_id
+# python manage.py runscript preprocess.subject --script-args subject_id
 # Para todas as disciplinas
-# python manage.py runscripts preprocess.subject --script-args all
+# python manage.py runscript preprocess.subject --script-args all
 
 def run(*args):
     if len(args) == 0:
