@@ -52,7 +52,7 @@ const Header: React.FC<HeaderBackground> = ({
       case 'list-courses':
         setSelectedLink(2);
         break;
-      case 'subjects':
+      case 'list-subjects':
         setSelectedLink(3);
         break;
       case 'timetable':
@@ -67,6 +67,9 @@ const Header: React.FC<HeaderBackground> = ({
       case 'about-us':
         setSelectedLink(7);
         break;
+      case 'list-departments':
+        setSelectedLink(8);
+        break;
       default:
         break;
     }
@@ -80,6 +83,7 @@ const Header: React.FC<HeaderBackground> = ({
     { id: 5, name: 'Mapa UnB', link: '/map' },
     { id: 6, name: 'FAQ SIGAA', link: '/faq-sigaa' },
     { id: 7, name: 'Sobre Nós', link: '/about-us' },
+    { id: 8, name: 'Departamentos', link: '/list-departments' },
   ];
 
   return (

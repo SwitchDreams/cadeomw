@@ -23,7 +23,7 @@ type Inputs = {
 
 interface Results {
   code: number;
-  department: string;
+  department_name: string;
   credit: number;
   name: string;
 }
@@ -136,7 +136,7 @@ const ListSubjects: React.FC = () => {
     setLoading(true);
     try {
       const response = await api.get<SubjectInfos>(
-        `subjects/?search=${e.target.value}&format=json&department_only=true`,
+        `subjects/?department_initial=${e.target.value}&format=json`,
       );
       setSubjects(response.data);
       setQtdResults(true);
@@ -195,14 +195,8 @@ const ListSubjects: React.FC = () => {
                   {subject.name.charAt(0).toUpperCase() +
                     subject.name.slice(1).toLowerCase()}
                 </strong>
-                <p>
-                  Código:
-                  {subject.code}
-                </p>
-                <p>
-                  Departamento:
-                  {subject.department}
-                </p>
+                <p>Código: {subject.code}</p>
+                <p>Departamento: {subject.department_name}</p>
               </div>
               <FiChevronRight size={20} />
             </a>

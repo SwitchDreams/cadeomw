@@ -4,9 +4,9 @@ import { ContainerSubjects, Form, Pagination, Subject } from './styles';
 
 interface ListProps {
   materias: {
-    nome: string;
-    cargaHoraria: number;
-    departamento: string;
+    code: string;
+    credit: number;
+    subject_name: string;
   }[];
   windowCheck: boolean;
   status: string;
@@ -46,7 +46,7 @@ const Listagem: React.FC<ListProps> = ({
       setSearchSubject(search);
 
       let filteredSubjects = materias.filter(subject =>
-        subject.nome
+        subject.subject_name
           .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
@@ -139,10 +139,10 @@ const Listagem: React.FC<ListProps> = ({
           counter += 1;
 
           return (
-            <Subject key={subject.nome} window={windowCheck}>
+            <Subject key={subject.subject_name} window={windowCheck}>
               <div className="name">
-                {counter} - <strong>{subject.departamento}</strong> -{' '}
-                {subject.nome} - {subject.cargaHoraria}h
+                {counter} - <strong>{subject.code}</strong> -{' '}
+                {subject.subject_name} - {subject.credit}h
               </div>
               <div className={status.slice(0, 3)}>{status}</div>
             </Subject>

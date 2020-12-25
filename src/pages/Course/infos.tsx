@@ -10,27 +10,20 @@ import {
 } from './styles';
 
 interface InfoProps {
-  informations: {
-    cargaHoraria: {
-      totalMinima: string;
-      optativaMinima: string;
+  details: {
+    workload: {
+      total: number;
+      optional: number;
+      mandatory: number;
     };
-    cargaHorariaObrigatoria: {
-      total: string;
-      praticos: string;
-      teoricos: string;
-    };
-    periodoLetivo: {
-      minimo: number;
-      medio: number;
-      maximo: number;
-    };
-    horasComplementares: string;
-    coordenador: string;
+    num_semester: number;
+    academic_degree: string;
+    shift: string;
+    coordinator_name: string;
   };
 }
 
-const Infos: React.FC<InfoProps> = ({ informations }: InfoProps) => {
+const Infos: React.FC<InfoProps> = ({ details }: InfoProps) => {
   const [windowCheck, setWindowCheck] = useState(false);
 
   useEffect(() => {
@@ -50,38 +43,34 @@ const Infos: React.FC<InfoProps> = ({ informations }: InfoProps) => {
   return (
     <InfosGeraisContainer>
       <CoordenadorText>
-        <strong>Coordenador do Curso:</strong> {informations.coordenador}
+        <strong>Coordenador do Curso:</strong> {details.coordinator_name}
       </CoordenadorText>
       <InfosGerais window={windowCheck}>
         <InfoText>
           <ChevronRightIcon />
           Carga Horária:
           <InfoSubText window={windowCheck}>
-            Total Mínima: {informations.cargaHoraria.totalMinima} <br />
-            Optativa Mínima: {informations.cargaHoraria.optativaMinima}
-            {informations.horasComplementares && (
-              <>
-                <br /> Horas Complementares: {informations.horasComplementares}
-              </>
-            )}
+            Total Mínima: {details.workload.total} <br />
+            Optativa Mínima: {details.workload.optional}
           </InfoSubText>
         </InfoText>
         <InfoText>
           <ChevronRightIcon />
           Carga Horária Obrigatória:
           <InfoSubText window={windowCheck}>
-            Total: {informations.cargaHorariaObrigatoria.total}, Práticos:{' '}
-            {informations.cargaHorariaObrigatoria.praticos}, Teóricos:{' '}
-            {informations.cargaHorariaObrigatoria.teoricos}
+            Total: {details.workload.mandatory}
           </InfoSubText>
         </InfoText>
         <InfoText>
           <ChevronRightIcon />
           Período (em semestres):
+          <InfoSubText window={windowCheck}>{details.num_semester}</InfoSubText>
+        </InfoText>
+        <InfoText>
+          <ChevronRightIcon />
+          Turno:
           <InfoSubText window={windowCheck}>
-            Mínimo: {informations.periodoLetivo.minimo}, Médio:{' '}
-            {informations.periodoLetivo.medio}, Máximo:{' '}
-            {informations.periodoLetivo.maximo}
+            {details.shift === 'N' ? 'Noturno' : 'Diurno'}
           </InfoSubText>
         </InfoText>
       </InfosGerais>
