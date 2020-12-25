@@ -203,12 +203,11 @@ const TimeTable: React.FC = () => {
           );
         });
         setSelectedClasses(formattedEvents);
-      } catch {
+      } catch (e) {
         addToast({
           type: 'error',
           title: 'Erro montar grade',
-          description:
-            'Suas turmas pre-escolhidas possuem algum conflito de horario ou nao foi possivel montar a grade',
+          description: e.message,
         });
       }
     },

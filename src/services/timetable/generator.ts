@@ -76,22 +76,26 @@ export default class Generator {
       return a.classes.length - b.classes.length;
     });
 
-    // Verifica se as selected classes tem algum horário de conflito
+    // Verifica se as selected classes tem algum conflito de horário entre si
     for (let i = 0; i < selectedClasses.length; i += 1) {
-      for (let j = i; j < selectedClasses.length; j += 1) {
+      for (let j = i + 1; j < selectedClasses.length; j += 1) {
         if (classesHasConflictTime(selectedClasses[i], selectedClasses[j])) {
-          throw new Error('Turmas selecionadas com conflito entre si');
+          throw new Error(
+            'Turmas selecionadas com conflito de horários entre si',
+          );
         }
       }
     }
 
+    // Verifica se as selected classes tem conflito de horário com o busyTime
     for (let i = 0; i < selectedClasses.length; i += 1) {
       if (classHasNoConflictWithBusyTimes(selectedClasses[i], busyTime)) {
         throw new Error(
-          'Turmas selecionadas com conflito com horários marcados ocupados',
+          'Conflito de horários entre turmas selecionadas e horários ocupados',
         );
       }
     }
+
     this.selectedClasses = selectedClasses;
     this.busyTime = busyTime;
   }
@@ -121,7 +125,9 @@ export default class Generator {
         } else if (j === subjectClassesLength) {
           // eslint-disable-next-line no-console
           console.log('Não há disciplinas sem conflitos');
-          throw new Error('Não foi possível montar a grade');
+          throw new Error(
+            'Não foi possível montar a grade com as disciplinas selecionadas',
+          );
         }
       }
     }
