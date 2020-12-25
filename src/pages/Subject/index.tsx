@@ -19,7 +19,6 @@ import {
   InfoGeralContainer,
   InfoContainer,
 } from './styles';
-import { useToast } from '../../hooks/toasts';
 
 /*
   Página de Disciplina - Bruna
@@ -75,8 +74,6 @@ interface RouteParams {
 const Subject: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [windowCheck, setWindowCheck] = useState(false);
-  const { addToast } = useToast();
-
   const { addToast } = useToast();
 
   const [subject, setSubject] = useState<Subject | null>(null);
