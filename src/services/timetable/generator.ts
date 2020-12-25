@@ -42,6 +42,22 @@ function classesHasConflictTime(
   return false;
 }
 
+function classHasNoConflictWithBusyTimes(
+  classRoom: GeneratorClass,
+  busyTimes: Array<string>,
+): boolean {
+  const classRoomLength = classRoom.time.length;
+  const busyTimeLength = busyTimes.length;
+  for (let i = 0; i < classRoomLength; i += 1) {
+    for (let j = 0; j < busyTimeLength; j += 1) {
+      if (hasConflictTime(classRoom.time[i], busyTimes[j])) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 // Classe responsável por gerar a grade automática
 export default class Generator {
   subjects: Array<GeneratorSubject>;
@@ -64,27 +80,25 @@ export default class Generator {
     for (let i = 0; i < selectedClasses.length; i += 1) {
       for (let j = i; j < selectedClasses.length; j += 1) {
         if (classesHasConflictTime(selectedClasses[i], selectedClasses[j])) {
-          throw new Error('Turmas selecionadas com conflito');
+          throw new Error('Turmas selecionadas com conflito entre si');
         }
       }
     }
 
+    for (let i = 0; i < selectedClasses.length; i += 1) {
+      if (classHasNoConflictWithBusyTimes(selectedClasses[i], busyTime)) {
+        throw new Error(
+          'Turmas selecionadas com conflito com horários marcados ocupados',
+        );
+      }
+    }
     this.selectedClasses = selectedClasses;
     this.busyTime = busyTime;
   }
 
   // Verifica se determinado horário já está ocupado
   classHasNoConflict(classRoom: GeneratorClass): boolean {
-    const classRoomLength = classRoom.time.length;
-    const busyTimeLength = this.busyTime.length;
-    for (let i = 0; i < classRoomLength; i += 1) {
-      for (let j = 0; j < busyTimeLength; j += 1) {
-        if (hasConflictTime(classRoom.time[i], this.busyTime[j])) {
-          return false;
-        }
-      }
-    }
-    return true;
+    return !classHasNoConflictWithBusyTimes(classRoom, this.busyTime);
   }
 
   // Retorna a melhor combinação de turmas das matérias escolhidas
