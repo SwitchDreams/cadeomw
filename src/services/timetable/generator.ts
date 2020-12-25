@@ -13,28 +13,33 @@ export interface GeneratorSubject {
   color: string;
 }
 
-function hasConflictTime(
+function hasConflictTime(time1: string, time2: string): boolean {
+  const [busyWeek1, busyShift1, ...busyTimes1] = time1.split('');
+  const [busyWeek2, busyShift2, ...busyTimes2] = time2.split('');
+  // Caso o dia da semana e o turno seja igual
+  if (busyWeek1 === busyWeek2 && busyShift1 === busyShift2) {
+    // Verifica char a char se está ocupado
+    for (let z = 0; z < busyTimes1.length; z += 1) {
+      if (busyTimes2.includes(busyTimes1[z])) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function classesHasConflictTime(
   roomClass1: GeneratorClass,
   roomClass2: GeneratorClass,
 ): boolean {
   for (let i = 0; i < roomClass1.time.length; i += 1) {
     for (let j = 0; j < roomClass2.time.length; j += 1) {
-      const [classWeek, classShift, ...classTimes] = roomClass1.time[i].split(
-        '',
-      );
-      const [busyWeek, busyShift, ...busyTimes] = roomClass2.time[j].split('');
-      // Caso o dia da semana e o turno seja igual
-      if (classWeek === busyWeek && classShift === busyShift) {
-        // Verifica char a char se está ocupado
-        for (let z = 0; z < classTimes.length; z += 1) {
-          if (busyTimes.includes(classTimes[z])) {
-            return false;
-          }
-        }
+      if (hasConflictTime(roomClass1.time[i], roomClass2.time[j])) {
+        return true;
       }
     }
   }
-  return true;
+  return false;
 }
 
 // Classe responsável por gerar a grade automática
@@ -58,7 +63,7 @@ export default class Generator {
     // Verifica se as selected classes tem algum horário de conflito
     for (let i = 0; i < selectedClasses.length; i += 1) {
       for (let j = i; j < selectedClasses.length; j += 1) {
-        if (hasConflictTime(selectedClasses[i], selectedClasses[j])) {
+        if (classesHasConflictTime(selectedClasses[i], selectedClasses[j])) {
           throw new Error('Turmas selecionadas com conflito');
         }
       }
@@ -69,23 +74,13 @@ export default class Generator {
   }
 
   // Verifica se determinado horário já está ocupado
-  timeNoConflict(classRoom: GeneratorClass): boolean {
+  classHasNoConflict(classRoom: GeneratorClass): boolean {
     const classRoomLength = classRoom.time.length;
     const busyTimeLength = this.busyTime.length;
     for (let i = 0; i < classRoomLength; i += 1) {
       for (let j = 0; j < busyTimeLength; j += 1) {
-        const [classWeek, classShift, ...classTimes] = classRoom.time[i].split(
-          '',
-        );
-        const [busyWeek, busyShift, ...busyTimes] = this.busyTime[j].split('');
-        // Caso o dia da semana e o turno seja igual
-        if (classWeek === busyWeek && classShift === busyShift) {
-          // Verifica char a char se está ocupado
-          for (let z = 0; z < classTimes.length; z += 1) {
-            if (busyTimes.includes(classTimes[z])) {
-              return false;
-            }
-          }
+        if (hasConflictTime(classRoom.time[i], this.busyTime[j])) {
+          return false;
         }
       }
     }
@@ -100,7 +95,7 @@ export default class Generator {
       // Para todas as turmas
       for (let j = 0; j < subjectClassesLength; j += 1) {
         // Caso não tenha conflito de horário
-        if (this.timeNoConflict(this.subjects[i].classes[j])) {
+        if (this.classHasNoConflict(this.subjects[i].classes[j])) {
           // Escolhe a determinada turma
           this.selectedClasses.push(this.subjects[i].classes[j]);
           // Colocar os tempos no busy time

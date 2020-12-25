@@ -190,7 +190,11 @@ const TimeTable: React.FC = () => {
         checked.forEach(check => {
           if (check.checked) busyHours.push(check.name);
         });
-        const generator = new Generator(filteredSubjects, busyHours, chosenClasses);
+        const generator = new Generator(
+          filteredSubjects,
+          busyHours,
+          chosenClasses,
+        );
         generator.bestSubjectsClasses();
         const formattedEvents: any[] = [];
         generator.selectedClasses.forEach(selectedClass => {

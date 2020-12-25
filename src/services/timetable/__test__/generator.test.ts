@@ -25,5 +25,5 @@ test('Generator.timeNoConflict', () => {
     color: '#FFFFFF',
   };
   const generator = new Generator([], ['3T45']);
-  expect(generator.timeNoConflict(classRoom)).toEqual(false);
+  expect(generator.classHasNoConflict(classRoom)).toEqual(false);
 });
