@@ -15,7 +15,7 @@ export const Container = styled.div<ContainerProps>`
     `}
 
   a.nav-link {
-    margin: 0 30px !important;
+    margin: 0 15px !important;
     position: relative;
 
     &,
