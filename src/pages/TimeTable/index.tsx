@@ -211,7 +211,7 @@ const TimeTable: React.FC = () => {
         });
       }
     },
-    [subjectsSearched, checked],
+    [subjectsSearched, checked, addToast],
   );
 
   const handleParseSubjects = useCallback(() => {
