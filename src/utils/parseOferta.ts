@@ -48,6 +48,7 @@ const mapaHorarios: MapaHorariosProps = {
 
 export function parseHorario(horario: string): string {
   try {
+    horario = horario.toUpperCase();
     let diaString = horario.charAt(0);
 
     for (let i = 1; i < 5; i += 1) {
@@ -67,7 +68,7 @@ export function parseHorario(horario: string): string {
 
     if (diaString.length > 1) {
       for (let i = 1; i < diaString.length; i += 1) {
-        newDia += ', ';
+        newDia += ' e ';
         newDia += `${mapaDias[(diaString[i] as unknown) as number]}`;
       }
     }

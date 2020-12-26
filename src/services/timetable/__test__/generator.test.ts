@@ -1,4 +1,4 @@
-import Generator from '../generator';
+import Generator, {GeneratorClass, GeneratorSubject} from '../generator';
 import { APC, C1, F1 } from '../example';
 
 test('Generator', () => {
@@ -15,3 +15,15 @@ test('Generator with busyTime', () => {
   expect(generator.busyTime).toEqual(['3T45', '3T23', '5T23', '3M12', '5M12']);
 });
 
+test('Generator.timeNoConflict', () => {
+  const classRoom: GeneratorClass = {
+    name: 'A',
+    teacher: 'teacher',
+    time: ['3T2345'],
+    place: 'Amarelinho',
+    subjectName: 'APC',
+    color: '#FFFFFF',
+  };
+  const generator = new Generator([], ['3T45']);
+  expect(generator.classHasNoConflict(classRoom)).toEqual(false);
+});

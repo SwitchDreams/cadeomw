@@ -5,6 +5,7 @@ import { Code, AllInbox, Payment } from '@material-ui/icons';
 import Grow from '@material-ui/core/Grow';
 
 import api from '../../services/api';
+import { useToast } from '../../hooks/toasts';
 
 import Equivalence from './equivalence';
 import Oferta from './oferta';
@@ -18,7 +19,6 @@ import {
   InfoGeralContainer,
   InfoContainer,
 } from './styles';
-import { useToast } from '../../hooks/toasts';
 
 /*
   Página de Disciplina - Bruna
