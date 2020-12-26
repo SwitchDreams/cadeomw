@@ -1,10 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface FooterProps {
-  window: boolean;
-}
-
-export const FooterContainer = styled.div<FooterProps>`
+export const FooterContainer = styled.div`
   background-color: transparent;
 
   .waves {
@@ -19,15 +15,5 @@ export const FooterContainer = styled.div<FooterProps>`
       margin-bottom: 0;
       background: #7c4fe0;
     }
-
-    ${props =>
-      !props.window &&
-      css`
-        background: #7c4fe0;
-
-        p {
-          padding-top: 20px;
-        }
-      `}
   }
 `;
