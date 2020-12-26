@@ -13,23 +13,8 @@ interface HeaderBackground {
 const Header: React.FC<HeaderBackground> = ({
   transparent,
 }: HeaderBackground) => {
-  const [windowCheck, setWindowCheck] = useState(true);
   const [navFixed, setNavFixed] = useState(false);
   const [selectedLink, setSelectedLink] = useState(0);
-
-  useEffect(() => {
-    if (window.innerWidth >= 1950) {
-      setWindowCheck(false);
-    }
-  }, []);
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1950) {
-      setWindowCheck(false);
-    } else {
-      setWindowCheck(true);
-    }
-  });
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -114,9 +99,15 @@ const Header: React.FC<HeaderBackground> = ({
           </Navbar.Collapse>
         </Navbar>
       </div>
-      {!transparent && windowCheck && (
+      {!transparent && (
         <WaveContainer>
-          <svg width="100%" height="200px" fill="none">
+          <svg
+            width="100%"
+            height="200px"
+            fill="none"
+            viewBox="0 0 1400 180"
+            preserveAspectRatio="none"
+          >
             <path
               fill="#fff"
               d="

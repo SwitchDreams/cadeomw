@@ -2,19 +2,20 @@ import React from 'react';
 
 import { FooterContainer } from './styles';
 
-interface FooterProps {
-  window: boolean;
-}
-
-const Footer: React.FC<FooterProps> = ({ window }: FooterProps) => {
+const Footer: React.FC = () => {
   return (
-    <FooterContainer window={window}>
+    <FooterContainer>
       <div className="waves">
-        {window && (
-          <svg width="100%" height="200px" fill="none">
-            <path
-              fill="#7c4fe0"
-              d="
+        <svg
+          width="100%"
+          height="200px"
+          fill="none"
+          viewBox="0 0 1400 180"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="#7c4fe0"
+            d="
                 M 0 67
                 C 273,183
                   822,-40
@@ -24,13 +25,13 @@ const Footer: React.FC<FooterProps> = ({ window }: FooterProps) => {
                 H 0
                 V 67
                 Z"
-            >
-              <animate
-                repeatCount="indefinite"
-                fill="#454599"
-                attributeName="d"
-                dur="15s"
-                values="
+          >
+            <animate
+              repeatCount="indefinite"
+              fill="#454599"
+              attributeName="d"
+              dur="15s"
+              values="
                     M0 77
                     C 473,283
                     822,-40
@@ -71,10 +72,9 @@ const Footer: React.FC<FooterProps> = ({ window }: FooterProps) => {
                     V 67
                     Z
                     "
-              />
-            </path>
-          </svg>
-        )}
+            />
+          </path>
+        </svg>
         <p>&copy; 2020 Switch Dreams.</p>
       </div>
     </FooterContainer>
