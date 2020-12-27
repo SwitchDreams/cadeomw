@@ -72,7 +72,8 @@ const Equivalence: React.FC<PrereqProps> = ({
                       <Book style={{ color: '#7c4fe0' }} />
                       <CardTitleContainer window={window}>
                         <h3>{subjectPrereq.subject_name}</h3>
-                        <p>{`${subjectPrereq.credit} créditos`}</p>
+                        <p>{`${subjectPrereq.credit} horas`}</p>
+                        <p>{`Código: ${subjectPrereq.code}`}</p>
                       </CardTitleContainer>
                     </FeatureCardContainer>
                   ))}

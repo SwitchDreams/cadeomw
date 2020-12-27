@@ -66,6 +66,7 @@ const Equivalence: React.FC<EquivalenceProps> = ({
             >
               <h5>{equivalence.destination.subject_name}</h5>
               <p>{`${equivalence.destination.credit} horas`}</p>
+              <p>{`Código: ${equivalence.destination.code}`}</p>
             </EquivalenceBox>
           </Zoom>
         ))}
@@ -84,6 +85,7 @@ const Equivalence: React.FC<EquivalenceProps> = ({
               >
                 <h5>{equivalence.destination.subject_name}</h5>
                 <p>{`${equivalence.destination.credit} horas`}</p>
+                <p>{`Código: ${equivalence.destination.code}`}</p>
               </EquivalenceBox>
             </Zoom>
           ))}

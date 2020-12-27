@@ -52,7 +52,11 @@ const Oferta: React.FC<OfertaProps> = ({ subject, window }: OfertaProps) => {
                 </td>
                 <td className="horario">
                   {oferta.schedule.map(horario => {
-                    return <div key={horario}>{horario}</div>;
+                    return (
+                      <div key={horario}>
+                        {horario === 'Erro' ? '' : horario}
+                      </div>
+                    );
                   })}
                 </td>
                 <td>{oferta.total_vacancies}</td>

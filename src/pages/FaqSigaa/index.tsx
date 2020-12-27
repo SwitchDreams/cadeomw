@@ -69,8 +69,8 @@ const FaqSigaa: React.FC = () => {
       <Title window={windowCheck}>Entenda o SIGAA</Title>
       <Main window={windowCheck}>
         <h3>
-          E agora time cadeomw, não sei onde achar as coisas no SIGAA, como faço
-          ?
+          E agora time cadeomw, não sei onde achar as coisas no SIGAA, como
+          faço?
         </h3>
         <p>
           Calma pequeno gafanhoto, a gente te ajuda! Achar as coisas no SIGAA
@@ -190,7 +190,7 @@ const FaqSigaa: React.FC = () => {
         </div>
 
         <div className="oferta" ref={ofertaRef}>
-          <h3>Como posso ver a oferta desse semestre ?</h3>
+          <h3>Como posso ver a oferta desse semestre?</h3>
           <p>
             Bom, acessando o botão acima, basta clicar em{' '}
             <span className="negrito">Ensino</span> e depois em{' '}
@@ -276,7 +276,7 @@ const FaqSigaa: React.FC = () => {
         </div>
 
         <div className="creditos" ref={creditosRef}>
-          <h3>Onde foram parar meus créditos ?</h3>
+          <h3>Onde foram parar meus créditos?</h3>
           <p>
             O SIGAA não utiliza o padrão já conhecido de créditos que a UnB e o
             MW usavam. Agora, foi adotado um padrão de hora/aula. Cada crédito
@@ -288,7 +288,7 @@ const FaqSigaa: React.FC = () => {
         </div>
 
         <div className="docentes" ref={docentesRef}>
-          <h3>Onde encontro os professores ?</h3>
+          <h3>Onde encontro os professores?</h3>
           <p>
             Para descobrir quais são os professores de cada departamento, basta
             entrar no portal público, na aba de{' '}
@@ -301,7 +301,7 @@ const FaqSigaa: React.FC = () => {
         </div>
 
         <div className="documentos" ref={documentosRef}>
-          <h3>Onde emito meu histórico escolar ?</h3>
+          <h3>Onde emito meu histórico escolar?</h3>
           <p>
             Para isso, precisamos fazer o login na plataforma, com sua matrícula
             e sua senha! Depois, basta clicar no menu superior esquerdo com o
@@ -336,7 +336,7 @@ const FaqSigaa: React.FC = () => {
         </div>
 
         <div className="retirada" ref={retiradaRef}>
-          <h3>Vish, não vai dar... Como retiro uma disciplina ?</h3>
+          <h3>Vish, não vai dar... Como retiro uma disciplina?</h3>
           <p>
             A retirada de disciplina é pedida diretamente ao SAA. Ela pode ser
             feita online, ou por meio de e-mail para{' '}
@@ -347,7 +347,7 @@ const FaqSigaa: React.FC = () => {
         </div>
 
         <div className="trancamento" ref={trancamentoRef}>
-          <h3>Como funciona o trancamento no SIGAA ?</h3>
+          <h3>Como funciona o trancamento no SIGAA?</h3>
           <p>
             O trancamento funciona da mesma forma, porém com nome diferente do
             que estávamos acostumados. O Trancamento Geral Automático agora se

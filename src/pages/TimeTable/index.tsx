@@ -44,9 +44,11 @@ function renderEventContent(eventInfo: any) {
   const [subjectName, className, teacher] = eventInfo.event.id.split(
     '-',
   ) as string[];
+  const windowCheck = window.innerWidth <= 1000;
+
   return (
     <>
-      <SlotContainer>
+      <SlotContainer window={windowCheck}>
         <div className="title">
           {subjectName[0]}
           {subjectName.slice(1).toLowerCase()} - {className}
@@ -289,7 +291,8 @@ const TimeTable: React.FC = () => {
           <p>
             Caso alguma turma ou disciplina especificada tenha conflito de
             horário com outra, uma das duas matérias não irá ser adicionada à
-            sua grade.
+            sua grade. <br /> As cores da grade são geradas aleatoriamente, caso
+            deseje alterá-las, basta clicar em montar grade novamente.
           </p>
         </HowToUse>
 
