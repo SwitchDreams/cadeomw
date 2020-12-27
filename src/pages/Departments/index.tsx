@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import {
-  TableContainer,
-} from './styles'
+import Table from 'react-bootstrap/Table';
+import Axios from 'axios';
+import { useHistory, useParams } from 'react-router-dom';
+import { TableContainer } from './styles';
 import {
   Container,
   TabContent,
@@ -9,21 +10,16 @@ import {
   AllContainer,
   CourseNameContainer,
   CourseName,
-} from '../../pages/Course/styles'
-import Table from 'react-bootstrap/Table'
+} from '../Course/styles';
 import Header from '../../components/Header';
-import Axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import Loading from '../../components/Loading';
 
-/* so reenderiza quando tab.select == true*/
 interface Tab {
   selected: boolean;
   name: string;
 }
 
-interface Course{
+interface Course {
   code: number;
   name: string;
   shift: string;
@@ -31,13 +27,13 @@ interface Course{
   academic_degree: string;
 }
 
-interface Subject{
+interface Subject {
   code: number;
   subject_name: string;
   credit: number;
 }
 
-interface Department{
+interface Department {
   name: string;
   initials: string;
   courses_list: Course[];
@@ -48,32 +44,7 @@ interface RouteParams {
   id: string;
 }
 
-
-
 const DepartmentPage: React.FC = () => {
-  
-  const history = useHistory();
-  const params = useParams<RouteParams>();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    const getDepartment = async () => {
-      try {
-        const response = await Axios.get<Department>(`https://back.cadeomw.com.br/department/${params.id}?format=json`);
-        console.log(response);
-        setDepartment(response.data);
-        setLoading(false);
-      }catch (err) {
-        setLoading(false);
-        console.log(err);
-        history.push('/');
-      }
-    };
-
-    getDepartment();
-  }, [history, params.id]);
-
   const tabsInit = [
     {
       name: 'Materias',
@@ -85,11 +56,31 @@ const DepartmentPage: React.FC = () => {
     },
   ];
 
+  const history = useHistory();
+  const params = useParams<RouteParams>();
+  const [loading, setLoading] = useState(true);
   const [tabs, setTabs] = useState<Tab[]>(tabsInit);
-  const [materias, setMaterias] = useState(true)
+  const [materias, setMaterias] = useState(true);
   const [cursos, setCursos] = useState(false);
-  const [department, setDepartment] = useState<Department | null > (null);
+  const [department, setDepartment] = useState<Department | null>(null);
   const [windowCheck, setWindowCheck] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    const getDepartment = async () => {
+      try {
+        const response = await Axios.get<Department>(
+          `https://back.cadeomw.com.br/department/${params.id}?format=json`,
+        );
+        setDepartment(response.data);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        history.push('/');
+      }
+    };
+
+    getDepartment();
+  }, [history, params.id]);
 
   const handleSelectTab = useCallback(
     (name: string) => {
@@ -133,27 +124,26 @@ const DepartmentPage: React.FC = () => {
       {loading && <Loading />}
 
       <Container window={windowCheck}>
-          {tabs.map(tab => (
-            <TabContent
-              key={tab.name}
-              selected={tab.selected}
-              onClick={() => handleSelectTab(tab.name)}
-              window={windowCheck}
-            >
-              <TabText>{tab.name}</TabText>
-            </TabContent>
-          ))}
+        {tabs.map(tab => (
+          <TabContent
+            key={tab.name}
+            selected={tab.selected}
+            onClick={() => handleSelectTab(tab.name)}
+            window={windowCheck}
+          >
+            <TabText>{tab.name}</TabText>
+          </TabContent>
+        ))}
       </Container>
       <AllContainer window={windowCheck}>
-        {department && !loading &&(
-        <CourseNameContainer>
-          <CourseName>{department.name}</CourseName>
-        </CourseNameContainer>
+        {department && !loading && (
+          <CourseNameContainer>
+            <CourseName>{department.name}</CourseName>
+          </CourseNameContainer>
         )}
 
-
         {materias && department && !loading && (
-          <TableContainer window={windowCheck} >
+          <TableContainer window={windowCheck}>
             <Table responsive="xl">
               <thead>
                 <tr>
@@ -163,23 +153,21 @@ const DepartmentPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {
-                  department.subjects_list.map(subject => (
-                    <tr key={subject.code}>
-                      <td>{subject.code}</td>
-                      <td>{subject.subject_name}</td>
-                      <td>{subject.credit}</td>
-                    </tr>
-                  ))
-                }
+                {department.subjects_list.map(subject => (
+                  <tr key={subject.code}>
+                    <td>{subject.code}</td>
+                    <td>{subject.subject_name}</td>
+                    <td>{subject.credit}</td>
+                  </tr>
+                ))}
                 {}
               </tbody>
-            </Table >
+            </Table>
           </TableContainer>
         )}
 
-        {cursos && department && !loading &&(
-          <TableContainer window={windowCheck} >
+        {cursos && department && !loading && (
+          <TableContainer window={windowCheck}>
             <Table responsive="xl">
               <thead>
                 <tr>
@@ -191,25 +179,23 @@ const DepartmentPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {
-                  department.courses_list.map(course => (
-                    <tr key={course.code}>
-                      <td>{course.code}</td>
-                      <td>{course.name}</td>
-                      <td>{course.shift}</td>
-                      <td>{course.num_semester}</td>
-                      <td>{course.academic_degree}</td>
-                    </tr>
-                  ))
-                }
+                {department.courses_list.map(course => (
+                  <tr key={course.code}>
+                    <td>{course.code}</td>
+                    <td>{course.name}</td>
+                    <td>{course.shift}</td>
+                    <td>{course.num_semester}</td>
+                    <td>{course.academic_degree}</td>
+                  </tr>
+                ))}
                 {}
               </tbody>
-            </Table >
+            </Table>
           </TableContainer>
         )}
       </AllContainer>
     </>
-  )
-}
+  );
+};
 
 export default DepartmentPage;
