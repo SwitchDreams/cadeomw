@@ -47,7 +47,7 @@ interface RouteParams {
 const DepartmentPage: React.FC = () => {
   const tabsInit = [
     {
-      name: 'Materias',
+      name: 'Matérias',
       selected: true,
     },
     {
@@ -92,7 +92,7 @@ const DepartmentPage: React.FC = () => {
 
       setTabs(newTab);
 
-      if (name === 'Materias') {
+      if (name === 'Matérias') {
         setMaterias(true);
         setCursos(false);
       } else if (name === 'Cursos') {
