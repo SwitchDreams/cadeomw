@@ -120,8 +120,10 @@ def parse_oferta(id, department_name):
                 turma = turma.find_next_sibling('tr')
                 continue
 
-            # Tenta criar a oferta
+            # Lógica de criação e vínculo de oferta (turma), disciplina e professor
             try:
+                
+                # Tenta encontrar a disciplina
                 try:
                     subject_object = Subject.objects.get(code=turmas["subject_code"])
                 except:
@@ -129,15 +131,22 @@ def parse_oferta(id, department_name):
                     infos_list = []
                     turma = turma.find_next_sibling('tr')
                     continue
-
-                oferta, _ = Offer.objects.get_or_create(
-                    subject=subject_object,
-                    name=turmas['name'],
-                    semester=turmas['semester'],
-                    schedule=turmas['schedule'],
-                    students_qtd=turmas['students_qtd'],
-                    place=turmas['place']
-                )
+                
+                # Tenta criar a turma
+                try:
+                    oferta, _ = Offer.objects.get_or_create(
+                        subject=subject_object,
+                        name=turmas['name'],
+                        semester=turmas['semester'],
+                        schedule=turmas['schedule'],
+                        students_qtd=turmas['students_qtd'],
+                        place=turmas['place']
+                    )
+                except IntegrityError:
+                    print(f'Já existe turma com o nome {turmas["name"]} na disciplina {turmas["subject_code"]}')
+                    infos_list = []
+                    turma = turma.find_next_sibling('tr')
+                    continue
 
                 # Criando ou dando get no professor para vincular à oferta
                 try:
