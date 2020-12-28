@@ -45,7 +45,7 @@ export const CalendarContainer = styled.div<WindowProps>`
     `}
 `;
 
-export const SlotContainer = styled.div`
+export const SlotContainer = styled.div<WindowProps>`
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -67,6 +67,17 @@ export const SlotContainer = styled.div`
     margin-top: 5px;
     font-size: 0.7vw;
   }
+
+  ${props =>
+    props.window &&
+    css`
+      .title {
+        font-size: 13px;
+      }
+      .info {
+        font-size: 10px;
+      }
+    `}
 `;
 
 export const ListSubjects = styled.div<WindowProps>`

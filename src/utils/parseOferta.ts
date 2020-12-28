@@ -66,6 +66,8 @@ export function parseHorario(horario: string): string {
     let horarioCompleto = '';
     let newDia = mapaDias[(diaString[0] as unknown) as number];
 
+    if (!newDia) return 'Erro';
+
     if (diaString.length > 1) {
       for (let i = 1; i < diaString.length; i += 1) {
         newDia += ' e ';
