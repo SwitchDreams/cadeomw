@@ -17,10 +17,6 @@ import departments from './departments';
   Página de listagem de cursos - Waliff
 */
 
-type Inputs = {
-  subject: string;
-};
-
 interface Results {
   code: number;
   department_name: string;
@@ -33,10 +29,6 @@ interface SubjectInfos {
   next: string;
   previous: string;
   count: number;
-}
-
-interface Book {
-  name: string;
 }
 
 const ListSubjects: React.FC = () => {
