@@ -57,7 +57,7 @@ const TootlipText: React.FC<TootlipInfo> = ({
         <ListItemIcon>
           <CollectionsBookmarkIcon />
         </ListItemIcon>
-        <ListItemText primary={`Creditos: ${credit}`} />
+        <ListItemText primary={`${credit / 15} créditos`} />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
@@ -115,6 +115,12 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
           if (showPeriod === period.semester) {
             subjects = period.subjects;
           }
+          const periodTotalHoursArray = period.subjects.map(
+            subj => subj.credit,
+          );
+          const periodTotalHours = periodTotalHoursArray.reduce(
+            (curr, last) => curr + last,
+          );
 
           return (
             <div key={period.semester}>
@@ -125,8 +131,15 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                     <PeriodContainer
                       onClick={() => handleTogglePeriod(period.semester)}
                     >
-                      <PeriodText window={window}>Período:</PeriodText>
-                      <PeriodText window={window}>{period.semester}</PeriodText>
+                      <PeriodText window={window}>
+                        {`Período:  ${period.semester}`}
+                      </PeriodText>
+                      <PeriodText window={window}>
+                        {`${periodTotalHours} horas`}
+                      </PeriodText>
+                      <PeriodText window={window}>
+                        {`${periodTotalHours / 15} créditos`}
+                      </PeriodText>
                     </PeriodContainer>
                   }
                   label=" "

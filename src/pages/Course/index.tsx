@@ -202,13 +202,6 @@ const Course: React.FC = () => {
       <AllContainer window={windowCheck}>
         {loading && <Loading />}
 
-        {/* {grafo && course && (
-          <Graphviz
-            dot={course?.flow_graph}
-            options={{ fit: true, height: '100%', width: '100%', zoom: true }}
-          />
-        )} */}
-
         {fluxo && course && (
           <AllContainer window={windowCheck}>
             <CourseNameContainer>

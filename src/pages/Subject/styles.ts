@@ -330,8 +330,8 @@ export const EquivalenceBox = styled.div<WindowProp>`
 export const NoEquivalences = styled.p<WindowProp>`
   font-size: 20px;
   color: #222;
-  text-transform: capitalize;
   text-align: center;
+  text-transform: initial;
   margin: auto;
 
   ${props =>

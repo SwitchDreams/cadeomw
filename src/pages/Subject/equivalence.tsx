@@ -46,14 +46,13 @@ const Equivalence: React.FC<EquivalenceProps> = ({
   return (
     <CardFeatureContainer window={window}>
       <h4>Equivalências</h4>
+      {equivalences.length === 0 && (
+        <NoEquivalences window={window}>
+          Disciplina não possui equivalências.
+        </NoEquivalences>
+      )}
 
       <EquivalencesContainer window={window}>
-        {subject.equivalences.length === 0 && (
-          <NoEquivalences window={window}>
-            Disciplina não possui equivalências.
-          </NoEquivalences>
-        )}
-
         {equivalences.map(equivalence => (
           <Zoom
             in

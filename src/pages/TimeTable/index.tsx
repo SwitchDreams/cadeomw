@@ -61,7 +61,7 @@ function renderEventContent(eventInfo: any) {
 }
 
 const TimeTable: React.FC = () => {
-  let hourCounter = -5;
+  let hourCounter = -6;
 
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
   const [tryGenerate, setTryGenerate] = useState(false);
@@ -258,6 +258,7 @@ const TimeTable: React.FC = () => {
 
   const handleChangeCheckbox = useCallback(
     (name: string) => {
+      console.log(name);
       const checkedNewState = checked.map(state => {
         if (state.name === name) return { name, checked: !state.checked };
         return state;
@@ -281,18 +282,23 @@ const TimeTable: React.FC = () => {
             passo a passo para vocês.
           </p>
           <p>
-            Primeiro, pesquise o nome da matéria que deseja adicionar na sua
-            grade, nós mostraremos uma série de possibilidades que são
-            compatíveis com a sua pesquisa, portanto tente ser específico.
-            Depois de adicionada a disciplina em sua lista, você pode ou não
-            especificar a turma na qual deseja cursar. Caso não especificada,
-            nós pegaremos a turma que melhor se encaixa nos seus horários.
+            Primeiro, clique para adicionar seu horário ocupado, e marque os
+            horários em que não deseja ter aulas, ou que já tenha outras
+            atividades.
+            <br /> Depois, basta pesquisar o nome da matéria que deseja
+            adicionar na sua grade, nós mostraremos uma série de possibilidades
+            que são compatíveis com a sua pesquisa, portanto tente ser
+            específico. Depois de adicionada a disciplina em sua lista, você
+            pode ou não especificar a turma na qual deseja cursar. Caso não
+            especificada, nós pegaremos a turma que melhor se encaixa nos seus
+            horários.
           </p>
           <p>
             Caso alguma turma ou disciplina especificada tenha conflito de
-            horário com outra, uma das duas matérias não irá ser adicionada à
-            sua grade. <br /> As cores da grade são geradas aleatoriamente, caso
-            deseje alterá-las, basta clicar em montar grade novamente.
+            horário com outra, ou com seu horário ocupado, uma das duas matérias
+            não irá ser adicionada à sua grade. <br /> As cores da grade são
+            geradas aleatoriamente, caso deseje alterá-las, basta clicar em
+            montar grade novamente.
           </p>
         </HowToUse>
 
@@ -407,16 +413,17 @@ const TimeTable: React.FC = () => {
                     <th>Quarta</th>
                     <th>Quinta</th>
                     <th>Sexta</th>
+                    <th>Sábado</th>
                   </tr>
                 </thead>
                 <tbody>
                   {hours.map(hour => {
-                    hourCounter += 5;
+                    hourCounter += 6;
                     return (
                       <tr key={hour}>
                         <td>{hour}</td>
                         {checked
-                          .slice(hourCounter, hourCounter + 5)
+                          .slice(hourCounter, hourCounter + 6)
                           .map(checkbox => (
                             <td key={checkbox.name}>
                               <Checkbox
@@ -505,7 +512,6 @@ const TimeTable: React.FC = () => {
               initialView="timeGridWeek"
               weekText="ddd"
               height="auto"
-              weekends={false}
               aspectRatio={1}
               eventConstraint={{
                 start: '08:00:00',

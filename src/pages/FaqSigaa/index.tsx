@@ -76,9 +76,16 @@ const FaqSigaa: React.FC = () => {
           Calma pequeno gafanhoto, a gente te ajuda! Achar as coisas no SIGAA
           foi e está sendo uma dificuldade para todos nós, mas preparamos um
           manualzinho com as principais dúvidas que pode te ajudar a se
-          localizar! <br /> Muitas das informações do SIGAA não exigem que você
-          esteja logado para acessar, então basta entrar no link público e
-          navegar pelas suas funcionalidades.
+          localizar! <br /> Todas as informações foram obtidas através do FAQ
+          desenvolvido pela própria UnB, em seu site. <br />
+          Importante lembrar que nosso tutorial não substitui o site oficial da
+          UnB, e não nos responsabilizamos por qualquer desinformação que este
+          tutorial possa vir a causar.
+        </p>
+        <p>
+          Muitas das informações do SIGAA não exigem que você esteja logado para
+          acessar, então basta entrar no link público e navegar pelas suas
+          funcionalidades.
         </p>
         <div className="button">
           <Button
@@ -340,9 +347,9 @@ const FaqSigaa: React.FC = () => {
           <p>
             A retirada de disciplina é pedida diretamente ao SAA. Ela pode ser
             feita online, ou por meio de e-mail para{' '}
-            <span className="negrito">saa@unb.br</span>. Isto é feito para
-            agilizar o processo de retirada, uma vez que a não é necessária a
-            intervenção ou autorização da coordenação.
+            <span className="negrito">saaatendimento@unb.br</span>. Isto é feito
+            para agilizar o processo de retirada, uma vez que a não é necessária
+            a intervenção ou autorização da coordenação.
           </p>
         </div>
 

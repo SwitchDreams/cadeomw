@@ -197,7 +197,7 @@ export const PeriodContainer = styled.div`
 export const PeriodText = styled.div<AllContainerProps>`
   font-size: 18px;
 
-  margin: 0 20px 0 20px;
+  margin: 0 40px;
 
   ${props =>
     props.window &&

@@ -51,10 +51,9 @@ const Equivalence: React.FC<PrereqProps> = ({
       <div className="container">
         <h4>Pré-requisitos:</h4>
 
-        {subject.prerequisites.length === 0 && (
+        {subject.prerequisites[0].length === 0 && (
           <NoPrereq window={window}>
-            Disciplina não possui pré-requisitos ou não estão disponíveis em
-            nosso banco de dados.
+            Disciplina não possui pré-requisitos.
           </NoPrereq>
         )}
 

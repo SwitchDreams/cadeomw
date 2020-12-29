@@ -1,29 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Hidden } from '@material-ui/core';
-import { BsArrowLeftRight, BsCalendarFill } from 'react-icons/bs';
+import { Grid } from '@material-ui/core';
+import { BsArrowLeftRight } from 'react-icons/bs';
 import { RiCalendarCheckLine } from 'react-icons/ri';
 import {
   AiOutlineCluster,
   AiFillInstagram,
   AiFillFacebook,
 } from 'react-icons/ai';
-import { MdLineStyle } from 'react-icons/md';
-import { GoCheck } from 'react-icons/go';
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
-import {
-  WavesContainer,
-  LandingText,
-  FirstTextContainer,
-  FeaturesContainer,
-  AboutFeatures,
-  ListContainer,
-  AboutUsContainer,
-  YouWillFind,
-} from './styles';
 
-import antigaUnB from '../../assets/unb_antiga.jpg';
 import calendar from '../../assets/ladingPage/calendar.svg';
 import map from '../../assets/ladingPage/map.svg';
 import search from '../../assets/ladingPage/search.svg';
@@ -34,6 +21,14 @@ import fotoPedro from '../../assets/perfil_pedro.jpeg';
 import fotoWaliff from '../../assets/perfil_waliff.png';
 import fotoJapa from '../../assets/perfil_japa.jpeg';
 
+import {
+  WavesContainer,
+  LandingText,
+  FirstTextContainer,
+  FeaturesContainer,
+  AboutUsContainer,
+  YouWillFind,
+} from './styles';
 /*
 Página principal - Bahia
 Atualizações - Bruna
@@ -187,74 +182,6 @@ const Dashboard: React.FC = () => {
           </Grid>
         </div>
       </FeaturesContainer>
-
-      <AboutFeatures>
-        <div className="container">
-          <Grid container direction="row" justify="center" spacing={3}>
-            <Grid item xs={12} sm={12} md={6}>
-              <ListContainer>
-                <div className="title-text">
-                  <h2>O que está por vir?</h2>
-                  <p>Isso é só o começo! Em breve teremos:</p>
-                </div>
-                <ul>
-                  <div>
-                    <li>
-                      <div className="logo">
-                        <span>
-                          <BsCalendarFill style={{ fontSize: 25 }} />
-                        </span>
-                      </div>
-                      <div className="text">
-                        <p>
-                          Um sistema integrado de provas de disciplinas, onde
-                          alunos informam as datas de entregas separadas por
-                          turma e podem fazer uso de um calendário
-                          compartilhado.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="logo">
-                        <span>
-                          <MdLineStyle style={{ fontSize: 30 }} />
-                        </span>
-                      </div>
-                      <div className="text">
-                        <p>
-                          Chega no final do semestre e bate aquele medo de
-                          reprovar por falta? Teremos uma calculadora de
-                          frequência em que os alunos podem marcar e acompanhar
-                          suas faltas.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="logo">
-                        <span>
-                          <GoCheck style={{ fontSize: 30 }} />
-                        </span>
-                      </div>
-                      <div className="text">
-                        <p>
-                          Aba de divulgação de parceriais do Cadê o MW? que
-                          incentivará projetos acadêmicos, iniciativas de grupos
-                          de ensino e canais de educação.
-                        </p>
-                      </div>
-                    </li>
-                  </div>
-                </ul>
-              </ListContainer>
-            </Grid>
-            <Hidden xsDown>
-              <Grid item md={6}>
-                <img src={antigaUnB} alt="unb" />
-              </Grid>
-            </Hidden>
-          </Grid>
-        </div>
-      </AboutFeatures>
 
       <AboutUsContainer>
         <h2>Conheça os envolvidos</h2>

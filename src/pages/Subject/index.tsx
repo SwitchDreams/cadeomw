@@ -161,18 +161,11 @@ const Subject: React.FC = () => {
             </InfoGeralContainer>
           </Grow>
 
-          {subject.offer.length !== 0 && (
-            <Oferta window={windowCheck} subject={subject} />
-          )}
+          <Oferta window={windowCheck} subject={subject} />
 
-          {subject.equivalences.length !== 0 && (
-            <Equivalence window={windowCheck} subject={subject} />
-          )}
+          <Equivalence window={windowCheck} subject={subject} />
 
-          {subject.prerequisites.length !== 0 &&
-            subject.prerequisites[0].length !== 0 && (
-              <Prereq window={windowCheck} subject={subject} />
-            )}
+          <Prereq window={windowCheck} subject={subject} />
         </Container>
       )}
     </>

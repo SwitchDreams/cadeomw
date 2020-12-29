@@ -119,7 +119,7 @@ for (let i = 0; i < 3; i += 1) {
   if (turno[i] === 'M') {
     for (let k = 1; k < 6; k += 1) {
       // horário --> k
-      for (let j = 2; j < 7; j += 1) {
+      for (let j = 2; j < 8; j += 1) {
         // dia --> j
         checkboxesInitial.push({
           name: `${j}${turno[i]}${k}`,
@@ -130,7 +130,7 @@ for (let i = 0; i < 3; i += 1) {
   } else if (turno[i] === 'T') {
     for (let k = 1; k < 7; k += 1) {
       // horário --> k
-      for (let j = 2; j < 7; j += 1) {
+      for (let j = 2; j < 8; j += 1) {
         // dia --> j
         checkboxesInitial.push({
           name: `${j}${turno[i]}${k}`,
@@ -141,7 +141,7 @@ for (let i = 0; i < 3; i += 1) {
   } else if (turno[i] === 'N') {
     for (let k = 1; k < 5; k += 1) {
       // horário --> k
-      for (let j = 2; j < 7; j += 1) {
+      for (let j = 2; j < 8; j += 1) {
         // dia --> j
         checkboxesInitial.push({
           name: `${j}${turno[i]}${k}`,
