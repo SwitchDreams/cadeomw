@@ -48,10 +48,11 @@ export const CalendarContainer = styled.div<WindowProps>`
 export const SlotContainer = styled.div<WindowProps>`
   display: flex;
   flex-direction: column;
+  max-height: 100%;
   text-align: center;
+  overflow-y: hidden;
 
   .title {
-    overflow-y: hidden;
     font-weight: bold;
     font-size: 0.9vw;
 

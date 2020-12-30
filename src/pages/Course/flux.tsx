@@ -57,7 +57,7 @@ const TootlipText: React.FC<TootlipInfo> = ({
         <ListItemIcon>
           <CollectionsBookmarkIcon />
         </ListItemIcon>
-        <ListItemText primary={`${credit / 15} créditos`} />
+        <ListItemText primary={`${(credit / 15).toFixed(0)} créditos`} />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
@@ -138,7 +138,7 @@ const Flux: React.FC<FluxProps> = ({ periods, window }: FluxProps) => {
                         {`${periodTotalHours} horas`}
                       </PeriodText>
                       <PeriodText window={window}>
-                        {`${periodTotalHours / 15} créditos`}
+                        {`${(periodTotalHours / 15).toFixed(0)} créditos`}
                       </PeriodText>
                     </PeriodContainer>
                   }
