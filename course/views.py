@@ -67,12 +67,15 @@ class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
     retrieve_serializer_class = SubjectDetailsSerializer
 
     def get_queryset(self):
+        has_offer_only = self.request.query_params.get('has_offer')
         department_initial = self.request.query_params.get('department_initial')
         subject_name_search = self.request.query_params.get('search')
-        if department_initial:
-            queryset = Subject.objects.filter(department__initials=department_initial).order_by('name')
+        if has_offer_only:
+            queryset = Subject.objects.exclude(offer__isnull=True).exclude(offer=[]).order_by('name')
         else:
             queryset = Subject.objects.all().order_by('name')
+        if department_initial:
+            queryset = queryset.filter(department__initials=department_initial)
         if subject_name_search:
             queryset = queryset.filter(name__unaccent__icontains=subject_name_search)
         return queryset
