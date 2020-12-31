@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 import requests
 from course.models.models import Offer
-from course.models.models import Department, Subject
+from course.models.models import Subject
 from course.models.models import Teacher, OfferTeacher
 from django.db import IntegrityError
 
