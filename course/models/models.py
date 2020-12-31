@@ -156,7 +156,7 @@ class Subject(models.Model):
         return [offer.to_json() for offer in self.offers.all()]
 
     def get_corequisite(self):
-        return [corequisite.to_json() for corequisite in self.corequisite.all()]
+        return [subject.to_json() for subject in self.corequisite.all()]
 
     def get_prerequisites(self):
         """ Retorna os pré-requisitos em JSON """
@@ -296,7 +296,7 @@ class CoRequisite(models.Model):
     corequisite = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='subject_co')
 
     def to_json(self):
-        return self.corequisite.to_json
+        return self.corequisite.to_json()
 
 class Equivalence(models.Model):
     coverage = models.CharField(max_length=10)
