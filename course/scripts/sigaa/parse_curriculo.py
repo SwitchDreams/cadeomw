@@ -166,7 +166,7 @@ def get_optional_subject_info(opt_soup):
         # Assets that the parsed line is in the expected structure
         if len(fields[0]) == 7:
             subject_info["code"] = fields[0]
-            subject_info["workload"] = int(int(fields[-1][:-1])/15)
+            subject_info["workload"] = int(fields[-1][:-1])
 
             # Prevent that subject names with "-" are wrongly parsed
             name_components = fields[1:-1]
