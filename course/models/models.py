@@ -130,6 +130,7 @@ class Subject(models.Model):
     # Campos pré-processados
     equivalences = JSONField(blank=True, null=True)
     prerequisites = JSONField(blank=True, null=True)
+    corequisites = JSONField(blank=True, null=True)
     grade_infos = JSONField(blank=True, null=True)
     offer = JSONField(blank=True, null=True)
     pass_percent = models.FloatField(default=0)
@@ -153,6 +154,9 @@ class Subject(models.Model):
 
     def get_offer(self):
         return [offer.to_json() for offer in self.offers.all()]
+
+    def get_corequisite(self):
+        return [subject.to_json() for subject in self.corequisite.all()]
 
     def get_prerequisites(self):
         """ Retorna os pré-requisitos em JSON """
@@ -219,6 +223,7 @@ class Subject(models.Model):
     def preprocess_info(self):
         self.prerequisites = self.get_prerequisites()
         self.equivalences = self.get_equivalences()
+        self.corequisites = self.get_corequisite()
         self.offer = self.get_offer()
         self.save()
 
@@ -285,6 +290,13 @@ class PreRequisite(models.Model):
     prerequisite_set = models.ForeignKey(PreRequisiteSet, on_delete=models.CASCADE, related_name='prerequisite')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
 
+
+class CoRequisite(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='corequisite')
+    corequisite = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='subject_co')
+
+    def to_json(self):
+        return self.corequisite.to_json()
 
 class Equivalence(models.Model):
     coverage = models.CharField(max_length=10)

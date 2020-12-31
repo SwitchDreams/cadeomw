@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-from course.models.models import Equivalence, PreRequisiteSet, Subject
+from course.models.models import Equivalence, PreRequisiteSet, Subject, CoRequisite
 
 
 def parse_equivalence(subject_code):
@@ -15,11 +15,28 @@ def parse_equivalence(subject_code):
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
     table = html_soup.select_one('.visualizacao')
     pre_req = table.select('tr')[8]
-    # Todo tratar có-requisitos
     co_req = table.select('tr')[9]
     equivalence = table.select('tr')[10]
     handle_pre_req(pre_req, subject_code)
+    handle_co_req(co_req, subject_code)
     handle_equivalence(equivalence, subject_code)
+
+
+def handle_co_req(co_req, subject_code):
+    co_req_list = co_req.text.split()[2:-1]
+    # Always find subject
+    subject = Subject.objects.get(code=subject_code)
+    for disciplina in co_req_list:
+        # Caso não seja (, ), OU e E
+        if disciplina != "(" and disciplina != ")":
+            if disciplina.upper() != "OU" and disciplina.upper() != "E":
+                # Cria o pré-requisito
+                try:
+                    co_req = Subject.objects.get(code=disciplina)
+                    CoRequisite.objects.create(subject=subject, corequisite=co_req)
+                except :
+                    print(f"Disciplina não encontrada para có-requisito: {disciplina}")
+
 
 def handle_pre_req(pre_req, subject_code):
     pre_req_list = pre_req.text.split()[2:-1]
@@ -60,7 +77,7 @@ def handle_equivalence(equivalences, subject_code):
                 try:
                     Equivalence.objects.create(subject_id=equivalence, destination=destination)
                 except:
-                    print (f"Disciplina {equivalence} não existe no BD")
+                    print(f"Disciplina {equivalence} não existe no BD")
 
 
 def get_cookies():
@@ -86,4 +103,4 @@ def get_params_for_parse(subject_code):
 
 def run():
     # Exemplo introdução ao processamento de imagens
-    parse_equivalence("ADM0092")
+    parse_equivalence("ENE0042")
