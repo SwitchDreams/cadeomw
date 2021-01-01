@@ -76,17 +76,6 @@ export default class Generator {
       return a.classes.length - b.classes.length;
     });
 
-    // Verifica se as selected classes tem algum conflito de horário entre si
-    for (let i = 0; i < selectedClasses.length; i += 1) {
-      for (let j = i + 1; j < selectedClasses.length; j += 1) {
-        if (classesHasConflictTime(selectedClasses[i], selectedClasses[j])) {
-          throw new Error(
-            'Turmas selecionadas com conflito de horários entre si',
-          );
-        }
-      }
-    }
-
     // Verifica se as selected classes tem conflito de horário com o busyTime
     for (let i = 0; i < selectedClasses.length; i += 1) {
       if (classHasNoConflictWithBusyTimes(selectedClasses[i], busyTime)) {
@@ -96,8 +85,22 @@ export default class Generator {
       }
     }
 
-    this.selectedClasses = selectedClasses;
     this.busyTime = busyTime;
+
+    // Verifica se as selected classes tem algum conflito de horário entre si
+    for (let i = 0; i < selectedClasses.length; i += 1) {
+      for (let j = i + 1; j < selectedClasses.length; j += 1) {
+        if (classesHasConflictTime(selectedClasses[i], selectedClasses[j])) {
+          throw new Error(
+            'Turmas selecionadas com conflito de horários entre si',
+          );
+        }
+      }
+      // Adiciona os horários das turmas selecionadas no busyTime
+      selectedClasses[i].time.map(time => this.busyTime.push(time));
+    }
+
+    this.selectedClasses = selectedClasses;
   }
 
   // Verifica se determinado horário já está ocupado
@@ -110,7 +113,7 @@ export default class Generator {
     // Para todas as materias em ordem de prioridade
     for (let i = 0; i < this.subjects.length; i += 1) {
       const subjectClassesLength = this.subjects[i].classes.length;
-      // Para todas as turmas
+      // Para todas as turmas da matéria a ser avaliada
       for (let j = 0; j < subjectClassesLength; j += 1) {
         // Caso não tenha conflito de horário
         if (this.classHasNoConflict(this.subjects[i].classes[j])) {
