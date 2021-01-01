@@ -3,9 +3,9 @@ from course.models.models import Course
 
 # Run example
 # Para um curso em específico
-# python manage.py runscripts preprocess.course --script-args course_id
+# python manage.py runscript preprocess.course --script-args course_id
 # Para todos os cursos
-# python manage.py runscripts preprocess.course --script-args all
+# python manage.py runscript preprocess.course --script-args all
 
 def run(*args):
     if len(args) == 0:

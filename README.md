@@ -13,3 +13,15 @@ Repositório de backend do MwMelhorado feito em Django
 ```python manage.py runscript db_setup```
 6. E por fim para rodar o servidor: 
 ```python manage.py runserver```
+
+# Pré-processamento
+No setup do banco de dados já é feito o pré-processamento para diminuir querys de banco de dados e melhorar a performance 
+do backend, porém caso necessite fazer de forma individual para algum curso ou disiciplina utilize:
+### Para um curso em específico
+```python manage.py runscript preprocess.course --script-args course_id```
+### Para todos os cursos
+```python manage.py runscript preprocess.course --script-args all```
+### Para uma disciplina em específica
+```python manage.py runscript preprocess.subject --script-args subject_sigaa_id```
+### Para todas as disciplinas
+```python manage.py runscript preprocess.subject --script-args all```
