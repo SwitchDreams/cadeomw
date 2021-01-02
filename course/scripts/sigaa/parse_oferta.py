@@ -203,4 +203,3 @@ def run():
         nome_depto = departamentos[departamento].split(" - ")[0].split(" (")[0]
         print(departamento + " " + nome_depto)
         parse_oferta(departamento, nome_depto)
-        sleep(0.1)
