@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { AiOutlineGithub } from 'react-icons/ai';
+import { Button } from 'react-bootstrap';
 import { MdEmail } from 'react-icons/md';
 
+import { useToast } from '../../hooks/toasts';
 import Header from '../../components/Header';
 
 import fotoBahia from '../../assets/perfil_bahia.jpeg';
@@ -15,6 +17,7 @@ import { Container, WhoWeAreContainer, CardsContainer } from './styles';
 
 const ContactUs: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
+  const { addToast } = useToast();
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -30,9 +33,49 @@ const ContactUs: React.FC = () => {
     }
   });
 
+  const copyToClipboard = useCallback(() => {
+    // Creates a dummy element, so we can copy it's value to clipboard
+    const dummy = document.createElement('textarea');
+    document.body.appendChild(dummy);
+    dummy.value = 'db634da0-9d53-433a-b5af-7f183d7058d3';
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+
+    addToast({
+      type: 'success',
+      title: 'Chave PIX copiada!',
+      description: 'Chave já foi copiada em seu clipboard.',
+    });
+  }, [addToast]);
+
   return (
     <Container>
       <Header transparent={false} />
+
+      <WhoWeAreContainer>
+        <div className="container">
+          <h2>Nos ajude a manter o projeto no ar!</h2>
+          <p>
+            Gostou do projeto? Quer que ele continue para outros semestres?{' '}
+            <br />
+            Nos ajude doando um valor simbólico para que possamos cobrir os
+            custos de manter este site no ar. Qualquer ajuda é bem vinda!
+          </p>
+          <Button
+            onClick={() => {
+              copyToClipboard();
+            }}
+            variant="outline-light"
+            style={{
+              color: '#7c4fe0',
+              borderColor: '#7c4fe0',
+            }}
+          >
+            Copiar chave PIX
+          </Button>
+        </div>
+      </WhoWeAreContainer>
 
       <WhoWeAreContainer>
         <div className="container">

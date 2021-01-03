@@ -16,6 +16,15 @@ export const WhoWeAreContainer = styled.div`
   justify-content: center;
   margin-bottom: 15px;
 
+  button {
+    margin-bottom: 30px;
+  }
+
+  button:hover {
+    background-color: #7c4fe0;
+    color: white !important;
+  }
+
   .container {
     max-width: 80%;
     display: flex;
