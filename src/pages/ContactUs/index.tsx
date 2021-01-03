@@ -71,13 +71,11 @@ const ContactUs: React.FC = () => {
           />
           <h4>Switch Dreams</h4>
           <p>
-            A Switch Dreams é o nome da start up idealizada por calouros de
-            Engenharia de Computação durante um almoço no RU. Eles compartilham
-            o sonho de desenvolver soluções tecnológicas que impactem a
-            sociedade. Ao longo dos semestres, a brincadeira ficou mais séria e
-            aqueles calouros estão cada vez mais próximos de torná-la realidade.
-            O <span className="negrito">Cadê o MW?</span> é a primeira de muitas
-            iniciativas a ser de fato implementada por eles.
+            A Switch Dreams é o nome da start up idealizada por estudantes de
+            Engenharia de Computação da UnB. Eles compartilham o sonho de
+            desenvolver soluções tecnológicas que impactem a sociedade. O{' '}
+            <span className="negrito">Cadê o MW?</span> é a primeira solução de
+            grande impacto da empresa.
           </p>
         </div>
       </WhoWeAreContainer>
@@ -129,8 +127,8 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Pedro Augusto</h6>
                 <p>
-                  Fã dos e-sports, player da Green Owls e aspirante a
-                  bodybuilder. Fundador da Switch Dreams.
+                  Fã dos e-sports, player da Green Owls. Fundador da Switch
+                  Dreams.
                 </p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
