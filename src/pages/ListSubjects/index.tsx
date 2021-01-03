@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FormEvent } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
@@ -12,10 +12,6 @@ import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 
 import departments from './departments';
-
-/*
-  Página de listagem de cursos - Waliff
-*/
 
 interface Results {
   code: number;
@@ -35,6 +31,7 @@ const ListSubjects: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [qtdResults, setQtdResults] = useState(false);
   const [searchSubject, setSearchSubject] = useState('');
+  const [searchDepartment, setSearchDepartment] = useState('');
   const [subjects, setSubjects] = useState<SubjectInfos>({
     results: [],
     next: '',
@@ -68,7 +65,6 @@ const ListSubjects: React.FC = () => {
         setSubjects(response.data);
         setLoading(false);
       } catch (err) {
-        console.log(err);
         setLoading(false);
         addToast({
           type: 'error',
@@ -101,14 +97,11 @@ const ListSubjects: React.FC = () => {
     }
   }
 
-  async function handleSearchSubject(
-    event: FormEvent<HTMLFormElement>,
-  ): Promise<void> {
-    event.preventDefault();
+  async function handleSearchSubject(): Promise<void> {
     setLoading(true);
     try {
       const response = await api.get<SubjectInfos>(
-        `subjects/?search=${searchSubject}&format=json`,
+        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&format=json`,
       );
       setSubjects(response.data);
       setQtdResults(true);
@@ -124,30 +117,21 @@ const ListSubjects: React.FC = () => {
     setSearchSubject('');
   }
 
-  async function handleFilterSubject(e: any) {
-    setLoading(true);
-    try {
-      const response = await api.get<SubjectInfos>(
-        `subjects/?department_initial=${e.target.value}&format=json`,
-      );
-      setSubjects(response.data);
-      setQtdResults(true);
-      setLoading(false);
-    } catch (err) {
-      addToast({
-        type: 'error',
-        title: 'Falha na pesquisa',
-        description: 'Tente novamente mais tarde',
-      });
-    }
-  }
+  useEffect(() => {
+    handleSearchSubject();
+  }, [searchDepartment]);
 
   return (
     <>
       <Header transparent={false} />
 
       <Form window={WindowCheck}>
-        <form onSubmit={handleSearchSubject}>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            handleSearchSubject();
+          }}
+        >
           <input
             value={searchSubject}
             onChange={e => setSearchSubject(e.target.value)}
@@ -158,8 +142,12 @@ const ListSubjects: React.FC = () => {
 
         <Select>
           <p>Departamentos:</p>
-          <select onChange={handleFilterSubject}>
-            <option selected value="" />
+          <select
+            onChange={e => {
+              setSearchDepartment(e.target.value);
+            }}
+          >
+            <option defaultValue="">Todos Departamentos</option>
             {departments.map(department => {
               return (
                 <option value={department.initials}>{department.name}</option>
