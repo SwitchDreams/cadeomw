@@ -3,9 +3,11 @@ from rest_framework import serializers
 
 
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    shift = serializers.CharField(source='get_shift_display')
+
     class Meta:
         model = Course
-        fields = ['code', 'name', 'academic_degree', 'coordinator_name', 'department', 'num_semester']
+        fields = ['code', 'name', 'academic_degree', 'coordinator_name', 'department', 'num_semester', 'shift']
 
 
 class CourseDetailsSerializer(serializers.HyperlinkedModelSerializer):
