@@ -82,7 +82,8 @@ const ListSubjects: React.FC = () => {
     if (pag !== null) {
       setLoading(true);
       try {
-        const response = await Axios.get<SubjectInfos>(`${pag}`);
+        const route = `${pag.slice(0, 4)}s${pag.slice(4)}`;
+        const response = await Axios.get<SubjectInfos>(`${route}`);
         setSubjects(response.data);
         setLoading(false);
         window.scrollTo(0, 0);

@@ -1,23 +1,19 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 
 import { useToast } from '../../hooks/toasts';
 
-import { Courses, Form, QtdSearch } from '../../pages/ListCourses/styles';
+import { Courses, Form, QtdSearch } from '../ListCourses/styles';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 
-type Inputs = {
-  course: string;
-};
-
 interface Results {
   id: number;
   name: string;
-  initials: string; 
+  initials: string;
 }
 
 interface DepartmentInfos {
@@ -59,12 +55,12 @@ const ListDepartments: React.FC = () => {
     setLoading(true);
     const getDepartments = async () => {
       try {
-        const response = await Axios.get<DepartmentInfos>('https://back.cadeomw.com.br/department/?format=json');
-        console.log(response);
+        const response = await Axios.get<DepartmentInfos>(
+          'https://back.cadeomw.com.br/department/?format=json',
+        );
         setDepartments(response.data);
         setLoading(false);
       } catch (err) {
-        console.log(err);
         setLoading(false);
         addToast({
           type: 'error',
@@ -82,8 +78,7 @@ const ListDepartments: React.FC = () => {
     if (pag !== null) {
       setLoading(true);
       try {
-        var route = pag.slice(0, 4) + "s" + pag.slice(4);
-        console.log(route)
+        const route = `${pag.slice(0, 4)}s${pag.slice(4)}`;
         const response = await Axios.get<DepartmentInfos>(`${route}`);
         setDepartments(response.data);
         setLoading(false);
@@ -149,7 +144,7 @@ const ListDepartments: React.FC = () => {
       {!loading && (
         <Courses window={WindowCheck}>
           {departments.results.map(department => (
-            <a key={department.id} href={`department/${department.id}`}>
+            <Link key={department.id} to={`department/${department.id}`}>
               <div>
                 <strong>
                   {department.name.charAt(0).toUpperCase() +
@@ -161,7 +156,7 @@ const ListDepartments: React.FC = () => {
                 </p>
               </div>
               <FiChevronRight size={20} />
-            </a>
+            </Link>
           ))}
 
           {!loading && (
