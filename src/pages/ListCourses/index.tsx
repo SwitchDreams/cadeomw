@@ -11,17 +11,10 @@ import { Courses, Form, QtdSearch } from './styles';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 
-/*
-  Página de listagem de cursos - Waliff
-*/
-
-type Inputs = {
-  course: string;
-};
-
 interface Results {
   code: number;
   num_semester: number;
+  shift: string;
   name: string;
 }
 
@@ -158,10 +151,7 @@ const ListCourses: React.FC = () => {
                   {course.name.charAt(0).toUpperCase() +
                     course.name.slice(1).toLowerCase()}
                 </strong>
-                <p>
-                  Código:
-                  {course.code}
-                </p>
+                <p>{course.shift}</p>
                 <p>
                   Quantidade de períodos:
                   {course.num_semester}
