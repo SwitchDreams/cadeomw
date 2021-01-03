@@ -329,7 +329,7 @@ class Option(models.Model):
 
 class Offer(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='offers')
-    name = models.CharField(unique=True, max_length=100)
+    name = models.CharField(max_length=100)
     semester = models.CharField(max_length=7)
     schedule = models.CharField(max_length=100)
     students_qtd = models.CharField(max_length=3)

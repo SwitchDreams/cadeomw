@@ -142,8 +142,8 @@ def parse_oferta(id, department_name):
                         students_qtd=turmas['students_qtd'],
                         place=turmas['place']
                     )
-                except IntegrityError:
-                    print(f'Já existe turma com o nome {turmas["name"]} na disciplina {turmas["subject_code"]}')
+                except:
+                    print(f'Erro ao criar ou dar get turma com o nome {turmas["name"]} na disciplina {turmas["subject_code"]}')
                     infos_list = []
                     turma = turma.find_next_sibling('tr')
                     continue
@@ -203,4 +203,3 @@ def run():
         nome_depto = departamentos[departamento].split(" - ")[0].split(" (")[0]
         print(departamento + " " + nome_depto)
         parse_oferta(departamento, nome_depto)
-        sleep(0.1)
