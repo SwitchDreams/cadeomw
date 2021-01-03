@@ -152,10 +152,7 @@ const ListCourses: React.FC = () => {
                     course.name.slice(1).toLowerCase()}
                 </strong>
                 <p>{course.shift}</p>
-                <p>
-                  Quantidade de períodos:
-                  {course.num_semester}
-                </p>
+                <p>Quantidade de períodos: {course.num_semester}</p>
               </div>
               <FiChevronRight size={20} />
             </a>

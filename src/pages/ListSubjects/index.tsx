@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
@@ -97,7 +97,7 @@ const ListSubjects: React.FC = () => {
     }
   }
 
-  async function handleSearchSubject(): Promise<void> {
+  const handleSearchSubject = useCallback(async () => {
     setLoading(true);
     try {
       const response = await api.get<SubjectInfos>(
@@ -115,11 +115,11 @@ const ListSubjects: React.FC = () => {
       });
     }
     setSearchSubject('');
-  }
+  }, [addToast, searchDepartment, searchSubject]);
 
   useEffect(() => {
     handleSearchSubject();
-  }, [searchDepartment]);
+  }, [handleSearchSubject]);
 
   return (
     <>
