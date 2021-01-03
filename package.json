@@ -33,6 +33,7 @@
     "react-bootstrap": "^1.2.2",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
+    "react-dropdown-select": "^4.7.3",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.1.0",
     "react-icons": "^3.10.0",

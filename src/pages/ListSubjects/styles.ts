@@ -5,15 +5,14 @@ interface CoursesProps {
   window: boolean;
 }
 
-export const Select = styled.div`
+export const SelectContainer = styled.div`
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+
   p {
     font-size: 12px;
     margin-bottom: 0;
-  }
-
-  select {
-    width: 100%;
-    text-align: center;
   }
 `;
 
@@ -51,8 +50,9 @@ export const Loading = styled.div`
 export const Form = styled.div<CoursesProps>`
   margin-top: 60px;
   max-width: 700px;
+  width: 90%;
   margin: 0 auto;
-  padding: 25px 20px;
+  padding: 25px 0;
 
   display: flex;
   flex-direction: row;
@@ -70,7 +70,7 @@ export const Form = styled.div<CoursesProps>`
 
   form {
     display: flex;
-    margin-right: 10px;
+    width: 100%;
 
     input {
       flex: 1;
