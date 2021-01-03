@@ -18,6 +18,7 @@ import {
   Container,
   InfoGeralContainer,
   InfoContainer,
+  CoreqContainer,
 } from './styles';
 
 /*
@@ -57,6 +58,12 @@ export interface Oferta {
   place: string | undefined;
 }
 
+interface Coreq {
+  code: string;
+  credit: number;
+  subject_name: string;
+}
+
 export interface Subject {
   name: string;
   credit: number;
@@ -65,6 +72,7 @@ export interface Subject {
   prerequisites: Prereq[][];
   equivalences: Equivalence[];
   offer: Oferta[];
+  corequisites: Coreq[];
 }
 
 interface RouteParams {
@@ -166,6 +174,25 @@ const Subject: React.FC = () => {
           <Equivalence window={windowCheck} subject={subject} />
 
           <Prereq window={windowCheck} subject={subject} />
+
+          {subject.corequisites.length !== 0 && (
+            <CoreqContainer window={windowCheck}>
+              <h4>Co-requisitos:</h4>
+              {subject.corequisites.map(coreq => (
+                <div key={coreq.subject_name} className="container">
+                  <h5>{coreq.subject_name}</h5>
+                  <p>
+                    <strong>Carga Horária:</strong>
+                    {coreq.credit}
+                  </p>
+                  <p>
+                    <strong>Código:</strong>
+                    {coreq.code}
+                  </p>
+                </div>
+              ))}
+            </CoreqContainer>
+          )}
         </Container>
       )}
     </>

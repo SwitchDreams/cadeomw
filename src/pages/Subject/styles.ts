@@ -314,7 +314,6 @@ export const EquivalenceBox = styled.div<WindowProp>`
 
   transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   &:hover {
-    transform: translateY(-10px);
     box-shadow: 0 1rem 3rem rgba(31, 45, 61, 0.35) !important;
   }
 
@@ -410,6 +409,64 @@ export const OfertaContainer = styled.div<WindowProp>`
           div {
             width: 100%;
           }
+        }
+      }
+    `};
+`;
+
+export const CoreqContainer = styled.div<WindowProp>`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-top: 10px;
+
+  h4 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #222;
+    text-transform: initial;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 20px 10px 10px 10px;
+
+    &::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background-color: #7c4fe0;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+
+  .container {
+    border: 3px solid #7c4fe0;
+    border-radius: 20px;
+    text-align: center;
+    width: 20%;
+    padding: 10px;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 1rem 3rem rgba(31, 45, 61, 0.35) !important;
+    }
+
+    strong {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+  }
+
+  ${props =>
+    props.window &&
+    css`
+      .container {
+        width: 80%;
+        font-size: 13px;
+        h5 {
+          font-size: 15px;
         }
       }
     `};

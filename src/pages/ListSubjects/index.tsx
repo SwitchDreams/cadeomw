@@ -119,7 +119,8 @@ const ListSubjects: React.FC = () => {
 
   useEffect(() => {
     handleSearchSubject();
-  }, [handleSearchSubject]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
