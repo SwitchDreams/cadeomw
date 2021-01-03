@@ -139,7 +139,10 @@ class Subject(models.Model):
         return self.name
 
     def department_name(self):
-        return self.department.name
+        if self.department:
+            return self.department.name
+        else:
+            return 'Departamento ou Unidade não encotrada'
 
     def to_json(self):
         return {"code": self.code, "subject_name": self.name,
