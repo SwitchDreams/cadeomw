@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
+import Select from 'react-dropdown-select';
 import api from '../../services/api';
-
 import { useToast } from '../../hooks/toasts';
 
-import { Subjects, Form, QtdSearch, Select } from './styles';
+import { Subjects, Form, QtdSearch, SelectContainer } from './styles';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -139,23 +139,26 @@ const ListSubjects: React.FC = () => {
           />
           <button type="submit">Pesquisar</button>
         </form>
-
-        <Select>
-          <p>Departamentos:</p>
-          <select
-            onChange={e => {
-              setSearchDepartment(e.target.value);
-            }}
-          >
-            <option defaultValue="">Todos Departamentos</option>
-            {departments.map(department => {
-              return (
-                <option value={department.initials}>{department.name}</option>
-              );
-            })}
-          </select>
-        </Select>
       </Form>
+
+      <SelectContainer>
+        <Select
+          options={departments}
+          values={[departments[0]]}
+          labelField="name"
+          valueField="initials"
+          noDataLabel="Departamento não encontrado"
+          placeholder="Selecione o departamento"
+          addPlaceholder="Filtre por departamento"
+          searchable
+          searchBy="name"
+          clearable={false}
+          multi={false}
+          onChange={value => {
+            setSearchDepartment(value[0].initials);
+          }}
+        />
+      </SelectContainer>
 
       {loading && <Loading />}
 

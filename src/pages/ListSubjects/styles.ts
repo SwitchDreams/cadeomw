@@ -5,15 +5,14 @@ interface CoursesProps {
   window: boolean;
 }
 
-export const Select = styled.div`
+export const SelectContainer = styled.div`
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+
   p {
     font-size: 12px;
     margin-bottom: 0;
-  }
-
-  select {
-    width: 100%;
-    text-align: center;
   }
 `;
 
