@@ -89,6 +89,7 @@ const ContactUs: React.FC = () => {
                 color: '#7c4fe0',
                 borderColor: '#7c4fe0',
                 marginRight: 5,
+                marginLeft: 5,
               }}
             >
               Copiar chave PIX
@@ -103,6 +104,7 @@ const ContactUs: React.FC = () => {
                 color: '#7c4fe0',
                 borderColor: '#7c4fe0',
                 marginLeft: 5,
+                marginRight: 5,
               }}
             >
               Copiar link PicPay
