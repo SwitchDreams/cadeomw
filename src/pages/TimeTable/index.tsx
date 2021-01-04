@@ -145,7 +145,7 @@ const TimeTable: React.FC = () => {
 
     try {
       const response = await api.get<SearchResponse>(
-        `subjects?search=${search}&format=json`,
+        `subjects?search=${search}&format=json&has_offer=true`,
       );
       if (response.data.results.length > 0) {
         setModalSubjects(response.data.results);
