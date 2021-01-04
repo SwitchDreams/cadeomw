@@ -123,6 +123,10 @@ const ContactUs: React.FC = () => {
             organizado, para que nós, alunos da UnB, possamos acessar as
             informações sobre as disciplinas de forma rápida e eficiente.
           </p>
+          <p>
+          Queremos deixar o nosso agradecimento à Marina Flores que produziu o material de 
+          divulgação no primeiro semestre de 2021.
+          </p>
         </div>
       </WhoWeAreContainer>
 
