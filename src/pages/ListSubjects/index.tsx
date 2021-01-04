@@ -60,7 +60,7 @@ const ListSubjects: React.FC = () => {
     const getSubjects = async () => {
       setLoading(true);
       try {
-        const response = await api.get<SubjectInfos>(`subjects/?format=json`);
+        const response = await api.get<SubjectInfos>(`subjects/?format=json&has_offer=true`);
 
         setSubjects(response.data);
         setLoading(false);
@@ -102,7 +102,7 @@ const ListSubjects: React.FC = () => {
     setLoading(true);
     try {
       const response = await api.get<SubjectInfos>(
-        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&format=json`,
+        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&format=json&has_offer=true`,
       );
       setSubjects(response.data);
       setQtdResults(true);
