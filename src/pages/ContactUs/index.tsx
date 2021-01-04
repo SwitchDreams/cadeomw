@@ -33,7 +33,7 @@ const ContactUs: React.FC = () => {
     }
   });
 
-  const copyToClipboard = useCallback(() => {
+  const copyPIXToClipboard = useCallback(() => {
     // Creates a dummy element, so we can copy it's value to clipboard
     const dummy = document.createElement('textarea');
     document.body.appendChild(dummy);
@@ -45,6 +45,22 @@ const ContactUs: React.FC = () => {
     addToast({
       type: 'success',
       title: 'Chave PIX copiada!',
+      description: 'Chave já foi copiada em seu clipboard.',
+    });
+  }, [addToast]);
+
+  const copyPicPayToClipboard = useCallback(() => {
+    // Creates a dummy element, so we can copy it's value to clipboard
+    const dummy = document.createElement('textarea');
+    document.body.appendChild(dummy);
+    dummy.value = 'https://picpay.me/cadeomw';
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+
+    addToast({
+      type: 'success',
+      title: 'Link PicPay copiado!',
       description: 'Chave já foi copiada em seu clipboard.',
     });
   }, [addToast]);
@@ -62,18 +78,37 @@ const ContactUs: React.FC = () => {
             Nos ajude doando um valor simbólico para que possamos cobrir os
             custos de manter este site no ar. Qualquer ajuda é bem vinda!
           </p>
-          <Button
-            onClick={() => {
-              copyToClipboard();
-            }}
-            variant="outline-light"
-            style={{
-              color: '#7c4fe0',
-              borderColor: '#7c4fe0',
-            }}
-          >
-            Copiar chave PIX
-          </Button>
+
+          <div className="flex-col space-between">
+            <Button
+              onClick={() => {
+                copyPIXToClipboard();
+              }}
+              variant="outline-light"
+              style={{
+                color: '#7c4fe0',
+                borderColor: '#7c4fe0',
+                marginRight: 5,
+              }}
+            >
+              Copiar chave PIX
+            </Button>
+
+            <Button
+              onClick={() => {
+                copyPicPayToClipboard();
+              }}
+              variant="outline-light"
+              style={{
+                color: '#7c4fe0',
+                borderColor: '#7c4fe0',
+                marginLeft: 5,
+              }}
+            >
+              Copiar link PicPay
+            </Button>
+          </div>
+
         </div>
       </WhoWeAreContainer>
 
