@@ -67,9 +67,6 @@ const ContactUs: React.FC = () => {
 
   return (
     <Container>
-      <head>
-        <script data-ad-client="ca-pub-9432744401324317" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      </head>
       <Header transparent={false} />
 
       <WhoWeAreContainer>
@@ -129,7 +126,7 @@ const ContactUs: React.FC = () => {
             informações sobre as disciplinas de forma rápida e eficiente.
           </p>
           <p>
-          Queremos deixar o nosso agradecimento à Marina Flores (@marinafloresf) que produziu o material de 
+          Queremos deixar o nosso agradecimento à Marina Flores (@marinafloresf) que produziu o material de
           divulgação no primeiro semestre de 2021.
           </p>
         </div>
