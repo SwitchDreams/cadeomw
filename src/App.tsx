@@ -9,6 +9,9 @@ import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ToastProvider } from './hooks/toasts';
+import createServer from './services/mock';
+
+createServer();
 
 const App: React.FC = () => (
   <>

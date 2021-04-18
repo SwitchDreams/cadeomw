@@ -477,20 +477,28 @@ export default function (): Server {
         },
       ]);
 
-      this.get('/list-courses', () => [
-        {
-          name: 'Engenharia de Computação',
-          id: 1741,
-        },
-        {
-          name: 'Medicina',
-          id: 1984,
-        },
-        {
-          name: 'Florestal',
-          id: 1645,
-        },
-      ]);
+      this.get('/courses', () => ({
+        results: [
+          {
+            code: 1741,
+            name: 'Engenharia de Computação',
+            num_semester: 10,
+            shift: 'Noturno',
+          },
+          {
+            code: 1984,
+            name: 'Medicina',
+            num_semester: 10,
+            shift: 'Noturno',
+          },
+          {
+            code: 1645,
+            name: 'Florestal',
+            num_semester: 10,
+            shift: 'Noturno',
+          },
+        ],
+      }));
 
       this.get('/list-subjects', () => [
         {
