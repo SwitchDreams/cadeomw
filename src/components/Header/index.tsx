@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Form } from 'react-bootstrap';
 import { Container, WaveContainer } from './styles';
+import { getFromLS, setToLS } from '../../utils/localStorage';
+import * as themes from '../../theme/schema.json';
 
 /*
   Header - Componente geral
@@ -15,6 +17,12 @@ const Header: React.FC<HeaderBackground> = ({
 }: HeaderBackground) => {
   const [navFixed, setNavFixed] = useState(false);
   const [selectedLink, setSelectedLink] = useState(0);
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    const localTheme = getFromLS('theme');
+    setDark(localTheme.colors.body !== '#fff');
+  }, [dark]);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -85,6 +93,19 @@ const Header: React.FC<HeaderBackground> = ({
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label="DarkMode"
+                checked={dark}
+                onChange={() => {
+                  setDark(!dark);
+                  if (!dark) setToLS('theme', themes.data.dark);
+                  else setToLS('theme', themes.data.light);
+                  window.location.reload(); // TODO: verify a simpler way to reaload theme.
+                }}
+              />
+
               {menuItems.map(menu => (
                 <Nav.Link
                   href={menu.link}

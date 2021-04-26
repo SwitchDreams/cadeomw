@@ -60,7 +60,9 @@ const ListSubjects: React.FC = () => {
     const getSubjects = async () => {
       setLoading(true);
       try {
-        const response = await api.get<SubjectInfos>(`subjects/?format=json&has_offer=true`);
+        const response = await api.get<SubjectInfos>(
+          `subjects/?format=json&has_offer=true`,
+        );
 
         setSubjects(response.data);
         setLoading(false);

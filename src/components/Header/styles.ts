@@ -8,6 +8,11 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   background: rgb(124, 79, 224);
 
+  .custom-switch {
+    color: #fff;
+    margin: auto 25px;
+  }
+
   ${props =>
     props.transparent &&
     css`

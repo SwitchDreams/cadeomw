@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { ThemeType } from '../App';
 
-export default createGlobalStyle`
+export default createGlobalStyle<{ theme: ThemeType }>`
   * {
     margin: 0;
     padding: 0;
@@ -9,8 +10,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #FFF;
-    color: #414141;
+    background: ${({ theme }) => theme.colors.body};
+    color: ${({ theme }) => theme.colors.text};
     -webkit-font-smoothing: antialiased;
   }
 

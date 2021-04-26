@@ -1,0 +1,38 @@
+{
+  "data" : {
+    "light" : {
+      "id": "light",
+      "name": "Light",
+      "colors": {
+        "body": "#fff",
+        "text": "#414141",
+        "color": "#7c4fe0",
+        "button": {
+          "text": "#fff",
+          "background": "#000000"
+        },
+        "link": {
+          "text": "teal",
+          "opacity": 1
+        }
+      }
+    },
+    "dark" : {
+      "id": "dark",
+      "name": "Dark",
+      "colors": {
+        "body": "#414141",
+        "text": "#fff",
+        "color": "#7c4fe0",
+        "button": {
+          "text": "#fff",
+          "background": "#000000"
+        },
+        "link": {
+          "text": "teal",
+          "opacity": 1
+        }
+      }
+    }
+  }
+}
