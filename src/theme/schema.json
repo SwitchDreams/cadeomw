@@ -10,6 +10,8 @@
         "map_hover": "rgba(230, 230, 230, 1)",
         "map_color": "rgba(230, 230, 230, 0.3)",
         "list_cards": "#f2f2f2",
+        "row": "#ddd",
+        "hover": "#eee",
         "button": {
           "text": "#fff",
           "background": "#000000"
@@ -30,6 +32,8 @@
         "map_hover": "#bbb",
         "map_color": "rgba(71, 71, 71, 1)",
         "list_cards": "#4c4c4c",
+        "row": "#444",
+        "hover": "#666",
         "button": {
           "text": "#fff",
           "background": "#000000"

@@ -39,7 +39,7 @@ export const Container = styled.div<ContainerProps>`
       width: 0%;
       content: '.';
       color: transparent;
-      background: #7c4fe0;
+      background: ${({ theme }) => theme.colors.color};
       ${props =>
         props.scrolled &&
         css`

@@ -11,6 +11,7 @@ export const SelectContainer = styled.div`
   width: 90%;
   max-width: 700px;
   margin: 0 auto;
+  color: #4f4f4f;
 
   p {
     font-size: 12px;

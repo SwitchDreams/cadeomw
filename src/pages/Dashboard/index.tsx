@@ -294,8 +294,8 @@ const Dashboard: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
-              borderColor: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: theme.colors.color,
             }}
           >
             Saiba mais
