@@ -18,10 +18,14 @@ const Header: React.FC<HeaderBackground> = ({
   const [navFixed, setNavFixed] = useState(false);
   const [selectedLink, setSelectedLink] = useState(0);
   const [dark, setDark] = useState(false);
+  const [theme, setTheme] = useState(themes.data.light);
 
   useEffect(() => {
     const localTheme = getFromLS('theme');
-    setDark(localTheme.colors.body !== '#fff');
+    if (localTheme) {
+      setTheme(localTheme);
+      setDark(localTheme.colors.body !== '#fff');
+    }
   }, [dark]);
 
   useEffect(() => {
@@ -87,7 +91,10 @@ const Header: React.FC<HeaderBackground> = ({
           expand="lg"
           className={navFixed ? 'fixed' : ''}
         >
-          <Navbar.Brand href="/" style={{ color: navFixed ? '#222' : '#fff' }}>
+          <Navbar.Brand
+            href="/"
+            style={{ color: navFixed ? theme.colors.text : '#fff' }}
+          >
             Cadê o MW ?
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -97,11 +104,16 @@ const Header: React.FC<HeaderBackground> = ({
                 type="switch"
                 id="custom-switch"
                 label="DarkMode"
+                style={{ color: navFixed ? theme.colors.text : '#fff' }}
                 checked={dark}
                 onChange={() => {
                   setDark(!dark);
-                  if (!dark) setToLS('theme', themes.data.dark);
-                  else setToLS('theme', themes.data.light);
+                  let temp;
+                  if (!dark) temp = themes.data.dark;
+                  else temp = themes.data.light;
+
+                  setToLS('theme', temp);
+                  setTheme(temp);
                   window.location.reload(); // TODO: verify a simpler way to reaload theme.
                 }}
               />
@@ -110,7 +122,7 @@ const Header: React.FC<HeaderBackground> = ({
                 <Nav.Link
                   href={menu.link}
                   className={selectedLink === menu.id ? 'active' : ''}
-                  style={{ color: navFixed ? '#222' : '#fff' }}
+                  style={{ color: navFixed ? theme.colors.text : '#fff' }}
                   key={menu.name}
                 >
                   {menu.name}
@@ -130,7 +142,7 @@ const Header: React.FC<HeaderBackground> = ({
             preserveAspectRatio="none"
           >
             <path
-              fill="#fff"
+              fill={theme.colors.body}
               d="
                 M 0 67
                 C 273,183

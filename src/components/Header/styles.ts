@@ -1,15 +1,16 @@
 import styled, { css } from 'styled-components';
+import { ThemeType } from '../../App';
 
 interface ContainerProps {
   transparent: boolean;
   scrolled: boolean;
+  theme: ThemeType;
 }
 
 export const Container = styled.div<ContainerProps>`
   background: rgb(124, 79, 224);
 
   .custom-switch {
-    color: #fff;
     margin: auto 25px;
   }
 
@@ -60,7 +61,7 @@ export const Container = styled.div<ContainerProps>`
     position: fixed !important;
     width: 100%;
     z-index: 999;
-    background: #fff;
+    background: ${({ theme }) => theme.colors.body};
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
     animation: slide-down 0.5s;
   }
@@ -77,14 +78,14 @@ export const Container = styled.div<ContainerProps>`
   }
 `;
 
-export const WaveContainer = styled.div`
+export const WaveContainer = styled.div<{ theme: ThemeType }>`
   height: 190px;
   svg {
-    background: #7c4fe0;
+    background: ${({ theme }) => theme.colors.color};
   }
 `;
 
-export const Menu = styled.div`
+export const Menu = styled.div<{ theme: ThemeType }>`
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -101,11 +102,4 @@ export const Menu = styled.div`
     flex-direction: column;
     align-items: center;
   }
-`;
-
-export const MenuText = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-  margin-top: 10px;
 `;

@@ -7,6 +7,8 @@
         "body": "#fff",
         "text": "#414141",
         "color": "#7c4fe0",
+        "map_hover": "rgba(230, 230, 230, 1)",
+        "map_color": "rgba(230, 230, 230, 0.3)",
         "button": {
           "text": "#fff",
           "background": "#000000"
@@ -21,9 +23,11 @@
       "id": "dark",
       "name": "Dark",
       "colors": {
-        "body": "#414141",
+        "body": "#2c2c2c",
         "text": "#fff",
-        "color": "#7c4fe0",
+        "color": " #7c4fe0",
+        "map_hover": "#bbb",
+        "map_color": "rgba(71, 71, 71, 1)",
         "button": {
           "text": "#fff",
           "background": "#000000"

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import unbLogo from '../../assets/unb.svg';
 import unbAntiga from '../../assets/unb_antiga.jpg';
+import { ThemeType } from '../../App';
 
 export const WavesContainer = styled.div`
   .curved {
@@ -44,8 +45,8 @@ export const LandingText = styled.div`
   }
 `;
 
-export const FirstTextContainer = styled.div`
-  color: #222;
+export const FirstTextContainer = styled.div<{ theme: ThemeType }>`
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   justify-content: center;
   padding-bottom: 40px;
@@ -67,7 +68,7 @@ export const FirstTextContainer = styled.div`
         content: '';
         height: 3px;
         width: 200px;
-        background-color: #7c4fe0;
+        background-color: ${({ theme }) => theme.colors.color};
         display: block;
         margin: 10px auto;
       }
@@ -119,7 +120,7 @@ export const AboutFeatures = styled.section`
   }
 `;
 
-export const AboutUsContainer = styled.div`
+export const AboutUsContainer = styled.div<{ theme: ThemeType }>`
   padding-top: 40px;
   display: flex;
   flex-direction: column;
@@ -141,7 +142,7 @@ export const AboutUsContainer = styled.div`
       content: '';
       height: 3px;
       width: 200px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
@@ -158,7 +159,7 @@ export const AboutUsContainer = styled.div`
     margin-top: 40px;
 
     button:hover {
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       color: white !important;
     }
   }
@@ -183,7 +184,7 @@ export const AboutUsContainer = styled.div`
 
       a {
         text-decoration: none;
-        color: #414141;
+        color: ${({ theme }) => theme.colors.text};
         font-size: 14px;
       }
 
@@ -191,7 +192,7 @@ export const AboutUsContainer = styled.div`
         margin-top: 10px;
         margin-bottom: 0;
         font-weight: bold;
-        color: #414141;
+        color: ${({ theme }) => theme.colors.text};
       }
 
       .insta {
@@ -211,8 +212,8 @@ export const AboutUsContainer = styled.div`
 
 export const PersonContainer = styled.div``;
 
-export const YouWillFind = styled.div`
-  color: #222;
+export const YouWillFind = styled.div<{ theme: ThemeType }>`
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -234,7 +235,7 @@ export const YouWillFind = styled.div`
       content: '';
       height: 3px;
       width: 200px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }

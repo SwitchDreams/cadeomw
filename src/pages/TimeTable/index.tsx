@@ -316,6 +316,7 @@ const TimeTable: React.FC = () => {
             id="filled-basic"
             variant="filled"
             label="Pesquise as disciplinas"
+            style={{ background: '#FFF' }}
             onChange={e => setSearch(e.target.value)}
           />
           <Button
