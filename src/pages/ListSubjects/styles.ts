@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
+import { ThemeType } from '../../App';
 
 interface CoursesProps {
   window: boolean;
+  theme: ThemeType;
 }
 
 export const SelectContainer = styled.div`
@@ -109,7 +111,7 @@ export const Subjects = styled.div<CoursesProps>`
     margin: 0 auto;
     padding: 40px 20px;
 
-    background: #f2f2f2;
+    background: ${({ theme }) => theme.colors.list_cards};
     border-radius: 5px;
     width: 90%;
     padding: 24px;
@@ -139,7 +141,7 @@ export const Subjects = styled.div<CoursesProps>`
 
     strong {
       font-size: 20px;
-      color: #3d3d4d;
+      color: ${({ theme }) => theme.colors.text};
       ${props =>
         props.window &&
         css`

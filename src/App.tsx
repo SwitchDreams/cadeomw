@@ -12,6 +12,9 @@ import { getFromLS, setToLS } from './utils/localStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ToastProvider } from './hooks/toasts';
+import createServer from './services/mock';
+
+createServer();
 
 export type ThemeType = typeof themes.data.light;
 

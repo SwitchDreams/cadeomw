@@ -477,7 +477,7 @@ export default function (): Server {
         },
       ]);
 
-      this.get('/list-courses', () => [
+      this.get('/courses', () => [
         {
           name: 'Engenharia de Computação',
           id: 1741,
