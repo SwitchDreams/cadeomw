@@ -5,477 +5,449 @@ export default function (): Server {
     routes() {
       this.urlPrefix = 'https://back.cadeomw.com.br';
 
-      this.get('/courses/:id', () => [
-        {
-          name: 'Engenharia de Computação',
-          informations: {
-            cargaHoraria: {
-              totalMinima: '3810h',
-              optativaMinima: '1770h',
+      this.get(
+        '/courses/:id',
+        (_, request) => {
+          const { id } = request.params;
+
+          return {
+            name: 'Engenharia de Computação',
+            code: id,
+            details: {
+              workload: {
+                total: 3810,
+                optional: 1770,
+                mandatory: 170,
+              },
+              num_semester: 10,
+              academic_degree: 'Bacharel',
+              shift: 'Noturno',
+              coordinator_name: 'João Gondim da Silva Costa',
             },
-            cargaHorariaObrigatoria: {
-              total: '2040h',
-              praticos: '855h',
-              teoricos: '1185h',
-            },
-            periodoLetivo: {
-              minimo: 8,
-              medio: 13,
-              maximo: 18,
-            },
-            horasComplementares: '1040h',
-            coordenador: 'João Gondim da Silva Costa',
-          },
-          flow: [
-            {
-              semester: 1,
-              credits: 20,
-              subjects: [
+            department: 'CIC',
+            flow_graph: null,
+            flow: [
+              {
+                semester: 1,
+                subjects: [
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 2089,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Projeto Final em Engenharia de Computação',
+                    credit: 10,
+                    code: 1038,
+                    status: 'optativa',
+                  },
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 2090,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Projeto Final em Engenharia de Computação',
+                    credit: 10,
+                    code: 1039,
+                    status: 'optativa',
+                  },
+                  {
+                    subject_name: 'Projeto Final em Engenharia de Computação',
+                    credit: 10,
+                    code: 1040,
+                    status: 'optativa',
+                  },
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 2091,
+                    status: 'obrigatória',
+                  },
+                ],
+              },
+              {
+                semester: 2,
+                subjects: [
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 1234,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 1235,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Projeto Final em Engenharia de Computação',
+                    credit: 10,
+                    code: 1236,
+                    status: 'optativa',
+                  },
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 2137,
+                    status: 'obrigatória',
+                  },
+                ],
+              },
+              {
+                semester: 3,
+                subjects: [
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 1234,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 2345,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 3456,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Sistemas Digitais',
+                    credit: 4,
+                    code: 4567,
+                    status: 'obrigatória',
+                  },
+                  {
+                    subject_name: 'Projeto Final em Engenharia de Computação',
+                    credit: 10,
+                    code: 5678,
+                    status: 'optativa',
+                  },
+                ],
+              },
+            ],
+            curriculum: {
+              optional: [
                 {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 2089,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
+                  subject_name: 'ALGORITMOS E PROGRAMAÇÃO DE COMP 1',
+                  credit: 60,
+                  code: 12,
                 },
                 {
-                  subject_name: 'Projeto Final em Engenharia de Computação',
-                  credit: 10,
-                  code: 1038,
-                  status: 'optativa',
-                  pass_percent: 1,
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 2',
+                  credit: 40,
+                  code: 12,
                 },
                 {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 2090,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
+                  subject_name: 'PROGRAMACAO COMPETITIVA 3',
+                  credit: 60,
+                  code: 12,
                 },
                 {
-                  subject_name: 'Projeto Final em Engenharia de Computação',
-                  credit: 10,
-                  code: 1039,
-                  status: 'optativa',
-                  pass_percent: 1,
+                  subject_name: 'ALGORITMOS E PROG DE COMP 4',
+                  credit: 60,
+                  code: 12,
                 },
                 {
-                  subject_name: 'Projeto Final em Engenharia de Computação',
-                  credit: 10,
-                  code: 1040,
-                  status: 'optativa',
-                  pass_percent: 1,
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 5',
+                  credit: 40,
+                  code: 12,
                 },
                 {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 2091,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
+                  subject_name: 'PROGRAMACAO COMPETITIVA 6',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 7',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 8',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 9',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO COMPETITIVA 10',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'ALGORITMOS E PROG DE COMP 11',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 12',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 13',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 14',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 15',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 16',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 17',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 18',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'ALGORITMOS E PROGRAMAÇÃO DE COMP 19',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 20',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO COMPETITIVA 21',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'ALGORITMOS E PROG DE COMP 22',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 23',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO COMPETITIVA 24',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 25',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 26',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 27',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO COMPETITIVA 28',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'ALGORITMOS E PROG DE COMP 29',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 30',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 31',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 32',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 33',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 34',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 35',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 36',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 37',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 38',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 39',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 40',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 41',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 42',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 43',
+                  credit: 40,
+                  code: 12,
+                },
+              ],
+              mandatory: [
+                {
+                  subject_name: 'ALGORITMOS E PROG DE COMP1',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 2',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO COMPETITIVA 3',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'ALGORITMOS E PROG DE COMP 4',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 5',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO COMPETITIVA 6',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 7',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 8',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 9',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO COMPETITIVA 10',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'ALGORITMOS E PROG DE COMP 11',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À ALGEBRA LINEAR 12',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 13',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 14',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 15',
+                  credit: 40,
+                  code: 12,
+                },
+                {
+                  subject_name: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 16',
+                  credit: 60,
+                  code: 12,
+                },
+                {
+                  subject_name: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 17',
+                  credit: 20,
+                  code: 12,
+                },
+                {
+                  subject_name: 'PROGRAMACAO SISTEMATICA 18',
+                  credit: 40,
+                  code: 12,
                 },
               ],
             },
-            {
-              semester: 2,
-              credits: 24,
-              subjects: [
-                {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 1234,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
-                },
-                {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 1235,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
-                },
-                {
-                  subject_name: 'Projeto Final em Engenharia de Computação',
-                  credit: 10,
-                  code: 1236,
-                  status: 'optativa',
-                  pass_percent: 1,
-                },
-                {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 2137,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
-                },
-              ],
-            },
-            {
-              semester: 3,
-              credits: 18,
-              subjects: [
-                {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 1234,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
-                },
-                {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 2345,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
-                },
-                {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 3456,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
-                },
-                {
-                  subject_name: 'Sistemas Digitais',
-                  credit: 4,
-                  code: 4567,
-                  status: 'obrigatória',
-                  pass_percent: 0.43,
-                },
-                {
-                  subject_name: 'Projeto Final em Engenharia de Computação',
-                  credit: 10,
-                  code: 5678,
-                  status: 'optativa',
-                  pass_percent: 1,
-                },
-              ],
-            },
-          ],
-          hardest_subject: {
-            subject_name: 'Sistemas Digitais',
-            credit: 4,
-            code: 2089,
-            status: 'obrigatória',
-            pass_percent: 0.43,
-          },
-          easiest_subject: {
-            subject_name: 'Projeto Final em Engenharia de Computação',
-            credit: 10,
-            code: 1038,
-            status: 'obrigatória',
-            pass_percent: 1,
-          },
-          optativas: [
-            {
-              nome: 'ALGORITMOS E PROGRAMAÇÃO DE COMP 1',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 2',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 3',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'ALGORITMOS E PROG DE COMP 4',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 5',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 6',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 7',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 8',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 9',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 10',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'ALGORITMOS E PROG DE COMP 11',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 12',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 13',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 14',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 15',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 16',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 17',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 18',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'ALGORITMOS E PROGRAMAÇÃO DE COMP 19',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 20',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 21',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'ALGORITMOS E PROG DE COMP 22',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 23',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 24',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 25',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 26',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 27',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 28',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'ALGORITMOS E PROG DE COMP 29',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 30',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 31',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 32',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 33',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 34',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 35',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 36',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 37',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 38',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 39',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 40',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 41',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 42',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 43',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-          ],
-          obrigatorias: [
-            {
-              nome: 'ALGORITMOS E PROG DE COMP1',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 2',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 3',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'ALGORITMOS E PROG DE COMP 4',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 5',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 6',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 7',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 8',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 9',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'PROGRAMACAO COMPETITIVA 10',
-              cargaHoraria: 60,
-              departamento: 'FEF0988',
-            },
-            {
-              nome: 'ALGORITMOS E PROG DE COMP 11',
-              cargaHoraria: 60,
-              departamento: 'ADM0001',
-            },
-            {
-              nome: 'INTRODUÇÃO À ALGEBRA LINEAR 12',
-              cargaHoraria: 40,
-              departamento: 'CIC0232',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 13',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 14',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 15',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-            {
-              nome: 'FUNDAMENTOS TEÓRICOS DA COMPUTAÇÃO 16',
-              cargaHoraria: 60,
-              departamento: 'FT0932',
-            },
-            {
-              nome: 'INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO 17',
-              cargaHoraria: 20,
-              departamento: 'ADM0087',
-            },
-            {
-              nome: 'PROGRAMACAO SISTEMATICA 18',
-              cargaHoraria: 40,
-              departamento: 'ENE1342',
-            },
-          ],
+          };
         },
-      ]);
+        { timing: 500 },
+      );
 
       this.get('/courses', () => ({
         results: [
