@@ -2,7 +2,11 @@ import React from 'react';
 
 // For test uses placeholders = https://support.google.com/adsense/answer/185665?hl=en#zippy=%2Cother---vertical
 interface AdsenseProps extends React.HTMLAttributes<HTMLDivElement> {
-  disposition: 'vertical-small' | 'leaderboard' | 'vertical';
+  disposition:
+    | 'vertical-small'
+    | 'leaderboard'
+    | 'vertical'
+    | 'mobile-leaderboard';
   client?: string;
   slot?: string;
   layout?: string;
@@ -13,6 +17,12 @@ interface AdsenseProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const sizes = {
+  'mobile-leaderboard': {
+    width: 320,
+    height: 50,
+    link:
+      'https://storage.googleapis.com/support-kms-prod/SNP_40CDC3FE322AB07CD3E5860E126FF906B05D_2922298_en_v3',
+  },
   leaderboard: {
     width: 728,
     height: 90,
@@ -40,32 +50,30 @@ const Adsense: React.FC<AdsenseProps> = ({
   disposition,
   ...props
 }) => {
-  const height = (): number => {
-    return sizes[disposition].height;
-  };
-
-  const width = (): number => {
-    return sizes[disposition].width;
-  };
+  const [height, setHeight] = React.useState(sizes[disposition].height);
+  const [width, setWidth] = React.useState(sizes[disposition].width);
+  const [type, setType] = React.useState(disposition);
   React.useEffect(() => {
-    if (window) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // (window.adsbygoogle = window.adsbygoogle || []).push({});
+    // If Screens is small all mobile banners has mobile-leaderboard disposition
+    if (window.innerWidth < 728) {
+      setType('mobile-leaderboard');
+      setHeight(sizes['mobile-leaderboard'].height);
+      setWidth(sizes['mobile-leaderboard'].width);
     }
   }, []);
   return (
     <div
+      className="mx-auto"
       style={{
-        height: height(),
-        width: width(),
+        height,
+        width,
         maxWidth: '90vw',
       }}
       data-ad-client={client}
       data-ad-slot={slot}
       {...props}
     >
-      {test && <img src={sizes[disposition].link} alt="test ads" />}
+      {test && <img className="w-100" src={sizes[type].link} alt="test ads" />}
     </div>
   );
 };
