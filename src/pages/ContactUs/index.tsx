@@ -14,6 +14,7 @@ import fotoJapa from '../../assets/perfil_japa.jpeg';
 import logo from '../../assets/cloudy-sd.svg';
 
 import { Container, WhoWeAreContainer, CardsContainer } from './styles';
+import { Link } from 'react-router-dom'
 
 const ContactUs: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
@@ -134,17 +135,33 @@ const ContactUs: React.FC = () => {
 
       <WhoWeAreContainer>
         <div className="container">
-          <h4>E de onde a gente consegue esses dados?</h4>
+          <h4>E de onde a gente consegue esses dados?</h4>  
           <p>
-            Os dados utilizados pelo <span className="negrito">Cadê o MW?</span>{' '}
+            Os dados utilizados pelo <span className="negrito">Cadê o MW?</span>{' '} 
             são retirados diretamente do próprio SIGAA. O nosso sistema realiza
             a leitura automatizada do site oficial da UnB e as dispõe no{' '}
             <span className="negrito">Cadê o MW?</span> de uma forma muito mais
             intuitiva para o usuário. Atualizaremos as informações na maior
             frequência possível.
-          </p>
+          </p>  
+          <div style={{alignItems: "center"}}>
+            <Link to={'/privacy-terms'}>
+              <Button
+                variant="outline-light"
+                style={{
+                  color: '#7c4fe0',
+                  borderColor: '#7c4fe0',
+                  marginRight: 5,
+                  marginLeft: 5,
+                }}
+              >
+              Termos e Condições  
+              </Button>
+            </Link>
+          </div>
         </div>
       </WhoWeAreContainer>
+
 
       <WhoWeAreContainer>
         <div className="container">
