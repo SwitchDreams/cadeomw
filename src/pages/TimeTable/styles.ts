@@ -1,23 +1,25 @@
 import Chip from '@material-ui/core/Chip';
 import { FormControl } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { ThemeType } from '../../App';
 
 interface WindowProps {
   window: boolean;
+  theme: ThemeType;
 }
 
 export const SubjectChip = styled(Chip)`
   margin: 2px;
 `;
 
-export const Form = styled(FormControl)`
+export const Form = styled(FormControl)<{ theme: ThemeType }>`
   width: 250px;
 
   .button {
     margin-bottom: 20px;
 
     &:hover {
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       color: white !important;
     }
   }
@@ -104,7 +106,7 @@ export const ListSubjects = styled.div<WindowProps>`
 
 export const SubjectCard = styled.div<WindowProps>`
   border-radius: 20px;
-  box-shadow: 2px 2px 10px #333;
+  box-shadow: 2px 2px 10px ${({ theme }) => theme.colors.text};
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -116,7 +118,7 @@ export const SubjectCard = styled.div<WindowProps>`
 
   h3 {
     font-size: 16px;
-    color: #333;
+    color: ${({ theme }) => theme.colors.text};
     font-weight: bold;
     text-align: left;
 
@@ -124,7 +126,7 @@ export const SubjectCard = styled.div<WindowProps>`
       content: '';
       height: 3px;
       width: 200px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin-top: 5px;
     }
@@ -165,7 +167,7 @@ export const ModalSubjectsContainer = styled.div`
       margin-bottom: 15px;
       padding: 0;
       justify-content: space-between;
-      border-bottom: 1px solid #7c4fe0;
+      border-bottom: 1px solid ${({ theme }) => theme.colors.color};
       font-size: 14px;
 
       span.bold {
@@ -185,7 +187,7 @@ export const MontarGrade = styled.div`
 
   .button {
     &:hover {
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       color: white !important;
     }
   }
@@ -193,7 +195,7 @@ export const MontarGrade = styled.div`
 
 export const HowToUse = styled.div<WindowProps>`
   text-align: center;
-  color: #222;
+  color: ${({ theme }) => theme.colors.text};
   max-width: 70%;
   margin: auto;
 
@@ -206,7 +208,7 @@ export const HowToUse = styled.div<WindowProps>`
       content: '';
       height: 3px;
       width: 200px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
@@ -223,8 +225,13 @@ export const HowToUse = styled.div<WindowProps>`
     `}
 `;
 
-export const ModalBusyHoursContainer = styled.div`
+export const ModalBusyHoursContainer = styled.div<{ theme: ThemeType }>`
+  .modal-title {
+    color: #414141;
+  }
+
   table {
+    color: #414141;
     width: 100%;
 
     th {

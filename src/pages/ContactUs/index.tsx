@@ -110,7 +110,6 @@ const ContactUs: React.FC = () => {
               Copiar link PicPay
             </Button>
           </div>
-
         </div>
       </WhoWeAreContainer>
 
@@ -126,8 +125,9 @@ const ContactUs: React.FC = () => {
             informações sobre as disciplinas de forma rápida e eficiente.
           </p>
           <p>
-          Queremos deixar o nosso agradecimento à Marina Flores (@marinafloresf) que produziu o material de
-          divulgação no primeiro semestre de 2021.
+            Queremos deixar o nosso agradecimento à Marina Flores
+            (@marinafloresf) que produziu o material de divulgação no primeiro
+            semestre de 2021.
           </p>
         </div>
       </WhoWeAreContainer>

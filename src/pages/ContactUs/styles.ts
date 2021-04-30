@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
+import { ThemeType } from '../../App';
 
 interface WindowProps {
   window: boolean;
+  theme: ThemeType;
 }
 
 export const Container = styled.div`
@@ -10,8 +12,8 @@ export const Container = styled.div`
   }
 `;
 
-export const WhoWeAreContainer = styled.div`
-  color: #222;
+export const WhoWeAreContainer = styled.div<{ theme: ThemeType }>`
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   justify-content: center;
   margin-bottom: 15px;
@@ -21,7 +23,7 @@ export const WhoWeAreContainer = styled.div`
   }
 
   button:hover {
-    background-color: #7c4fe0;
+    background-color: ${({ theme }) => theme.colors.color};
     color: white !important;
   }
 
@@ -41,7 +43,7 @@ export const WhoWeAreContainer = styled.div`
         content: '';
         height: 3px;
         width: 200px;
-        background-color: #7c4fe0;
+        background-color: ${({ theme }) => theme.colors.color};
         display: block;
         margin: 10px auto;
       }
@@ -54,7 +56,7 @@ export const WhoWeAreContainer = styled.div`
         content: '';
         height: 3px;
         width: 200px;
-        background-color: #7c4fe0;
+        background-color: ${({ theme }) => theme.colors.color};
         display: block;
         margin: 10px auto;
       }
@@ -67,7 +69,7 @@ export const WhoWeAreContainer = styled.div`
         content: '';
         height: 3px;
         width: 200px;
-        background-color: #7c4fe0;
+        background-color: ${({ theme }) => theme.colors.color};
         display: block;
         margin: 10px auto;
       }
@@ -81,7 +83,7 @@ export const WhoWeAreContainer = styled.div`
 `;
 
 export const CardsContainer = styled.div<WindowProps>`
-  color: #222;
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   flex-direction: column;
   margin: 50px 0;
@@ -108,9 +110,9 @@ export const CardsContainer = styled.div<WindowProps>`
         padding: 5px;
 
         border-radius: 5px;
-        border: 3px solid #7c4fe0;
-        background: #7c4fe0;
-        color: #fff;
+        border: 3px solid ${({ theme }) => theme.colors.color};
+        background: ${({ theme }) => theme.colors.color};
+        color: ${({ theme }) => theme.colors.body};
 
         .images {
           position: relative;
@@ -132,6 +134,7 @@ export const CardsContainer = styled.div<WindowProps>`
           display: flex;
           flex-direction: column;
           margin: 10px 0 0 20px;
+          color: #fff;
 
           h6 {
             font-weight: bold;
