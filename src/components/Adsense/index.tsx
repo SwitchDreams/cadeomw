@@ -48,6 +48,7 @@ const Adsense: React.FC<AdsenseProps> = ({
   slot = process.env.REACT_APP_ADSENSE_SLOT,
   test = !!process.env.REACT_APP_ADSENSE_TEST,
   disposition,
+  className,
   ...props
 }) => {
   const [height, setHeight] = React.useState(sizes[disposition].height);
@@ -63,7 +64,7 @@ const Adsense: React.FC<AdsenseProps> = ({
   }, []);
   return (
     <div
-      className="mx-auto"
+      className={`mx-auto ${className}`}
       style={{
         height,
         width,
@@ -73,7 +74,14 @@ const Adsense: React.FC<AdsenseProps> = ({
       data-ad-slot={slot}
       {...props}
     >
-      {test && <img className="w-100" src={sizes[type].link} alt="test ads" />}
+      {test && (
+        <img
+          style={{ maxHeight: '100%' }}
+          className="w-100"
+          src={sizes[type].link}
+          alt="test ads"
+        />
+      )}
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React, {
-  useState,
-  useEffect,
-  useCallback,
   FormEvent,
+  useCallback,
+  useEffect,
   useRef,
+  useState,
 } from 'react';
 import { Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
@@ -22,7 +22,8 @@ import trancamento from '../../assets/trancamento.png';
 import curso from '../../assets/curso.png';
 import fluxoCurso from '../../assets/fluxoCurso.png';
 import { parseHorario } from '../../utils/parseOferta';
-import { Title, Main } from './styles';
+import { Main, Title } from './styles';
+import Adsense from '../../components/Adsense';
 
 /*
   Página FAQ SIGAA - Bruna
@@ -66,6 +67,9 @@ const FaqSigaa: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+
+      <Adsense disposition="leaderboard" />
+
       <Title window={windowCheck}>Entenda o SIGAA</Title>
       <Main window={windowCheck}>
         <h3>
@@ -196,6 +200,8 @@ const FaqSigaa: React.FC = () => {
           </Button>
         </div>
 
+        <Adsense disposition="leaderboard" />
+
         <div className="oferta" ref={ofertaRef}>
           <h3>Como posso ver a oferta desse semestre?</h3>
           <p>
@@ -230,6 +236,8 @@ const FaqSigaa: React.FC = () => {
           <img src={curso} alt="cursos" />
           <img src={fluxoCurso} alt="cursos" />
         </div>
+
+        <Adsense disposition="leaderboard" />
 
         <div className="horarios" ref={horariosRef}>
           <h3>Entendendo os horários</h3>
@@ -341,6 +349,8 @@ const FaqSigaa: React.FC = () => {
           </div>
           <img src={emitirHistorico} alt="historico" />
         </div>
+
+        <Adsense disposition="leaderboard" />
 
         <div className="retirada" ref={retiradaRef}>
           <h3>Vish, não vai dar... Como retiro uma disciplina?</h3>
