@@ -152,7 +152,7 @@ const ListDepartments: React.FC = () => {
                 </strong>
                 <p>
                   Sigla:
-                  {' ' + department.initials}
+                  {` ${department.initials}`}
                 </p>
               </div>
               <FiChevronRight size={20} />

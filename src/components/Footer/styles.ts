@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { ThemeType } from '../../App';
 
-export const FooterContainer = styled.div`
+export const FooterContainer = styled.div<{ theme: ThemeType }>`
   background-color: transparent;
 
   .waves {
@@ -13,7 +14,7 @@ export const FooterContainer = styled.div`
       color: #fff;
       height: 30px;
       margin-bottom: 0;
-      background: #7c4fe0;
+      background: ${({ theme }) => theme.colors.color};
     }
   }
 `;

@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
+import { ThemeType } from '../../App';
 
 interface AllContainerProps {
   window: boolean;
+  theme: ThemeType;
 }
 
-export const Title = styled.div`
+export const Title = styled.div<{ theme: ThemeType }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,13 +17,13 @@ export const Title = styled.div`
     padding: 0 40px 0 40px;
     font-size: 40px;
     text-align: center;
-    color: #585858;
+    color: ${({ theme }) => theme.colors.text};
 
     &::after {
       content: '';
       height: 3px;
       width: 200px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
@@ -39,7 +41,7 @@ export const LocalesList = styled.ul<AllContainerProps>`
   width: 100%;
   white-space: nowrap;
   width: auto;
-  background: rgba(230, 230, 230, 0.3);
+  background: ${({ theme }) => theme.colors.map_color};
 
   ${props =>
     !props.window &&
@@ -63,7 +65,7 @@ export const LocalesList = styled.ul<AllContainerProps>`
     cursor: pointer;
 
     &:hover {
-      background: rgba(230, 230, 230, 1);
+      background: ${({ theme }) => theme.colors.map_hover};
     }
 
     h5 {
@@ -91,7 +93,7 @@ export const LocalesList = styled.ul<AllContainerProps>`
     `}
 `;
 
-export const SearchButton = styled.div`
+export const SearchButton = styled.div<{ theme: ThemeType }>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -102,15 +104,15 @@ export const SearchButton = styled.div`
     margin: auto;
     height: 50px;
     width: 200px;
-    color: #7c4fe0;
+    color: ${({ theme }) => theme.colors.color};
 
-    background: #fff;
-    border: 2px solid #7c4fe0;
+    background: ${({ theme }) => theme.colors.body};
+    border: 2px solid ${({ theme }) => theme.colors.color};
     border-radius: 10px;
 
     &:hover {
       cursor: pointer;
-      background: #7c4fe0;
+      background: ${({ theme }) => theme.colors.color};
       transition: 0.7s;
       color: #fff;
     }

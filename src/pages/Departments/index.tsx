@@ -124,16 +124,17 @@ const DepartmentPage: React.FC = () => {
       {loading && <Loading />}
 
       <Container window={windowCheck}>
-        {tabs.map(tab => (
-          <TabContent
-            key={tab.name}
-            selected={tab.selected}
-            onClick={() => handleSelectTab(tab.name)}
-            window={windowCheck}
-          >
-            <TabText>{tab.name}</TabText>
-          </TabContent>
-        ))}
+        {!loading &&
+          tabs.map(tab => (
+            <TabContent
+              key={tab.name}
+              selected={tab.selected}
+              onClick={() => handleSelectTab(tab.name)}
+              window={windowCheck}
+            >
+              <TabText>{tab.name}</TabText>
+            </TabContent>
+          ))}
       </Container>
       <AllContainer window={windowCheck}>
         {department && !loading && (
@@ -145,7 +146,7 @@ const DepartmentPage: React.FC = () => {
         {materias && department && !loading && (
           <TableContainer window={windowCheck}>
             <Table responsive="xl">
-              <thead>
+              <thead className="table">
                 <tr>
                   <th>Código</th>
                   <th>Matéria</th>
@@ -169,7 +170,7 @@ const DepartmentPage: React.FC = () => {
         {cursos && department && !loading && (
           <TableContainer window={windowCheck}>
             <Table responsive="xl">
-              <thead>
+              <thead className="table">
                 <tr>
                   <th>Código</th>
                   <th>Curso</th>

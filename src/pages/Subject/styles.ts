@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
+import { ThemeType } from '../../App';
 
 interface WindowProp {
   window: boolean;
+  theme: ThemeType;
 }
 
 export const useStylesCard = makeStyles({
@@ -54,7 +56,7 @@ export const InfoContainer = styled.div`
 
 export const NoPrereq = styled.p<WindowProp>`
   font-size: 20px;
-  color: #222;
+  color: ${({ theme }) => theme.colors.text};
   text-transform: initial;
 
   ${props =>
@@ -71,7 +73,7 @@ export const SubjectHeader = styled.h3<WindowProp>`
   text-align: center;
   width: 100%;
 
-  color: #222;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 40px;
   font-weight: bold;
   text-transform: initial;
@@ -89,7 +91,7 @@ export const SubjectHeader = styled.h3<WindowProp>`
     content: '';
     height: 3px;
     width: 200px;
-    background-color: #7c4fe0;
+    background-color: ${({ theme }) => theme.colors.color};
     display: block;
     margin: 10px auto;
   }
@@ -139,7 +141,7 @@ export const FeaturesContainer = styled.div<WindowProp>`
   h4 {
     font-size: 25px;
     font-weight: bold;
-    color: #222;
+    color: ${({ theme }) => theme.colors.text};
     text-transform: initial;
     margin-bottom: 20px;
     text-align: center;
@@ -149,7 +151,7 @@ export const FeaturesContainer = styled.div<WindowProp>`
       content: '';
       height: 2px;
       width: 100px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
@@ -241,7 +243,7 @@ export const CardFeatureContainer = styled.div<WindowProp>`
   h4 {
     font-size: 25px;
     font-weight: bold;
-    color: #222;
+    color: ${({ theme }) => theme.colors.text};
     text-transform: initial;
     margin-bottom: 20px;
     text-align: center;
@@ -251,7 +253,7 @@ export const CardFeatureContainer = styled.div<WindowProp>`
       content: '';
       height: 2px;
       width: 100px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
@@ -286,7 +288,7 @@ export const EquivalencesContainer = styled.div<WindowProp>`
 `;
 
 export const EquivalenceBox = styled.div<WindowProp>`
-  background: #7c4fe0;
+  background: ${({ theme }) => theme.colors.color};
   min-height: 100px;
   max-width: 15%;
   border-radius: 10px;
@@ -328,7 +330,7 @@ export const EquivalenceBox = styled.div<WindowProp>`
 
 export const NoEquivalences = styled.p<WindowProp>`
   font-size: 20px;
-  color: #222;
+  color: ${({ theme }) => theme.colors.text};
   text-align: center;
   text-transform: initial;
   margin: auto;
@@ -351,7 +353,7 @@ export const OfertaContainer = styled.div<WindowProp>`
   h4 {
     font-size: 25px;
     font-weight: bold;
-    color: #222;
+    color: ${({ theme }) => theme.colors.text};
     text-transform: initial;
     margin-bottom: 20px;
     text-align: center;
@@ -361,7 +363,7 @@ export const OfertaContainer = styled.div<WindowProp>`
       content: '';
       height: 2px;
       width: 100px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
@@ -382,10 +384,10 @@ export const OfertaContainer = styled.div<WindowProp>`
 
     tr {
       &:nth-child(even) {
-        background-color: #ddd;
+        background-color: ${({ theme }) => theme.colors.row};
       }
       &:hover {
-        background-color: #eee;
+        background-color: ${({ theme }) => theme.colors.hover};
       }
     }
   }
@@ -425,7 +427,7 @@ export const CoreqContainer = styled.div<WindowProp>`
   h4 {
     font-size: 25px;
     font-weight: bold;
-    color: #222;
+    color: ${({ theme }) => theme.colors.text};
     text-transform: initial;
     margin-bottom: 20px;
     text-align: center;
@@ -435,14 +437,14 @@ export const CoreqContainer = styled.div<WindowProp>`
       content: '';
       height: 2px;
       width: 100px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
   }
 
   .container {
-    border: 3px solid #7c4fe0;
+    border: 3px solid ${({ theme }) => theme.colors.color};
     border-radius: 20px;
     text-align: center;
     width: 20%;
