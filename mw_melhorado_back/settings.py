@@ -88,8 +88,8 @@ WSGI_APPLICATION = 'mw_melhorado_back.wsgi.application'
 DATABASES = {'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': 'cadeomw2',
-    'USER': 'root',
-    'PASSWORD': 'abacate',
+    'USER': 'lucas',
+    'PASSWORD': 'password',
     'HOST': 'localhost',
     'PORT': '',
 }}
