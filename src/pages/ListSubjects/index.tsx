@@ -5,13 +5,20 @@ import { useHistory } from 'react-router-dom';
 import Select from 'react-dropdown-select';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
-
 import { Subjects, Form, QtdSearch, SelectContainer } from './styles';
-
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
-
 import departments from './departments';
+import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core';
+import { Modal } from 'react-bootstrap';
+import {
+  checkboxes,
+  hours,
+} from '../TimeTable/utils';
+import {
+  ModalBusyHoursContainer,
+} from '../TimeTable/styles';
 
 interface Results {
   code: number;
@@ -25,6 +32,10 @@ interface SubjectInfos {
   next: string;
   previous: string;
   count: number;
+}
+
+function fitsOffer(schedules: string[], checked: typeof checkboxes) {
+
 }
 
 const ListSubjects: React.FC = () => {
@@ -41,6 +52,10 @@ const ListSubjects: React.FC = () => {
   const { addToast } = useToast();
   const [WindowCheck, setWindowCheck] = useState(false);
   const history = useHistory();
+  const [show, setShow] = useState(false);
+  const [checked, setChecked] = useState(checkboxes);
+  const [busyHourSelected, setBusyHourSelected] = useState(false);
+  let hourCounter = -6;
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -94,7 +109,7 @@ const ListSubjects: React.FC = () => {
         addToast({
           type: 'error',
           title: 'Erro ao acessar novas páginas',
-          description: 'Tente novamente mais tarde',
+          description: 'Tente novamente mai CalendarContainer, tarde',
         });
       }
     }
@@ -104,7 +119,7 @@ const ListSubjects: React.FC = () => {
     setLoading(true);
     try {
       const response = await api.get<SubjectInfos>(
-        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&format=json&has_offer=true`,
+        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&checked_times=${checked}&format=json&has_offer=true`,
       );
       setSubjects(response.data);
       setQtdResults(true);
@@ -118,12 +133,25 @@ const ListSubjects: React.FC = () => {
       });
     }
     setSearchSubject('');
-  }, [addToast, searchDepartment, searchSubject]);
+  }, [addToast, searchDepartment, searchSubject, checked]);
 
   useEffect(() => {
     handleSearchSubject();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleChangeCheckbox = useCallback(
+    (name: string) => {
+      const checkedNewState = checked.map(state => {
+        if (state.name === name) return { name, checked: !state.checked };
+        return state;
+      });
+      setChecked(checkedNewState);
+      setBusyHourSelected(true);
+    },
+    [checked],
+  );
+
 
   return (
     <>
@@ -141,6 +169,17 @@ const ListSubjects: React.FC = () => {
             onChange={e => setSearchSubject(e.target.value)}
             placeholder="Digite o nome da disciplina"
           />
+          <Button
+            className="button"
+            variant="outlined"
+            color="primary"
+            onClick={() => setShow(true)}
+          >
+            {busyHourSelected
+              ? 'Horário Ocupado Adicionado!'
+              : 'Adicionar Horário Ocupado'}
+          </Button>
+
           <button type="submit">Pesquisar</button>
         </form>
       </Form>
@@ -207,8 +246,66 @@ const ListSubjects: React.FC = () => {
               </button>
             </div>
           )}
+
+          <Modal
+            show={show}
+            onHide={() => setShow(false)}
+            dialogClassName="modal-90w"
+            aria-labelledby="example-custom-modal-styling-title"
+            centered
+          >
+            <ModalBusyHoursContainer>
+              <Modal.Header closeButton>
+                <Modal.Title id="title">
+                  Selecione os horários em que não deseja ter aulas
+              </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Horários</th>
+                      <th>Segunda</th>
+                      <th>Terça</th>
+                      <th>Quarta</th>
+                      <th>Quinta</th>
+                      <th>Sexta</th>
+                      <th>Sábado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {hours.map(hour => {
+                      hourCounter += 6;
+                      return (
+                        <tr key={hour}>
+                          <td>{hour}</td>
+                          {checked
+                            .slice(hourCounter, hourCounter + 6)
+                            .map(checkbox => (
+                              <td key={checkbox.name}>
+                                <Checkbox
+                                  color="default"
+                                  onChange={() =>
+                                    handleChangeCheckbox(checkbox.name)
+                                  }
+                                  inputProps={{
+                                    'aria-label': 'checkbox with default color',
+                                  }}
+                                  checked={checkbox.checked}
+                                />
+                              </td>
+                            ))}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </Modal.Body>
+            </ModalBusyHoursContainer>
+          </Modal>
         </Subjects>
-      )}
+      )
+      }
     </>
   );
 };
