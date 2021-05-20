@@ -40,38 +40,6 @@ const Header: React.FC<HeaderBackground> = ({
     });
   }, []);
 
-  useEffect(() => {
-    const location = window.location.pathname.split('/')[1];
-    switch (location) {
-      case '':
-        setSelectedLink(1);
-        break;
-      case 'list-courses':
-        setSelectedLink(2);
-        break;
-      case 'list-subjects':
-        setSelectedLink(3);
-        break;
-      case 'timetable':
-        setSelectedLink(4);
-        break;
-      case 'map':
-        setSelectedLink(5);
-        break;
-      case 'faq-sigaa':
-        setSelectedLink(6);
-        break;
-      case 'about-us':
-        setSelectedLink(7);
-        break;
-      case 'list-departments':
-        setSelectedLink(8);
-        break;
-      default:
-        break;
-    }
-  }, []);
-
   const menuItems = [
     { id: 1, name: 'Home', link: '/' },
     { id: 2, name: 'Cursos', link: '/list-courses' },
@@ -82,6 +50,14 @@ const Header: React.FC<HeaderBackground> = ({
     { id: 6, name: 'FAQ SIGAA', link: '/faq-sigaa' },
     { id: 7, name: 'Sobre Nós', link: '/about-us' },
   ];
+
+  useEffect(() => {
+    const location = window.location.pathname.split('/')[1];
+    const filter = menuItems.filter(
+      menu => menu.link.replace('/', '') === location,
+    );
+    setSelectedLink(filter[0].id);
+  }, [menuItems]);
 
   return (
     <Container scrolled={!navFixed} transparent={transparent}>
