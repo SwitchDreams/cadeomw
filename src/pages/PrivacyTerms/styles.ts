@@ -16,7 +16,7 @@ export const Main = styled.div<WindowProp>`
     font-weight: bold;
   }
 
-  h3 {
+  h4 {
     font-weight: bold;
 
     &::after {
@@ -72,8 +72,12 @@ export const Title = styled.div<WindowProp>`
   font-weight: bold;
   text-transform: initial;
 
-  margin-bottom: 5px;
-  padding: 10px;
-
-
+  &::after {
+    content: '';
+    height: 3px;
+    width: 200px;
+    background-color: #7c4fe0;
+    display: block;
+    margin: 10px auto;
+  }
 `;
