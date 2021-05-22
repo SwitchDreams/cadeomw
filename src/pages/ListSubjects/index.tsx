@@ -25,6 +25,14 @@ interface Results {
   department_name: string;
   credit: number;
   name: string;
+  offer: {
+    name: string;
+    semester: string;
+    teachers: string[];
+    total_vacancies: string;
+    schedule: string[];
+    place: string;
+  }[];
 }
 
 interface SubjectInfos {
@@ -34,8 +42,81 @@ interface SubjectInfos {
   count: number;
 }
 
-function fitsOffer(schedules: string[], checked: typeof checkboxes) {
+// function prepareSchedule(schedule: string) {
+//   var days = ""
+//   var hours = ""
+//   var period = ""
+//   var periodIndex = 0
+//   if (schedule.indexOf("M") !== -1) {
+//     periodIndex = schedule.indexOf("M")
+//     days = schedule.substring(0, periodIndex)
+//     hours = schedule.substring(periodIndex + 1, schedule.length)
+//     period = "M"
+//     return [days, period, hours];
+//   } else if (schedule.indexOf("T") !== -1) {
+//     periodIndex = schedule.indexOf("T")
+//     days = schedule.substring(0, periodIndex)
+//     hours = schedule.substring(periodIndex + 1, schedule.length)
+//     period = "M"
+//     return [days, period, hours];
+//   } else {
+//     periodIndex = schedule.indexOf("N")
+//     days = schedule.substring(0, periodIndex)
+//     hours = schedule.substring(periodIndex + 1, schedule.length)
+//     period = "M"
+//     return [days, period, hours];
+//   }
+// }
 
+// function compareCodes(schedules: string[], selectedSchedules: typeof checkboxes) {
+//   let counter = 0;
+//   for (let i = 0; i < schedules.length; i++) {
+//     for (let j = 0; j < selectedSchedules.length; i++) {
+//       let formattedTimes = prepareSchedule(schedules[i])
+//       let compatible = 0;
+//       if (selectedSchedules[i].checked) {
+//         if (formattedTimes[0].indexOf(selectedSchedules[j].name[0]) !== -1) {
+//           compatible += 1;
+//         }
+//         if (formattedTimes[1].indexOf(selectedSchedules[j].name[1]) !== -1) {
+//           compatible += 1;
+//         }
+//         if (formattedTimes[2].indexOf(selectedSchedules[j].name[2]) !== -1) {
+//           compatible += 1;
+//         }
+//       }
+//       if (compatible === 3) {
+//         counter += 1;
+//       }
+//     }
+//   }
+//   if (counter >= schedules.length) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
+
+// function fitsOffer(response: SubjectInfos, selectedSchedules: typeof checkboxes) {
+//   response.results.map((item, index) => {
+//     item.offer.map((off, index) => {
+//       if (compareCodes(off.schedule, selectedSchedules)) {
+
+//       } else {
+//         delete response[index];
+//       }
+//     })
+//   }
+// }
+function processSelectedSchedules(selectedSchedules: typeof checkboxes) {
+  let listSelectedSchedules = ""
+  for (let i = 0; i < selectedSchedules.length; i++) {
+    if (selectedSchedules[i].checked) {
+      listSelectedSchedules = listSelectedSchedules + selectedSchedules[i].name + " "
+    }
+  }
+  console.log(listSelectedSchedules)
+  return listSelectedSchedules.slice(0, -1)
 }
 
 const ListSubjects: React.FC = () => {
@@ -119,8 +200,9 @@ const ListSubjects: React.FC = () => {
     setLoading(true);
     try {
       const response = await api.get<SubjectInfos>(
-        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&checked_times=${checked}&format=json&has_offer=true`,
+        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&selected_schedules=${processSelectedSchedules(checked)}&format=json&has_offer=true`,
       );
+      console.log(response.data)
       setSubjects(response.data);
       setQtdResults(true);
       setLoading(false);
@@ -147,6 +229,7 @@ const ListSubjects: React.FC = () => {
         return state;
       });
       setChecked(checkedNewState);
+      console.log(checked)
       setBusyHourSelected(true);
     },
     [checked],
