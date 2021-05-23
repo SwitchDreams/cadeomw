@@ -129,7 +129,7 @@ const ListCourses: React.FC = () => {
           <Adsense disposition="vertical" />
         </Grid>
 
-        <Grid item md={8}>
+        <Grid item md={8} xs={12}>
           <Form>
             <form onSubmit={handleSearchCourse}>
               <input
