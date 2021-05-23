@@ -80,15 +80,11 @@ class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
         if subject_name_search:
             queryset = queryset.filter(name__unaccent__icontains=subject_name_search)
         if has_selected_schedules:
-            print(has_selected_schedules)
             subjects_to_filter = []
             has_selected_schedules = has_selected_schedules.split()
             for subject in queryset:
                 for off in subject.offer:
                     valid_schedule = {}
-                    print(off['schedule'])
-                    print(has_selected_schedules)
-                    print("\n")
                     if("\n" not in off['schedule']):
                         for selected_time in has_selected_schedules:
                             for schedule in off['schedule']:  # percorrendo o array de horarios de uma aula
@@ -148,17 +144,11 @@ class SubjectViewSet(SelectSerializerMixin, viewsets.ReadOnlyModelViewSet):
                                         else:
                                             valid_schedule[selected_time] = False
                     if (False not in list(valid_schedule.values())):
-                        print("################################################################")
-                        print(off['schedule'])
-                        print("################################################################")
-                        print("\n")
                         subjects_to_filter.append(subject.name)
 
             print(subjects_to_filter)
             if subjects_to_filter:
-                print("list has content")
                 queryset = queryset.filter(name__in=subjects_to_filter)
             else:
-                print("list has NO content")
                 queryset = queryset.none()
         return queryset
