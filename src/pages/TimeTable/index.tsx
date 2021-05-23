@@ -353,14 +353,14 @@ const TimeTable: React.FC = () => {
                         {subjectsSearched.find(
                           subj => subj.code === subject.code,
                         ) && (
-                          <FaCheck
-                            style={{
-                              marginLeft: '10px',
-                              color: '#5cb85c',
-                              fontSize: windowCheck ? 20 : '1vw',
-                            }}
-                          />
-                        )}
+                            <FaCheck
+                              style={{
+                                marginLeft: '10px',
+                                color: '#5cb85c',
+                                fontSize: windowCheck ? 20 : '1vw',
+                              }}
+                            />
+                          )}
                       </span>
                     </div>
                     <div className="addButton">

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Select from 'react-dropdown-select';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
-import { Subjects, Form, QtdSearch, SelectContainer } from './styles';
+import { Subjects, Form, QtdSearch, SelectContainer, ButtonContainer, InstructionContainer } from './styles';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import departments from './departments';
@@ -42,72 +42,6 @@ interface SubjectInfos {
   count: number;
 }
 
-// function prepareSchedule(schedule: string) {
-//   var days = ""
-//   var hours = ""
-//   var period = ""
-//   var periodIndex = 0
-//   if (schedule.indexOf("M") !== -1) {
-//     periodIndex = schedule.indexOf("M")
-//     days = schedule.substring(0, periodIndex)
-//     hours = schedule.substring(periodIndex + 1, schedule.length)
-//     period = "M"
-//     return [days, period, hours];
-//   } else if (schedule.indexOf("T") !== -1) {
-//     periodIndex = schedule.indexOf("T")
-//     days = schedule.substring(0, periodIndex)
-//     hours = schedule.substring(periodIndex + 1, schedule.length)
-//     period = "M"
-//     return [days, period, hours];
-//   } else {
-//     periodIndex = schedule.indexOf("N")
-//     days = schedule.substring(0, periodIndex)
-//     hours = schedule.substring(periodIndex + 1, schedule.length)
-//     period = "M"
-//     return [days, period, hours];
-//   }
-// }
-
-// function compareCodes(schedules: string[], selectedSchedules: typeof checkboxes) {
-//   let counter = 0;
-//   for (let i = 0; i < schedules.length; i++) {
-//     for (let j = 0; j < selectedSchedules.length; i++) {
-//       let formattedTimes = prepareSchedule(schedules[i])
-//       let compatible = 0;
-//       if (selectedSchedules[i].checked) {
-//         if (formattedTimes[0].indexOf(selectedSchedules[j].name[0]) !== -1) {
-//           compatible += 1;
-//         }
-//         if (formattedTimes[1].indexOf(selectedSchedules[j].name[1]) !== -1) {
-//           compatible += 1;
-//         }
-//         if (formattedTimes[2].indexOf(selectedSchedules[j].name[2]) !== -1) {
-//           compatible += 1;
-//         }
-//       }
-//       if (compatible === 3) {
-//         counter += 1;
-//       }
-//     }
-//   }
-//   if (counter >= schedules.length) {
-//     return true
-//   } else {
-//     return false
-//   }
-// }
-
-// function fitsOffer(response: SubjectInfos, selectedSchedules: typeof checkboxes) {
-//   response.results.map((item, index) => {
-//     item.offer.map((off, index) => {
-//       if (compareCodes(off.schedule, selectedSchedules)) {
-
-//       } else {
-//         delete response[index];
-//       }
-//     })
-//   }
-// }
 function processSelectedSchedules(selectedSchedules: typeof checkboxes) {
   let listSelectedSchedules = ""
   for (let i = 0; i < selectedSchedules.length; i++) {
@@ -252,20 +186,11 @@ const ListSubjects: React.FC = () => {
             onChange={e => setSearchSubject(e.target.value)}
             placeholder="Digite o nome da disciplina"
           />
-          <Button
-            className="button"
-            variant="outlined"
-            color="primary"
-            onClick={() => setShow(true)}
-          >
-            {busyHourSelected
-              ? 'Horário Ocupado Adicionado!'
-              : 'Adicionar Horário Ocupado'}
-          </Button>
 
           <button type="submit">Pesquisar</button>
         </form>
       </Form>
+
 
       <SelectContainer>
         <Select
@@ -284,7 +209,21 @@ const ListSubjects: React.FC = () => {
             setSearchDepartment(value[0].initials);
           }}
         />
+
       </SelectContainer>
+
+      <ButtonContainer>
+        <Button
+          className="button"
+          variant="outlined"
+          color="primary"
+          onClick={() => setShow(true)}
+        >
+          {busyHourSelected
+            ? 'Horário Adicionado!'
+            : 'Adicionar Horário'}
+        </Button>
+      </ButtonContainer>
 
       {loading && <Loading />}
 
@@ -344,6 +283,22 @@ const ListSubjects: React.FC = () => {
               </Modal.Title>
               </Modal.Header>
               <Modal.Body>
+                <InstructionContainer>
+                  <p>
+                    Selecione o horário das aulas que voce procura, por exemplo:
+                  </p>
+                  <ul>
+                    <li>
+                      segunda e quarta aula de 8 as 10
+                    </li>
+                    <li>
+                      selecione nas colunas de segunda e quarta
+                    </li>
+                    <li>
+                      os quadros 8:00 e 9:00 ou apenas 8:00
+                    </li>
+                  </ul>
+                </InstructionContainer>
                 <table>
                   <thead>
                     <tr>
