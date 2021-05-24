@@ -107,7 +107,9 @@ export const Listsubjects: React.FC<ListsubjectsProps> = ({
         {subjectsSearched.map(subj => (
           <div key={subj.name} className="subjectShow">
             <SubjectCard window={window}>
-              <h3>{subj.name}</h3>
+              <h3>
+                {subj.name} - {subj.code}
+              </h3>
               <div className="left">
                 <BootForm.Group controlId="exampleForm.ControlSelect1">
                   <BootForm.Control
