@@ -23,6 +23,7 @@
     "canvasjs": "^1.8.3",
     "downshift": "^6.0.3",
     "graphviz-react": "^1.1.1",
+    "material-ui-cookie-consent": "^0.1.0",
     "miragejs": "^0.1.40",
     "pigeon-maps": "^0.16.1",
     "pigeon-marker": "^0.3.4",

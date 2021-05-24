@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
+import {
+  Grid,
+  Dialog,
+  Button as MUIButton,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from '@material-ui/core';
+
 import { BsArrowLeftRight } from 'react-icons/bs';
 import { RiCalendarCheckLine } from 'react-icons/ri';
 import {
@@ -7,7 +15,11 @@ import {
   AiFillInstagram,
   AiOutlineCluster,
 } from 'react-icons/ai';
+import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { getFromLS, setToLS } from '../../utils/localStorage';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 
@@ -40,13 +52,14 @@ Atualizações - Bruna
 
 const Dashboard: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
+  const [cookie, setCookie] = useState(getFromLS('cookie') || false);
+
   const [theme, setTheme] = useState(themes.data.light);
 
   useEffect(() => {
     const localTheme = getFromLS('theme');
     if (localTheme) setTheme(localTheme);
   }, []);
-
   useEffect(() => {
     if (window.innerWidth <= 1000) {
       setWindowCheck(true);
@@ -63,6 +76,26 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
+      <Dialog open={!cookie}>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description" component="div">
+            Este site usa cookies para melhorar a experiência do usuário. Caso
+            deseje continuar, declara estar ciente dos{' '}
+            <Link to="/policy-terms">Termos e Condições</Link>.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <MUIButton
+            onClick={() => {
+              setCookie(true);
+              setToLS('cookie', { cookie: true });
+            }}
+            color="primary"
+          >
+            Estou ciente.
+          </MUIButton>
+        </DialogActions>
+      </Dialog>
       <WavesContainer>
         <div className="curved">
           <Header transparent />
