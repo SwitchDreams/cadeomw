@@ -18,7 +18,6 @@ import {
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getFromLS, setToLS } from '../../utils/localStorage';
-import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
@@ -34,7 +33,6 @@ import fotoWaliff from '../../assets/perfil_waliff.png';
 import fotoJapa from '../../assets/perfil_japa.jpeg';
 
 import * as themes from '../../theme/schema.json';
-import { getFromLS } from '../../utils/localStorage';
 
 import {
   AboutUsContainer,
