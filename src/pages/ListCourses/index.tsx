@@ -144,7 +144,7 @@ const ListCourses: React.FC = () => {
         </QtdSearch>
       )}
       {!loading && (
-        <Courses window={WindowCheck}>
+        <Courses>
           {courses.results.map(course => (
             <ListCard 
               window={WindowCheck}

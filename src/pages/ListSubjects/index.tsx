@@ -174,7 +174,7 @@ const ListSubjects: React.FC = () => {
         </QtdSearch>
       )}
       {!loading && (
-        <Subjects window={WindowCheck}>
+        <Subjects>
           {subjects.results.map(subject => (
             <ListCard 
               window={WindowCheck}
