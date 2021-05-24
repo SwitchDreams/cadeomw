@@ -12,9 +12,7 @@ import { getFromLS, setToLS } from './utils/localStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ToastProvider } from './hooks/toasts';
-import createServer from './services/mock';
-
-import GlobalStyles, { AllContainer } from './styles/global';
+import createServer from './services/mirage';
 
 createServer();
 
