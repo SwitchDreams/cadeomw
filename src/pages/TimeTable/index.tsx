@@ -18,6 +18,8 @@ import {
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
 import { Modais } from './modais';
+import Adsense from "../../components/Adsense";
+
 
 const TimeTable: React.FC = () => {
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
@@ -229,8 +231,9 @@ const TimeTable: React.FC = () => {
     <>
       <div className="text-center">
         <Header transparent={false} />
-        <HowUse window={windowCheck} />
 
+        <HowUse window={windowCheck} />
+        <Adsense className="my-3" disposition="leaderboard" />
         <Form>
           <Button
             className="button"
@@ -298,6 +301,7 @@ const TimeTable: React.FC = () => {
           tryGenerate={tryGenerate}
         />
       </div>
+
     </>
   );
 };

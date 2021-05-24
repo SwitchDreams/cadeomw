@@ -3,6 +3,7 @@ import { AiOutlineGithub } from 'react-icons/ai';
 import { Button } from 'react-bootstrap';
 import { MdEmail } from 'react-icons/md';
 
+import { Link } from 'react-router-dom';
 import { useToast } from '../../hooks/toasts';
 import Header from '../../components/Header';
 
@@ -143,6 +144,21 @@ const ContactUs: React.FC = () => {
             intuitiva para o usuário. Atualizaremos as informações na maior
             frequência possível.
           </p>
+          <div style={{ alignItems: 'center' }}>
+            <Link to="/privacy-terms">
+              <Button
+                variant="outline-light"
+                style={{
+                  color: '#7c4fe0',
+                  borderColor: '#7c4fe0',
+                  marginRight: 5,
+                  marginLeft: 5,
+                }}
+              >
+                Termos e Condições
+              </Button>
+            </Link>
+          </div>
         </div>
       </WhoWeAreContainer>
 
