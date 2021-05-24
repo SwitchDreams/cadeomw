@@ -3,6 +3,7 @@ import { AiOutlineGithub } from 'react-icons/ai';
 import { Button } from 'react-bootstrap';
 import { MdEmail } from 'react-icons/md';
 
+import { Link } from 'react-router-dom';
 import { useToast } from '../../hooks/toasts';
 import Header from '../../components/Header';
 
@@ -110,7 +111,6 @@ const ContactUs: React.FC = () => {
               Copiar link PicPay
             </Button>
           </div>
-
         </div>
       </WhoWeAreContainer>
 
@@ -126,8 +126,9 @@ const ContactUs: React.FC = () => {
             informações sobre as disciplinas de forma rápida e eficiente.
           </p>
           <p>
-          Queremos deixar o nosso agradecimento à Marina Flores (@marinafloresf) que produziu o material de
-          divulgação no primeiro semestre de 2021.
+            Queremos deixar o nosso agradecimento à Marina Flores
+            (@marinafloresf) que produziu o material de divulgação no primeiro
+            semestre de 2021.
           </p>
         </div>
       </WhoWeAreContainer>
@@ -143,6 +144,21 @@ const ContactUs: React.FC = () => {
             intuitiva para o usuário. Atualizaremos as informações na maior
             frequência possível.
           </p>
+          <div style={{ alignItems: 'center' }}>
+            <Link to="/privacy-terms">
+              <Button
+                variant="outline-light"
+                style={{
+                  color: '#7c4fe0',
+                  borderColor: '#7c4fe0',
+                  marginRight: 5,
+                  marginLeft: 5,
+                }}
+              >
+                Termos e Condições
+              </Button>
+            </Link>
+          </div>
         </div>
       </WhoWeAreContainer>
 
@@ -191,7 +207,7 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Bruna Azambuja</h6>
                 <p>
-                  Fã de uma festa, jogadora de volei e adora aproveitar um
+                  Fã de um open bar, jogadora de volei e adora aproveitar um
                   barzinho com os amigos.
                 </p>
                 <div className="link">

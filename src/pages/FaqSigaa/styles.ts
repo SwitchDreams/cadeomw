@@ -1,14 +1,16 @@
 import styled, { css } from 'styled-components';
+import { ThemeType } from '../../App';
 
 interface WindowProp {
   window: boolean;
+  theme: ThemeType;
 }
 
 export const Main = styled.div<WindowProp>`
   max-width: 80%;
   margin: auto;
 
-  color: #222;
+  color: ${({ theme }) => theme.colors.text};
   padding: 2vh 5vw;
   text-align: center;
 
@@ -23,7 +25,7 @@ export const Main = styled.div<WindowProp>`
       content: '';
       height: 3px;
       width: 200px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }
@@ -58,21 +60,21 @@ export const Main = styled.div<WindowProp>`
     margin-top: 40px;
 
     button:hover {
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       color: white !important;
     }
   }
 
   .summary {
     button:hover {
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       color: white !important;
     }
   }
 
   .buttonForm {
     button:hover {
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       color: white !important;
     }
   }
@@ -120,7 +122,7 @@ export const Title = styled.div<WindowProp>`
   text-align: center;
   width: 100%;
 
-  color: #222;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 40px;
   font-weight: bold;
   text-transform: initial;
@@ -138,7 +140,7 @@ export const Title = styled.div<WindowProp>`
     content: '';
     height: 3px;
     width: 200px;
-    background-color: #7c4fe0;
+    background-color: ${({ theme }) => theme.colors.color};
     display: block;
     margin: 10px auto;
   }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Form } from 'react-bootstrap';
 import { Container, WaveContainer } from './styles';
+import { getFromLS, setToLS } from '../../utils/localStorage';
+import * as themes from '../../theme/schema.json';
 
 /*
   Header - Componente geral
@@ -15,6 +17,16 @@ const Header: React.FC<HeaderBackground> = ({
 }: HeaderBackground) => {
   const [navFixed, setNavFixed] = useState(false);
   const [selectedLink, setSelectedLink] = useState(0);
+  const [dark, setDark] = useState(false);
+  const [theme, setTheme] = useState(themes.data.light);
+
+  useEffect(() => {
+    const localTheme = getFromLS('theme');
+    if (localTheme) {
+      setTheme(localTheme);
+      setDark(localTheme.colors.body !== '#fff');
+    }
+  }, [dark]);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -28,38 +40,6 @@ const Header: React.FC<HeaderBackground> = ({
     });
   }, []);
 
-  useEffect(() => {
-    const location = window.location.pathname.split('/')[1];
-    switch (location) {
-      case '':
-        setSelectedLink(1);
-        break;
-      case 'list-courses':
-        setSelectedLink(2);
-        break;
-      case 'list-subjects':
-        setSelectedLink(3);
-        break;
-      case 'timetable':
-        setSelectedLink(4);
-        break;
-      case 'map':
-        setSelectedLink(5);
-        break;
-      case 'faq-sigaa':
-        setSelectedLink(6);
-        break;
-      case 'about-us':
-        setSelectedLink(7);
-        break;
-      case 'list-departments':
-        setSelectedLink(8);
-        break;
-      default:
-        break;
-    }
-  }, []);
-
   const menuItems = [
     { id: 1, name: 'Home', link: '/' },
     { id: 2, name: 'Cursos', link: '/list-courses' },
@@ -71,6 +51,14 @@ const Header: React.FC<HeaderBackground> = ({
     { id: 7, name: 'Sobre Nós', link: '/about-us' },
   ];
 
+  useEffect(() => {
+    const location = window.location.pathname.split('/')[1];
+    const filter = menuItems.filter(
+      menu => menu.link.replace('/', '') === location,
+    );
+    setSelectedLink(filter[0].id);
+  }, [menuItems]);
+
   return (
     <Container scrolled={!navFixed} transparent={transparent}>
       <div className={navFixed ? 'scrolled' : ''}>
@@ -79,17 +67,38 @@ const Header: React.FC<HeaderBackground> = ({
           expand="lg"
           className={navFixed ? 'fixed' : ''}
         >
-          <Navbar.Brand href="/" style={{ color: navFixed ? '#222' : '#fff' }}>
+          <Navbar.Brand
+            href="/"
+            style={{ color: navFixed ? theme.colors.text : '#fff' }}
+          >
             Cadê o MW ?
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label="DarkMode"
+                style={{ color: navFixed ? theme.colors.text : '#fff' }}
+                checked={dark}
+                onChange={() => {
+                  setDark(!dark);
+                  let temp;
+                  if (!dark) temp = themes.data.dark;
+                  else temp = themes.data.light;
+
+                  setToLS('theme', temp);
+                  setTheme(temp);
+                  window.location.reload(); // TODO: verify a simpler way to reaload theme.
+                }}
+              />
+
               {menuItems.map(menu => (
                 <Nav.Link
                   href={menu.link}
                   className={selectedLink === menu.id ? 'active' : ''}
-                  style={{ color: navFixed ? '#222' : '#fff' }}
+                  style={{ color: navFixed ? theme.colors.text : '#fff' }}
                   key={menu.name}
                 >
                   {menu.name}
@@ -109,7 +118,7 @@ const Header: React.FC<HeaderBackground> = ({
             preserveAspectRatio="none"
           >
             <path
-              fill="#fff"
+              fill={theme.colors.body}
               d="
                 M 0 67
                 C 273,183

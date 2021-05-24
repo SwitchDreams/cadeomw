@@ -1,11 +1,14 @@
 import styled from 'styled-components';
+import { ThemeType } from '../../App';
 
 interface CoursesProps {
   window: boolean;
+  theme: ThemeType;
 }
 
-export const Title = styled.div`
-  background-color: #7c4fe0;
+export const Title = styled.div<{ theme: ThemeType }>`
+  background-color: ${({ theme }) => theme.colors.color};
+  color: ${({ theme }) => theme.colors.text};
   position: relative;
   width: 70%;
   color: white;
@@ -14,9 +17,11 @@ export const Title = styled.div`
   border-radius: 15px;
   margin: auto;
   top: 5px;
-`
-export const Information = styled.div`
-  background-color: #7c4fe0;
+`;
+
+export const Information = styled.div<{ theme: ThemeType }>`
+  background-color: ${({ theme }) => theme.colors.color};
+  color: ${({ theme }) => theme.colors.text};
   opacity: 0.8;
   width: 50%;
   padding: 10px;
@@ -25,14 +30,18 @@ export const Information = styled.div`
   margin-top: 10px;
   margin-bottom: 20px;
   border-radius: 10px;
-`
+`;
 
 export const TableContainer = styled.div<CoursesProps>`
+  .table {
+    color: ${({ theme }) => theme.colors.text};
+  }
+
   margin: auto;
   position: relative;
   top: 5vh;
-  width: 90%
-`
+  width: 90%;
+`;
 
 export const TopContainer = styled.div`
   align-items: center;
@@ -40,5 +49,4 @@ export const TopContainer = styled.div`
   width: 100%;
   height: 100%;
   text-align: center;
-
-`
+`;

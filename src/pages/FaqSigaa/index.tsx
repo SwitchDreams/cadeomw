@@ -1,9 +1,9 @@
 import React, {
-  useState,
-  useEffect,
-  useCallback,
   FormEvent,
+  useCallback,
+  useEffect,
   useRef,
+  useState,
 } from 'react';
 import { Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
@@ -22,7 +22,10 @@ import trancamento from '../../assets/trancamento.png';
 import curso from '../../assets/curso.png';
 import fluxoCurso from '../../assets/fluxoCurso.png';
 import { parseHorario } from '../../utils/parseOferta';
+import Adsense from '../../components/Adsense';
 import { Title, Main } from './styles';
+import * as themes from '../../theme/schema.json';
+import { getFromLS } from '../../utils/localStorage';
 
 /*
   Página FAQ SIGAA - Bruna
@@ -32,6 +35,12 @@ const FaqSigaa: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
   const [sigla, setSiglaValue] = useState('');
   const [parse, setParse] = useState('');
+  const [theme, setTheme] = useState(themes.data.light);
+
+  useEffect(() => {
+    const localTheme = getFromLS('theme');
+    if (localTheme) setTheme(localTheme);
+  }, []);
 
   const horariosRef = useRef<null | HTMLDivElement>(null);
   const ofertaRef = useRef<null | HTMLDivElement>(null);
@@ -66,6 +75,9 @@ const FaqSigaa: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+
+      <Adsense disposition="leaderboard" />
+
       <Title window={windowCheck}>Entenda o SIGAA</Title>
       <Main window={windowCheck}>
         <h3>
@@ -94,8 +106,8 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
-              borderColor: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: theme.colors.color,
             }}
           >
             Ir para SIGAA público
@@ -111,7 +123,8 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: 'transparent',
             }}
           >
             Como posso ver a oferta desse semestre?
@@ -124,7 +137,8 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: 'transparent',
             }}
           >
             Entendendo os horários
@@ -137,7 +151,8 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: 'transparent',
             }}
           >
             Onde foram parar meus créditos?
@@ -150,7 +165,8 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: 'transparent',
             }}
           >
             Onde encontro os professores?
@@ -163,7 +179,8 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: 'transparent',
             }}
           >
             Onde emito meu histórico escolar?
@@ -176,7 +193,8 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: 'transparent',
             }}
           >
             Vish, não vai dar... Como retiro uma disciplina?
@@ -189,12 +207,15 @@ const FaqSigaa: React.FC = () => {
             }}
             variant="outline-light"
             style={{
-              color: '#7c4fe0',
+              color: theme.colors.color,
+              borderColor: 'transparent',
             }}
           >
             Como funciona o trancamento no SIGAA?
           </Button>
         </div>
+
+        <Adsense disposition="leaderboard" />
 
         <div className="oferta" ref={ofertaRef}>
           <h3>Como posso ver a oferta desse semestre?</h3>
@@ -231,6 +252,8 @@ const FaqSigaa: React.FC = () => {
           <img src={fluxoCurso} alt="cursos" />
         </div>
 
+        <Adsense disposition="leaderboard" />
+
         <div className="horarios" ref={horariosRef}>
           <h3>Entendendo os horários</h3>
           <p>
@@ -254,7 +277,7 @@ const FaqSigaa: React.FC = () => {
               id="filled-basic"
               label="Digite a sigla aqui"
               variant="filled"
-              style={{ width: 200 }}
+              style={{ width: 200, background: '#FFF', borderRadius: 10 }}
               onChange={event => {
                 setSiglaValue(event.target.value);
               }}
@@ -264,8 +287,8 @@ const FaqSigaa: React.FC = () => {
                 onClick={handleSubmit}
                 variant="outline-light"
                 style={{
-                  color: '#7c4fe0',
-                  borderColor: '#7c4fe0',
+                  color: theme.colors.color,
+                  borderColor: theme.colors.color,
                   width: 200,
                   marginTop: 10,
                 }}
@@ -332,8 +355,8 @@ const FaqSigaa: React.FC = () => {
               }}
               variant="outline-light"
               style={{
-                color: '#7c4fe0',
-                borderColor: '#7c4fe0',
+                color: theme.colors.color,
+                borderColor: theme.colors.color,
               }}
             >
               Fazer login SIGAA
@@ -341,6 +364,8 @@ const FaqSigaa: React.FC = () => {
           </div>
           <img src={emitirHistorico} alt="historico" />
         </div>
+
+        <Adsense disposition="leaderboard" />
 
         <div className="retirada" ref={retiradaRef}>
           <h3>Vish, não vai dar... Como retiro uma disciplina?</h3>

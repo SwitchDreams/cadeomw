@@ -1,18 +1,22 @@
 import styled, { css } from 'styled-components';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { shade } from 'polished';
+import { ThemeType } from '../../App';
 
 interface TabContentProps {
   selected: boolean;
   window: boolean;
+  theme: ThemeType;
 }
 
 interface ContentStatusProps {
   status: boolean;
+  theme: ThemeType;
 }
 
 interface AllContainerProps {
   window: boolean;
+  theme: ThemeType;
 }
 
 export const useStyles = makeStyles(() =>
@@ -52,19 +56,19 @@ export const CourseNameContainer = styled.div`
   align-items: center;
 `;
 
-export const CourseName = styled.h1`
+export const CourseName = styled.h1<{ theme: ThemeType }>`
   margin-top: 50px;
   font-weight: bold;
   padding: 0 40px 0 40px;
   font-size: 40px;
   text-align: center;
-  color: #585858;
+  color: ${({ theme }) => theme.colors.text};
 
   &::after {
     content: '';
     height: 3px;
     width: 200px;
-    background-color: #7c4fe0;
+    background-color: ${({ theme }) => theme.colors.color};
     display: block;
     margin: 10px auto;
   }
@@ -73,7 +77,7 @@ export const CourseName = styled.h1`
 export const Container = styled.div<AllContainerProps>`
   display: flex;
   flex-direction: row;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.body};
   height: 100px;
 
   ${props =>
@@ -84,18 +88,17 @@ export const Container = styled.div<AllContainerProps>`
 `;
 
 export const TabContent = styled.div<TabContentProps>`
-  background: #fff;
   width: 10%;
-  color: #7c4fe0;
+  color: ${({ theme }) => theme.colors.color};
 
   margin: 45px 0 0 50px;
-  border: 2px solid #7c4fe0;
+  border: 2px solid ${({ theme }) => theme.colors.color};
   border-radius: 10px;
 
   ${props =>
     props.selected &&
     css`
-      background: #7c4fe0;
+      background: ${({ theme }) => theme.colors.color};
       color: #fff;
     `}
 
@@ -112,7 +115,7 @@ export const TabContent = styled.div<TabContentProps>`
 
   &:hover {
     cursor: pointer;
-    background: #7c4fe0;
+    background: ${({ theme }) => theme.colors.color};
     transition: 0.7s;
     color: #fff;
   }
@@ -215,7 +218,7 @@ export const ContentContainer = styled.div<AllContainerProps>`
   padding: 3px;
 
   &:hover {
-    background: #eee;
+    background: ${({ theme }) => theme.colors.row};
     cursor: pointer;
   }
 `;
@@ -317,19 +320,12 @@ export const InfosGerais = styled.div<AllContainerProps>`
   min-height: 200px;
   width: 40%;
 
-  /* background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(124, 79, 224, 0.8) 100%
-  ); */
-
-  /* background: rgba(100, 100, 100, 0.1); */
-  background: linear-gradient(
+  background: ${({ theme }) => `linear-gradient(
     90deg,
-    rgba(255, 255, 255, 1) 0%,
+    ${theme.colors.body} 0%,
     rgba(100, 100, 100, 0.1) 50%,
-    rgba(255, 255, 255, 1) 100%
-  );
+    ${theme.colors.body} 100%
+  )`};
 
   ${props =>
     props.window &&
@@ -338,10 +334,9 @@ export const InfosGerais = styled.div<AllContainerProps>`
     `}
 `;
 
-export const InfoText = styled.div`
+export const InfoText = styled.div<{ theme: ThemeType }>`
   text-align: center;
-  color: rgba(124, 79, 224, 1);
-  /* background-color: rgba(100, 100, 100, 0.4); */
+  color: ${({ theme }) => theme.colors.color};
   margin: 0;
   align-items: center;
   font-weight: bold;
@@ -351,7 +346,7 @@ export const InfoSubText = styled.p<AllContainerProps>`
   text-align: center;
   margin: 5px;
   font-weight: normal;
-  color: #333;
+  color: ${({ theme }) => theme.colors.text};
 
   ${props =>
     props.window &&
@@ -360,14 +355,14 @@ export const InfoSubText = styled.p<AllContainerProps>`
     `}
 `;
 
-export const CoordenadorText = styled.p`
+export const CoordenadorText = styled.p<{ theme: ThemeType }>`
   text-align: center;
-  color: #333;
+  color: ${({ theme }) => theme.colors.text};
   width: 90%;
   margin: auto;
 
   strong {
-    color: rgba(124, 79, 224, 1);
+    color: ${({ theme }) => theme.colors.color};
     font-weight: bold;
   }
 `;
@@ -388,7 +383,7 @@ export const ContainerSubjects = styled.div<AllContainerProps>`
       content: '';
       height: 3px;
       width: 100px;
-      background-color: #7c4fe0;
+      background-color: ${({ theme }) => theme.colors.color};
       display: block;
       margin: 10px auto;
     }

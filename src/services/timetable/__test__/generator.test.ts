@@ -1,4 +1,4 @@
-import Generator, {GeneratorClass, GeneratorSubject} from '../generator';
+import Generator, { GeneratorClass, GeneratorSubject } from '../generator';
 import { APC, C1, F1 } from '../example';
 
 test('Generator', () => {
