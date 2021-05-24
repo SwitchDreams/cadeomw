@@ -207,7 +207,7 @@ const ContactUs: React.FC = () => {
               <div className="text">
                 <h6>Bruna Azambuja</h6>
                 <p>
-                  Fã de uma festa, jogadora de volei e adora aproveitar um
+                  Fã de um open bar, jogadora de volei e adora aproveitar um
                   barzinho com os amigos.
                 </p>
                 <div className="link">
