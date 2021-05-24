@@ -2,6 +2,7 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
+import Grid from '@material-ui/core/Grid';
 import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
@@ -10,6 +11,7 @@ import { Courses, Form, QtdSearch } from './styles';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
+import Adsense from '../../components/Adsense';
 
 interface Results {
   code: number;
@@ -122,63 +124,74 @@ const ListCourses: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+      <Grid container justify="center">
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
 
-      <Form>
-        <form onSubmit={handleSearchCourse}>
-          <input
-            value={searchCourse}
-            onChange={e => setSearchCourse(e.target.value)}
-            placeholder="Digite o nome do curso"
-          />
-          <button type="submit">Pesquisar</button>
-        </form>
-      </Form>
+        <Grid item md={8} xs={12}>
+          <Form>
+            <form onSubmit={handleSearchCourse}>
+              <input
+                value={searchCourse}
+                onChange={e => setSearchCourse(e.target.value)}
+                placeholder="Digite o nome do curso"
+              />
+              <button type="submit">Pesquisar</button>
+            </form>
+          </Form>
 
-      {loading && <Loading />}
+          {loading && <Loading />}
 
-      {qtdResults && !loading && (
-        <QtdSearch>
-          <div className="text-container">
-            <p>Foram encontrados {courses.count} resultados</p>
-          </div>
-        </QtdSearch>
-      )}
-      {!loading && (
-        <Courses window={WindowCheck}>
-          {courses.results.map(course => (
-            <a key={course.code} href={`courses/${course.code}`}>
-              <div>
-                <strong>
-                  {course.name.charAt(0).toUpperCase() +
-                    course.name.slice(1).toLowerCase()}
-                </strong>
-                <p>{course.shift}</p>
-                <p>Quantidade de períodos: {course.num_semester}</p>
+          {qtdResults && !loading && (
+            <QtdSearch>
+              <div className="text-container">
+                <p>Foram encontrados {courses.count} resultados</p>
               </div>
-              <FiChevronRight size={20} />
-            </a>
-          ))}
-
-          {!loading && (
-            <div className="actions">
-              <button
-                type="button"
-                disabled={courses.previous == null}
-                onClick={() => handlePagination(courses.previous)}
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={courses.next == null}
-                onClick={() => handlePagination(courses.next)}
-              >
-                Próximo
-              </button>
-            </div>
+            </QtdSearch>
           )}
-        </Courses>
-      )}
+          {!loading && (
+            <Courses window={WindowCheck}>
+              {courses.results.map(course => (
+                <a key={course.code} href={`courses/${course.code}`}>
+                  <div>
+                    <strong>
+                      {course.name.charAt(0).toUpperCase() +
+                        course.name.slice(1).toLowerCase()}
+                    </strong>
+                    <p>{course.shift}</p>
+                    <p>Quantidade de períodos: {course.num_semester}</p>
+                  </div>
+                  <FiChevronRight size={20} />
+                </a>
+              ))}
+
+              {!loading && (
+                <div className="actions">
+                  <button
+                    type="button"
+                    disabled={courses.previous == null}
+                    onClick={() => handlePagination(courses.previous)}
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    type="button"
+                    disabled={courses.next == null}
+                    onClick={() => handlePagination(courses.next)}
+                  >
+                    Próximo
+                  </button>
+                </div>
+              )}
+            </Courses>
+          )}
+        </Grid>
+
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
+      </Grid>
     </>
   );
 };

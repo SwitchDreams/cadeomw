@@ -37,6 +37,7 @@ import {
 } from './utils';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
+import Adsense from "../../components/Adsense";
 
 const initialDate = '2020-09-20';
 
@@ -272,6 +273,8 @@ const TimeTable: React.FC = () => {
     <>
       <div className="text-center">
         <Header transparent={false} />
+
+        <Adsense className="my-3" disposition="leaderboard" />
 
         <HowToUse window={windowCheck}>
           <h3>Gerador de Grade Automática</h3>
@@ -537,6 +540,7 @@ const TimeTable: React.FC = () => {
           </NoCalendarMessage>
         )}
       </div>
+
     </>
   );
 };

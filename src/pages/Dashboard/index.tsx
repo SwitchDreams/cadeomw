@@ -3,11 +3,11 @@ import { Grid } from '@material-ui/core';
 import { BsArrowLeftRight } from 'react-icons/bs';
 import { RiCalendarCheckLine } from 'react-icons/ri';
 import {
-  AiOutlineCluster,
-  AiFillInstagram,
   AiFillFacebook,
+  AiFillInstagram,
+  AiOutlineCluster,
 } from 'react-icons/ai';
-import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 
@@ -25,13 +25,14 @@ import * as themes from '../../theme/schema.json';
 import { getFromLS } from '../../utils/localStorage';
 
 import {
-  WavesContainer,
-  LandingText,
-  FirstTextContainer,
-  FeaturesContainer,
   AboutUsContainer,
+  FeaturesContainer,
+  FirstTextContainer,
+  LandingText,
+  WavesContainer,
   YouWillFind,
 } from './styles';
+import Adsense from '../../components/Adsense';
 /*
 Página principal - Bahia
 Atualizações - Bruna
@@ -85,6 +86,8 @@ const Dashboard: React.FC = () => {
           </svg>
         </div>
       </WavesContainer>
+
+      <Adsense disposition="leaderboard" />
 
       <FirstTextContainer>
         <div className="container">
@@ -191,6 +194,8 @@ const Dashboard: React.FC = () => {
           </Grid>
         </div>
       </FeaturesContainer>
+
+      <Adsense disposition="leaderboard" />
 
       <AboutUsContainer>
         <h2>Conheça os envolvidos</h2>
