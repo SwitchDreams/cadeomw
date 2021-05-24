@@ -18,8 +18,7 @@ import {
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
 import { Modais } from './modais';
-import Adsense from "../../components/Adsense";
-
+import Adsense from '../../components/Adsense';
 
 const TimeTable: React.FC = () => {
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
@@ -301,7 +300,6 @@ const TimeTable: React.FC = () => {
           tryGenerate={tryGenerate}
         />
       </div>
-
     </>
   );
 };

@@ -16,7 +16,7 @@ const Header: React.FC<HeaderBackground> = ({
   transparent,
 }: HeaderBackground) => {
   const [navFixed, setNavFixed] = useState(false);
-  const [selectedLink, setSelectedLink] = useState(0);
+  const [selectedLink, setSelectedLink] = useState<number | null>(0);
   const [dark, setDark] = useState(false);
   const [theme, setTheme] = useState(themes.data.light);
 
@@ -56,7 +56,8 @@ const Header: React.FC<HeaderBackground> = ({
     const filter = menuItems.filter(
       menu => menu.link.replace('/', '') === location,
     );
-    setSelectedLink(filter[0].id);
+    if (filter.length <= 0) setSelectedLink(null);
+    else setSelectedLink(filter[0].id);
   }, [menuItems]);
 
   return (
