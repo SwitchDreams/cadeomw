@@ -1,7 +1,6 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { FiChevronRight } from 'react-icons/fi';
 import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
@@ -10,6 +9,7 @@ import { Courses, Form, QtdSearch } from './styles';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
+import ListCard from '../../components/ListCard';
 
 interface Results {
   code: number;
@@ -146,17 +146,14 @@ const ListCourses: React.FC = () => {
       {!loading && (
         <Courses window={WindowCheck}>
           {courses.results.map(course => (
-            <a key={course.code} href={`courses/${course.code}`}>
-              <div>
-                <strong>
-                  {course.name.charAt(0).toUpperCase() +
-                    course.name.slice(1).toLowerCase()}
-                </strong>
-                <p>{course.shift}</p>
-                <p>Quantidade de períodos: {course.num_semester}</p>
-              </div>
-              <FiChevronRight size={20} />
-            </a>
+            <ListCard 
+              window={WindowCheck}
+              id={course.code}
+              shift={course.shift}
+              name={course.name}
+              num_semester={course.num_semester}
+              type="C"
+            />
           ))}
 
           {!loading && (

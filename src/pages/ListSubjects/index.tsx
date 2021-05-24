@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Axios from 'axios';
-import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-dropdown-select';
 import api from '../../services/api';
@@ -10,6 +9,7 @@ import { Subjects, Form, QtdSearch, SelectContainer } from './styles';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
+import ListCard from '../../components/ListCard';
 
 import departments from './departments';
 
@@ -176,17 +176,14 @@ const ListSubjects: React.FC = () => {
       {!loading && (
         <Subjects window={WindowCheck}>
           {subjects.results.map(subject => (
-            <a key={subject.code} href={`subjects/${subject.code}`}>
-              <div>
-                <strong>
-                  {subject.name.charAt(0).toUpperCase() +
-                    subject.name.slice(1).toLowerCase()}
-                </strong>
-                <p>Código: {subject.code}</p>
-                <p>Departamento: {subject.department_name}</p>
-              </div>
-              <FiChevronRight size={20} />
-            </a>
+            <ListCard 
+              window={WindowCheck}
+              id={subject.code}
+              code={subject.code}
+              name={subject.name}
+              departmentName={subject.department_name}
+              type="S"
+            />
           ))}
 
           {!loading && (
