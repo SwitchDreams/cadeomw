@@ -4,9 +4,9 @@ import App from './App';
 
 import createServer from './services/mirage';
 
-if (process.env.NODE_ENV === 'development') {
-  createServer();
-}
+// if (process.env.NODE_ENV === 'development') {
+//   createServer();
+// }
 
 ReactDOM.render(
   <React.StrictMode>
