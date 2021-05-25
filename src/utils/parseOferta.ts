@@ -48,20 +48,20 @@ const mapaHorarios: MapaHorariosProps = {
 
 export function parseHorario(horario: string): string {
   try {
-    horario = horario.toUpperCase();
-    let diaString = horario.charAt(0);
+    const upperHorario = horario.toUpperCase();
+    let diaString = upperHorario.charAt(0);
 
     for (let i = 1; i < 5; i += 1) {
-      if ('0123456789'.includes(horario.charAt(i))) {
-        diaString += horario.charAt(i);
+      if ('0123456789'.includes(upperHorario.charAt(i))) {
+        diaString += upperHorario.charAt(i);
       } else {
         i = 5;
       }
     }
 
-    const periodo = horario.charAt(diaString.length);
-    const inicio = horario.charAt(diaString.length + 1);
-    const fim = horario.charAt(horario.length - 1);
+    const periodo = upperHorario.charAt(diaString.length);
+    const inicio = upperHorario.charAt(diaString.length + 1);
+    const fim = upperHorario.charAt(upperHorario.length - 1);
 
     let horarioCompleto = '';
     let newDia = mapaDias[(diaString[0] as unknown) as number];

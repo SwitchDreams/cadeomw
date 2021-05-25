@@ -4,7 +4,10 @@ import App from './App';
 
 import createServer from './services/mirage';
 
-if (process.env.NODE_ENV === 'development') {
+if (
+  process.env.NODE_ENV === 'development' &&
+  process.env.REACT_APP_MOCK_API_SERVER === 'true'
+) {
   createServer();
 }
 

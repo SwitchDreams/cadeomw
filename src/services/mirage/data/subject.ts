@@ -124,7 +124,7 @@ export const SubjectData = (id: string) => ({
         'MARIO BENJAMIM BAPTISTA DE SIQUEIRA',
         'GEORGE TEODORO DA SILVA CANNEDO PIRES',
       ],
-      schedule: ['3M5', '3T1'],
+      schedule: ['3M56', '3T12'],
       total_vacancies: 40,
       place: 'BSA S B1 11/13 E BSA S B1 26/13',
     },
@@ -151,7 +151,7 @@ export const SubjectData = (id: string) => ({
     {
       name: 'E',
       teachers: ['CARLOS ALBERTO GURGEL VERAS'],
-      schedule: ['7T234567'],
+      schedule: ['7T2345678'],
       total_vacancies: 80,
       place: 'A definir',
     },
@@ -159,7 +159,7 @@ export const SubjectData = (id: string) => ({
       name: 'F',
       teachers: ['PEROLA DE OLIVEIRA MAGALHAES DIAS BATISTA'],
       schedule: [
-        '7M12345',
+        '7M1234',
         '7T12',
         '2N1234',
         '3N1234',

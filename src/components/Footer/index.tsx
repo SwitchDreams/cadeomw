@@ -75,7 +75,13 @@ const Footer: React.FC = () => {
             />
           </path>
         </svg>
-        <p>&copy; 2020 Switch Dreams.</p>
+        <p>
+          &copy; 2020 Switch Dreams |{' '}
+          <a href="/privacy-terms" style={{ color: '#ffffff' }}>
+            {' '}
+            Termos e condições{' '}
+          </a>
+        </p>
       </div>
     </FooterContainer>
   );

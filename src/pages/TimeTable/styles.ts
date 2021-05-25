@@ -32,6 +32,10 @@ export const CalendarContainer = styled.div<WindowProps>`
   .fc .fc-timegrid-slots td {
     height: 2.5em !important;
   }
+  th {
+    background-color: ${({ theme }) => theme.colors.body};
+    color: ${({ theme }) => theme.colors.text};
+  }
 
   ${props =>
     props.window &&
@@ -158,8 +162,13 @@ export const ModalSubjectsContainer = styled.div`
     text-transform: initial;
     text-align: center;
   }
+  .modal-title,
+  .modal-footer {
+    color: #414141;
+  }
 
   ul {
+    color: #414141;
     list-style-type: none;
     li {
       display: flex;
