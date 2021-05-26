@@ -3,22 +3,24 @@ import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-dropdown-select';
-import api from '../../services/api';
-import { useToast } from '../../hooks/toasts';
-import { Subjects, Form, QtdSearch, SelectContainer, ButtonContainer, InstructionContainer } from './styles';
-import Header from '../../components/Header';
-import Loading from '../../components/Loading';
-import departments from './departments';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 import { Modal } from 'react-bootstrap';
+import api from '../../services/api';
+import { useToast } from '../../hooks/toasts';
 import {
-  checkboxes,
-  hours,
-} from '../TimeTable/utils';
-import {
-  ModalBusyHoursContainer,
-} from '../TimeTable/styles';
+  Subjects,
+  Form,
+  QtdSearch,
+  SelectContainer,
+  ButtonContainer,
+  InstructionContainer,
+} from './styles';
+import Header from '../../components/Header';
+import Loading from '../../components/Loading';
+import departments from './departments';
+import { checkboxes, hours } from '../TimeTable/utils';
+import { ModalBusyHoursContainer } from '../TimeTable/styles';
 
 interface Results {
   code: number;
@@ -43,7 +45,7 @@ interface SubjectInfos {
 }
 
 function processSelectedSchedules(selectedSchedules: typeof checkboxes) {
-  let listSelectedSchedules = ""
+  let listSelectedSchedules = '';
   for (let i = 0; i < selectedSchedules.length; i++) {
     if (selectedSchedules[i].checked) {
       listSelectedSchedules = `${
@@ -51,7 +53,7 @@ function processSelectedSchedules(selectedSchedules: typeof checkboxes) {
       } `;
     }
   }
-  return listSelectedSchedules.slice(0, -1)
+  return listSelectedSchedules.slice(0, -1);
 }
 
 const ListSubjects: React.FC = () => {
@@ -135,9 +137,11 @@ const ListSubjects: React.FC = () => {
     setLoading(true);
     try {
       const response = await api.get<SubjectInfos>(
-        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&selected_schedules=${processSelectedSchedules(checked)}&format=json&has_offer=true`,
+        `subjects/?search=${searchSubject}&department_initial=${searchDepartment}&selected_schedules=${processSelectedSchedules(
+          checked,
+        )}&format=json&has_offer=true`,
       );
-      console.log(response.data)
+      console.log(response.data);
       setSubjects(response.data);
       setQtdResults(true);
       setLoading(false);
@@ -164,12 +168,10 @@ const ListSubjects: React.FC = () => {
         return state;
       });
       setChecked(checkedNewState);
-      console.log(checked)
       setBusyHourSelected(true);
     },
     [checked],
   );
-
 
   return (
     <>
@@ -192,7 +194,6 @@ const ListSubjects: React.FC = () => {
         </form>
       </Form>
 
-
       <SelectContainer>
         <Select
           options={departments}
@@ -210,7 +211,6 @@ const ListSubjects: React.FC = () => {
             setSearchDepartment(value[0].initials);
           }}
         />
-
       </SelectContainer>
 
       <ButtonContainer>
@@ -220,9 +220,7 @@ const ListSubjects: React.FC = () => {
           color="primary"
           onClick={() => setShow(true)}
         >
-          {busyHourSelected
-            ? 'Horário Adicionado!'
-            : 'Adicionar Horário'}
+          {busyHourSelected ? 'Horário Adicionado!' : 'Adicionar Horário'}
         </Button>
       </ButtonContainer>
 
@@ -281,7 +279,7 @@ const ListSubjects: React.FC = () => {
               <Modal.Header closeButton>
                 <Modal.Title id="title">
                   Selecione os horários em que não deseja ter aulas
-              </Modal.Title>
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <InstructionContainer>
@@ -289,15 +287,9 @@ const ListSubjects: React.FC = () => {
                     Selecione o horário das aulas que voce procura, por exemplo:
                   </p>
                   <ul>
-                    <li>
-                      segunda e quarta aula de 8 as 10
-                    </li>
-                    <li>
-                      selecione nas colunas de segunda e quarta
-                    </li>
-                    <li>
-                      os quadros 8:00 e 9:00 ou apenas 8:00
-                    </li>
+                    <li>segunda e quarta aula de 8 as 10</li>
+                    <li>selecione nas colunas de segunda e quarta</li>
+                    <li>os quadros 8:00 e 9:00 ou apenas 8:00</li>
                   </ul>
                 </InstructionContainer>
                 <table>
@@ -343,8 +335,7 @@ const ListSubjects: React.FC = () => {
             </ModalBusyHoursContainer>
           </Modal>
         </Subjects>
-      )
-      }
+      )}
     </>
   );
 };
