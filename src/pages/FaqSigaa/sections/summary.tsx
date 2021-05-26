@@ -20,18 +20,28 @@ interface SummaryProps {
 const SummarySigaa: (props: SummaryProps) => JSX.Element = (
   props: SummaryProps,
 ) => {
-  const {color} = props.theme.colors;
+  const {
+    theme,
+    horariosRef,
+    documentosRef,
+    trancamentoRef,
+    retiradaRef,
+    creditosRef,
+    docentesRef,
+    ofertaRef,
+  } = props;
+  const { color } = theme.colors;
   return (
     <>
       <Button
         onClick={() => {
-          const node = props.ofertaRef.current;
+          const node = ofertaRef.current;
           if (node) node.scrollIntoView();
           window.scrollBy(0, -200);
         }}
         variant="outline-light"
         style={{
-          color: color,
+          color,
           borderColor: 'transparent',
         }}
       >
@@ -39,13 +49,13 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
       </Button>
       <Button
         onClick={() => {
-          const node = props.horariosRef.current;
+          const node = horariosRef.current;
           if (node) node.scrollIntoView();
           window.scrollBy(0, -200);
         }}
         variant="outline-light"
         style={{
-          color: color,
+          color,
           borderColor: 'transparent',
         }}
       >
@@ -53,13 +63,13 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
       </Button>
       <Button
         onClick={() => {
-          const node = props.creditosRef.current;
+          const node = creditosRef.current;
           if (node) node.scrollIntoView();
           window.scrollBy(0, -200);
         }}
         variant="outline-light"
         style={{
-          color: color,
+          color,
           borderColor: 'transparent',
         }}
       >
@@ -67,13 +77,13 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
       </Button>
       <Button
         onClick={() => {
-          const node = props.docentesRef.current;
+          const node = docentesRef.current;
           if (node) node.scrollIntoView();
           window.scrollBy(0, -200);
         }}
         variant="outline-light"
         style={{
-          color: color,
+          color,
           borderColor: 'transparent',
         }}
       >
@@ -81,13 +91,13 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
       </Button>
       <Button
         onClick={() => {
-          const node = props.documentosRef.current;
+          const node = documentosRef.current;
           if (node) node.scrollIntoView();
           window.scrollBy(0, -200);
         }}
         variant="outline-light"
         style={{
-          color: color,
+          color,
           borderColor: 'transparent',
         }}
       >
@@ -95,13 +105,13 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
       </Button>
       <Button
         onClick={() => {
-          const node = props.retiradaRef.current;
+          const node = retiradaRef.current;
           if (node) node.scrollIntoView();
           window.scrollBy(0, -200);
         }}
         variant="outline-light"
         style={{
-          color: color,
+          color,
           borderColor: 'transparent',
         }}
       >
@@ -109,13 +119,13 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
       </Button>
       <Button
         onClick={() => {
-          const node = props.trancamentoRef.current;
+          const node = trancamentoRef.current;
           if (node) node.scrollIntoView();
           window.scrollBy(0, -200);
         }}
         variant="outline-light"
         style={{
-          color: color,
+          color,
           borderColor: 'transparent',
         }}
       >
