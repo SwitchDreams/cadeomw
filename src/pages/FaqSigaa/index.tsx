@@ -1,12 +1,5 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import React, {
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
 import { Button } from 'react-bootstrap';
 import Header from '../../components/Header';
 import Adsense from '../../components/Adsense';
@@ -57,9 +50,7 @@ const FaqSigaa: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
-
       <Adsense disposition="leaderboard" />
-
       <Title window={windowCheck}>Entenda o SIGAA</Title>
       <Main window={windowCheck}>
         <h3>
@@ -110,8 +101,10 @@ const FaqSigaa: React.FC = () => {
         </div>
 
         <Adsense disposition="leaderboard" />
+
         <div className="oferta" ref={ofertaRef}>
           <OfferSigaa />
+        </div>
 
         <Adsense disposition="leaderboard" />
 
