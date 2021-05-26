@@ -1,6 +1,16 @@
+
 import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Button } from 'react-bootstrap';
 import Header from '../../components/Header';
+import Adsense from '../../components/Adsense';
+
 import { Title, Main } from './styles';
 import * as themes from '../../theme/schema.json';
 import { getFromLS } from '../../utils/localStorage';
@@ -47,6 +57,9 @@ const FaqSigaa: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+
+      <Adsense disposition="leaderboard" />
+
       <Title window={windowCheck}>Entenda o SIGAA</Title>
       <Main window={windowCheck}>
         <h3>
@@ -95,9 +108,13 @@ const FaqSigaa: React.FC = () => {
             trancamentoRef={trancamentoRef}
           />
         </div>
+
+        <Adsense disposition="leaderboard" />
         <div className="oferta" ref={ofertaRef}>
           <OfferSigaa />
-        </div>
+
+        <Adsense disposition="leaderboard" />
+
         <div className="horarios" ref={horariosRef}>
           <ScheduleSigaa />
         </div>
@@ -110,6 +127,9 @@ const FaqSigaa: React.FC = () => {
         <div className="documentos" ref={documentosRef}>
           <DocumentsSigaa />
         </div>
+
+        <Adsense disposition="leaderboard" />
+
         <div className="retirada" ref={retiradaRef}>
           <RemoveSigaa />
         </div>
