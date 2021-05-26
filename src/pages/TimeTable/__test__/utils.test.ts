@@ -23,8 +23,3 @@ test('timeToEvent with six digits time', () => {
   expect(event.start).toEqual(`2020-09-22T13:00:00`);
   expect(event.end).toEqual(`2020-09-22T17:00:00`);
 });
-
-test('timeToEvent with invalid time', () => {
-  const time = '3T';
-  expect(() => timeToEvent(time, classRoom)).toThrow();
-});

@@ -62,9 +62,6 @@ export function randomColor(): string {
 }
 
 export function timeToEvent(time: string, classRoom: GeneratorClass) {
-  if (time.length <= 3 && time.length > 6) {
-    throw new Error('Parâmetro time deve ter de 4 a 6 dígitos');
-  }
   const [week, shift, start, ...end] = time.split('');
   return {
     id: `${classRoom.subjectName}-${classRoom.name}-${classRoom.teacher}-${time}`,

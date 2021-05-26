@@ -14,6 +14,7 @@ import NotFound from '../pages/NotFound';
 import TimeTable from '../pages/TimeTable';
 import FaqSigaa from '../pages/FaqSigaa';
 import ContactUs from '../pages/ContactUs';
+import PrivacyTerms from '../pages/PrivacyTerms';
 import DepartmentPage from '../pages/Departments';
 
 const Routes: React.FC = () => (
@@ -28,6 +29,7 @@ const Routes: React.FC = () => (
     <Route path="/subjects/:subject_id" component={Subject} />
     <Route path="/map" component={Map} />
     <Route path="/about-us" component={ContactUs} />
+    <Route path="/privacy-terms" component={PrivacyTerms} />
     <Route path="/department/:id" component={DepartmentPage} />
     <Route path="" component={NotFound} />
   </Switch>
