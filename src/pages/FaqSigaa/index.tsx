@@ -1,29 +1,21 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import Header from '../../components/Header';
 import { Title, Main } from './styles';
 import * as themes from '../../theme/schema.json';
 import { getFromLS } from '../../utils/localStorage';
-import ScheduleSigaa from './sections/schedule'
-import OfferSigaa from './sections/offer'
-import CreditsSigaa from './sections/credits'
-import StaffSigaa from './sections/staff'
-import DocumentsSigaa from './sections/documents'
-import RemoveSigaa from './sections/remove'
+import ScheduleSigaa from './sections/schedule';
+import OfferSigaa from './sections/offer';
+import CreditsSigaa from './sections/credits';
+import StaffSigaa from './sections/staff';
+import DocumentsSigaa from './sections/documents';
+import RemoveSigaa from './sections/remove';
 import BlockSigaa from './sections/block';
+import SummarySigaa from './sections/summary';
 
 const FaqSigaa: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
   const [theme, setTheme] = useState(themes.data.light);
-
-  useEffect(() => {
-    const localTheme = getFromLS('theme');
-    if (localTheme) setTheme(localTheme);
-  }, []);
 
   const horariosRef = useRef<null | HTMLDivElement>(null);
   const ofertaRef = useRef<null | HTMLDivElement>(null);
@@ -33,6 +25,10 @@ const FaqSigaa: React.FC = () => {
   const retiradaRef = useRef<null | HTMLDivElement>(null);
   const trancamentoRef = useRef<null | HTMLDivElement>(null);
 
+  useEffect(() => {
+    const localTheme = getFromLS('theme');
+    if (localTheme) setTheme(localTheme);
+  }, []);
 
   useEffect(() => {
     if (window.innerWidth <= 1000) {
@@ -88,106 +84,18 @@ const FaqSigaa: React.FC = () => {
         </div>
         <p>Escolha qual seção deseja visitar primeiro:</p>
         <div className="summary">
-          <Button
-            onClick={() => {
-              const node = ofertaRef.current;
-              if (node) node.scrollIntoView();
-              window.scrollBy(0, -200);
-            }}
-            variant="outline-light"
-            style={{
-              color: theme.colors.color,
-              borderColor: 'transparent',
-            }}
-          >
-            Como posso ver a oferta desse semestre?
-          </Button>
-          <Button
-            onClick={() => {
-              const node = horariosRef.current;
-              if (node) node.scrollIntoView();
-              window.scrollBy(0, -200);
-            }}
-            variant="outline-light"
-            style={{
-              color: theme.colors.color,
-              borderColor: 'transparent',
-            }}
-          >
-            Entendendo os horários
-          </Button>
-          <Button
-            onClick={() => {
-              const node = creditosRef.current;
-              if (node) node.scrollIntoView();
-              window.scrollBy(0, -200);
-            }}
-            variant="outline-light"
-            style={{
-              color: theme.colors.color,
-              borderColor: 'transparent',
-            }}
-          >
-            Onde foram parar meus créditos?
-          </Button>
-          <Button
-            onClick={() => {
-              const node = docentesRef.current;
-              if (node) node.scrollIntoView();
-              window.scrollBy(0, -200);
-            }}
-            variant="outline-light"
-            style={{
-              color: theme.colors.color,
-              borderColor: 'transparent',
-            }}
-          >
-            Onde encontro os professores?
-          </Button>
-          <Button
-            onClick={() => {
-              const node = documentosRef.current;
-              if (node) node.scrollIntoView();
-              window.scrollBy(0, -200);
-            }}
-            variant="outline-light"
-            style={{
-              color: theme.colors.color,
-              borderColor: 'transparent',
-            }}
-          >
-            Onde emito meu histórico escolar?
-          </Button>
-          <Button
-            onClick={() => {
-              const node = retiradaRef.current;
-              if (node) node.scrollIntoView();
-              window.scrollBy(0, -200);
-            }}
-            variant="outline-light"
-            style={{
-              color: theme.colors.color,
-              borderColor: 'transparent',
-            }}
-          >
-            Vish, não vai dar... Como retiro uma disciplina?
-          </Button>
-          <Button
-            onClick={() => {
-              const node = trancamentoRef.current;
-              if (node) node.scrollIntoView();
-              window.scrollBy(0, -200);
-            }}
-            variant="outline-light"
-            style={{
-              color: theme.colors.color,
-              borderColor: 'transparent',
-            }}
-          >
-            Como funciona o trancamento no SIGAA?
-          </Button>
+          <SummarySigaa
+            theme={theme}
+            horariosRef={horariosRef}
+            ofertaRef={ofertaRef}
+            creditosRef={creditosRef}
+            docentesRef={docentesRef}
+            documentosRef={documentosRef}
+            retiradaRef={retiradaRef}
+            trancamentoRef={trancamentoRef}
+          />
         </div>
-        <div className="oferta" ref={ofertaRef} >
+        <div className="oferta" ref={ofertaRef}>
           <OfferSigaa />
         </div>
         <div className="horarios" ref={horariosRef}>
