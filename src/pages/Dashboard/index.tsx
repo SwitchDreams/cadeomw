@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
+import {
+  Grid,
+  Dialog,
+  Button as MUIButton,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from '@material-ui/core';
+
 import { BsArrowLeftRight } from 'react-icons/bs';
 import { RiCalendarCheckLine } from 'react-icons/ri';
 import {
-  AiOutlineCluster,
-  AiFillInstagram,
   AiFillFacebook,
+  AiFillInstagram,
+  AiOutlineCluster,
 } from 'react-icons/ai';
 import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { getFromLS, setToLS } from '../../utils/localStorage';
+
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 
@@ -22,16 +33,16 @@ import fotoWaliff from '../../assets/perfil_waliff.png';
 import fotoJapa from '../../assets/perfil_japa.jpeg';
 
 import * as themes from '../../theme/schema.json';
-import { getFromLS } from '../../utils/localStorage';
 
 import {
-  WavesContainer,
-  LandingText,
-  FirstTextContainer,
-  FeaturesContainer,
   AboutUsContainer,
+  FeaturesContainer,
+  FirstTextContainer,
+  LandingText,
+  WavesContainer,
   YouWillFind,
 } from './styles';
+import Adsense from '../../components/Adsense';
 /*
 Página principal - Bahia
 Atualizações - Bruna
@@ -39,13 +50,14 @@ Atualizações - Bruna
 
 const Dashboard: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
+  const [cookie, setCookie] = useState(getFromLS('cookie') || false);
+
   const [theme, setTheme] = useState(themes.data.light);
 
   useEffect(() => {
     const localTheme = getFromLS('theme');
     if (localTheme) setTheme(localTheme);
   }, []);
-
   useEffect(() => {
     if (window.innerWidth <= 1000) {
       setWindowCheck(true);
@@ -62,6 +74,26 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
+      <Dialog open={!cookie}>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description" component="div">
+            Este site usa cookies para melhorar a experiência do usuário. Caso
+            deseje continuar, declara estar ciente dos{' '}
+            <Link to="/policy-terms">Termos e Condições</Link>.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <MUIButton
+            onClick={() => {
+              setCookie(true);
+              setToLS('cookie', { cookie: true });
+            }}
+            color="primary"
+          >
+            Estou ciente.
+          </MUIButton>
+        </DialogActions>
+      </Dialog>
       <WavesContainer>
         <div className="curved">
           <Header transparent />
@@ -85,6 +117,8 @@ const Dashboard: React.FC = () => {
           </svg>
         </div>
       </WavesContainer>
+
+      <Adsense disposition="leaderboard" />
 
       <FirstTextContainer>
         <div className="container">
@@ -191,6 +225,8 @@ const Dashboard: React.FC = () => {
           </Grid>
         </div>
       </FeaturesContainer>
+
+      <Adsense disposition="leaderboard" />
 
       <AboutUsContainer>
         <h2>Conheça os envolvidos</h2>

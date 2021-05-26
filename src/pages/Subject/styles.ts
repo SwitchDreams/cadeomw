@@ -177,7 +177,7 @@ export const FeatureCardContainer = styled.div<WindowProp>`
   transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 1rem 3rem rgba(31, 45, 61, 0.35) !important;
+    box-shadow: 0 1rem 3rem ${({ theme }) => theme.colors.text} !important;
   }
 
   svg {

@@ -36,7 +36,9 @@ const Maintenance: React.FC = () => {
   function handleScroll() {
     if (window.pageYOffset > 1200) {
       setRenderCount(true);
-      window.removeEventListener('scroll', () => {});
+      window.removeEventListener('scroll', () => {
+        // Handles Scroll
+      });
     }
   }
 
@@ -44,6 +46,7 @@ const Maintenance: React.FC = () => {
     function watchScroll() {
       window.addEventListener('scroll', handleScroll);
     }
+
     watchScroll();
   });
   return (
