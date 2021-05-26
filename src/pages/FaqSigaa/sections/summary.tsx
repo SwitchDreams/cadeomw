@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import * as themes from '../../../theme/schema.json';
 
 interface Refs{
@@ -20,6 +20,7 @@ interface SummaryProps {
 const SummarySigaa: (props: SummaryProps) => JSX.Element = (
   props: SummaryProps,
 ) => {
+  const {color} = props.theme.colors;
   return (
     <>
       <Button
@@ -30,7 +31,7 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
         }}
         variant="outline-light"
         style={{
-          color: props.theme.colors.color,
+          color: color,
           borderColor: 'transparent',
         }}
       >
@@ -44,7 +45,7 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
         }}
         variant="outline-light"
         style={{
-          color: props.theme.colors.color,
+          color: color,
           borderColor: 'transparent',
         }}
       >
@@ -58,7 +59,7 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
         }}
         variant="outline-light"
         style={{
-          color: props.theme.colors.color,
+          color: color,
           borderColor: 'transparent',
         }}
       >
@@ -72,7 +73,7 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
         }}
         variant="outline-light"
         style={{
-          color: props.theme.colors.color,
+          color: color,
           borderColor: 'transparent',
         }}
       >
@@ -86,7 +87,7 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
         }}
         variant="outline-light"
         style={{
-          color: props.theme.colors.color,
+          color: color,
           borderColor: 'transparent',
         }}
       >
@@ -100,7 +101,7 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
         }}
         variant="outline-light"
         style={{
-          color: props.theme.colors.color,
+          color: color,
           borderColor: 'transparent',
         }}
       >
@@ -114,7 +115,7 @@ const SummarySigaa: (props: SummaryProps) => JSX.Element = (
         }}
         variant="outline-light"
         style={{
-          color: props.theme.colors.color,
+          color: color,
           borderColor: 'transparent',
         }}
       >
