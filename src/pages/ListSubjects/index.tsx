@@ -46,12 +46,11 @@ interface SubjectInfos {
 
 function processSelectedSchedules(selectedSchedules: typeof checkboxes) {
   let listSelectedSchedules = '';
-  for (let i = 0; i < selectedSchedules.length; i++) {
+  for (let i = 0; i < selectedSchedules.length; i += 1) {
     if (selectedSchedules[i].checked) {
       listSelectedSchedules += `${selectedSchedules[i].name} `;
     }
   }
-  console.log(listSelectedSchedules.slice(0, -1));
   return listSelectedSchedules.slice(0, -1);
 }
 
