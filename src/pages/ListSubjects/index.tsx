@@ -48,11 +48,10 @@ function processSelectedSchedules(selectedSchedules: typeof checkboxes) {
   let listSelectedSchedules = '';
   for (let i = 0; i < selectedSchedules.length; i++) {
     if (selectedSchedules[i].checked) {
-      listSelectedSchedules = `${
-        listSelectedSchedules + selectedSchedules[i].name
-      } `;
+      listSelectedSchedules += `${selectedSchedules[i].name} `;
     }
   }
+  console.log(listSelectedSchedules.slice(0, -1));
   return listSelectedSchedules.slice(0, -1);
 }
 
