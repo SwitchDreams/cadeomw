@@ -202,6 +202,15 @@ export const MontarGrade = styled.div`
   }
 `;
 
+export const ExportarGrade = styled.div`
+  .button {
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.color};
+      color: white !important;
+    }
+  }
+`;
+
 export const HowToUse = styled.div<WindowProps>`
   text-align: center;
   color: ${({ theme }) => theme.colors.text};
@@ -251,4 +260,10 @@ export const ModalBusyHoursContainer = styled.div<{ theme: ThemeType }>`
 
 export const NoCalendarMessage = styled.div`
   text-align: center;
+`;
+
+export const Grade = styled.div`
+  a {
+    text-decoration: none;
+  }
 `;

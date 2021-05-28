@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Button } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Header from "../../components/Header";
-import Generator from "../../services/timetable/generator";
-import { Fullcalendar, HowUse, Listsubjects } from "./helpers";
-import { Form, MontarGrade } from "./styles";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { useReactToPrint } from 'react-to-print';
+import Header from '../../components/Header';
+import Generator from '../../services/timetable/generator';
+import { Fullcalendar, HowUse, Listsubjects } from './helpers';
+import { Form, MontarGrade, ExportarGrade, Grade } from './styles';
 import {
   checkboxes,
   classToEvent,
@@ -13,14 +14,12 @@ import {
   parseSchedule,
   randomColor,
   SearchResponse,
-  Subject
-} from "./utils";
-import api from "../../services/api";
-import { useToast } from "../../hooks/toasts";
-import { Modais } from "./modais";
-import Adsense from "../../components/Adsense";
-import { useReactToPrint } from "react-to-print";
-
+  Subject,
+} from './utils';
+import api from '../../services/api';
+import { useToast } from '../../hooks/toasts';
+import { Modais } from './modais';
+import Adsense from '../../components/Adsense';
 
 const TimeTable: React.FC = () => {
   const [selectedClasses, setSelectedClasses] = useState<Array<any>>([]);
@@ -28,7 +27,7 @@ const TimeTable: React.FC = () => {
 
   const [windowCheck, setWindowCheck] = useState(false);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [subjectsSearched, setSubjectsSearched] = useState<Subject[]>([]);
   const [modalSubjects, setModalSubjects] = useState<ModalSubject[]>([]);
 
@@ -303,23 +302,26 @@ const TimeTable: React.FC = () => {
           </MontarGrade>
         )}
         {exportPDF && (
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button"
-            onClick={handlePrint}
-          >
-            Exportar grade horária em PDF
-          </Button>
+          <ExportarGrade>
+            <Button
+              variant="outlined"
+              color="primary"
+              className="button"
+              onClick={handlePrint}
+            >
+              Exportar grade horária em PDF
+            </Button>
+          </ExportarGrade>
         )}
 
-        <div ref={componentRef}>
+        <Grade ref={componentRef}>
           <Fullcalendar
             selectedClasses={selectedClasses}
             window={windowCheck}
             tryGenerate={tryGenerate}
           />
-        </div>
+          {tryGenerate && <a href="www.cadeomw.com.br">cadeomw.com.br</a>}
+        </Grade>
       </div>
     </>
   );
