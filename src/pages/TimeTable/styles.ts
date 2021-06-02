@@ -1,6 +1,7 @@
 import Chip from '@material-ui/core/Chip';
 import { FormControl } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { Row } from 'react-bootstrap';
 import { ThemeType } from '../../App';
 
 interface WindowProps {
@@ -176,7 +177,6 @@ export const ModalSubjectsContainer = styled.div`
       margin-bottom: 15px;
       padding: 0;
       justify-content: space-between;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.color};
       font-size: 14px;
 
       span.bold {
@@ -251,4 +251,9 @@ export const ModalBusyHoursContainer = styled.div<{ theme: ThemeType }>`
 
 export const NoCalendarMessage = styled.div`
   text-align: center;
+`;
+
+export const TitleRow = styled(Row) <{ theme: ThemeType }>`
+  border-bottom: 1px solid ${({ theme }) => theme.colors.color};
+  border-top: 1px solid ${({ theme }) => theme.colors.color};
 `;
