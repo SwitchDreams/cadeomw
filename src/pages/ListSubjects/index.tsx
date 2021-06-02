@@ -276,7 +276,7 @@ const ListSubjects: React.FC = () => {
             <ModalBusyHoursContainer>
               <Modal.Header closeButton>
                 <Modal.Title id="title">
-                  Selecione os horários em que não deseja ter aulas
+                  Selecione os horário que você procura
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>

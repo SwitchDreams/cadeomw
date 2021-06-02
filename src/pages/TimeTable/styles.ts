@@ -174,7 +174,6 @@ export const ModalSubjectsContainer = styled.div`
     li {
       display: flex;
       flex-direction: row;
-      margin-bottom: 15px;
       padding: 0;
       justify-content: space-between;
       font-size: 14px;
@@ -253,7 +252,7 @@ export const NoCalendarMessage = styled.div`
   text-align: center;
 `;
 
-export const TitleRow = styled(Row) <{ theme: ThemeType }>`
+export const TitleRow = styled(Row)<{ theme: ThemeType }>`
   border-bottom: 1px solid ${({ theme }) => theme.colors.color};
   border-top: 1px solid ${({ theme }) => theme.colors.color};
 `;

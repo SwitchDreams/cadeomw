@@ -1,7 +1,7 @@
 import React from 'react';
-import {Modal, Row, Col} from 'react-bootstrap';
+import { Modal, Row, Col } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
-import {FaCheck} from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 import IconButton from '@material-ui/core/IconButton';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
@@ -10,8 +10,8 @@ import {
   ModalBusyHoursContainer,
   TitleRow,
 } from './styles';
-import {hours, ModalSubject, Subject, checkboxes} from './utils';
-import {parseHorario} from '../../utils/parseOferta'
+import { hours, ModalSubject, Subject, checkboxes } from './utils';
+import { parseHorario } from '../../utils/parseOferta';
 
 interface ModaisProps {
   modalSubjects: ModalSubject[];
@@ -27,17 +27,17 @@ interface ModaisProps {
 }
 
 export const Modais: React.FC<ModaisProps> = ({
-                                                modalSubjects,
-                                                subjectsSearched,
-                                                show,
-                                                show2,
-                                                windowCheck,
-                                                handleAddModalSubject,
-                                                handleChangeCheckbox,
-                                                checked,
-                                                hide1,
-                                                hide2,
-                                              }: ModaisProps) => {
+  modalSubjects,
+  subjectsSearched,
+  show,
+  show2,
+  windowCheck,
+  handleAddModalSubject,
+  handleChangeCheckbox,
+  checked,
+  hide1,
+  hide2,
+}: ModaisProps) => {
   let hourCounter = -6;
 
   return (
@@ -58,6 +58,7 @@ export const Modais: React.FC<ModaisProps> = ({
           <Modal.Body>
             {modalSubjects.map(subject => (
               <>
+                {console.log(subject)}
                 <TitleRow className="align-middle justify-content-center">
                   <Col sm={10}>
                     <span className="bold">{subject.name} </span>
@@ -103,14 +104,16 @@ export const Modais: React.FC<ModaisProps> = ({
                             if (item) {
                               if (item.indexOf('\n') !== -1) {
                                 return (
-                                  <h5 style={{color: 'black'}}>
+                                  <h5 style={{ color: 'black' }}>
                                     Não há horário
                                   </h5>
                                 );
                               }
                               return (
-                                <li style={{color: 'black'}}>
-                                  {parseHorario(item)}
+                                <li style={{ color: 'black' }}>
+                                  {`${parseHorario(item)}     Turma ${
+                                    offer.name
+                                  }`}
                                 </li>
                               );
                             }
@@ -118,7 +121,7 @@ export const Modais: React.FC<ModaisProps> = ({
                           })}
                         </ul>
                       </Row>
-                      <Divider/>
+                      <Divider />
                     </>
                   );
                 })}
@@ -147,41 +150,41 @@ export const Modais: React.FC<ModaisProps> = ({
           <Modal.Body>
             <table>
               <thead>
-              <tr>
-                <th>Horários</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
-                <th>Sábado</th>
-              </tr>
+                <tr>
+                  <th>Horários</th>
+                  <th>Segunda</th>
+                  <th>Terça</th>
+                  <th>Quarta</th>
+                  <th>Quinta</th>
+                  <th>Sexta</th>
+                  <th>Sábado</th>
+                </tr>
               </thead>
               <tbody>
-              {hours.map(hour => {
-                hourCounter += 6;
-                return (
-                  <tr key={hour}>
-                    <td>{hour}</td>
-                    {checked
-                      .slice(hourCounter, hourCounter + 6)
-                      .map(checkbox => (
-                        <td key={checkbox.name}>
-                          <Checkbox
-                            color="default"
-                            onChange={() =>
-                              handleChangeCheckbox(checkbox.name)
-                            }
-                            inputProps={{
-                              'aria-label': 'checkbox with default color',
-                            }}
-                            checked={checkbox.checked}
-                          />
-                        </td>
-                      ))}
-                  </tr>
-                );
-              })}
+                {hours.map(hour => {
+                  hourCounter += 6;
+                  return (
+                    <tr key={hour}>
+                      <td>{hour}</td>
+                      {checked
+                        .slice(hourCounter, hourCounter + 6)
+                        .map(checkbox => (
+                          <td key={checkbox.name}>
+                            <Checkbox
+                              color="default"
+                              onChange={() =>
+                                handleChangeCheckbox(checkbox.name)
+                              }
+                              inputProps={{
+                                'aria-label': 'checkbox with default color',
+                              }}
+                              checked={checkbox.checked}
+                            />
+                          </td>
+                        ))}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </Modal.Body>
