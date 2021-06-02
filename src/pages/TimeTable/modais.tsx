@@ -76,24 +76,23 @@ export const Modais: React.FC<ModaisProps> = ({
                         />
                       )}
                     </span>
-                  </div>
-                  <div className="addButton">
-                    <IconButton
-                      aria-label="add"
-                      style={{
-                        marginLeft: '0.9vw',
-                        marginBottom: '0.8vh',
-                      }}
-                      onClick={() => handleAddModalSubject(subject)}
-                    >
-                      <AddIcon
+                    <div className="addButton">
+                      <IconButton
+                        aria-label="add"
                         style={{
-                          fontSize: windowCheck ? 20 : '1.5vw',
-                          color: '#4e3388',
+                          marginLeft: '0.9vw',
+                          marginBottom: '0.8vh',
                         }}
-                      />
-                    </IconButton>
-
+                        onClick={() => handleAddModalSubject(subject)}
+                      >
+                        <AddIcon
+                          style={{
+                            fontSize: windowCheck ? 20 : '1.5vw',
+                            color: '#4e3388',
+                          }}
+                        />
+                      </IconButton>
+                    </div>
                   </Col>
                 </TitleRow>
                 {subject.offer.map(offer => {

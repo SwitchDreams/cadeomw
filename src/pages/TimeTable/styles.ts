@@ -1,6 +1,7 @@
 import Chip from '@material-ui/core/Chip';
 import { FormControl } from '@material-ui/core';
 import styled, { css } from 'styled-components';
+import { Row } from 'react-bootstrap';
 import { ThemeType } from '../../App';
 
 interface WindowProps {
@@ -175,7 +176,6 @@ export const ModalSubjectsContainer = styled.div`
       flex-direction: row;
       padding: 0;
       justify-content: space-between;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.color};
       font-size: 14px;
 
       span.bold {
@@ -266,3 +266,4 @@ export const TitleRow = styled(Row)<{ theme: ThemeType }>`
   border-top: 1px solid ${({ theme }) => theme.colors.color};
 `;
 
+export const Grade = styled.div``;
