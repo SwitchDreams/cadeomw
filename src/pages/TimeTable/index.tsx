@@ -320,7 +320,6 @@ const TimeTable: React.FC = () => {
             window={windowCheck}
             tryGenerate={tryGenerate}
           />
-          {tryGenerate && <a href="www.cadeomw.com.br">cadeomw.com.br</a>}
         </Grade>
       </div>
     </>
