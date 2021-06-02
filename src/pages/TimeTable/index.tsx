@@ -1,19 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import { useReactToPrint } from 'react-to-print';
 import Header from '../../components/Header';
 import Generator from '../../services/timetable/generator';
-import { HowUse, Fullcalendar, Listsubjects } from './helpers';
-import { Form, MontarGrade } from './styles';
+import { Fullcalendar, HowUse, Listsubjects } from './helpers';
+import { Form, MontarGrade, ExportarGrade } from './styles';
 import {
-  classToEvent,
-  randomColor,
-  Subject,
-  ParsedSubjectTimetable,
-  SearchResponse,
-  ModalSubject,
-  parseSchedule,
   checkboxes,
+  classToEvent,
+  ModalSubject,
+  ParsedSubjectTimetable,
+  parseSchedule,
+  randomColor,
+  SearchResponse,
+  Subject,
 } from './utils';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
@@ -32,6 +33,13 @@ const TimeTable: React.FC = () => {
 
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
+
+  const [exportPDF, setExportPDF] = useState(false);
+  const componentRef = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const [checked, setChecked] = useState(checkboxes);
   const [busyHourSelected, setBusyHourSelected] = useState(false);
@@ -176,7 +184,7 @@ const TimeTable: React.FC = () => {
 
   const handleParseSubjects = useCallback(() => {
     setTryGenerate(true);
-
+    setExportPDF(true);
     const parsedSubjects = subjectsSearched
       .filter(subj => subj.class === null || subj.class === 'turma')
       .map(subj => {
@@ -293,12 +301,26 @@ const TimeTable: React.FC = () => {
             </Button>
           </MontarGrade>
         )}
+        {exportPDF && (
+          <ExportarGrade>
+            <Button
+              variant="outlined"
+              color="primary"
+              className="button"
+              onClick={handlePrint}
+            >
+              Exportar grade horária em PDF
+            </Button>
+          </ExportarGrade>
+        )}
 
-        <Fullcalendar
-          selectedClasses={selectedClasses}
-          window={windowCheck}
-          tryGenerate={tryGenerate}
-        />
+        <Grade ref={componentRef}>
+          <Fullcalendar
+            selectedClasses={selectedClasses}
+            window={windowCheck}
+            tryGenerate={tryGenerate}
+          />
+        </Grade>
       </div>
     </>
   );
