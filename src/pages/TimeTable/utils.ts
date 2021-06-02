@@ -39,6 +39,14 @@ export interface ModalSubject {
   code: string;
   department: string;
   name: string;
+  offer: {
+    name: string;
+    semester: string;
+    teachers: string[];
+    total_vacancies: string;
+    schedule: string[];
+    place: string;
+  }[];
 }
 
 export function shiftToHour(shift: string): number {
@@ -61,6 +69,7 @@ export function randomColor(): string {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function timeToEvent(time: string, classRoom: GeneratorClass) {
   const [week, shift, start, ...end] = time.split('');
   return {
