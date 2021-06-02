@@ -4,6 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { FaCheck } from 'react-icons/fa';
 import IconButton from '@material-ui/core/IconButton';
 import Checkbox from '@material-ui/core/Checkbox';
+
 import Divider from '@material-ui/core/Divider';
 import {
   ModalSubjectsContainer,
@@ -58,7 +59,6 @@ export const Modais: React.FC<ModaisProps> = ({
           <Modal.Body>
             {modalSubjects.map(subject => (
               <>
-                {console.log(subject)}
                 <TitleRow className="align-middle justify-content-center">
                   <Col sm={10}>
                     <span className="bold">{subject.name} </span>
@@ -76,8 +76,8 @@ export const Modais: React.FC<ModaisProps> = ({
                         />
                       )}
                     </span>
-                  </Col>
-                  <Col sm={2}>
+                  </div>
+                  <div className="addButton">
                     <IconButton
                       aria-label="add"
                       style={{
@@ -93,6 +93,7 @@ export const Modais: React.FC<ModaisProps> = ({
                         }}
                       />
                     </IconButton>
+
                   </Col>
                 </TitleRow>
                 {subject.offer.map(offer => {
