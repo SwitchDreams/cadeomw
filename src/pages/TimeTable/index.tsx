@@ -5,7 +5,7 @@ import { useReactToPrint } from 'react-to-print';
 import Header from '../../components/Header';
 import Generator from '../../services/timetable/generator';
 import { Fullcalendar, HowUse, Listsubjects } from './helpers';
-import { Form, MontarGrade, ExportarGrade } from './styles';
+import { Form, MontarGrade, ExportarGrade, Grade } from './styles';
 import {
   checkboxes,
   classToEvent,

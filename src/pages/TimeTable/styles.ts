@@ -261,3 +261,5 @@ export const ModalBusyHoursContainer = styled.div<{ theme: ThemeType }>`
 export const NoCalendarMessage = styled.div`
   text-align: center;
 `;
+
+export const Grade = styled.div``;
