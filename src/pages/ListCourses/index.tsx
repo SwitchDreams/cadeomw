@@ -1,6 +1,8 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { FiChevronRight } from 'react-icons/fi';
+import Grid from '@material-ui/core/Grid';
 import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
@@ -10,6 +12,7 @@ import { Courses, Form, QtdSearch } from './styles';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import ListCard from '../../components/ListCard';
+import Adsense from '../../components/Adsense';
 
 interface Results {
   code: number;
@@ -122,60 +125,71 @@ const ListCourses: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+      <Grid container justify="center">
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
 
-      <Form>
-        <form onSubmit={handleSearchCourse}>
-          <input
-            value={searchCourse}
-            onChange={e => setSearchCourse(e.target.value)}
-            placeholder="Digite o nome do curso"
-          />
-          <button type="submit">Pesquisar</button>
-        </form>
-      </Form>
+        <Grid item md={8} xs={12}>
+          <Form>
+            <form onSubmit={handleSearchCourse}>
+              <input
+                value={searchCourse}
+                onChange={e => setSearchCourse(e.target.value)}
+                placeholder="Digite o nome do curso"
+              />
+              <button type="submit">Pesquisar</button>
+            </form>
+          </Form>
 
-      {loading && <Loading />}
+          {loading && <Loading />}
 
-      {qtdResults && !loading && (
-        <QtdSearch>
-          <div className="text-container">
-            <p>Foram encontrados {courses.count} resultados</p>
-          </div>
-        </QtdSearch>
-      )}
-      {!loading && (
-        <Courses>
-          {courses.results.map(course => (
-            <ListCard 
-              window={WindowCheck}
-              id={course.code}
-              shift={course.shift}
-              name={course.name}
-              num_semester={course.num_semester}
-              type="C"
-            />
-          ))}
-
-          {!loading && (
-            <div className="actions">
-              <button
-                type="button"
-                disabled={courses.previous == null}
-                onClick={() => handlePagination(courses.previous)}
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={courses.next == null}
-                onClick={() => handlePagination(courses.next)}
-              >
-                Próximo
-              </button>
-            </div>
+          {qtdResults && !loading && (
+            <QtdSearch>
+              <div className="text-container">
+                <p>Foram encontrados {courses.count} resultados</p>
+              </div>
+            </QtdSearch>
           )}
-        </Courses>
-      )}
+          {!loading && (
+            <Courses>
+              {courses.results.map(course => (
+                <ListCard 
+                  window={WindowCheck}
+                  id={course.code}
+                  shift={course.shift}
+                  name={course.name}
+                  num_semester={course.num_semester}
+                  type="C"
+                />
+              ))}
+
+              {!loading && (
+                <div className="actions">
+                  <button
+                    type="button"
+                    disabled={courses.previous == null}
+                    onClick={() => handlePagination(courses.previous)}
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    type="button"
+                    disabled={courses.next == null}
+                    onClick={() => handlePagination(courses.next)}
+                  >
+                    Próximo
+                  </button>
+                </div>
+              )}
+            </Courses>
+          )}
+        </Grid>
+
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
+      </Grid>
     </>
   );
 };
