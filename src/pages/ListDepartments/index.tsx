@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import api from '../../services/api';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { useToast } from '../../hooks/toasts';
 
