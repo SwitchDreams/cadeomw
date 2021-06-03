@@ -1,7 +1,6 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { FiChevronRight } from 'react-icons/fi';
 import Grid from '@material-ui/core/Grid';
 import api from '../../services/api';
 

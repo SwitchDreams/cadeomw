@@ -26,7 +26,7 @@ import calendar from '../../assets/ladingPage/calendar.svg';
 import map from '../../assets/ladingPage/map.svg';
 import search from '../../assets/ladingPage/search.svg';
 
-import fotoBahia from '../../assets/perfil_bahia.jpeg';
+import fotoBahia from '../../assets/perfil_bahia.jpg';
 import fotoBruna from '../../assets/perfil_bruna.png';
 import fotoPedro from '../../assets/perfil_pedro.jpeg';
 import fotoWaliff from '../../assets/perfil_waliff.png';

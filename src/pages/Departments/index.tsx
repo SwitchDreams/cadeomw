@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import Axios from 'axios';
+import api from '../../services/api';
 import { useHistory, useParams } from 'react-router-dom';
 import { TableContainer } from './styles';
 import {
@@ -68,8 +68,8 @@ const DepartmentPage: React.FC = () => {
     setLoading(true);
     const getDepartment = async () => {
       try {
-        const response = await Axios.get<Department>(
-          `https://back.cadeomw.com.br/department/${params.id}?format=json`,
+        const response = await api.get<Department>(
+          `/department/${params.id}?format=json`,
         );
         setDepartment(response.data);
         setLoading(false);

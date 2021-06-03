@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FormEvent } from 'react';
-import Axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import api from '../../services/api';
+import { useHistory, Link } from 'react-router-dom';
 
 import { useToast } from '../../hooks/toasts';
 
@@ -55,8 +55,8 @@ const ListDepartments: React.FC = () => {
     setLoading(true);
     const getDepartments = async () => {
       try {
-        const response = await Axios.get<DepartmentInfos>(
-          'https://back.cadeomw.com.br/department/?format=json',
+        const response = await api.get<DepartmentInfos>(
+          '/department/?format=json',
         );
         setDepartments(response.data);
         setLoading(false);
@@ -79,7 +79,7 @@ const ListDepartments: React.FC = () => {
       setLoading(true);
       try {
         const route = `${pag.slice(0, 4)}s${pag.slice(4)}`;
-        const response = await Axios.get<DepartmentInfos>(`${route}`);
+        const response = await api.get<DepartmentInfos>(`${route}`);
         setDepartments(response.data);
         setLoading(false);
         window.scrollTo(0, 0);
@@ -100,8 +100,8 @@ const ListDepartments: React.FC = () => {
     event.preventDefault();
     setLoading(true);
     try {
-      const response = await Axios.get<DepartmentInfos>(
-        `https://back.cadeomw.com.br/department/?search=${searchDepartment}&format=json`,
+      const response = await api.get<DepartmentInfos>(
+        `department/?search=${searchDepartment}&format=json`,
       );
       setDepartments(response.data);
       setQtdResults(true);
