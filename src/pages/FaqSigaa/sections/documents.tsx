@@ -14,8 +14,6 @@ const DocumentsSigaa: React.FC = () => {
   const [theme, setTheme] = useState(themes.data.light);
   useEffect(() => {
     const localTheme = getFromLS('theme');
-    console.log("HELLLLLO ")
-    console.log(localTheme)
     if (localTheme) setTheme(localTheme);
   }, []);
   return (

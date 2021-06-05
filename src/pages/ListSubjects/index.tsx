@@ -139,7 +139,6 @@ const ListSubjects: React.FC = () => {
           checked,
         )}&format=json&has_offer=true`,
       );
-      console.log(response.data);
       setSubjects(response.data);
       setQtdResults(true);
       setLoading(false);
