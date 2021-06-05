@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Axios from 'axios';
 import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-dropdown-select';
@@ -116,7 +115,7 @@ const ListSubjects: React.FC = () => {
       setLoading(true);
       try {
         const route = `${pag.slice(0, 4)}s${pag.slice(4)}`;
-        const response = await Axios.get<SubjectInfos>(`${route}`);
+        const response = await api.get<SubjectInfos>(`${route}`);
         setSubjects(response.data);
         setLoading(false);
         window.scrollTo(0, 0);

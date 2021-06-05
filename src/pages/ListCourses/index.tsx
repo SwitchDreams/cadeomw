@@ -1,5 +1,4 @@
 import React, { useEffect, useState, FormEvent } from 'react';
-import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 import Grid from '@material-ui/core/Grid';
@@ -83,7 +82,7 @@ const ListCourses: React.FC = () => {
       setLoading(true);
       try {
         const route = `${pag.slice(0, 4)}s${pag.slice(4)}`;
-        const response = await Axios.get<CourseInfos>(`${route}`);
+        const response = await api.get<CourseInfos>(`${route}`);
         setCourses(response.data);
         setLoading(false);
         window.scrollTo(0, 0);
