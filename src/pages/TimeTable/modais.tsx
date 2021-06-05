@@ -1,11 +1,18 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Row, Col } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
 import { FaCheck } from 'react-icons/fa';
 import IconButton from '@material-ui/core/IconButton';
 import Checkbox from '@material-ui/core/Checkbox';
-import { ModalSubjectsContainer, ModalBusyHoursContainer } from './styles';
+
+import Divider from '@material-ui/core/Divider';
+import {
+  ModalSubjectsContainer,
+  ModalBusyHoursContainer,
+  TitleRow,
+} from './styles';
 import { hours, ModalSubject, Subject, checkboxes } from './utils';
+import { parseHorario } from '../../utils/parseOferta';
 
 interface ModaisProps {
   modalSubjects: ModalSubject[];
@@ -50,11 +57,11 @@ export const Modais: React.FC<ModaisProps> = ({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ul>
-              {modalSubjects.map(subject => (
-                <li key={subject.code}>
-                  <div className="subjectName">
-                    <span className="bold">{subject.name} </span>-
+            {modalSubjects.map(subject => (
+              <>
+                <TitleRow className="align-middle justify-content-center">
+                  <Col sm={10}>
+                    <span className="bold">{subject.name} </span>
                     <span className="grey"> {subject.code}</span>
                     <span>
                       {subjectsSearched.find(
@@ -69,27 +76,57 @@ export const Modais: React.FC<ModaisProps> = ({
                         />
                       )}
                     </span>
-                  </div>
-                  <div className="addButton">
-                    <IconButton
-                      aria-label="add"
-                      style={{
-                        marginLeft: '0.9vw',
-                        marginBottom: '0.8vh',
-                      }}
-                      onClick={() => handleAddModalSubject(subject)}
-                    >
-                      <AddIcon
+                    <div className="addButton">
+                      <IconButton
+                        aria-label="add"
                         style={{
-                          fontSize: windowCheck ? 20 : '1.5vw',
-                          color: '#4e3388',
+                          marginLeft: '0.9vw',
+                          marginBottom: '0.8vh',
                         }}
-                      />
-                    </IconButton>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                        onClick={() => handleAddModalSubject(subject)}
+                      >
+                        <AddIcon
+                          style={{
+                            fontSize: windowCheck ? 20 : '1.5vw',
+                            color: '#4e3388',
+                          }}
+                        />
+                      </IconButton>
+                    </div>
+                  </Col>
+                </TitleRow>
+                {subject.offer.map(offer => {
+                  return (
+                    <>
+                      <Row className="align-items-center">
+                        <ul>
+                          {offer.schedule.map(item => {
+                            if (item) {
+                              if (item.indexOf('\n') !== -1) {
+                                return (
+                                  <h5 style={{ color: 'black' }}>
+                                    Não há horário
+                                  </h5>
+                                );
+                              }
+                              return (
+                                <li style={{ color: 'black' }}>
+                                  {`${parseHorario(item)}     Turma ${
+                                    offer.name
+                                  }`}
+                                </li>
+                              );
+                            }
+                            return null;
+                          })}
+                        </ul>
+                      </Row>
+                      <Divider />
+                    </>
+                  );
+                })}
+              </>
+            ))}
           </Modal.Body>
           <Modal.Footer>
             Não encontrou sua disciplina? Tente pesquisar de outra forma!
