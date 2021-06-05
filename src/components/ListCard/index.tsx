@@ -55,6 +55,14 @@ const ListCard: React.FC<ListCardProps> = (props: ListCardProps) => {
         }
     }
 
+    ListCard.defaultProps = {
+        num_semester: 0,
+        shift: "",
+        initials: "",
+        departmentName: "",
+        code: undefined
+    }
+
     return (
         <CardWrapper window={props.window}>
             <Link className="list-card-link" key={props.id} to={renderLink(props.type, props.id)}>
