@@ -39,6 +39,14 @@ export interface ModalSubject {
   code: string;
   department: string;
   name: string;
+  offer: {
+    name: string;
+    semester: string;
+    teachers: string[];
+    total_vacancies: string;
+    schedule: string[];
+    place: string;
+  }[];
 }
 
 export function shiftToHour(shift: string): number {
