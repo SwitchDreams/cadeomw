@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Row, Col } from 'react-bootstrap';
+import { Modal, Col } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
 import { FaCheck } from 'react-icons/fa';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +10,7 @@ import {
   ModalSubjectsContainer,
   ModalBusyHoursContainer,
   TitleRow,
+  OfferRow,
 } from './styles';
 import { hours, ModalSubject, Subject, checkboxes } from './utils';
 import { parseHorario } from '../../utils/parseOferta';
@@ -60,9 +61,9 @@ export const Modais: React.FC<ModaisProps> = ({
             {modalSubjects.map(subject => (
               <>
                 <TitleRow className="align-middle justify-content-center">
-                  <Col sm={10}>
+                  <Col sm={10} style={{ display: 'flex' }}>
                     <span className="bold">{subject.name} </span>
-                    <span className="grey"> {subject.code}</span>
+                    <span className="purple"> {subject.code}</span>
                     <span>
                       {subjectsSearched.find(
                         subj => subj.code === subject.code,
@@ -71,7 +72,7 @@ export const Modais: React.FC<ModaisProps> = ({
                           style={{
                             marginLeft: '10px',
                             color: '#5cb85c',
-                            fontSize: windowCheck ? 20 : '1vw',
+                            fontSize: windowCheck ? 20 : '1.5vw',
                           }}
                         />
                       )}
@@ -98,13 +99,15 @@ export const Modais: React.FC<ModaisProps> = ({
                 {subject.offer.map(offer => {
                   return (
                     <>
-                      <Row className="align-items-center">
+                      <OfferRow>
                         <ul>
                           {offer.schedule.map(item => {
                             if (item) {
                               if (item.indexOf('\n') !== -1) {
                                 return (
-                                  <h5 style={{ color: 'black' }}>
+                                  <h5
+                                    style={{ color: '#414141', fontSize: 15 }}
+                                  >
                                     Não há horário
                                   </h5>
                                 );
@@ -120,7 +123,7 @@ export const Modais: React.FC<ModaisProps> = ({
                             return null;
                           })}
                         </ul>
-                      </Row>
+                      </OfferRow>
                       <Divider />
                     </>
                   );

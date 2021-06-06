@@ -262,8 +262,32 @@ export const NoCalendarMessage = styled.div`
 `;
 
 export const TitleRow = styled(Row)<{ theme: ThemeType }>`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.color};
-  border-top: 1px solid ${({ theme }) => theme.colors.color};
+  color: #414141;
+  width: 100%;
+  border-bottom: 1px solid #414141;
+  border-top: 3px solid ${({ theme }) => theme.colors.color};
+
+  .bold,
+  .purple {
+    margin: auto 0;
+  }
+
+  .purple {
+    color: ${({ theme }) => theme.colors.color};
+    margin-left: 5px;
+  }
+`;
+
+export const OfferRow = styled.div<{ theme: ThemeType }>`
+  color: #414141;
+  padding-left: 20%;
+  ul {
+    padding-top: 5px;
+    li {
+      width: 100%;
+      margin: auto;
+    }
+  }
 `;
 
 export const Grade = styled.div``;
