@@ -48,7 +48,7 @@ const ListCard: React.FC<ListCardProps> = (props: ListCardProps) => {
   function renderLink({ type, id }: { type: string; id: number }): string {
     switch (type) {
       case 'D':
-        return `departments/${id}`;
+        return `department/${id}`;
       case 'S':
         return `subjects/${id}`;
       case 'C':
