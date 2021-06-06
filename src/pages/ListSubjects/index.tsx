@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-dropdown-select';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -16,6 +15,8 @@ import {
 } from './styles';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
+import ListCard from '../../components/ListCard';
+
 import departments from './departments';
 import { checkboxes, hours } from '../TimeTable/utils';
 import { ModalBusyHoursContainer } from '../TimeTable/styles';
@@ -229,19 +230,16 @@ const ListSubjects: React.FC = () => {
         </QtdSearch>
       )}
       {!loading && (
-        <Subjects window={WindowCheck}>
+        <Subjects>
           {subjects.results.map(subject => (
-            <a key={subject.code} href={`subjects/${subject.code}`}>
-              <div>
-                <strong>
-                  {subject.name.charAt(0).toUpperCase() +
-                    subject.name.slice(1).toLowerCase()}
-                </strong>
-                <p>Código: {subject.code}</p>
-                <p>Departamento: {subject.department_name}</p>
-              </div>
-              <FiChevronRight size={20} />
-            </a>
+            <ListCard 
+              window={WindowCheck}
+              id={subject.code}
+              code={subject.code}
+              name={subject.name}
+              departmentName={subject.department_name}
+              type="S"
+            />
           ))}
 
           {!loading && (
