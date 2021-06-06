@@ -1,5 +1,12 @@
 import React from 'react';
 
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    adsbygoogle: any;
+  }
+}
+
 // For test uses placeholders = https://support.google.com/adsense/answer/185665?hl=en#zippy=%2Cother---vertical
 interface AdsenseProps extends React.HTMLAttributes<HTMLDivElement> {
   disposition:
@@ -44,9 +51,9 @@ const sizes = {
 };
 
 const Adsense: React.FC<AdsenseProps> = ({
-  client = process.env.REACT_APP_ADSENSE_CLIENT,
-  slot = process.env.REACT_APP_ADSENSE_SLOT,
-  test = !!process.env.REACT_APP_ADSENSE_TEST,
+  client = process.env.REACT_APP_ADSENSE_CLIENT || 'ca-pub-9432744401324317',
+  slot = process.env.REACT_APP_ADSENSE_SLOT || '9906965367',
+  test = process.env.REACT_APP_ADSENSE_TEST || false,
   disposition,
   className,
   ...props
@@ -55,6 +62,7 @@ const Adsense: React.FC<AdsenseProps> = ({
   const [width, setWidth] = React.useState(sizes[disposition].width);
   const [type, setType] = React.useState(disposition);
   React.useEffect(() => {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
     // If Screens is small all mobile banners has mobile-leaderboard disposition
     if (window.innerWidth < 728) {
       setType('mobile-leaderboard');
@@ -63,27 +71,37 @@ const Adsense: React.FC<AdsenseProps> = ({
     }
   }, []);
   return (
-    <div
-      className={`mx-auto ${className}`}
-      style={{
-        height,
-        width,
-        maxWidth: '90vw',
-      }}
-      data-ad-client={client}
-      data-ad-slot={slot}
-      {...props}
-    >
-      {test && (
-        <img
-          style={{ maxHeight: '100%' }}
-          className="w-100"
-          src={sizes[type].link}
-          alt="test ads"
+    <>
+      {!test && (
+        <ins
+          className="adsbygoogle mx-auto"
+          style={{ display: 'block', height, width }}
+          data-ad-client={client}
+          data-ad-slot={slot}
+          data-ad-format="auto"
+          // data-adtest="on" Uses for tests in staging
+          data-full-width-responsive="true"
         />
       )}
-    </div>
+      {test && (
+        <div
+          className={`mx-auto ${className}`}
+          style={{
+            height,
+            width,
+            maxWidth: '90vw',
+          }}
+          {...props}
+        >
+          <img
+            style={{ maxHeight: '100%' }}
+            className="w-100"
+            src={sizes[type].link}
+            alt="test ads"
+          />
+        </div>
+      )}
+    </>
   );
 };
-
 export default Adsense;
