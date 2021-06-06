@@ -20,18 +20,12 @@ export const SelectContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-    padding: 5px;
-    width: 90%;
-    max-width: 700px;
-    margin: 0 auto;
-    color: #4f4f4f;
-    text-align: center;
-`;
-
-export const InstructionContainer = styled.div`
-    padding: 5px;
-    width: 90%;
-    margin: 0 auto;
+  padding: 5px;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #4f4f4f;
+  text-align: center;
 `;
 
 export const QtdSearch = styled.div`
@@ -142,8 +136,8 @@ export const Subjects = styled.div<CoursesProps>`
     }
 
     ${props =>
-    props.window &&
-    css`
+      props.window &&
+      css`
         height: 90px;
       `}
 
@@ -159,8 +153,8 @@ export const Subjects = styled.div<CoursesProps>`
       font-size: 20px;
       color: ${({ theme }) => theme.colors.text};
       ${props =>
-    props.window &&
-    css`
+        props.window &&
+        css`
           font-size: 16px;
         `}
     }
@@ -170,8 +164,8 @@ export const Subjects = styled.div<CoursesProps>`
       color: #a8a8b3;
       margin-top: 4px;
       ${props =>
-    props.window &&
-    css`
+        props.window &&
+        css`
           font-size: 12px;
         `}
     }

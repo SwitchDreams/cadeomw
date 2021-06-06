@@ -49,7 +49,7 @@ export const FirstTextContainer = styled.div<{ theme: ThemeType }>`
   color: ${({ theme }) => theme.colors.text};
   display: flex;
   justify-content: center;
-  padding-bottom: 40px;
+  padding: 40px 0;
 
   .container {
     max-width: 90%;
@@ -58,6 +58,11 @@ export const FirstTextContainer = styled.div<{ theme: ThemeType }>`
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    button:hover {
+      background-color: ${({ theme }) => theme.colors.color};
+      color: white !important;
+    }
 
     h2 {
       font-size: 40px;

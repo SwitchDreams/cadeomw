@@ -114,6 +114,8 @@ const TimeTable: React.FC = () => {
         `subjects?search=${search}&format=json&has_offer=true`,
       );
       if (response.data.results.length > 0) {
+        console.log(response.data.results);
+
         setModalSubjects(response.data.results);
         setShow(true);
       } else {

@@ -8,7 +8,7 @@ import {
   DialogContentText,
 } from '@material-ui/core';
 
-import { BsArrowLeftRight } from 'react-icons/bs';
+import { BsMoon } from 'react-icons/bs';
 import { RiCalendarCheckLine } from 'react-icons/ri';
 import {
   AiFillFacebook,
@@ -19,6 +19,7 @@ import { Container, Col, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getFromLS, setToLS } from '../../utils/localStorage';
 
+import { useToast } from '../../hooks/toasts';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 
@@ -43,6 +44,7 @@ import {
   YouWillFind,
 } from './styles';
 import Adsense from '../../components/Adsense';
+import { copyToClipboard } from '../../utils/copyToClipboard';
 /*
 Página principal - Bahia
 Atualizações - Bruna
@@ -53,6 +55,7 @@ const Dashboard: React.FC = () => {
   const [cookie, setCookie] = useState(getFromLS('cookie') || false);
 
   const [theme, setTheme] = useState(themes.data.light);
+  const { addToast } = useToast();
 
   useEffect(() => {
     const localTheme = getFromLS('theme');
@@ -79,7 +82,7 @@ const Dashboard: React.FC = () => {
           <DialogContentText id="alert-dialog-description" component="div">
             Este site usa cookies para melhorar a experiência do usuário. Caso
             deseje continuar, declara estar ciente dos{' '}
-            <Link to="/policy-terms">Termos e Condições</Link>.
+            <Link to="/privacy-terms">Termos e Condições</Link>.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -108,7 +111,7 @@ const Dashboard: React.FC = () => {
             </div>
           </LandingText>
 
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 280">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 240">
             <path
               fill={theme.colors.body}
               fillOpacity="1"
@@ -208,9 +211,9 @@ const Dashboard: React.FC = () => {
             </Grid>
             <Grid item xs={12} md={4} sm={12}>
               <FeatureCard
-                title="Equivalências"
-                text="Veja em um único lugar as equivalências e pré-requisitos da disciplina selecionada"
-                Logo={BsArrowLeftRight}
+                title="DarkMode"
+                text="Experimente nosso novo estilo DarkMode! Não podíamos ficar de fora da modinha né?"
+                Logo={BsMoon}
                 logoColor="#f90"
               />
             </Grid>
@@ -225,6 +228,53 @@ const Dashboard: React.FC = () => {
           </Grid>
         </div>
       </FeaturesContainer>
+
+      <FirstTextContainer>
+        <div className="container">
+          <h2>Nos ajude a manter o projeto no ar!</h2>
+          <p>
+            Gostou do projeto? Quer que ele continue para outros semestres?{' '}
+            <br />
+            Nos ajude doando um valor simbólico para que possamos cobrir os
+            custos de manter este site no ar. Qualquer ajuda é bem vinda!
+          </p>
+
+          <div className="flex-col space-between">
+            <Button
+              onClick={() => {
+                copyToClipboard(
+                  'db634da0-9d53-433a-b5af-7f183d7058d3',
+                  addToast,
+                );
+              }}
+              variant="outline-light"
+              style={{
+                color: '#7c4fe0',
+                borderColor: '#7c4fe0',
+                marginRight: 5,
+                marginLeft: 5,
+              }}
+            >
+              Copiar chave PIX
+            </Button>
+
+            <Button
+              onClick={() => {
+                copyToClipboard('https://picpay.me/waliffcordeiro', addToast);
+              }}
+              variant="outline-light"
+              style={{
+                color: '#7c4fe0',
+                borderColor: '#7c4fe0',
+                marginLeft: 5,
+                marginRight: 5,
+              }}
+            >
+              Copiar link PicPay
+            </Button>
+          </div>
+        </div>
+      </FirstTextContainer>
 
       <Adsense disposition="leaderboard" />
 
