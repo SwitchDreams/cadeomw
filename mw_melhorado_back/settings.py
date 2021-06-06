@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'mw_melhorado_back.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': '5432',
+        'NAME': 'cadeomw',
+        'USER': 'cadeouser',
+        'PASSWORD': 'cade123oMW',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600)
