@@ -1,9 +1,9 @@
-from course.models import Course
+from course.models.models import Course
 
 # Dicionário contendo os cursos em redundância para especificarmos
 course_list = {
     '8117': 'Administração - Diurno',
-    '8150': 'Administração - Norturno',
+    '8150': 'Administração - Noturno',
     '5126': 'Arquitetura e Urbanismo - Diurno',
     '5673': 'Arquitetura e Urbanismo - Noturno',
     '5720': 'Artes Cênicas - Noturno',

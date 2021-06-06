@@ -1,5 +1,5 @@
 from graphviz import Digraph
-from course.models import Course, Subject
+from course.models.models import Course, Subject
 from colour import Color
 
 # Pegando um gradiente de cores indo de vermelho até verde com 100 amostras

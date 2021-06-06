@@ -9,24 +9,19 @@ Repositório de backend do MwMelhorado feito em Django
 3. Configure seu banco de dados psql no arquivo mw_melhorado_back.settings.py
 4. Utilize o comando abaixo para montar o schema do database
 ```python manage.py migrate```
-5. Utilize os comandos abaixo em ordem para popular sua API:
-```python manage.py runscript parse_fluxo```
-```python manage.py runscript parse_mencao```
-```python manage.py runscript refactor_course_name```
+5. Utilize o comando para popular o banco de dados de sua API:
+```python manage.py runscript db_setup```
 6. E por fim para rodar o servidor: 
 ```python manage.py runserver```
 
-## Cadê o MW? V2.0
-
-### Refatoração dos parsers (01/09/2020)
-
-- [ ] Parse da Oferta (Waliff)
-- [ ] Parse do Curso (Bahia + Pedro)
-  - [ ] Parse do Currículo (Bahia)
-  - [ ] Parse do Fluxo (Pedro)
-- [ ] Parse dos Departamentos (Bruna)
-  
-### Adsense
-- [ ] Pesquisar novas maneiras de ganhar dinheiro no site
-Japa
-
+# Pré-processamento
+No setup do banco de dados já é feito o pré-processamento para diminuir querys de banco de dados e melhorar a performance 
+do backend, porém caso necessite fazer de forma individual para algum curso ou disiciplina utilize:
+### Para um curso em específico
+```python manage.py runscript preprocess.course --script-args course_id```
+### Para todos os cursos
+```python manage.py runscript preprocess.course --script-args all```
+### Para uma disciplina em específica
+```python manage.py runscript preprocess.subject --script-args subject_sigaa_id```
+### Para todas as disciplinas
+```python manage.py runscript preprocess.subject --script-args all```

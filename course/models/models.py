@@ -4,28 +4,45 @@ from django.contrib.postgres.fields import JSONField
 
 # Create your models here.
 class Department(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    initials = models.CharField(max_length=4)
 
     def __str__(self):
         return self.name
 
+    def courses_list(self):
+        return [course.to_json() for course in self.courses.all()]
+
+    def subjects_list(self):
+        return [subject.to_json() for subject in self.subject.all().order_by('name')]
+
 
 # Classe que armazena o curso
 class Course(models.Model):
+    SHIFT = (
+        ('N', 'Noturno'),
+        ('D', 'Diurno'),
+    )
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='courses')
     code = models.BigIntegerField(primary_key=True)
-    name = models.CharField(max_length=50)
-    issue_date = models.DateField()
-    begin_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
+    name = models.CharField(max_length=100)
+    coordinator_name = models.CharField(max_length=100, null=True)
+    academic_degree = models.CharField(max_length=100)
+    is_ead = models.BooleanField(default=False)
+    shift = models.CharField(max_length=2, choices=SHIFT)
+    total_workload = models.PositiveIntegerField(null=True)
+    opt_workload = models.PositiveIntegerField(null=True)
+    mandatory_workload = models.PositiveIntegerField(null=True)
     # Campos calculados
+    curriculum = JSONField(null=True, blank=True)
     flow = JSONField(null=True, blank=True)
     num_semester = models.SmallIntegerField(null=True, blank=True)
     flow_graph = models.TextField(null=True, blank=True)
     hardest_subject = JSONField(null=True, blank=True)
     easiest_subject = JSONField(null=True, blank=True)
 
-    def adicionar_disciplina(self, semester, code_subject, status):
-        course_subject = CourseSubject(course=self, subject_id=code_subject, semester=semester,
+    def append_subject(self, semester, subject, status):
+        course_subject = CourseSubject(course=self, subject=subject, semester=semester,
                                        status=status)
         course_subject.save()
 
@@ -48,6 +65,9 @@ class Course(models.Model):
             flow_list.append(value)
         return flow_list
 
+    def get_curriculum(self):
+        return [cc.subject.to_json() for cc in self.course_curriculum.all()]
+
     def get_flow_graph(self):
         """ Retorna o código DOT (Graphviz) do gráfico """
         return do_graph(self).source
@@ -69,22 +89,60 @@ class Course(models.Model):
         """ Retorna a disciplina mais fácil no curso, ou seja com maior porcentagem de aprovação"""
         return sorted(self.course_subject.all(), key=lambda t: t.subject.pass_percent)[-1].to_json()
 
+    def details(self):
+        """ Retorna as informações detalhadas do curso, no formato padronizado pelo front"""
+        return {
+            'workload': {
+                'total': self.total_workload,
+                'optional': self.opt_workload,
+                'mandatory': self.mandatory_workload
+            },
+            'num_semester': self.num_semester,
+            'academic_degree': self.academic_degree,
+            'shift': self.shift,
+            'coordinator_name': self.coordinator_name
+        }
+
+    def preprocess_info(self):
+        """ Realiza o pré-processamento das informações do curso"""
+        self.flow = self.get_flow()
+        self.curriculum = {
+            'optional': self.get_curriculum(),
+            # Coleta as disciplinas obrigatórias do fluxo do curso
+            'mandatory': [course_subject.to_json() for course_subject in
+                          self.course_subject.filter(status='OBR').order_by('semester')]
+        }
+        self.num_semester = self.get_num_semester()
+        self.save()
+
+    def to_json(self):
+        return {"code": self.code, "name": self.name,
+                "shift": self.get_shift_display(), "num_semester": self.num_semester,
+                'academic_degree': self.academic_degree}
+
 
 # Classe que armazena as disciplinas
 class Subject(models.Model):
-    code = models.BigIntegerField(primary_key=True)
-    # TODO mudar departamento para ser model ao inves de string
-    department = models.CharField(max_length=4)
-    name = models.CharField(max_length=50)
+    code = models.CharField(primary_key=True, max_length=20)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='subject', null=True)
+    name = models.CharField(max_length=80)
     credit = models.SmallIntegerField()
     # Campos pré-processados
     equivalences = JSONField(blank=True, null=True)
     prerequisites = JSONField(blank=True, null=True)
+    corequisites = JSONField(blank=True, null=True)
     grade_infos = JSONField(blank=True, null=True)
+    offer = JSONField(blank=True, null=True)
     pass_percent = models.FloatField(default=0)
 
     def __str__(self):
         return self.name
+
+    def department_name(self):
+        if self.department:
+            return self.department.name
+        else:
+            return 'Departamento ou Unidade não encotrada'
 
     def to_json(self):
         return {"code": self.code, "subject_name": self.name,
@@ -96,6 +154,12 @@ class Subject(models.Model):
         for equivalence in self.subject_eq.all():
             equivalences.append(equivalence.to_json())
         return equivalences
+
+    def get_offer(self):
+        return [offer.to_json() for offer in self.offers.all()]
+
+    def get_corequisite(self):
+        return [subject.to_json() for subject in self.corequisite.all()]
 
     def get_prerequisites(self):
         """ Retorna os pré-requisitos em JSON """
@@ -159,6 +223,13 @@ class Subject(models.Model):
             grade_list.append(value)
         return grade_list
 
+    def preprocess_info(self):
+        self.prerequisites = self.get_prerequisites()
+        self.equivalences = self.get_equivalences()
+        self.corequisites = self.get_corequisite()
+        self.offer = self.get_offer()
+        self.save()
+
 
 # Classe que armazena as disciplinas do curso com o semestre
 class CourseSubject(models.Model):
@@ -181,7 +252,19 @@ class CourseSubject(models.Model):
                 "pass_percent": self.subject.pass_percent}
 
 
-# Classe que armazen as menções da disciplinas em um determinado semestre
+class CourseCurriculum(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_curriculum')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='course_curriculum')
+
+    class Meta:
+        unique_together = ('course', 'subject')
+
+    def subject_name(self):
+        return self.subject.name
+
+    # Classe que armazen as menções da disciplinas em um determinado semestre
+
+
 class SemesterGrade(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='semester_grade')
     # Semester (Ex: 2018/2)
@@ -197,17 +280,26 @@ class SemesterGrade(models.Model):
     tj = models.PositiveSmallIntegerField()
     cc = models.PositiveSmallIntegerField()
 
+    # Classe que armazena um cojunto de pre-requisitos
 
-# Classe que armazena um cojunto de pre-requisitos
+
 class PreRequisiteSet(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite_set')
 
+    # Classe que armazena um pré-requisito em um conjunto de requisito
 
-# Classe que armazena um pré-requisito em um conjunto de requisito
+
 class PreRequisite(models.Model):
     prerequisite_set = models.ForeignKey(PreRequisiteSet, on_delete=models.CASCADE, related_name='prerequisite')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='prerequisite')
 
+
+class CoRequisite(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='corequisite')
+    corequisite = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='subject_co')
+
+    def to_json(self):
+        return self.corequisite.to_json()
 
 class Equivalence(models.Model):
     coverage = models.CharField(max_length=10)
@@ -224,8 +316,9 @@ class Equivalence(models.Model):
             "options": [op.to_json() for op in self.options.all()]
         }
 
+    # Classe que armazena um curso e a qual equivalência ele se refere
 
-# Classe que armazena um curso e a qual equivalência ele se refere
+
 class Option(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="subject_option")
     equivalence = models.ForeignKey(Equivalence, on_delete=models.CASCADE, related_name="options")
@@ -237,5 +330,37 @@ class Option(models.Model):
         }
 
 
-# Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
+class Offer(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='offers')
+    name = models.CharField(max_length=100)
+    semester = models.CharField(max_length=7)
+    schedule = models.CharField(max_length=100)
+    students_qtd = models.CharField(max_length=3)
+    place = models.CharField(max_length=100)
+
+    def to_json(self):
+        return {
+            "name": self.name,
+            "semester": self.semester,
+            "teachers": [ot.teacher.name for ot in self.offer_teachers.all()],
+            "total_vacancies": self.students_qtd,
+            "schedule": self.schedule.split(" "),
+            "place": self.place
+        }
+
+
+class Teacher(models.Model):
+    name = models.CharField(unique=True, max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class OfferTeacher(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='offer_teachers')
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='offer_teachers')
+
+    # Import feito depois para não dar conflito com referência cruzada (TODO Alterar esse funcionamento)
+
+
 from course.scripts.graph_flow_course import do_graph
