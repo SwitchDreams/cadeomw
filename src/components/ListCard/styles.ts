@@ -29,7 +29,7 @@ export const CardWrapper = styled.div<CardProps>`
         ${props =>
         props.window &&
         css`
-            height: 90px;
+            min-height: 90px;
         `}
 
         &:hover {
