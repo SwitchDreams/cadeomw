@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useToast } from '../../hooks/toasts';
 import Header from '../../components/Header';
 
-import fotoBahia from '../../assets/perfil_bahia.jpeg';
+import fotoBahia from '../../assets/perfil_bahia.jpg';
 import fotoBruna from '../../assets/perfil_bruna.png';
 import fotoPedro from '../../assets/perfil_pedro.jpeg';
 import fotoWaliff from '../../assets/perfil_waliff.png';
