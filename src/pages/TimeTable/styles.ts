@@ -267,8 +267,7 @@ export const TitleRow = styled(Row)<{ theme: ThemeType }>`
   border-bottom: 1px solid #414141;
   border-top: 3px solid ${({ theme }) => theme.colors.color};
 
-  .bold,
-  .purple {
+  span {
     margin: auto 0;
   }
 
