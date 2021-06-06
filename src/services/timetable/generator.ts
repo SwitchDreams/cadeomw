@@ -127,7 +127,6 @@ export default class Generator {
           break;
         } else if (j === subjectClassesLength) {
           // eslint-disable-next-line no-console
-          console.log('Não há disciplinas sem conflitos');
           throw new Error(
             'Não foi possível montar a grade com as disciplinas selecionadas',
           );

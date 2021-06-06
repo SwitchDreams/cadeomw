@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-dropdown-select';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -13,7 +12,6 @@ import {
   QtdSearch,
   SelectContainer,
   ButtonContainer,
-  InstructionContainer,
 } from './styles';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -117,7 +115,7 @@ const ListSubjects: React.FC = () => {
       setLoading(true);
       try {
         const route = `${pag.slice(0, 4)}s${pag.slice(4)}`;
-        const response = await Axios.get<SubjectInfos>(`${route}`);
+        const response = await api.get<SubjectInfos>(`${route}`);
         setSubjects(response.data);
         setLoading(false);
         window.scrollTo(0, 0);
@@ -140,7 +138,6 @@ const ListSubjects: React.FC = () => {
           checked,
         )}&format=json&has_offer=true`,
       );
-      console.log(response.data);
       setSubjects(response.data);
       setQtdResults(true);
       setLoading(false);
@@ -274,20 +271,10 @@ const ListSubjects: React.FC = () => {
             <ModalBusyHoursContainer>
               <Modal.Header closeButton>
                 <Modal.Title id="title">
-                  Selecione os horário que você procura
+                  Selecione os horários que você procura
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <InstructionContainer>
-                  <p>
-                    Selecione o horário das aulas que voce procura, por exemplo:
-                  </p>
-                  <ul>
-                    <li>segunda e quarta aula de 8 as 10</li>
-                    <li>selecione nas colunas de segunda e quarta</li>
-                    <li>os quadros 8:00 e 9:00 ou apenas 8:00</li>
-                  </ul>
-                </InstructionContainer>
                 <table>
                   <thead>
                     <tr>

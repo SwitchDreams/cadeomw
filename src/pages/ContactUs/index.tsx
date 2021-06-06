@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiOutlineGithub } from 'react-icons/ai';
 import { Button } from 'react-bootstrap';
 import { MdEmail } from 'react-icons/md';
@@ -15,6 +15,7 @@ import fotoJapa from '../../assets/perfil_japa.jpeg';
 import logo from '../../assets/cloudy-sd.svg';
 
 import { Container, WhoWeAreContainer, CardsContainer } from './styles';
+import { copyToClipboard } from '../../utils/copyToClipboard';
 
 const ContactUs: React.FC = () => {
   const [windowCheck, setWindowCheck] = useState(false);
@@ -34,38 +35,6 @@ const ContactUs: React.FC = () => {
     }
   });
 
-  const copyPIXToClipboard = useCallback(() => {
-    // Creates a dummy element, so we can copy it's value to clipboard
-    const dummy = document.createElement('textarea');
-    document.body.appendChild(dummy);
-    dummy.value = 'db634da0-9d53-433a-b5af-7f183d7058d3';
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
-
-    addToast({
-      type: 'success',
-      title: 'Chave PIX copiada!',
-      description: 'Chave já foi copiada em seu clipboard.',
-    });
-  }, [addToast]);
-
-  const copyPicPayToClipboard = useCallback(() => {
-    // Creates a dummy element, so we can copy it's value to clipboard
-    const dummy = document.createElement('textarea');
-    document.body.appendChild(dummy);
-    dummy.value = 'https://picpay.me/waliffcordeiro';
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
-
-    addToast({
-      type: 'success',
-      title: 'Link PicPay copiado!',
-      description: 'Chave já foi copiada em seu clipboard.',
-    });
-  }, [addToast]);
-
   return (
     <Container>
       <Header transparent={false} />
@@ -83,7 +52,10 @@ const ContactUs: React.FC = () => {
           <div className="flex-col space-between">
             <Button
               onClick={() => {
-                copyPIXToClipboard();
+                copyToClipboard(
+                  'db634da0-9d53-433a-b5af-7f183d7058d3',
+                  addToast,
+                );
               }}
               variant="outline-light"
               style={{
@@ -98,7 +70,7 @@ const ContactUs: React.FC = () => {
 
             <Button
               onClick={() => {
-                copyPicPayToClipboard();
+                copyToClipboard('https://picpay.me/waliffcordeiro', addToast);
               }}
               variant="outline-light"
               style={{
@@ -124,11 +96,6 @@ const ContactUs: React.FC = () => {
             assunto, aproveitamos para desenvolver um ambiente mais amigável e
             organizado, para que nós, alunos da UnB, possamos acessar as
             informações sobre as disciplinas de forma rápida e eficiente.
-          </p>
-          <p>
-            Queremos deixar o nosso agradecimento à Marina Flores
-            (@marinafloresf) que produziu o material de divulgação no primeiro
-            semestre de 2021.
           </p>
         </div>
       </WhoWeAreContainer>

@@ -18,7 +18,6 @@ import {
   Container,
   InfoGeralContainer,
   InfoContainer,
-  CoreqContainer,
 } from './styles';
 
 /*
@@ -171,7 +170,7 @@ const Subject: React.FC = () => {
 
           <Oferta window={windowCheck} subject={subject} />
 
-          <Equivalence window={windowCheck} subject={subject} />
+          {/* <Equivalence window={windowCheck} subject={subject} />
 
           <Prereq window={windowCheck} subject={subject} />
 
@@ -192,7 +191,7 @@ const Subject: React.FC = () => {
                 </div>
               ))}
             </CoreqContainer>
-          )}
+          )} */}
         </Container>
       )}
     </>

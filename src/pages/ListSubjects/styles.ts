@@ -20,18 +20,12 @@ export const SelectContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-    padding: 5px;
-    width: 90%;
-    max-width: 700px;
-    margin: 0 auto;
-    color: #4f4f4f;
-    text-align: center;
-`;
-
-export const InstructionContainer = styled.div`
-    padding: 5px;
-    width: 90%;
-    margin: 0 auto;
+  padding: 5px;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #4f4f4f;
+  text-align: center;
 `;
 
 export const QtdSearch = styled.div`

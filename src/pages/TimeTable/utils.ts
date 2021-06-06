@@ -37,8 +37,9 @@ export interface SearchResponse {
 
 export interface ModalSubject {
   code: string;
-  department: string;
+  department_name: string;
   name: string;
+  credit: number;
   offer: {
     name: string;
     semester: string;

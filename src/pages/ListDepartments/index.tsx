@@ -2,6 +2,7 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import api from '../../services/api';
 import { useHistory } from 'react-router-dom';
 
+
 import { useToast } from '../../hooks/toasts';
 
 import { Courses, Form, QtdSearch } from '../ListCourses/styles';
@@ -101,7 +102,7 @@ const ListDepartments: React.FC = () => {
     setLoading(true);
     try {
       const response = await api.get<DepartmentInfos>(
-        `department/?search=${searchDepartment}&format=json`,
+        `/department/?search=${searchDepartment}&format=json`,
       );
       setDepartments(response.data);
       setQtdResults(true);
