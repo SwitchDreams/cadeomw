@@ -19,40 +19,46 @@ interface ListCardProps {
   type: 'D' | 'S' | 'C';
 }
 
-const ListCard: React.FC<ListCardProps> = (props: ListCardProps) => {
+const ListCard: React.FC<ListCardProps> = ({
+  id,
+  name,
+  num_semester,
+  shift,
+  initials,
+  departmentName,
+  code,
+  window,
+  type,
+}: ListCardProps) => {
   // eslint-disable-next-line consistent-return
   function renderBody(): any {
-    if (props.type === 'D') {
-      return <Department name={props.name} initials={props.initials} />;
+    if (type === 'D') {
+      return <Department name={name} initials={initials} />;
     }
-    if (props.type === 'S') {
+    if (type === 'S') {
       return (
-        <Subject
-          code={props.code}
-          name={props.name}
-          departmentName={props.departmentName}
-        />
+        <Subject code={code} name={name} departmentName={departmentName} />
       );
     }
-    if (props.type === 'C') {
-      return (
-        <Course
-          name={props.name}
-          shift={props.shift}
-          num_semester={props.num_semester}
-        />
-      );
+    if (type === 'C') {
+      return <Course name={name} shift={shift} num_semester={num_semester} />;
     }
   }
 
-  function renderLink({ type, id }: { type: string; id: number }): string {
-    switch (type) {
+  function renderLink({
+    ty,
+    ide,
+  }: {
+    ty: 'D' | 'S' | 'C';
+    ide: number;
+  }): string {
+    switch (ty) {
       case 'D':
-        return `department/${id}`;
+        return `department/${ide}`;
       case 'S':
-        return `subjects/${id}`;
+        return `subjects/${ide}`;
       case 'C':
-        return `courses/${id}`;
+        return `courses/${ide}`;
       default:
         return '/';
     }
@@ -67,8 +73,12 @@ const ListCard: React.FC<ListCardProps> = (props: ListCardProps) => {
   };
 
   return (
-    <CardWrapper window={props.window}>
-      <Link className="list-card-link" key={props.id} to={renderLink(props)}>
+    <CardWrapper window={window}>
+      <Link
+        className="list-card-link"
+        key={id}
+        to={renderLink({ ty: type, ide: id })}
+      >
         {renderBody()}
         <FiChevronRight size={20} />
       </Link>
