@@ -1,7 +1,6 @@
 import React, { useEffect, useState, FormEvent } from 'react';
-import api from '../../services/api';
 import { useHistory } from 'react-router-dom';
-
+import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
 
@@ -145,7 +144,7 @@ const ListDepartments: React.FC = () => {
       {!loading && (
         <Courses>
           {departments.results.map(department => (
-            <ListCard 
+            <ListCard
               window={WindowCheck}
               id={department.id}
               name={department.name}
