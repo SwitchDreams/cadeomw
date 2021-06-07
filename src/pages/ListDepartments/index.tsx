@@ -1,5 +1,6 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
 import api from '../../services/api';
 
 import { useToast } from '../../hooks/toasts';
@@ -9,6 +10,7 @@ import { Courses, Form, QtdSearch } from '../ListCourses/styles';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import ListCard from '../../components/ListCard';
+import Adsense from '../../components/Adsense';
 
 interface Results {
   id: number;
@@ -120,59 +122,70 @@ const ListDepartments: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+      <Grid container justify="center">
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
 
-      <Form>
-        <form onSubmit={handleSearchDepartment}>
-          <input
-            value={searchDepartment}
-            onChange={e => setSearchDepartment(e.target.value)}
-            placeholder="Digite o nome do departamento ou sigla"
-          />
-          <button type="submit">Pesquisar</button>
-        </form>
-      </Form>
+        <Grid item md={8} xs={12}>
+          <Form>
+            <form onSubmit={handleSearchDepartment}>
+              <input
+                value={searchDepartment}
+                onChange={e => setSearchDepartment(e.target.value)}
+                placeholder="Digite o nome do departamento ou sigla"
+              />
+              <button type="submit">Pesquisar</button>
+            </form>
+          </Form>
 
-      {loading && <Loading />}
+          {loading && <Loading />}
 
-      {qtdResults && !loading && (
-        <QtdSearch>
-          <div className="text-container">
-            <p>Foram encontrados {departments.count} resultados</p>
-          </div>
-        </QtdSearch>
-      )}
-      {!loading && (
-        <Courses>
-          {departments.results.map(department => (
-            <ListCard
-              window={WindowCheck}
-              id={department.id}
-              name={department.name}
-              initials={department.initials}
-              type="D"
-            />
-          ))}
-
-          {!loading && (
-            <div className="actions">
-              <button
-                type="button"
-                disabled={departments.previous == null}
-                onClick={() => handlePagination(departments.previous)}
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={departments.next == null}
-                onClick={() => handlePagination(departments.next)}
-              >
-                Próximo
-              </button>
-            </div>
+          {qtdResults && !loading && (
+            <QtdSearch>
+              <div className="text-container">
+                <p>Foram encontrados {departments.count} resultados</p>
+              </div>
+            </QtdSearch>
           )}
-        </Courses>
-      )}
+          {!loading && (
+            <Courses>
+              {departments.results.map(department => (
+                <ListCard
+                  window={WindowCheck}
+                  id={department.id}
+                  name={department.name}
+                  initials={department.initials}
+                  type="D"
+                />
+              ))}
+
+              {!loading && (
+                <div className="actions">
+                  <button
+                    type="button"
+                    disabled={departments.previous == null}
+                    onClick={() => handlePagination(departments.previous)}
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    type="button"
+                    disabled={departments.next == null}
+                    onClick={() => handlePagination(departments.next)}
+                  >
+                    Próximo
+                  </button>
+                </div>
+              )}
+            </Courses>
+          )}
+        </Grid>
+
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
+      </Grid>
     </>
   );
 };

@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import emitirHistorico from '../../../assets/emitirHistorico.png';
 import * as themes from '../../../theme/schema.json';
@@ -20,21 +17,20 @@ const DocumentsSigaa: React.FC = () => {
     <>
       <h3>Onde emito meu histórico escolar?</h3>
       <p>
-        Para isso, precisamos fazer o login na plataforma, com sua matrícula
-        e sua senha! Depois, basta clicar no menu superior esquerdo com o
-            nome <span className="negrito">Ensino</span> e{' '}
+        Para isso, precisamos fazer o login na plataforma, com sua matrícula e
+        sua senha! Depois, basta clicar no menu superior esquerdo com o nome{' '}
+        <span className="negrito">Ensino</span> e{' '}
         <span className="negrito">Emitir Histórico</span>. Outros documentos
-            podem ser emitidos pela mesma aba, como{' '}
+        podem ser emitidos pela mesma aba, como{' '}
         <span className="negrito">Declaração de Vínculo</span> e{' '}
         <span className="negrito">Atestado de Matrícula</span>.
-          </p>
+      </p>
       <p>
         Além de emitir o Histórico, podemos acessar nossas notas em todas as
         disciplinas já cursadas sem precisar emitir nenhum documento. Basta
-            entrar no link{' '}
-        <span className="negrito">Consultar Minhas Notas</span> localizada
-            na mesma aba.
-          </p>
+        entrar no link <span className="negrito">Consultar Minhas Notas</span>{' '}
+        localizada na mesma aba.
+      </p>
       <div className="button">
         <Button
           onClick={() => {
@@ -47,7 +43,7 @@ const DocumentsSigaa: React.FC = () => {
           }}
         >
           Fazer login SIGAA
-            </Button>
+        </Button>
       </div>
       <img src={emitirHistorico} alt="historico" />
     </>

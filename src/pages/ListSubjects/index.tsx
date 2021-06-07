@@ -4,6 +4,7 @@ import Select from 'react-dropdown-select';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 import { Modal } from 'react-bootstrap';
+import Grid from '@material-ui/core/Grid';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toasts';
 import {
@@ -20,6 +21,7 @@ import ListCard from '../../components/ListCard';
 import departments from './departments';
 import { checkboxes, hours } from '../TimeTable/utils';
 import { ModalBusyHoursContainer } from '../TimeTable/styles';
+import Adsense from '../../components/Adsense';
 
 interface Results {
   code: number;
@@ -172,153 +174,165 @@ const ListSubjects: React.FC = () => {
   return (
     <>
       <Header transparent={false} />
+      <Grid container justify="center">
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
 
-      <Form window={WindowCheck}>
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            handleSearchSubject();
-          }}
-        >
-          <input
-            value={searchSubject}
-            onChange={e => setSearchSubject(e.target.value)}
-            placeholder="Digite o nome da disciplina"
-          />
+        <Grid item md={8} xs={12}>
+          <Form window={WindowCheck}>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                handleSearchSubject();
+              }}
+            >
+              <input
+                value={searchSubject}
+                onChange={e => setSearchSubject(e.target.value)}
+                placeholder="Digite o nome da disciplina"
+              />
 
-          <button type="submit">Pesquisar</button>
-        </form>
-      </Form>
+              <button type="submit">Pesquisar</button>
+            </form>
+          </Form>
 
-      <SelectContainer>
-        <Select
-          options={departments}
-          values={[departments[0]]}
-          labelField="name"
-          valueField="initials"
-          noDataLabel="Departamento não encontrado"
-          placeholder="Selecione o departamento"
-          addPlaceholder="Filtre por departamento"
-          searchable
-          searchBy="name"
-          clearable={false}
-          multi={false}
-          onChange={value => {
-            setSearchDepartment(value[0].initials);
-          }}
-        />
-      </SelectContainer>
-
-      <ButtonContainer>
-        <Button
-          className="button"
-          variant="outlined"
-          color="primary"
-          onClick={() => setShow(true)}
-        >
-          {busyHourSelected ? 'Horário Adicionado!' : 'Adicionar Horário'}
-        </Button>
-      </ButtonContainer>
-
-      {loading && <Loading />}
-
-      {qtdResults && !loading && (
-        <QtdSearch>
-          <div className="text-container">
-            <p>Foram encontrados {subjects.count} resultados</p>
-          </div>
-        </QtdSearch>
-      )}
-      {!loading && (
-        <Subjects>
-          {subjects.results.map(subject => (
-            <ListCard 
-              window={WindowCheck}
-              id={subject.code}
-              code={subject.code}
-              name={subject.name}
-              departmentName={subject.department_name}
-              type="S"
+          <SelectContainer>
+            <Select
+              options={departments}
+              values={[departments[0]]}
+              labelField="name"
+              valueField="initials"
+              noDataLabel="Departamento não encontrado"
+              placeholder="Selecione o departamento"
+              addPlaceholder="Filtre por departamento"
+              searchable
+              searchBy="name"
+              clearable={false}
+              multi={false}
+              onChange={value => {
+                setSearchDepartment(value[0].initials);
+              }}
             />
-          ))}
+          </SelectContainer>
 
-          {!loading && (
-            <div className="actions">
-              <button
-                type="button"
-                disabled={subjects.previous == null}
-                onClick={() => handlePagination(subjects.previous)}
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={subjects.next == null}
-                onClick={() => handlePagination(subjects.next)}
-              >
-                Próximo
-              </button>
-            </div>
+          <ButtonContainer>
+            <Button
+              className="button"
+              variant="outlined"
+              color="primary"
+              onClick={() => setShow(true)}
+            >
+              {busyHourSelected ? 'Horário Adicionado!' : 'Adicionar Horário'}
+            </Button>
+          </ButtonContainer>
+
+          {loading && <Loading />}
+
+          {qtdResults && !loading && (
+            <QtdSearch>
+              <div className="text-container">
+                <p>Foram encontrados {subjects.count} resultados</p>
+              </div>
+            </QtdSearch>
           )}
+          {!loading && (
+            <Subjects>
+              {subjects.results.map(subject => (
+                <ListCard
+                  window={WindowCheck}
+                  id={subject.code}
+                  code={subject.code}
+                  name={subject.name}
+                  departmentName={subject.department_name}
+                  type="S"
+                />
+              ))}
 
-          <Modal
-            show={show}
-            onHide={() => setShow(false)}
-            dialogClassName="modal-90w"
-            aria-labelledby="example-custom-modal-styling-title"
-            centered
-          >
-            <ModalBusyHoursContainer>
-              <Modal.Header closeButton>
-                <Modal.Title id="title">
-                  Selecione os horários que você procura
-                </Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Horários</th>
-                      <th>Segunda</th>
-                      <th>Terça</th>
-                      <th>Quarta</th>
-                      <th>Quinta</th>
-                      <th>Sexta</th>
-                      <th>Sábado</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {hours.map(hour => {
-                      hourCounter += 6;
-                      return (
-                        <tr key={hour}>
-                          <td>{hour}</td>
-                          {checked
-                            .slice(hourCounter, hourCounter + 6)
-                            .map(checkbox => (
-                              <td key={checkbox.name}>
-                                <Checkbox
-                                  color="default"
-                                  onChange={() =>
-                                    handleChangeCheckbox(checkbox.name)
-                                  }
-                                  inputProps={{
-                                    'aria-label': 'checkbox with default color',
-                                  }}
-                                  checked={checkbox.checked}
-                                />
-                              </td>
-                            ))}
+              {!loading && (
+                <div className="actions">
+                  <button
+                    type="button"
+                    disabled={subjects.previous == null}
+                    onClick={() => handlePagination(subjects.previous)}
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    type="button"
+                    disabled={subjects.next == null}
+                    onClick={() => handlePagination(subjects.next)}
+                  >
+                    Próximo
+                  </button>
+                </div>
+              )}
+
+              <Modal
+                show={show}
+                onHide={() => setShow(false)}
+                dialogClassName="modal-90w"
+                aria-labelledby="example-custom-modal-styling-title"
+                centered
+              >
+                <ModalBusyHoursContainer>
+                  <Modal.Header closeButton>
+                    <Modal.Title id="title">
+                      Selecione os horários que você procura
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Horários</th>
+                          <th>Segunda</th>
+                          <th>Terça</th>
+                          <th>Quarta</th>
+                          <th>Quinta</th>
+                          <th>Sexta</th>
+                          <th>Sábado</th>
                         </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </Modal.Body>
-            </ModalBusyHoursContainer>
-          </Modal>
-        </Subjects>
-      )}
+                      </thead>
+                      <tbody>
+                        {hours.map(hour => {
+                          hourCounter += 6;
+                          return (
+                            <tr key={hour}>
+                              <td>{hour}</td>
+                              {checked
+                                .slice(hourCounter, hourCounter + 6)
+                                .map(checkbox => (
+                                  <td key={checkbox.name}>
+                                    <Checkbox
+                                      color="default"
+                                      onChange={() =>
+                                        handleChangeCheckbox(checkbox.name)
+                                      }
+                                      inputProps={{
+                                        'aria-label':
+                                          'checkbox with default color',
+                                      }}
+                                      checked={checkbox.checked}
+                                    />
+                                  </td>
+                                ))}
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </Modal.Body>
+                </ModalBusyHoursContainer>
+              </Modal>
+            </Subjects>
+          )}
+        </Grid>
+
+        <Grid container item md={2} justify="center">
+          <Adsense disposition="vertical" />
+        </Grid>
+      </Grid>
     </>
   );
 };

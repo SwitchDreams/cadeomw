@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import api from '../../services/api';
 import { useHistory, useParams } from 'react-router-dom';
+import api from '../../services/api';
 import { TableContainer } from './styles';
 import {
   Container,

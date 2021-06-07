@@ -53,7 +53,7 @@ const sizes = {
 const Adsense: React.FC<AdsenseProps> = ({
   client = process.env.REACT_APP_ADSENSE_CLIENT || 'ca-pub-9432744401324317',
   slot = process.env.REACT_APP_ADSENSE_SLOT || '9906965367',
-  test = process.env.REACT_APP_ADSENSE_TEST || false,
+  test = false,
   disposition,
   className,
   ...props
@@ -79,7 +79,7 @@ const Adsense: React.FC<AdsenseProps> = ({
           data-ad-client={client}
           data-ad-slot={slot}
           data-ad-format="auto"
-          // data-adtest="on" Uses for tests in staging
+          data-adtest="on" // Uses for tests in staging
           data-full-width-responsive="true"
         />
       )}

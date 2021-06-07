@@ -152,7 +152,7 @@ const ListCourses: React.FC = () => {
           {!loading && (
             <Courses>
               {courses.results.map(course => (
-                <ListCard 
+                <ListCard
                   window={WindowCheck}
                   id={course.code}
                   shift={course.shift}

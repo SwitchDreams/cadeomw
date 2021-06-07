@@ -1,8 +1,8 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import * as themes from '../../../theme/schema.json';
 
-interface Refs{
+interface Refs {
   current: HTMLDivElement | null;
 }
 
