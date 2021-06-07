@@ -73,15 +73,17 @@ const Adsense: React.FC<AdsenseProps> = ({
   return (
     <>
       {!test && (
-        <ins
-          className="adsbygoogle mx-auto"
-          style={{ display: 'block', height, width }}
-          data-ad-client={client}
-          data-ad-slot={slot}
-          data-ad-format="auto"
-          data-adtest="on" // Uses for tests in staging
-          data-full-width-responsive="true"
-        />
+        <div className="d-flex justify-content-center">
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block', height, width, maxWidth: '100vw' }}
+            data-ad-client={client}
+            data-ad-slot={slot}
+            data-ad-format="auto"
+            // data-adtest="on" // Uses for tests in staging
+            data-full-width-responsive="true"
+          />
+        </div>
       )}
       {test && (
         <div
