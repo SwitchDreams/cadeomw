@@ -13,20 +13,20 @@ from course.models.models import Course, Subject
 # Faz o parse das informações
 def run():
     # Cria os cursos e os departamentos
-    print("\n###### INICIANDO O PARSE DOS DEPARTAMENTOS ######\n")
-    parse_departments()
-    parse_unidades()
-    print("\n###### PARSE DOS DEPARTAMENTOS CONCLUÍDO ######\n")
+    # print("\n###### INICIANDO O PARSE DOS DEPARTAMENTOS ######\n")
+    # parse_departments()
+    # parse_unidades()
+    # print("\n###### PARSE DOS DEPARTAMENTOS CONCLUÍDO ######\n")
 
-    print("\n###### INICIANDO PARSE DAS DISCIPLINAS ######\n")
-    # Cria todas as disciplinas com base nos departamentos
-    parse_disciplinas()
-    print("\n######  PARSE DAS DISCIPLINAS CONCLUÍDO ######\n")
+    # print("\n###### INICIANDO PARSE DAS DISCIPLINAS ######\n")
+    # # Cria todas as disciplinas com base nos departamentos
+    # parse_disciplinas()
+    # print("\n######  PARSE DAS DISCIPLINAS CONCLUÍDO ######\n")
 
     # Cria as matérias e suas turmas da oferta
-    print("\n###### INICIANDO O PARSE DA OFERTA ######\n")
-    parse_oferta()
-    print("\n###### PARSE DA OFERTA CONCLUÍDO ######\n")
+    # print("\n###### INICIANDO O PARSE DA OFERTA ######\n")
+    # parse_oferta()
+    # print("\n###### PARSE DA OFERTA CONCLUÍDO ######\n")
 
     # Get all course IDs 
     course_ids = [course.code for course in Course.objects.all()]

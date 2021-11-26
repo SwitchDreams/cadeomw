@@ -130,7 +130,7 @@ def get_request_from_course(course_sigaa_id):
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
     
     # Get the course ID from a JS function on the <a> onClick action
-    curriculumId = html_soup.find('a', href='#')["onclick"].split(":")[-1].split("'")[1]
+    curriculumId = html_soup.find('a', href='#')["onclick"].split(":")[-2].split("'")[1]
     return {
         "cookies": response.headers["Set-Cookie"].split(' ')[0],
         "javax": html_soup.select('#javax\.faces\.ViewState')[0]['value'],

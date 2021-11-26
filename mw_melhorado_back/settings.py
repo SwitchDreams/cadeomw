@@ -90,10 +90,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cadeomw',
-        'USER': 'cadeouser',
-        'PASSWORD': 'cade123oMW',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600)
