@@ -32,6 +32,7 @@ def parse_department(dapartment_sigaa_id, department_name):
         subjects_code = first_subject[0].text
         department_initials = ''.join(filter(str.isalpha, subjects_code))
         try:
+            print(f"[{department_initials}] - {department_name}")
             Department.objects.create(name=department_name, initials=department_initials)
         except:
             print(f"Erro na criação do departamento {department_name} de código {department_initials}")

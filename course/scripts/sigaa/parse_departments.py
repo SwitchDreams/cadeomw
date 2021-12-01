@@ -55,6 +55,7 @@ def parse_departments():
             code = col[6].find('a')["href"][14:20]
             
             try:
+                print(f"[{code}] - {department}: {course_name}")
                 Course.objects.create(code=code, department=department, name=course_name, academic_degree=academic_degree, shift=shift[0], is_ead=is_ead(mode),
                                     coordinator_name=coordenador)
             except:
