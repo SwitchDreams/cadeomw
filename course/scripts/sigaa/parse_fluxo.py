@@ -125,7 +125,7 @@ def get_request_from_course(course_sigaa_id):
     url = f'https://sig.unb.br/sigaa/public/curso/curriculo.jsf?lc=pt_BR&id={course_sigaa_id}'
     response = requests.request("GET", url)
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
-    curriculumId = html_soup.find('a', href='#')["onclick"].split(":")[-1].split("'")[1]
+    curriculumId = html_soup.find('a', href='#')["onclick"].split(":")[-2].split("'")[1]
 
     return {
         "cookies": response.headers["Set-Cookie"].split(' ')[0],

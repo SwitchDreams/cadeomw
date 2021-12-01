@@ -36,7 +36,7 @@ def parse_subjects_from_department(dapartment_sigaa_id, department):
             Subject.objects.create(
                 code=code.text,
                 department=department,
-                name=name.text,
+                name=name.text[:79], # para materias com len >= 80
                 credit=workload.text[:-1]  # Retira o h do final da string
             )
         except IntegrityError:
