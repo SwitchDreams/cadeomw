@@ -33,7 +33,7 @@ def parse_curriculum(course_sigaa_id):
     response = requests.request("POST", url, headers=headers, data=payload)
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
     
-    header_soup = html_soup.find_all('tr', limit=7)
+    header_soup = html_soup.find_all('tr', limit=15)
     optional_subjects_soup = html_soup.find(id='optativas')
 
     header_info = get_header_info(header_soup)
@@ -145,11 +145,9 @@ def get_header_info(header_soup):
     trimmed_header = [elem.text.replace('\t', '').replace('\n', '') for elem in header_soup]
     
     # Get course detailed workload
-    workloads = re.findall(r'\d+', trimmed_header[3])
-    header_info["total_workload"] = workloads[0]
-    header_info["opt_workload"] = workloads[1]
-
-    header_info["mandatory_workload"] = re.search(r'\d+', trimmed_header[5]).group()
+    header_info["total_workload"] = re.findall(r'\d+', trimmed_header[4])[0]
+    header_info["opt_workload"] = re.findall(r'\d+', trimmed_header[9])[0]
+    header_info["mandatory_workload"] = re.findall(r'\d+', trimmed_header[8])[0]
 
     return header_info
 
