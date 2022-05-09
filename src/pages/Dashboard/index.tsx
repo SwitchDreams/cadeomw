@@ -10,11 +10,7 @@ import {
 
 import { BsMoon } from 'react-icons/bs';
 import { RiCalendarCheckLine } from 'react-icons/ri';
-import {
-  AiFillFacebook,
-  AiFillInstagram,
-  AiOutlineCluster,
-} from 'react-icons/ai';
+import { AiFillInstagram, AiOutlineCluster } from 'react-icons/ai';
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getFromLS, setToLS } from '../../utils/localStorage';
@@ -344,9 +340,9 @@ const Dashboard: React.FC = () => {
                 </div>
                 <div className="contact">
                   <h6>Pedro Augusto Duarte</h6>
-                  <div className="face">
-                    <AiFillFacebook />
-                    <a href="https://www.facebook.com/profile.php?id=100003234917788">
+                  <div className="insta">
+                    <AiFillInstagram />
+                    <a href="https://www.instagram.com/pedro.arduarte/">
                       {' '}
                       Pedro Augusto
                     </a>
