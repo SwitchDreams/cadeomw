@@ -63,7 +63,6 @@ const ListCourses: React.FC = () => {
         setCourses(response.data);
         setLoading(false);
       } catch (err) {
-        console.log(err);
         setLoading(false);
         addToast({
           type: 'error',
