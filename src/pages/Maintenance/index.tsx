@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core';
 import {
   AiOutlineCluster,
   AiFillInstagram,
-  AiFillFacebook,
   AiTwotoneCalendar,
 } from 'react-icons/ai';
 import { FaWrench } from 'react-icons/fa';
@@ -315,9 +314,9 @@ const Maintenance: React.FC = () => {
                 </div>
                 <div className="contact">
                   <h6>Pedro Augusto Duarte</h6>
-                  <div className="face">
-                    <AiFillFacebook />
-                    <a href="https://www.facebook.com/profile.php?id=100003234917788">
+                  <div className="insta">
+                    <AiFillInstagram />
+                    <a href="https://www.instagram.com/pedro.arduarte/">
                       {' '}
                       Pedro Augusto
                     </a>
