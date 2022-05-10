@@ -8,10 +8,10 @@ RUN mkdir /back_cadeomw
 # Set the working directory to /back_cadeomw
 WORKDIR /back_cadeomw
 
-# Copy the current directory contents into the container at /back_cadeomw
-COPY . /back_cadeomw/
+COPY requirements.txt /back_cadeomw/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
-RUN python manage.py 
+# Copy the current directory contents into the container at /back_cadeomw
+COPY . /back_cadeomw/
