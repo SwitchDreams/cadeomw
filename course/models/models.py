@@ -336,7 +336,7 @@ class Offer(models.Model):
     semester = models.CharField(max_length=7)
     schedule = models.CharField(max_length=100)
     students_qtd = models.CharField(max_length=3)
-    occupied = models.CharField(max_length=3)
+    occupied = models.CharField(max_length=3, default='0')
     place = models.CharField(max_length=100)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -347,7 +347,7 @@ class Offer(models.Model):
             "teachers": [ot.teacher.name for ot in self.offer_teachers.all()],
             "total_vacancies": self.students_qtd,
             'occupied_vacancies': self.occupied,
-            'updated_at': self.updated_at,
+            'updated_at': self.updated_at.strftime("%m/%d/%Y - %H:%M:%S"),
             "schedule": self.schedule.split(" "),
             "place": self.place
         }
