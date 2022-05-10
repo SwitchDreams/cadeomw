@@ -336,7 +336,9 @@ class Offer(models.Model):
     semester = models.CharField(max_length=7)
     schedule = models.CharField(max_length=100)
     students_qtd = models.CharField(max_length=3)
+    occupied = models.CharField(max_length=3)
     place = models.CharField(max_length=100)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def to_json(self):
         return {
@@ -344,6 +346,8 @@ class Offer(models.Model):
             "semester": self.semester,
             "teachers": [ot.teacher.name for ot in self.offer_teachers.all()],
             "total_vacancies": self.students_qtd,
+            'occupied_vacancies': self.occupied,
+            'updated_at': self.updated_at,
             "schedule": self.schedule.split(" "),
             "place": self.place
         }

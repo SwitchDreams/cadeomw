@@ -27,6 +27,8 @@ def refactor_list(lista, nome):
 
     turma['students_qtd'] = lista[5]
 
+    turma['occupied'] = lista[6]
+
     turma['place'] = lista[7][1:]
 
     turma['subject_code'] = nome.split(' ')[0]
@@ -140,6 +142,7 @@ def parse_oferta(id, department_name):
                         semester=turmas['semester'],
                         schedule=turmas['schedule'],
                         students_qtd=turmas['students_qtd'],
+                        occupied=turmas['occupied'],
                         place=turmas['place']
                     )
                 except:
