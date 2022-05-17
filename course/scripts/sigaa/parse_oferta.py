@@ -68,8 +68,8 @@ def create_subject(subject_code, department_object, subject_name, workload):
 
 def parse_oferta(id, department_name):
     infos_list = []
-    ano = 2020
-    periodo = 2
+    ano = 2022
+    periodo = 1
     request_data = get_request_from_oferta()
     payload = f'formTurma=formTurma&formTurma%3AinputNivel=G&formTurma%3AinputDepto={id}&formTurma%3AinputAno={ano}&formTurma%3AinputPeriodo={periodo}&formTurma%3Aj_id_jsp_1370969402_11=Buscar&javax.faces.ViewState=' \
               f'{request_data["javax"]}'
