@@ -117,6 +117,14 @@ const DepartmentPage: React.FC = () => {
     }
   });
 
+  const handleCourseRowClick = (courseId: number) => {
+    history.push(`/courses/${courseId}`);
+  };
+
+  const handleSubjectRowClick = (subjectId: number) => {
+    history.push(`/subjects/${subjectId}`);
+  };
+
   return (
     <>
       <Header transparent={false} />
@@ -155,7 +163,11 @@ const DepartmentPage: React.FC = () => {
               </thead>
               <tbody>
                 {department.subjects_list.map(subject => (
-                  <tr key={subject.code}>
+                  <tr
+                    style={{ cursor: 'pointer' }}
+                    key={subject.code}
+                    onClick={() => handleSubjectRowClick(subject.code)}
+                  >
                     <td>{subject.code}</td>
                     <td>{subject.subject_name}</td>
                     <td>{subject.credit}</td>
@@ -181,7 +193,11 @@ const DepartmentPage: React.FC = () => {
               </thead>
               <tbody>
                 {department.courses_list.map(course => (
-                  <tr key={course.code}>
+                  <tr
+                    style={{ cursor: 'pointer' }}
+                    key={course.code}
+                    onClick={() => handleCourseRowClick(course.code)}
+                  >
                     <td>{course.code}</td>
                     <td>{course.name}</td>
                     <td>{course.shift}</td>
