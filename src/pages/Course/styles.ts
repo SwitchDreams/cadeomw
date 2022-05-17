@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { shade } from 'polished';
+import { Link } from 'react-router-dom';
 import { ThemeType } from '../../App';
 
 interface TabContentProps {
@@ -390,11 +391,22 @@ export const ContainerSubjects = styled.div<AllContainerProps>`
   }
 `;
 
+export const LinkSubject = styled(Link)`
+  max-width: 80%;
+  text-decoration: inherit;
+  color: inherit;
+
+  &:hover {
+    text-decoration: inherit;
+    color: inherit;
+  }
+`;
+
 export const Subject = styled.div<AllContainerProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  max-width: 80%;
+  max-width: 100%;
 
   background: rgba(100, 100, 100, 0.1);
   border-radius: 8px;
@@ -411,7 +423,6 @@ export const Subject = styled.div<AllContainerProps>`
     css`
       padding: 5px 10px;
     `}
-
   .name {
     width: 100%;
     text-align: center;
@@ -450,6 +461,7 @@ export const Form = styled.div<AllContainerProps>`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     p {
       margin: 3px 3px 0 0;
       color: #a8a8b3;
@@ -508,6 +520,7 @@ export const Pagination = styled.div`
     color: #fff;
     font-weight: bold;
     transition: background-color 0.2s;
+
     &:hover {
       background: ${shade(0.2, '#27004d')};
     }

@@ -1,6 +1,12 @@
 import React, { useState, FormEvent, useCallback, useEffect } from 'react';
 
-import { ContainerSubjects, Form, Pagination, Subject } from './styles';
+import {
+  ContainerSubjects,
+  Form,
+  Pagination,
+  Subject,
+  LinkSubject,
+} from './styles';
 
 interface ListProps {
   materias: {
@@ -139,13 +145,19 @@ const Listagem: React.FC<ListProps> = ({
           counter += 1;
 
           return (
-            <Subject key={subject.subject_name} window={windowCheck}>
-              <div className="name">
-                {counter} - <strong>{subject.code}</strong> -{' '}
-                {subject.subject_name} - {subject.credit}h
-              </div>
-              <div className={status.slice(0, 3)}>{status}</div>
-            </Subject>
+            <LinkSubject
+              className="list-card-link"
+              key={subject.subject_name}
+              to={`/subjects/${subject.code}`}
+            >
+              <Subject window={windowCheck}>
+                <div className="name">
+                  {counter} - <strong>{subject.code}</strong> -{' '}
+                  {subject.subject_name} - {subject.credit}h
+                </div>
+                <div className={status.slice(0, 3)}>{status}</div>
+              </Subject>
+            </LinkSubject>
           );
         })}
 
