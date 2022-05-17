@@ -194,10 +194,7 @@ const ContactUs: React.FC = () => {
               </div>
               <div className="text">
                 <h6>Pedro Augusto</h6>
-                <p>
-                  Fã dos e-sports, player da Green Owls. Fundador da Switch
-                  Dreams.
-                </p>
+                <p>Fã de academia e de uma boa festa. CTO na Switch Dreams.</p>
                 <div className="link">
                   <AiOutlineGithub style={{ fontSize: 25 }} />
                   <a href="https://github.com/PedroAugustoRamalhoDuarte">
