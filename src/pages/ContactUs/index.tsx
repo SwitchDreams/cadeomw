@@ -138,9 +138,10 @@ const ContactUs: React.FC = () => {
           />
           <h4>Switch Dreams</h4>
           <p>
-            A Switch Dreams é o nome da start up idealizada por estudantes de
-            Engenharia de Computação da UnB. Eles compartilham o sonho de
-            desenvolver soluções tecnológicas que impactem a sociedade. O{' '}
+            A <a href="https://switchdreams.com.br">Switch Dreams </a>é o nome
+            da start up idealizada por estudantes de Engenharia de Computação da
+            UnB. Eles compartilham o sonho de desenvolver soluções tecnológicas
+            que impactem a sociedade. O{' '}
             <span className="negrito">Cadê o MW?</span> é a primeira solução de
             grande impacto da empresa.
           </p>

@@ -76,7 +76,9 @@ const Footer: React.FC = () => {
           </path>
         </svg>
         <p>
-          &copy; 2020 Switch Dreams |{' '}
+          <a href="https://switchdreams.com.br" style={{ color: '#ffffff' }}>
+            &copy; 2022 Switch Dreams |{' '}
+          </a>
           <a href="/privacy-terms" style={{ color: '#ffffff' }}>
             {' '}
             Termos e condições{' '}
