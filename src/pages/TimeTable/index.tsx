@@ -295,7 +295,7 @@ const TimeTable: React.FC = () => {
           handleDeleteSubject={handleDeleteSubject}
         />
 
-        {totalSelectedCredits() > -1 && (
+        {totalSelectedCredits() > 0 && (
           <p>Total de créditos selecionados: {totalSelectedCredits()}</p>
         )}
         {subjectsSearched.length !== 0 && (
