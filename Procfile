@@ -1,0 +1,1 @@
+web: gunicorn mw_melhorado_back.wsgi
