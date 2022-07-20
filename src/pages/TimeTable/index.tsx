@@ -71,6 +71,12 @@ const TimeTable: React.FC = () => {
     [subjectsSearched],
   );
 
+  const totalSelectedCredits = () =>
+    subjectsSearched.reduce(
+      (partialSum, subject) => partialSum + subject.credit,
+      0,
+    );
+
   async function handleAddModalSubject(subj: ModalSubject) {
     try {
       const response = await api.get(`subjects/${subj.code}`);
@@ -289,6 +295,9 @@ const TimeTable: React.FC = () => {
           handleDeleteSubject={handleDeleteSubject}
         />
 
+        {totalSelectedCredits() > 0 && (
+          <p>Total de créditos selecionados: {totalSelectedCredits()}</p>
+        )}
         {subjectsSearched.length !== 0 && (
           <MontarGrade>
             <Button
