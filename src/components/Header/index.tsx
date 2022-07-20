@@ -1,0 +1,189 @@
+import React, { useState, useEffect } from 'react';
+import { Navbar, Nav, Form } from 'react-bootstrap';
+import { Container, WaveContainer } from './styles';
+import { getFromLS, setToLS } from '../../utils/localStorage';
+import * as themes from '../../theme/schema.json';
+
+/*
+  Header - Componente geral
+*/
+
+interface HeaderBackground {
+  transparent: boolean;
+}
+
+const Header: React.FC<HeaderBackground> = ({
+  transparent,
+}: HeaderBackground) => {
+  const [navFixed, setNavFixed] = useState(false);
+  const [selectedLink, setSelectedLink] = useState<number | null>(0);
+  const [dark, setDark] = useState(false);
+  const [theme, setTheme] = useState(themes.data.light);
+
+  useEffect(() => {
+    const localTheme = getFromLS('theme');
+    if (localTheme) {
+      setTheme(localTheme);
+      setDark(localTheme.colors.body !== '#fff');
+    }
+  }, [dark]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 150;
+
+      if (!isTop) {
+        setNavFixed(true);
+      } else {
+        setNavFixed(false);
+      }
+    });
+  }, []);
+
+  const menuItems = [
+    { id: 1, name: 'Home', link: '/' },
+    { id: 2, name: 'Cursos', link: '/list-courses' },
+    { id: 3, name: 'Disciplinas', link: '/list-subjects' },
+    { id: 8, name: 'Departamentos', link: '/list-departments' },
+    { id: 4, name: 'Gerador de Grade', link: '/timetable' },
+    { id: 5, name: 'Mapa UnB', link: '/map' },
+    { id: 6, name: 'FAQ SIGAA', link: '/faq-sigaa' },
+    { id: 7, name: 'Sobre Nós', link: '/about-us' },
+  ];
+
+  useEffect(() => {
+    const location = window.location.pathname.split('/')[1];
+    const filter = menuItems.filter(
+      menu => menu.link.replace('/', '') === location,
+    );
+    if (filter.length <= 0) setSelectedLink(null);
+    else setSelectedLink(filter[0].id);
+  }, [menuItems]);
+
+  return (
+    <Container scrolled={!navFixed} transparent={transparent}>
+      <div className={navFixed ? 'scrolled' : ''}>
+        <Navbar
+          collapseOnSelect
+          expand="lg"
+          className={navFixed ? 'fixed' : ''}
+        >
+          <Navbar.Brand
+            href="/"
+            style={{ color: navFixed ? theme.colors.text : '#fff' }}
+          >
+            Cadê o MW ?
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto">
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label="DarkMode"
+                style={{ color: navFixed ? theme.colors.text : '#fff' }}
+                checked={dark}
+                onChange={() => {
+                  setDark(!dark);
+                  let temp;
+                  if (!dark) temp = themes.data.dark;
+                  else temp = themes.data.light;
+
+                  setToLS('theme', temp);
+                  setTheme(temp);
+                  window.location.reload(); // TODO: verify a simpler way to reaload theme.
+                }}
+              />
+
+              {menuItems.map(menu => (
+                <Nav.Link
+                  href={menu.link}
+                  className={selectedLink === menu.id ? 'active' : ''}
+                  style={{ color: navFixed ? theme.colors.text : '#fff' }}
+                  key={menu.name}
+                >
+                  {menu.name}
+                </Nav.Link>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
+      {!transparent && (
+        <WaveContainer>
+          <svg
+            width="100%"
+            height="200px"
+            fill="none"
+            viewBox="0 0 1400 180"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill={theme.colors.body}
+              d="
+                M 0 67
+                C 273,183
+                  822,-40
+                  1920,106
+
+                V 359
+                H 0
+                V 67
+                Z"
+            >
+              <animate
+                repeatCount="indefinite"
+                fill="#454599"
+                attributeName="d"
+                dur="15s"
+                values="
+                    M0 77
+                    C 473,283
+                    822,-40
+                      1920,116
+
+                      V 359
+                    H 0
+                    V 67
+                    Z;
+
+                    M0 77
+                    C 473,-40
+                      1222,283
+                      1920,136
+
+                    V 359
+                    H 0
+                    V 67
+                    Z;
+
+                    M0 77
+                    C 973,260
+                    1722,-53
+                    1920,120
+
+                    V 359
+                    H 0
+                    V 67
+                    Z;
+
+                    M0 77
+                    C 473,283
+                    822,-40
+                    1920,116
+
+                    V 359
+                    H 0
+                    V 67
+                    Z
+                    "
+              />
+            </path>
+          </svg>
+        </WaveContainer>
+      )}
+    </Container>
+  );
+};
+
+export default Header;
