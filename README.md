@@ -20,7 +20,26 @@ Configure separadamente o backend e o frontend utilizando as informações dos R
 1. Push sua branch (`git push origin minha-nova-funcionalidade`)
 1. Crie uma Pull Request
 
-## Contribuições
+## Idealizadores
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://www.instagram.com/joaopedro.assis.3/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/38732089?v=4" width="100px;" alt=""/><br/><sub><b>João
+        Pedro Assis</b></sub></a><br/></td>
+    <td align="center">
+      <a href="https://www.instagram.com/bru_azambuja/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/54870899?v=4" width="100px;" alt=""/><br/><sub><b>Bruna
+        Azambuja</b></sub></a><br/></td>
+    <td align="center">
+      <a href="https://www.instagram.com/waliff.cordeiro/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/43971264?v=4" width="100px;" alt=""/><br/><sub><b>Waliff
+        Cordeiro</b></sub></a><br/></td>
+    <td align="center">
+      <a href="https://www.instagram.com/pedro.arduarte/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/43936240?v=4" width="100px;" alt=""/><br/><sub><b>Pedro
+        Augusto Duarte</b></sub></a><br/></td>
+    <td align="center">
+      <a href="https://github.com/lucasazuma"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/56770560?v=4" width="100px;" alt=""/><br/><sub><b>Lucas
+        Azuma</b></sub></a><br/></td>
+  </tr>
+</table>
 
 
 ## Licença 
