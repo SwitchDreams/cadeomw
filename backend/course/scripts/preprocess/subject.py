@@ -16,7 +16,7 @@ def run(*args):
     if args[0] == "all":
         print("Iniciando o processamento de todas as disciplinas...")
         for subject in Subject.objects.all():
-            subject.preprocess_info()
+            subject.preprocess_info('2022.2')
         print("Finalizando o processamento de todas as disciplinas...")
         return
 

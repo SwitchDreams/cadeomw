@@ -90,7 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('POSTGRES_DB', 'cadeomw'),
-        'USER': os.environ.get('POSTGRES_USER'  'postgres'),
+        'USER': 'postgres', # TODO: This bug with env var
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
         'HOST': os.environ.get('POSTGRES_HOST', 'db'),
         'PORT': '5432',
