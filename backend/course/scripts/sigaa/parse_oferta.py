@@ -6,7 +6,7 @@ from course.models.models import Subject
 from course.models.models import Teacher, OfferTeacher
 from django.db import IntegrityError
 
-url = "https://sig.unb.br/sigaa/public/turmas/listar.jsf"
+url = "https://sigaa.unb.br/sigaa/public/turmas/listar.jsf"
 YEAR = 2022
 PERIOD = 2
 
@@ -67,18 +67,18 @@ def create_subject(subject_code, department_object, subject_name, workload):
 
 ####################
 
-def parse_oferta(id, department_name, year=YEAR, period=PERIOD):
+def parse_oferta(id, department_name):
     infos_list = []
     request_data = get_request_from_oferta()
-    payload = f'formTurma=formTurma&formTurma%3AinputNivel=G&formTurma%3AinputDepto={id}&formTurma%3AinputAno={year}&formTurma%3AinputPeriodo={period}&formTurma%3Aj_id_jsp_1370969402_11=Buscar&javax.faces.ViewState=' \
+    payload = f'formTurma=formTurma&formTurma%3AinputNivel=G&formTurma%3AinputDepto={id}&formTurma%3AinputAno={YEAR}&formTurma%3AinputPeriodo={PERIOD}&formTurma%3Aj_id_jsp_1370969402_11=Buscar&javax.faces.ViewState=' \
               f'{request_data["javax"]}'
     headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3',
-        'Referer': 'https://sig.unb.br/sigaa/public/turmas/listar.jsf',
+        'Referer': url,
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Origin': 'https://sig.unb.br',
+        'Origin': 'https://sigaa.unb.br',
         'Connection': 'keep-alive',
         'Cookie': request_data['cookies'],
         'Upgrade-Insecure-Requests': '1',
@@ -88,7 +88,6 @@ def parse_oferta(id, department_name, year=YEAR, period=PERIOD):
     response = requests.request("POST", url, headers=headers, data=payload)
 
     html_soup = BeautifulSoup(response.text.encode('utf8'), 'html.parser')
-
     turma_aux = html_soup.find_all('tr', {'class': "agrupador"})
     if not turma_aux:
         print(f"Não existe oferta para o departamento: {department_name}")
