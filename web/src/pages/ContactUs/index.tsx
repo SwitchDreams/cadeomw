@@ -12,7 +12,7 @@ import fotoBruna from '../../assets/perfil_bruna.png';
 import fotoPedro from '../../assets/perfil_pedro.jpeg';
 import fotoWaliff from '../../assets/perfil_waliff.png';
 import fotoJapa from '../../assets/perfil_japa.jpeg';
-import logo from '../../assets/cloudy-sd.svg';
+import switchLogo from '../../assets/switch-logo.svg';
 
 import { Container, WhoWeAreContainer, CardsContainer } from './styles';
 import { copyToClipboard } from '../../utils/copyToClipboard';
@@ -131,12 +131,7 @@ const ContactUs: React.FC = () => {
 
       <WhoWeAreContainer>
         <div className="container">
-          <img
-            src={logo}
-            alt="Switch Dreams"
-            style={{ width: 100, height: 100 }}
-          />
-          <h4>Switch Dreams</h4>
+          <img src={switchLogo} alt="Switch Dreams" style={{ height: 200 }} />
           <p>
             A <a href="https://switchdreams.com.br">Switch Dreams </a>é o nome
             da start up idealizada por estudantes de Engenharia de Computação da
