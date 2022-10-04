@@ -67,10 +67,10 @@ def create_subject(subject_code, department_object, subject_name, workload):
 
 ####################
 
-def parse_oferta(id, department_name):
+def parse_oferta(id, department_name, year=YEAR, period=PERIOD):
     infos_list = []
     request_data = get_request_from_oferta()
-    payload = f'formTurma=formTurma&formTurma%3AinputNivel=G&formTurma%3AinputDepto={id}&formTurma%3AinputAno={YEAR}&formTurma%3AinputPeriodo={PERIOD}&formTurma%3Aj_id_jsp_1370969402_11=Buscar&javax.faces.ViewState=' \
+    payload = f'formTurma=formTurma&formTurma%3AinputNivel=G&formTurma%3AinputDepto={id}&formTurma%3AinputAno={year}&formTurma%3AinputPeriodo={period}&formTurma%3Aj_id_jsp_1370969402_11=Buscar&javax.faces.ViewState=' \
               f'{request_data["javax"]}'
     headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0',

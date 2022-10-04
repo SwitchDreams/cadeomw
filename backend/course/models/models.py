@@ -155,8 +155,11 @@ class Subject(models.Model):
             equivalences.append(equivalence.to_json())
         return equivalences
 
-    def get_offer(self):
-        return [offer.to_json() for offer in self.offers.all()]
+    def get_offer(self, semester=''):
+        if semester == '':
+            return [offer.to_json() for offer in self.offers.all()]
+        else:
+            return [offer.to_json() for offer in self.offers.filter(semester=semester)]
 
     def get_corequisite(self):
         return [subject.to_json() for subject in self.corequisite.all()]
@@ -223,11 +226,12 @@ class Subject(models.Model):
             grade_list.append(value)
         return grade_list
 
-    def preprocess_info(self):
+    # Semester no formato exemplo: 2022.2
+    def preprocess_info(self, semester=''):
         self.prerequisites = self.get_prerequisites()
         self.equivalences = self.get_equivalences()
         self.corequisites = self.get_corequisite()
-        self.offer = self.get_offer()
+        self.offer = self.get_offer(semester)
         self.save()
 
 
@@ -300,6 +304,7 @@ class CoRequisite(models.Model):
 
     def to_json(self):
         return self.corequisite.to_json()
+
 
 class Equivalence(models.Model):
     coverage = models.CharField(max_length=10)
